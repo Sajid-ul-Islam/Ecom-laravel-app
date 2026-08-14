@@ -13,15 +13,14 @@
     <!-- Bootstrap 5 CSS & FontAwesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Custom Theme Styles -->
     <link href="{{ asset('css/deen-commerce-store.css') }}" rel="stylesheet">
     <link href="{{ asset('css/woocommerce-dashboard.css') }}" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
 </head>
+
 
 <body>
     <div id="app">
@@ -33,9 +32,10 @@
         <nav class="navbar navbar-expand-lg deen-navbar sticky-top">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url('/') }}">
-                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 38px; height: 38px;">DC</div>
-                    <span class="deen-brand-logo">Deen Commerce <span class="deen-brand-badge">Retail Store</span></span>
+                    <img src="https://deencommerce.com/wp-content/uploads/2025/04/Deen-Logo-Light-scaled.png" alt="Deen Commerce" style="height: 38px; object-fit: contain;">
+                    <span class="deen-brand-badge ms-1">Retail Store</span>
                 </a>
+
                 <button class="navbar-toggler text-white border-secondary" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
@@ -79,10 +79,17 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('account.dashboard') }}">
+                                        <i class="fas fa-user-circle me-2 text-primary"></i> My Account Dashboard
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('account.orders') }}">
+                                        <i class="fas fa-box-open me-2 text-success"></i> Track My Orders
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('woocommerce.dashboard') }}">
-                                        <i class="fas fa-chart-line me-2 text-primary"></i> WooCommerce Hub
+                                        <i class="fas fa-chart-line me-2 text-info"></i> WooCommerce Hub
                                     </a>
                                     <hr class="dropdown-divider">
+
                                     <a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt me-2"></i> {{ __('Logout') }}
                                     </a>

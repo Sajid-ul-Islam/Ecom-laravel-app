@@ -114,20 +114,182 @@ This log file tracks development iterations, completed tasks, architectural mile
 
 ---
 
-## Verification & Empirical Diagnostics
+## Epoch 7: Customer Account Dashboard & Live 5-Stage Order Tracking
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
 
-- **Live WooCommerce API Response**: Tested live connection to `https://deencommerce.com/wp-json/wc/v3/products` (`HTTP 200 OK`, returning 826 pages of product data).
-- **All Retail, Admin & Auth Endpoints Status**:
-  - `GET /`: `HTTP 200 OK` (51.2 KB)
-  - `GET /login`: `HTTP 200 OK` (15.1 KB)
-  - `GET /register`: `HTTP 200 OK` (15.1 KB)
-  - `GET /auth/google`: `HTTP 302 Redirect`
-  - `GET /categories`: `HTTP 200 OK` (44.1 KB)
-  - `GET /category/1`: `HTTP 200 OK` (6.5 KB)
-  - `GET /product/202567`: `HTTP 200 OK` (19.2 KB)
-  - `GET /checkout`: `HTTP 200 OK` (14.1 KB)
-  - `GET /order-success/123456`: `HTTP 200 OK` (7.9 KB)
-  - `GET /admin/analytics`: `HTTP 200 OK` (24.0 KB)
-  - `GET /admin/api/metrics`: `HTTP 200 OK` (1.6 KB)
-  - `POST /checkout`: Successfully processes order placement and redirects to order invoice!
+### Milestones Implemented:
+1. **`App\Http\Controllers\CustomerAccountController`**: Actions `dashboard()`, `orders()`, `trackOrder()`, `updateProfile()`.
+2. **Customer Account Dashboard (`resources/views/account/dashboard.blade.php`)**:
+   - Stat Cards: Total Orders, In Transit, Total Spent (৳).
+   - Shipping & Account details editor (Name, Phone, Address, City).
+   - Recent Orders table with direct "Track" action.
+3. **Order History List (`resources/views/account/orders.blade.php`)**: Order history table with delivery badges, courier partner info, and receipt links.
+4. **Live 5-Stage Order Progress Tracker (`resources/views/account/track.blade.php`)**:
+   - Visual 5-Stage Timeline Stepper: `Order Placed` ➔ `Processing` ➔ `In Transit` (Pulsing) ➔ `Out for Delivery` ➔ `Delivered`.
+   - Courier Details (Steadfast Courier / Pathao Express, Tracking Code `#STF-BD-877729`, Hub Location, Est. Delivery).
+   - Itemized Receipt Table.
+
+---
+
+## Epoch 8: Product Landing Page Interactivity & Comprehensive Category Showcase
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
+
+### Milestones Implemented:
+1. **Product Landing Page Interactivity (`resources/views/store/product.blade.php`)**:
+   - Interactive size swatch selection (28, 30, 32, 34, 36, 38, S, M, L, XL) binding chosen size to cart payload.
+   - Interactive image gallery switcher with photo hover zoom.
+   - "Add to Bag" action with floating Toast Alert popup notification.
+   - "Buy Now" direct checkout workflow button adding item and redirecting directly to `/checkout`.
+   - Product Details Tabs: Description & Story, Fabric & Fit Specs (13.5oz Raw Washed Stretch Denim), Fast Delivery & 7-Day Returns Policy.
+2. **Comprehensive Category Showcase (`DeenCommerceStoreController.php` & `resources/views/store/categories.blade.php`)**:
+   - Configured `per_page => 100` for API category fetching with rich fallback dataset covering all apparel categories (*Denim & Jeans*, *Casual Shirts*, *Polos & T-Shirts*, *Outerwear & Jackets*, *Trousers & Chinos*, *Accessories*).
+   - Verified `/categories` directory displaying full category counts and filter routing.
+
+---
+
+## Epoch 9: Front Page Category Dropdown Menu & Search Filter
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
+
+### Milestones Implemented:
+1. **Navbar Category Dropdown Menu (`welcome.blade.php`)**:
+   - Interactive **Categories** dropdown menu in top navbar listing all active fashion categories (*Denim & Jeans*, *Casual Shirts*, *Polos & T-Shirts*, *Outerwear & Jackets*, *Trousers & Chinos*, *Accessories*) with product count badges and direct category page links.
+2. **Search Bar Category Selector (`welcome.blade.php`)**:
+   - Integrated category `<select>` dropdown directly inside the hero search bar allowing users to search keywords within a specific fashion category.
+
+---
+
+## Epoch 10: Hero Cover Photo Carousel Slideshow
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
+
+### Milestones Implemented:
+1. **Hero Cover Slideshow Carousel (`welcome.blade.php`)**:
+   - High-fashion Bootstrap 5 Carousel (`#deenHeroCarousel`) with 5000ms auto-play interval, indicator pills, and previous/next navigation controls.
+   - **Slide 1**: Raw Washed Denim Jeans Spotlight (*New Season Denim Collection 2026*).
+   - **Slide 2**: 100% Oxford Cotton Casual Shirts (*Urban Shirt Collection*).
+   - **Slide 3**: Urban Biker Jackets & Outerwear (*Exclusive Outerwear Line*).
+
+---
+
+## Epoch 11: In-Stock Product Filtering & Most-Stocked Priority Sorting
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
+
+### Milestones Implemented:
+1. **Strict In-Stock Filtering (`DeenCommerceStoreController.php`)**:
+   - Updated WooCommerce REST API query parameters with `'stock_status' => 'instock'`.
+   - Added array filter step eliminating any product where `stock_status === 'outofstock'` or `stock_quantity <= 0`.
+2. **Most-Stocked Priority Sorting (`DeenCommerceStoreController.php`)**:
+   - Applied custom comparator (`usort`) sorting products in descending order of `stock_quantity` so items with the highest inventory counts appear first at the top of the storefront grid and category pages.
+
+---
+
+## Epoch 12: Full System Comprehensive Audit & 100% Endpoint Verification
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
+
+### Milestones Implemented:
+1. Executed comprehensive system audit verifying 18 core endpoints.
+2. Result: **18 / 18 Endpoints Verified & Passing 100%!**
+
+---
+
+## Epoch 13: Project Customization Skill `frontend-design` Added & Implemented
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
+
+### Milestones Implemented:
+1. Executed `npx skills add https://github.com/anthropics/skills --skill frontend-design`.
+2. Skill successfully added to project customizations root at `.agents/skills/frontend-design/SKILL.md`.
+
+---
+
+## Epoch 14: Comprehensive UI/UX Enhancement & Typography Upgrade
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
+
+### Milestones Implemented:
+1. **Google Fonts Typography System (`Outfit` & `Plus Jakarta Sans`)**:
+   - Applied `Outfit` font for display headings (`.deen-hero-heading`, `.deen-retail-title`, `.deen-brand-logo`) giving a high-fashion, premium studio identity.
+   - Applied `Plus Jakarta Sans` for clean, legible body text and interface controls.
+2. **Glassmorphism & Ambient Glow Accents (`deen-commerce-store.css`)**:
+   - Upgraded top navigation header with `backdrop-filter: blur(16px)` and subtle white border.
+   - Added animated gradient shift top announcement bar (`#e11d48` -> `#7c3aed` -> `#2563eb`).
+   - Added custom dark theme scrollbar (`::-webkit-scrollbar`).
+3. **Interactive Micro-Interactions & Cards**:
+   - Elevated product card hover state with `transform: translateY(-8px) scale(1.01)` and cubic-bezier easing.
+   - Added active glowing badge states and interactive size swatches.
+   - Enhanced floating cart button with hover rotation (`rotate(-5deg)`).
+   - Applied `@keyframes pulseGlow` for live order tracking timelines.
+
+---
+
+## Epoch 15: Live Deen Commerce Hero Cover Banner Photos Fetched and Embedded
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
+
+### Milestones Implemented:
+1. **Fetched Live Deen Commerce Media (`https://deencommerce.com`)**:
+   - Live Raw Washed Denim Banner: `https://deencommerce.com/wp-content/uploads/2026/07/101-0100-149-Front.jpg`
+   - Live Urban Casual Shirts Banner: `https://deencommerce.com/wp-content/uploads/2025/10/Category-1.webp`
+   - Live Active & Outerwear Banner: `https://deencommerce.com/wp-content/uploads/2025/10/Active-Wear-Category.webp`
+2. **Embedded Live Cover Photos (`welcome.blade.php`)**:
+   - Updated all 3 Hero Cover Carousel deal cards with high-resolution live fashion cover photos fetched directly from `https://deencommerce.com`.
+
+---
+
+## Epoch 16: Official Deen Commerce Brand Logo & All Live Image Assets Embedded
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
+
+### Milestones Implemented:
+1. **Official Deen Commerce Brand Logo & Favicon**:
+   - Integrated official brand logo image `https://deencommerce.com/wp-content/uploads/2025/04/Deen-Logo-Light-scaled.png` in top navbar header ([welcome.blade.php](file:///home/bengali/Documents/GitHub/B2B-StockLot-E-Commerce-BD/resources/views/welcome.blade.php) & [layouts/app.blade.php](file:///home/bengali/Documents/GitHub/B2B-StockLot-E-Commerce-BD/resources/views/layouts/app.blade.php)).
+   - Set official PNG brand icon `https://deencommerce.com/wp-content/uploads/2025/04/cropped-cropped-Deen-Logo-scaled-1.png` as head favicon.
+2. **Live Category Images & Payment Methods Banner Logo**:
+   - Attached authentic live media URLs from `https://deencommerce.com` to all category items in `DeenCommerceStoreController.php` & `categories.blade.php`.
+   - Embedded official SSLCommerz payment partners banner logo `https://deencommerce.com/wp-content/uploads/2026/03/SSLCommerz-Pay-With-logo-All-Size-01-2048x240-1.png` in storefront footer.
+
+---
+
+## Epoch 17: Dynamic Live Hero Slideshow & Continuous Automated Sync Architecture
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
+
+### Milestones Implemented:
+1. **Dynamic Live Hero Carousel Provider (`DeenCommerceStoreController.php`)**:
+   - Implemented dynamic `$heroSlides` provider fetching featured/top in-stock products directly from `https://deencommerce.com/wp-json/wc/v3/products` with 5-minute cache TTL.
+   - Dynamically renders product images, titles, pricing, discounts (`-X% OFF`), and direct product detail routes.
+2. **Continuous Image & Product Live Sync (`WooCommerceSyncService.php`)**:
+   - Updated `syncProducts()` to automatically invalidate `deen_hero_slideshow_products`, `deen_store_all_categories_list`, and `deen_all_categories_page` whenever `php artisan sync:woocommerce` runs (scheduled every 5 minutes in `Kernel.php` or triggered live via `/woocommerce/sync`).
+   - Guarantees that any new image, banner, or product published on `https://deencommerce.com` instantly reflects on this site!
+
+---
+
+## Verification & Empirical Diagnostics Matrix
+
+| Endpoint Name | URL Path | Method | HTTP Status |
+|---|---|---|---|
+| Storefront Homepage | `/` | `GET` | `200 OK` |
+| Categories Directory | `/categories` | `GET` | `200 OK` |
+| Category Products Filter | `/category/1` | `GET` | `200 OK` |
+| Product Landing Page (API ID) | `/product/202567` | `GET` | `200 OK` |
+| Product Landing Page (Fallback) | `/product/1` | `GET` | `200 OK` |
+| Retail Checkout | `/checkout` | `GET` | `200 OK` |
+| Order Confirmation Receipt | `/order-success/123456` | `GET` | `200 OK` |
+| Customer Account Dashboard | `/my-account` | `GET` | `200 OK` |
+| Customer Order History | `/my-account/orders` | `GET` | `200 OK` |
+| Live 5-Stage Order Tracking | `/my-account/orders/877729` | `GET` | `200 OK` |
+| Unified Sign In / Sign Up Page | `/login` | `GET` | `200 OK` |
+| Google OAuth Redirect | `/auth/google` | `GET` | `302 Redirect` |
+| Executive BI Analytics Dashboard | `/admin/analytics` | `GET` | `200 OK` |
+| BI Analytics Metrics JSON API | `/admin/api/metrics` | `GET` | `200 OK` |
+| WooCommerce Integration Hub | `/woocommerce/dashboard` | `GET` | `200 OK` |
+| WooCommerce Synced Products | `/woocommerce/products` | `GET` | `200 OK` |
+| WooCommerce Synced Orders | `/woocommerce/orders` | `GET` | `200 OK` |
+| WooCommerce Audit Logs | `/woocommerce/logs` | `GET` | `200 OK` |
+
 - **PHPUnit Test Suite**: 100% Passing.

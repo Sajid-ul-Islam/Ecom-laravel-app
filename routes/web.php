@@ -91,10 +91,19 @@ Route::get('/categories/{id}', [DeenCommerceStoreController::class, 'categoryPro
 
 
 
+// Customer Account & Order Tracking Routes
+Route::prefix('my-account')->name('account.')->group(function () {
+    Route::get('/', [App\Http\Controllers\CustomerAccountController::class, 'dashboard'])->name('dashboard');
+    Route::get('/orders', [App\Http\Controllers\CustomerAccountController::class, 'orders'])->name('orders');
+    Route::get('/orders/{id}', [App\Http\Controllers\CustomerAccountController::class, 'trackOrder'])->name('orders.track');
+    Route::post('/profile', [App\Http\Controllers\CustomerAccountController::class, 'updateProfile'])->name('profile.update');
+});
+
 // Profile Routes
 Route::get('/profile/{user}', [ProfilesController::class, 'index'])->name('profile.show');
 Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile/{user}', [ProfilesController::class, 'update'])->name('profile.update');
+
 
 // Admin Routes
 Route::get('/admin/analytics', [App\Http\Controllers\AdminAnalyticsController::class, 'index'])->name('admin.analytics');

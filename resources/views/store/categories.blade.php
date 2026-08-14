@@ -20,6 +20,7 @@
             @forelse($categories as $cat)
                 @php
                     $catImage = $cat['image']['src'] ?? null;
+                    $desc = !empty($cat['description']) ? Str::limit(strip_tags($cat['description']), 60) : 'Deen Commerce Premium Fashion Collection.';
                 @endphp
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="card h-100 border-0 rounded-4 shadow-sm overflow-hidden text-decoration-none">
@@ -35,7 +36,7 @@
                         </div>
                         <div class="card-body p-4 d-flex flex-column">
                             <h5 class="fw-bold text-dark mb-2">{{ $cat['name'] }}</h5>
-                            <p class="text-muted small mb-3 flex-grow-1">{{ $cat['description'] ? Str::limit(strip_tags($cat['description']), 60) : 'Deen Commerce Premium Fashion Collection.' }}</p>
+                            <p class="text-muted small mb-3 flex-grow-1">{{ $desc }}</p>
                             <a href="{{ route('store.category', $cat['id']) }}" class="btn btn-dark rounded-pill fw-bold w-100 mt-auto">
                                 Browse Collection <i class="fas fa-arrow-right ms-1"></i>
                             </a>

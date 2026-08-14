@@ -45,6 +45,9 @@ class WooCommerceSyncService
                     $stats[$result]++;
                 });
             }
+            \Illuminate\Support\Facades\Cache::forget('deen_hero_slideshow_products');
+            \Illuminate\Support\Facades\Cache::forget('deen_store_all_categories_list');
+            \Illuminate\Support\Facades\Cache::forget('deen_all_categories_page');
         } catch (WooCommerceException $exception) {
             $this->handleCriticalFailure('Product sync failed', $exception);
             throw $exception;
@@ -52,6 +55,7 @@ class WooCommerceSyncService
 
         return $stats;
     }
+
 
     public function syncOrders(): array
     {

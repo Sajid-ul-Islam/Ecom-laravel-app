@@ -5,17 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Deen Commerce (দীন কমার্স) - Premium Retail Fashion & Urban Apparel E-Store</title>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="https://deencommerce.com/wp-content/uploads/2025/04/cropped-cropped-Deen-Logo-scaled-1.png" type="image/png">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Deen Commerce Retail Custom CSS -->
     <link href="{{ asset('css/deen-commerce-store.css') }}" rel="stylesheet">
 </head>
+
 
 <body>
     <!-- Top Announcement Bar -->
@@ -27,33 +28,68 @@
     <nav class="navbar navbar-expand-lg deen-navbar sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url('/') }}">
-                <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 40px; height: 40px;">DC</div>
-                <div>
-                    <span class="deen-brand-logo">Deen Commerce</span>
-                    <span class="deen-brand-badge">Retail Store</span>
-                </div>
+                <img src="https://deencommerce.com/wp-content/uploads/2025/04/Deen-Logo-Light-scaled.png" alt="Deen Commerce (দীন কমার্স)" style="height: 38px; object-fit: contain;">
+                <span class="deen-brand-badge ms-1">Retail Store</span>
             </a>
+
 
             <button class="navbar-toggler text-white border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#deenRetailNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="deenRetailNavbar">
-                <!-- Search Bar -->
-                <form method="GET" action="{{ route('store.index') }}" class="mx-auto my-2 my-lg-0" style="max-width: 420px; width: 100%;">
+                <!-- Search Bar with Category Select -->
+                <form method="GET" action="{{ route('store.index') }}" class="mx-auto my-2 my-lg-0" style="max-width: 520px; width: 100%;">
                     <div class="input-group">
-                        <input type="text" name="search" class="form-control bg-dark text-white border-secondary rounded-start-pill px-3" placeholder="Search jeans, shirts, polos, jackets..." value="{{ $searchQuery ?? '' }}">
+                        <select name="category" class="form-select bg-dark text-white-50 border-secondary rounded-start-pill text-truncate" style="max-width: 150px; font-size: 0.85rem;">
+                            <option value="">All Categories</option>
+                            @if(!empty($categories))
+                                @foreach($categories as $cat)
+                                    <option value="{{ $cat['id'] }}" {{ ($selectedCategory == $cat['id']) ? 'selected' : '' }}>
+                                        {{ $cat['name'] }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                        <input type="text" name="search" class="form-control bg-dark text-white border-secondary px-3" placeholder="Search jeans, shirts, polos..." value="{{ $searchQuery ?? '' }}">
                         <button class="btn btn-primary rounded-end-pill px-3" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 </form>
 
                 <ul class="navbar-nav ms-auto align-items-center gap-2">
+                    <!-- Category Dropdown Menu -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white fw-semibold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-list text-primary me-1"></i> Categories
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark shadow-lg border-secondary rounded-4 py-2" style="min-width: 240px;">
+                            <li><h6 class="dropdown-header text-uppercase text-muted fw-bold">Fashion Collections</h6></li>
+                            @if(!empty($categories))
+                                @foreach($categories as $cat)
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center justify-content-between py-2 px-3 {{ ($selectedCategory == $cat['id']) ? 'active' : '' }}" href="{{ route('store.category', $cat['id']) }}">
+                                            <span><i class="fas fa-angle-right me-2 text-primary"></i> {{ $cat['name'] }}</span>
+                                            <span class="badge bg-danger rounded-pill">{{ $cat['count'] ?? 0 }}</span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @endif
+                            <li><hr class="dropdown-divider border-secondary"></li>
+                            <li>
+                                <a class="dropdown-item text-warning fw-bold py-2 px-3" href="{{ route('store.categories') }}">
+                                    <i class="fas fa-border-all me-2"></i> View All Categories &rarr;
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link text-white fw-semibold" href="#catalog-section"><i class="fas fa-tshirt me-1"></i> Shop Fashion</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-warning fw-semibold" href="{{ route('woocommerce.dashboard') }}"><i class="fas fa-sync-alt me-1"></i> WooCommerce Hub</a>
                     </li>
+
                     @guest
                         <li class="nav-item ms-lg-2">
                             <a class="btn btn-outline-light rounded-pill px-3" href="{{ route('login') }}">Sign In</a>
@@ -71,45 +107,91 @@
         </div>
     </nav>
 
-    <!-- Retail Hero Banner -->
-    <section class="deen-fashion-hero">
-        <div class="container">
-            <div class="row align-items-center g-4">
-                <div class="col-lg-7">
-                    <div class="deen-hero-tag">
-                        <i class="fas fa-sparkles me-1"></i> NEW SEASON FASHION COLLECTION 2026
-                    </div>
-                    <h1 class="deen-hero-heading mb-3">
-                        Elevate Your Style with <span class="text-warning">Deen Commerce</span>
-                    </h1>
-                    <p class="deen-hero-desc mb-4">
-                        Discover authentic raw washed denim jeans, urban apparel, casual shirts, and outerwear. Live inventory connected to https://deencommerce.com.
-                    </p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="#catalog-section" class="btn btn-danger btn-lg rounded-pill px-4 fw-bold shadow">
-                            <i class="fas fa-bag-shopping me-2"></i> Shop New Arrivals
-                        </a>
-                        <a href="{{ route('woocommerce.products') }}" class="btn btn-outline-light btn-lg rounded-pill px-4 fw-bold">
-                            <i class="fas fa-tshirt me-2"></i> View Catalog
-                        </a>
-                    </div>
+    <!-- Retail Hero Carousel Cover Slideshow -->
+    <section class="deen-fashion-hero p-0">
+        <div id="deenHeroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+            @if(!empty($heroSlides) && count($heroSlides) > 1)
+                <div class="carousel-indicators mb-4">
+                    @foreach($heroSlides as $index => $slide)
+                        <button type="button" data-bs-target="#deenHeroCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
+                    @endforeach
                 </div>
+            @endif
 
-                <div class="col-lg-5">
-                    <div class="bg-white text-dark p-4 rounded-4 shadow-lg border text-center position-relative">
-                        <span class="badge bg-danger position-absolute top-0 end-0 m-3 px-3 py-2 rounded-pill fw-bold">SPECIAL DEAL</span>
-                        <div class="my-3">
-                            <i class="fas fa-fire fa-4x text-danger mb-3"></i>
-                            <h4 class="fw-bold text-dark mb-1">High-End Raw Washed Jeans</h4>
-                            <p class="text-muted small">Slim Fit Premium Stretch Denim</p>
-                            <div class="fs-2 fw-bold text-primary mb-3">৳2,490 <small class="fs-6 text-muted text-decoration-line-through">৳2,990</small></div>
-                            <a href="#catalog-section" class="btn btn-dark btn-lg w-100 rounded-pill fw-bold">Shop Denim Jeans</a>
+            <div class="carousel-inner">
+                @if(!empty($heroSlides))
+                    @foreach($heroSlides as $index => $slide)
+                        @php
+                            $slideImg = $slide['images'][0]['src'] ?? 'https://deencommerce.com/wp-content/uploads/2026/07/101-0100-149-Front.jpg';
+                            $slidePrice = !empty($slide['price']) ? '৳' . number_format((float)$slide['price']) : '৳2,490';
+                            $regPrice = !empty($slide['regular_price']) ? '৳' . number_format((float)$slide['regular_price']) : null;
+                            $tagline = $slide['tagline'] ?? ('LIVE FEATURED ITEM #' . ($slide['id'] ?? $index+1));
+                            $badge = $slide['badge'] ?? 'LIVE SYNC';
+                        @endphp
+                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }} py-5">
+                            <div class="container py-4">
+                                <div class="row align-items-center g-4">
+                                    <div class="col-lg-7">
+                                        <div class="deen-hero-tag">
+                                            <i class="fas fa-sparkles me-1"></i> {{ $tagline }}
+                                        </div>
+                                        <h1 class="deen-hero-heading mb-3">
+                                            {{ $slide['name'] }}
+                                        </h1>
+                                        <p class="deen-hero-desc mb-4">
+                                            {!! Str::limit(strip_tags($slide['short_description'] ?? $slide['description'] ?? 'Discover premium Bangladesh denim, casual shirts, and urban apparel live from Deen Commerce.'), 140) !!}
+                                        </p>
+                                        <div class="d-flex flex-wrap gap-3">
+                                            <a href="{{ route('store.product.detail', $slide['id'] ?? 1) }}" class="btn btn-danger btn-lg rounded-pill px-4 fw-bold shadow">
+                                                <i class="fas fa-bag-shopping me-2"></i> Shop This Item
+                                            </a>
+                                            <a href="#catalog-section" class="btn btn-outline-light btn-lg rounded-pill px-4 fw-bold">
+                                                <i class="fas fa-tshirt me-2"></i> Browse Full Catalog
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-5">
+                                        <div class="bg-white text-dark p-3 rounded-4 shadow-lg border text-center position-relative overflow-hidden">
+                                            <span class="badge bg-danger position-absolute top-0 end-0 m-3 px-3 py-2 rounded-pill fw-bold z-3">{{ $badge }}</span>
+                                            <div class="rounded-3 overflow-hidden mb-3" style="height: 250px; background: #f8fafc;">
+                                                <img src="{{ $slideImg }}" class="w-100 h-100 object-fit-cover" alt="{{ $slide['name'] }}">
+                                            </div>
+                                            <div class="mb-2">
+                                                <h4 class="fw-bold text-dark mb-1 text-truncate">{{ $slide['name'] }}</h4>
+                                                <p class="text-muted small mb-2">Live Deen Commerce Sync</p>
+                                                <div class="fs-2 fw-bold text-primary mb-3">
+                                                    {{ $slidePrice }}
+                                                    @if($regPrice && $regPrice !== $slidePrice)
+                                                        <small class="fs-6 text-muted text-decoration-line-through">{{ $regPrice }}</small>
+                                                    @endif
+                                                </div>
+                                                <a href="{{ route('store.product.detail', $slide['id'] ?? 1) }}" class="btn btn-dark btn-lg w-100 rounded-pill fw-bold">
+                                                    View Details <i class="fas fa-arrow-right ms-1"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    @endforeach
+                @endif
             </div>
+
+            @if(!empty($heroSlides) && count($heroSlides) > 1)
+                <button class="carousel-control-prev" type="button" data-bs-target="#deenHeroCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#deenHeroCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            @endif
         </div>
     </section>
+
 
     <!-- Retail Perks Value Bar -->
     <div class="container">
@@ -357,11 +439,16 @@
                     </span>
                 </div>
             </div>
+            <div class="my-4 text-center">
+                <p class="text-white-50 small mb-2">Supported Payment Gateways & Banking Partners in Bangladesh</p>
+                <img src="https://deencommerce.com/wp-content/uploads/2026/03/SSLCommerz-Pay-With-logo-All-Size-01-2048x240-1.png" alt="Payment Methods" class="img-fluid rounded bg-white p-2" style="max-height: 54px;">
+            </div>
             <div class="border-top border-secondary pt-3 text-center text-muted small">
                 &copy; {{ date('Y') }} Deen Commerce Retail Fashion E-Store. All rights reserved.
             </div>
         </div>
     </footer>
+
 
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
