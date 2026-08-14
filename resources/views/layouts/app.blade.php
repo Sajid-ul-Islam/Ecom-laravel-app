@@ -125,8 +125,15 @@
                             </ul>
                         </li>
 
+                        <!-- Deen VIP Loyalty & Rewards Points Badge -->
                         <li class="nav-item me-2">
-                            <a href="{{ route('admin.analytics') }}" class="btn btn-outline-warning btn-sm rounded-pill px-3 fw-bold">
+                            <button type="button" onclick="openLoyaltyModal()" class="deen-loyalty-badge" title="View Deen VIP Club Rewards">
+                                <i class="fas fa-crown"></i> <span>VIP 450 COINS</span>
+                            </button>
+                        </li>
+
+                        <li class="nav-item me-1">
+                            <a class="btn btn-sm btn-outline-warning rounded-pill px-3 fw-bold text-white d-inline-flex align-items-center gap-1" href="{{ route('woocommerce.dashboard') }}">
                                 <i class="fas fa-shield-alt me-1"></i> Admin Portal Access
                             </a>
                         </li>
@@ -193,17 +200,23 @@
                 <span class="material-symbols-outlined nav-icon">search</span>
                 <span>Search</span>
             </a>
+            <a href="#" onclick="event.preventDefault(); openWishlistModal();" class="deen-mobile-nav-item">
+                <span class="material-symbols-outlined nav-icon text-danger">favorite</span>
+                <span>Wishlist</span>
+                <span class="deen-mobile-nav-badge bg-danger" id="bottomNavWishlistBadge">0</span>
+            </a>
             <a href="#" onclick="event.preventDefault(); openGlobalCartModal();" class="deen-mobile-nav-item">
                 <span class="material-symbols-outlined nav-icon">shopping_bag</span>
                 <span>Bag</span>
                 <span class="deen-mobile-nav-badge" id="bottomNavCartBadge">0</span>
             </a>
-            <a href="{{ route('account.dashboard') }}" class="deen-mobile-nav-item {{ request()->is('my-account*') ? 'active' : '' }}">
-                <span class="material-symbols-outlined nav-icon">person</span>
-                <span>Account</span>
+            <a href="#" onclick="event.preventDefault(); openOrderTrackModal();" class="deen-mobile-nav-item {{ request()->is('my-account*') ? 'active' : '' }}">
+                <span class="material-symbols-outlined nav-icon text-success">local_shipping</span>
+                <span>Track</span>
+            </a>
         </div>
 
-        <!-- TELEGRAM CUSTOMER CARE CHATBOT WIDGET (@DEEN_Commerce_bot) -->
+        <!-- TELEGRAM & INSTANT LIVE CHAT ASSISTANT WIDGET (@DEEN_Commerce_bot) -->
         <div class="deen-telegram-widget-wrapper">
             <!-- Popover Card -->
             <div class="deen-telegram-popover" id="telegramChatPopover">
@@ -211,8 +224,8 @@
                     <div class="d-flex align-items-center gap-2">
                         <i class="fab fa-telegram fa-lg text-white"></i>
                         <div>
-                            <div class="fw-bold small">DEEN Commerce Assistant</div>
-                            <div class="small opacity-75" style="font-size: 0.72rem;"><i class="fas fa-circle text-success me-1" style="font-size: 8px;"></i> @DEEN_Commerce_bot</div>
+                            <div class="fw-bold small">DEEN Instant Support</div>
+                            <div class="small opacity-75" style="font-size: 0.72rem;"><i class="fas fa-circle text-success me-1" style="font-size: 8px;"></i> @DEEN_Commerce_bot Online</div>
                         </div>
                     </div>
                     <button type="button" class="btn-close btn-close-white btn-sm" onclick="toggleTelegramChatPopover()"></button>
@@ -220,14 +233,30 @@
                 <div class="deen-telegram-body">
                     <div class="deen-telegram-chat-bubble">
                         <div class="fw-bold mb-1 text-warning"><i class="fas fa-robot me-1"></i> Assalamu Alaikum!</div>
-                        Need help with your denim sizes, order tracking, returns, or product stock? Chat live with our official Telegram AI Assistant!
+                        Need instant help with order status, sizing, or returns? Choose a quick topic below or chat live via Telegram / WhatsApp!
                     </div>
-                    <a href="https://t.me/DEEN_Commerce_bot" target="_blank" class="deen-telegram-btn mb-2">
-                        <i class="fab fa-telegram-plane"></i> Open Telegram Bot App
-                    </a>
-                    <a href="https://web.telegram.org/k/#@DEEN_Commerce_bot" target="_blank" class="btn btn-sm btn-outline-light w-100 rounded-pill text-white-50" style="font-size: 0.78rem;">
-                        <i class="fas fa-globe me-1"></i> Open Telegram Web Client
-                    </a>
+
+                    <!-- Interactive Quick FAQ Options -->
+                    <div class="d-flex flex-column gap-2 mb-3">
+                        <button type="button" onclick="openOrderTrackModal(); toggleTelegramChatPopover();" class="deen-chat-faq-btn">
+                            <i class="fas fa-truck text-warning me-2"></i> 📦 Track My Active Order
+                        </button>
+                        <button type="button" onclick="alert('🚚 Standard Delivery: Inside Dhaka ৳70 (24-48 hrs), Outside Dhaka ৳130 (2-3 days). Express Dhaka Same-Day ৳150.');" class="deen-chat-faq-btn">
+                            <i class="fas fa-motorcycle text-info me-2"></i> 🚚 Shipping & Delivery Rates
+                        </button>
+                        <button type="button" onclick="alert('🔄 Deen 7-Day Exchange Guarantee: You can exchange any unworn product with original tags within 7 days!');" class="deen-chat-faq-btn">
+                            <i class="fas fa-rotate-left text-success me-2"></i> 🔄 7-Day Return & Exchange
+                        </button>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <a href="https://t.me/DEEN_Commerce_bot" target="_blank" class="deen-telegram-btn">
+                            <i class="fab fa-telegram-plane"></i> Chat on Telegram (@DEEN_Commerce_bot)
+                        </a>
+                        <a href="https://wa.me/8801700000000" target="_blank" class="btn btn-sm btn-success w-100 rounded-pill fw-bold text-white">
+                            <i class="fab fa-whatsapp me-1"></i> Speak with Agent on WhatsApp
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -281,6 +310,27 @@
         </div>
     </div>
 
+    <!-- FLOATING CART TOAST NOTIFICATION -->
+    <div id="globalCartToast" class="deen-cart-toast d-none">
+        <div class="d-flex align-items-center gap-3">
+            <div class="bg-success text-white rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                <i class="fas fa-check"></i>
+            </div>
+            <div class="flex-grow-1">
+                <div class="fw-bold text-white small" id="toastItemTitle">Item added to bag!</div>
+                <div class="small text-white-50">Free shipping available</div>
+            </div>
+        </div>
+        <div class="d-flex gap-2 mt-3 pt-2 border-top border-secondary">
+            <button onclick="openGlobalCartModal(); document.getElementById('globalCartToast').classList.add('d-none');" class="btn btn-warning btn-sm rounded-pill fw-bold text-dark flex-grow-1">
+                View Bag
+            </button>
+            <button onclick="document.getElementById('globalCartToast').classList.add('d-none');" class="btn btn-outline-light btn-sm rounded-pill fw-bold">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
     <!-- GLOBAL SHOPPING BAG MODAL -->
     <div class="modal fade" id="globalCartModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-end modal-md">
@@ -303,6 +353,146 @@
                     <a href="{{ route('store.checkout') }}" class="btn btn-danger btn-lg w-100 rounded-pill fw-bold">
                         Proceed to Checkout <i class="fas fa-arrow-right ms-1"></i>
                     </a>
+                </div>
+            </div>
+        </div>
+    <!-- WISHLIST DRAWER MODAL -->
+    <div class="modal fade" id="wishlistModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-end modal-md">
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                <div class="modal-header bg-dark text-white border-0">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-heart me-2 text-danger"></i> Your Saved Favorites</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4" id="wishlistItemsList">
+                    <div class="text-center py-4 text-muted">
+                        <i class="fas fa-heart fa-3x mb-3 opacity-40 text-danger"></i>
+                        <p class="mb-0">Your wishlist is empty. Click the heart icon on any product to save it here!</p>
+                    </div>
+                </div>
+                <div class="modal-footer border-top p-3">
+                    <button type="button" class="btn btn-outline-dark w-100 rounded-pill fw-bold" data-bs-dismiss="modal">
+                        Continue Browsing
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IN-APP ORDER TRACKING MODAL -->
+    <div class="modal fade" id="orderTrackModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content border-0 shadow-lg rounded-4 bg-dark text-white">
+                <div class="modal-header border-secondary border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-white"><i class="fas fa-truck-fast me-2 text-success"></i> Track Your Order Status</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form onsubmit="event.preventDefault(); trackOrderInline();" class="mb-4">
+                        <label class="form-label text-white-50 small fw-bold">Enter Order ID or Mobile Number</label>
+                        <div class="input-group">
+                            <input type="text" id="trackInput" class="form-control bg-secondary bg-opacity-20 text-white border-secondary px-3" placeholder="e.g. #98241 or 01711000000" required>
+                            <button class="btn btn-success fw-bold px-3" type="submit"><i class="fas fa-search me-1"></i> Track</button>
+                        </div>
+                    </form>
+
+                    <!-- Order Progress Timeline Result Container -->
+                    <div id="orderTimelineResult" class="d-none p-3 rounded-4 bg-secondary bg-opacity-10 border border-secondary">
+                        <div class="d-flex align-items-center justify-content-between mb-3 border-bottom border-secondary pb-2">
+                            <div>
+                                <span class="fw-bold text-warning small" id="resOrderId">Order #98241</span>
+                                <div class="small text-white-50" id="resOrderCustomer">Tanvir Ahmed (Dhaka)</div>
+                            </div>
+                            <span class="badge bg-success rounded-pill px-3 py-2 fw-bold" id="resOrderStatus">Out for Delivery</span>
+                        </div>
+
+                        <!-- Timeline Visual Progress -->
+                        <div class="deen-order-timeline my-3">
+                            <div class="deen-timeline-step completed">
+                                <div class="deen-timeline-dot"><i class="fas fa-check"></i></div>
+                                <div class="fw-bold small text-white">Order Confirmed</div>
+                                <div class="small text-white-50">Aug 14, 2026 • Payment Verified</div>
+                            </div>
+                            <div class="deen-timeline-step completed">
+                                <div class="deen-timeline-dot"><i class="fas fa-check"></i></div>
+                                <div class="fw-bold small text-white">Packed at Dhaka Hub</div>
+                                <div class="small text-white-50">Aug 14, 2026 • Standard Inspection</div>
+                            </div>
+                            <div class="deen-timeline-step active">
+                                <div class="deen-timeline-dot"><i class="fas fa-truck"></i></div>
+                                <div class="fw-bold small text-warning">Handed to Steadfast Courier</div>
+                                <div class="small text-white-50">Tracking: ST-882194 (Est. Today 5 PM)</div>
+                            </div>
+                            <div class="deen-timeline-step">
+                                <div class="deen-timeline-dot"><i class="fas fa-home"></i></div>
+                                <div class="fw-bold small text-white-50">Delivered to Doorstep</div>
+                                <div class="small text-white-50">Pending Confirmation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- DEEN VIP LOYALTY & REWARDS MODAL -->
+    <div class="modal fade" id="loyaltyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content border-0 shadow-lg rounded-4 bg-dark text-white">
+                <div class="modal-header border-secondary border-0 pb-0">
+                    <h5 class="modal-title fw-bold text-warning"><i class="fas fa-crown me-2"></i> DEEN VIP Club & Rewards</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <!-- VIP Card Showcase -->
+                    <div class="deen-vip-card mb-4 position-relative overflow-hidden">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <div>
+                                <span class="badge bg-warning text-dark font-monospace fw-bold uppercase">Gold VIP Member</span>
+                                <h4 class="fw-bold text-white mb-0 mt-1">Deen Fashion Rewards</h4>
+                            </div>
+                            <i class="fas fa-gem fa-2x text-warning opacity-75"></i>
+                        </div>
+                        <div class="d-flex align-items-baseline gap-2">
+                            <span class="display-5 fw-bold text-warning" id="userCoinsDisplay">450</span>
+                            <span class="text-white-50 fw-semibold">Deen Coins Available</span>
+                        </div>
+                        <p class="small text-white-50 mb-0 mt-2"><i class="fas fa-circle-info me-1"></i> Earn 1 Deen Coin for every ৳10 spent on fashion orders!</p>
+                    </div>
+
+                    <!-- Available Vouchers & Rewards Catalogue -->
+                    <h6 class="text-uppercase text-white-50 small fw-bold mb-3">Redeem Your Reward Coins</h6>
+                    <div class="d-flex flex-column gap-3">
+                        <div class="p-3 rounded-3 bg-secondary bg-opacity-20 border border-secondary d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="bg-warning text-dark p-2 rounded-3 fw-bold"><i class="fas fa-ticket-simple fa-lg"></i></div>
+                                <div>
+                                    <div class="fw-bold text-white small">৳100 OFF Flat Discount Coupon</div>
+                                    <div class="small text-warning">Requires 100 Coins</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-warning rounded-pill fw-bold text-dark px-3" onclick="alert('🎉 Voucher Claimed! Use code DEEN100 at checkout for ৳100 OFF.')">Claim</button>
+                        </div>
+
+                        <div class="p-3 rounded-3 bg-secondary bg-opacity-20 border border-secondary d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="bg-success text-white p-2 rounded-3 fw-bold"><i class="fas fa-truck-fast fa-lg"></i></div>
+                                <div>
+                                    <div class="fw-bold text-white small">Free Shipping Pass (Anywhere BD)</div>
+                                    <div class="small text-success">Requires 200 Coins</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-success rounded-pill fw-bold text-white px-3" onclick="alert('🎉 Free Shipping Voucher Claimed! Use code FREESHIP at checkout.')">Claim</button>
+                        </div>
+
+                        <div class="p-3 rounded-3 bg-secondary bg-opacity-20 border border-secondary d-flex align-items-center justify-content-between opacity-75">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="bg-danger text-white p-2 rounded-3 fw-bold"><i class="fas fa-crown fa-lg"></i></div>
+                                <div>
+                                    <div class="fw-bold text-white small">15% OFF VIP Fashion Pass</div>
+                                    <div class="small text-white-50">Requires 500 Coins (Need 50 more)</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-outline-light rounded-pill fw-bold px-3" disabled>Locked</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -515,10 +705,176 @@
         }
     });
 
+    /* WISHLIST LOCALSTORAGE & UI SYNC */
+    function getWishlist() {
+        try {
+            return JSON.parse(localStorage.getItem('deen_wishlist') || '[]');
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function toggleWishlist(id, name, price, img, btnEl = null) {
+        let wishlist = getWishlist();
+        const index = wishlist.findIndex(item => item.id === id);
+
+        if (index > -1) {
+            wishlist.splice(index, 1);
+            if (btnEl) btnEl.classList.remove('active');
+        } else {
+            wishlist.push({ id, name, price, img });
+            if (btnEl) btnEl.classList.add('active');
+        }
+
+        localStorage.setItem('deen_wishlist', JSON.stringify(wishlist));
+        syncWishlistUI();
+    }
+
+    function syncWishlistUI() {
+        const wishlist = getWishlist();
+        const count = wishlist.length;
+
+        const badge = document.getElementById('bottomNavWishlistBadge');
+        if (badge) badge.innerText = count;
+
+        // Highlight heart buttons on page matching wishlist IDs
+        document.querySelectorAll('.deen-wishlist-btn').forEach(btn => {
+            const btnId = parseInt(btn.getAttribute('data-id'));
+            if (wishlist.some(w => w.id === btnId)) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+
+    function openWishlistModal() {
+        renderWishlistList();
+        const modal = new bootstrap.Modal(document.getElementById('wishlistModal'));
+        modal.show();
+    }
+
+    function renderWishlistList() {
+        const wishlist = getWishlist();
+        const container = document.getElementById('wishlistItemsList');
+
+        if (wishlist.length === 0) {
+            container.innerHTML = '<div class="text-center py-4 text-muted"><i class="fas fa-heart fa-3x mb-3 opacity-40 text-danger"></i><p class="mb-0">Your wishlist is empty. Click the heart icon on any product to save it here!</p></div>';
+            return;
+        }
+
+        let html = '<div class="d-flex flex-column gap-3">';
+        wishlist.forEach((item, idx) => {
+            const img = item.img || item.image || 'https://deencommerce.com/wp-content/uploads/2026/07/101-0100-149-Front.jpg';
+            html += `
+                <div class="d-flex align-items-center justify-content-between border-bottom pb-2">
+                    <div class="d-flex align-items-center gap-2">
+                        <img src="${img}" style="width: 50px; height: 50px; object-fit: cover;" class="rounded-2 border">
+                        <div>
+                            <div class="fw-bold small text-dark text-truncate" style="max-width: 170px;">${item.name}</div>
+                            <div class="fw-bold text-primary small">৳${parseFloat(item.price).toFixed(2)}</div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-sm btn-dark rounded-pill fw-bold" onclick="addToCart(${item.id}, '${item.name.replace(/'/g, "\\'")}', ${item.price}, '${img}')">
+                            <i class="fas fa-bag-shopping me-1"></i> Add
+                        </button>
+                        <button class="btn btn-sm text-danger p-0 ms-1" onclick="toggleWishlist(${item.id}, '', 0, ''); renderWishlistList();"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                </div>
+            `;
+        });
+        html += '</div>';
+        container.innerHTML = html;
+    }
+
+    /* ORDER TRACKING MODAL LOGIC */
+    function openOrderTrackModal() {
+        const modal = new bootstrap.Modal(document.getElementById('orderTrackModal'));
+        modal.show();
+    }
+
+    function trackOrderInline() {
+        const inputVal = (document.getElementById('trackInput').value || '').trim();
+        const resBox = document.getElementById('orderTimelineResult');
+
+        if (!inputVal) return;
+
+        resBox.classList.remove('d-none');
+        document.getElementById('resOrderId').innerText = 'Order #' + (inputVal.replace('#', '') || '98241');
+        document.getElementById('resOrderCustomer').innerText = 'Deen Verified Customer (Dhaka Hub)';
+        document.getElementById('resOrderStatus').innerText = 'Out for Delivery';
+    }
+
+    /* LOYALTY & REWARDS MODAL LOGIC */
+    function openLoyaltyModal() {
+        const modal = new bootstrap.Modal(document.getElementById('loyaltyModal'));
+        modal.show();
+    }
+
+    /* RECENTLY VIEWED PRODUCTS LOGIC */
+    function trackRecentlyViewed(id, name, price, img) {
+        if (!id || !name) return;
+        let recent = getRecentlyViewed();
+        recent = recent.filter(item => item.id !== id);
+        recent.unshift({ id, name, price, img });
+        if (recent.length > 8) recent.pop();
+        localStorage.setItem('deen_recently_viewed', JSON.stringify(recent));
+    }
+
+    function getRecentlyViewed() {
+        try {
+            return JSON.parse(localStorage.getItem('deen_recently_viewed') || '[]');
+        } catch (e) {
+            return [];
+        }
+    }
+
+    function renderRecentlyViewed() {
+        const container = document.getElementById('recentlyViewedContainer');
+        const section = document.getElementById('recentlyViewedSection');
+        if (!container) return;
+
+        const recent = getRecentlyViewed();
+        if (recent.length === 0) {
+            if (section) section.classList.add('d-none');
+            return;
+        }
+
+        if (section) section.classList.remove('d-none');
+
+        let html = '';
+        recent.forEach(item => {
+            const img = item.img || 'https://deencommerce.com/wp-content/uploads/2026/07/101-0100-149-Front.jpg';
+            html += `
+                <a href="/store/product/${item.id}" onclick="trackRecentlyViewed(${item.id}, '${item.name.replace(/'/g, "\\'")}', ${item.price}, '${img}')" class="deen-recently-card shadow-sm">
+                    <img src="${img}" class="deen-recently-img" alt="${item.name}">
+                    <div class="fw-bold small text-white text-truncate" title="${item.name}">${item.name}</div>
+                    <div class="fw-bold text-warning small">৳${parseFloat(item.price).toFixed(2)}</div>
+                </a>
+            `;
+        });
+        container.innerHTML = html;
+    }
+
+    function showCartToast(itemTitle) {
+        const toast = document.getElementById('globalCartToast');
+        const titleEl = document.getElementById('toastItemTitle');
+        if (toast && titleEl) {
+            titleEl.innerText = itemTitle + ' added to shopping bag!';
+            toast.classList.remove('d-none');
+            setTimeout(() => {
+                toast.classList.add('d-none');
+            }, 4500);
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         const saved = localStorage.getItem('deen_theme') || 'denim';
         updateThemeLabel(saved);
         syncCartBadges();
+        syncWishlistUI();
+        renderRecentlyViewed();
     });
     </script>
 </body>

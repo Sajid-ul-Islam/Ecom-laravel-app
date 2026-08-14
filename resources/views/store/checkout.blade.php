@@ -12,6 +12,16 @@
             <p class="text-white-50">Enter your shipping details below &bull; Free returns within 7 days</p>
         </div>
 
+        <!-- 4-STEP CHECKOUT PROGRESS BAR -->
+        <div class="deen-checkout-steps max-width-md mx-auto mb-5 d-flex justify-content-center align-items-center gap-4">
+            <div class="deen-step-item completed" title="1. Shopping Bag">
+                <span class="material-symbols-outlined">check</span>
+            </div>
+            <div class="deen-step-item active" title="2. Delivery Address">2</div>
+            <div class="deen-step-item" title="3. Payment Method">3</div>
+            <div class="deen-step-item" title="4. Order Receipt">4</div>
+        </div>
+
         <form method="POST" action="{{ route('store.checkout.process') }}" id="checkoutForm" onsubmit="prepareCartSubmission()">
             @csrf
             <input type="hidden" name="cart_data" id="cartDataInput">

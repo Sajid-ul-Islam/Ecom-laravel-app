@@ -48,6 +48,12 @@
                                     <i class="fas fa-tshirt fa-4x text-secondary opacity-40"></i>
                                 </div>
                             @endif
+
+                            <!-- Wishlist Heart Toggle Button -->
+                            <button type="button" class="deen-wishlist-btn" data-id="{{ $product['id'] }}" onclick="toggleWishlist({{ $product['id'] }}, '{{ addslashes($product['name']) }}', {{ $price }}, '{{ addslashes($image) }}', this)" title="Save to Favorites">
+                                <i class="fas fa-heart"></i>
+                            </button>
+
                             <span class="deen-stock-badge bg-success text-white">In Stock</span>
                         </div>
 

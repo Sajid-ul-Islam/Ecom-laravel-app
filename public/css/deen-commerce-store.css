@@ -1107,4 +1107,538 @@ h1, h2, h3, h4, h5, h6, .deen-brand-logo, .deen-hero-heading, .deen-retail-title
     box-shadow: 0 8px 25px rgba(0, 136, 204, 0.6);
 }
 
+/* ==========================================================================
+   MOBILE FEATURE ENHANCEMENT SUITE (WISHLIST, FILTER DRAWER, TRACKING)
+   ========================================================================== */
+
+/* 1. Wishlist Heart Icon Button */
+.deen-wishlist-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 5;
+    transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.deen-wishlist-btn:hover {
+    background: #e11d48;
+    color: #ffffff;
+    transform: scale(1.15);
+    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.5);
+}
+
+.deen-wishlist-btn.active {
+    background: #e11d48;
+    color: #ffffff;
+    border-color: #e11d48;
+    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.4);
+}
+
+/* 2. Quick View Button Overlay on Product Cards */
+.deen-quickview-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 50rem;
+    opacity: 0;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 5;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.deen-retail-card:hover .deen-quickview-btn {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 767.98px) {
+    .deen-quickview-btn {
+        opacity: 0.95 !important;
+        transform: translateX(-50%) translateY(0) !important;
+        padding: 4px 10px !important;
+        font-size: 0.7rem !important;
+    }
+}
+
+/* 3. Collapsible Mobile Filter Panel & Offcanvas */
+.deen-filter-trigger-btn {
+    background: var(--bg-card, #111c35);
+    border: 1px solid var(--border-color, rgba(245, 158, 11, 0.35));
+    color: var(--text-primary, #ffffff);
+    font-weight: 800;
+    font-size: 0.88rem;
+    padding: 8px 18px;
+    border-radius: 50rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.25s ease;
+}
+
+.deen-filter-trigger-btn:hover {
+    background: var(--accent-color, #f59e0b);
+    color: #0b132b;
+}
+
+/* 4. Order Tracking Visual Timeline */
+.deen-order-timeline {
+    position: relative;
+    padding-left: 28px;
+}
+
+.deen-order-timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    bottom: 5px;
+    width: 3px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+}
+
+.deen-timeline-step {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.deen-timeline-step:last-child {
+    margin-bottom: 0;
+}
+
+.deen-timeline-dot {
+    position: absolute;
+    left: -28px;
+    top: 2px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #334155;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    border: 3px solid #0f172a;
+}
+
+.deen-timeline-step.completed .deen-timeline-dot {
+    background: #10b981;
+    color: #ffffff;
+}
+
+.deen-timeline-step.active .deen-timeline-dot {
+    background: #f59e0b;
+    color: #0f172a;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.3);
+}
+
+/* Flash Sale Ticker Notification Banner */
+.deen-flash-sale-banner {
+    background: linear-gradient(90deg, #e11d48, #be123c);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.82rem;
+    padding: 8px 16px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3);
+}
+
+/* Recently Viewed Products Horizontal Scroll Section */
+.deen-recently-card {
+    min-width: 170px;
+    width: 170px;
+    background: var(--bg-card, #111c35);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.12));
+    border-radius: 16px;
+    padding: 10px;
+    text-decoration: none;
+    color: var(--text-primary, #ffffff);
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.deen-recently-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-color, #f59e0b);
+    color: var(--text-primary, #ffffff);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.deen-recently-img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 8px;
+}
+
+/* Deen VIP Loyalty & Rewards Styling */
+.deen-loyalty-badge {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #0b132b;
+    font-weight: 900;
+    font-size: 0.78rem;
+    padding: 4px 12px;
+    border-radius: 50rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 10px rgba(245, 158, 11, 0.4);
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.deen-loyalty-badge:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.6);
+}
+
+.deen-vip-card {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Interactive Live Chat FAQ buttons */
+.deen-chat-faq-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 8px 12px;
+    border-radius: 12px;
+    text-align: left;
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.deen-chat-faq-btn:hover {
+    background: rgba(245, 158, 11, 0.2);
+    border-color: #f59e0b;
+    color: #f59e0b;
+}
+
+/* ==========================================================================
+   PRODUCT DISCOVERY & HOMEPAGE FLOW ENHANCEMENTS
+   ========================================================================== */
+
+/* 1. Inline Color & Size Variants */
+.deen-variant-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+}
+
+.deen-variant-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.deen-variant-dot:hover {
+    transform: scale(1.3);
+}
+
+.deen-mini-size-chip {
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary, #ffffff);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* 2. Customer Testimonial Cards */
+.deen-testimonial-card {
+    background: var(--bg-card, #111c35);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.12));
+    border-radius: 20px;
+    padding: 24px;
+    color: var(--text-primary, #ffffff);
+    height: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.25s ease;
+}
+
+.deen-testimonial-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-color, #f59e0b);
+}
+
+.deen-testimonial-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-color, #f59e0b);
+}
+
+/* 3. Instagram Shoppable Feed */
+.deen-insta-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.deen-insta-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.deen-insta-card:hover .deen-insta-img {
+    transform: scale(1.08);
+}
+
+.deen-insta-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, transparent 60%);
+    display: flex;
+    align-items: flex-end;
+    padding: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.deen-insta-card:hover .deen-insta-overlay {
+    opacity: 1;
+}
+
+.deen-insta-hotspot {
+    position: absolute;
+    top: 35%;
+    left: 45%;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f59e0b;
+    color: #0b132b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    cursor: pointer;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.4);
+    animation: deenPulseHotspot 2s infinite;
+}
+
+@keyframes deenPulseHotspot {
+    0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+
+/* 4. "Shop Now" Promotional Banner */
+.deen-shop-now-banner {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+    border-radius: 28px;
+    padding: 48px 32px;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.deen-shop-now-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+/* ==========================================================================
+   MASTER SPECIFICATION UX ENHANCEMENTS (TOUCH, URGENCY, CHECKOUT PROGRESS)
+   ========================================================================== */
+
+/* 1. Touch-Friendly Target (Min 48px height) */
+.deen-btn-touch {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+}
+
+/* 2. Stock Urgency Badge ("Only 2 left!") */
+.deen-urgency-badge {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    animation: deenUrgencyPulse 1.5s infinite;
+}
+
+@keyframes deenUrgencyPulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.65; }
+    100% { opacity: 1; }
+}
+
+/* 3. Checkout 4-Step Progress Bar */
+.deen-checkout-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.deen-checkout-steps::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.15);
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.deen-step-item {
+    position: relative;
+    z-index: 2;
+    background: #0f172a;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid #334155;
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+}
+
+.deen-step-item.active {
+    background: #f59e0b;
+    border-color: #f59e0b;
+    color: #0b132b;
+    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.3);
+}
+
+.deen-step-item.completed {
+    background: #10b981;
+    border-color: #10b981;
+    color: #ffffff;
+}
+
+/* 4. Size Grid Swatches ([XS] [S] [M] [L] [XL] [XXL]) */
+.deen-size-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+}
+
+@media (max-width: 575.98px) {
+    .deen-size-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.deen-size-grid-btn {
+    min-height: 44px;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #1e293b;
+    font-weight: 800;
+    font-size: 0.85rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.deen-size-grid-btn:hover {
+    border-color: #0f172a;
+    background: #e2e8f0;
+}
+
+.deen-size-grid-btn.active {
+    background: #0f172a;
+    border-color: #0f172a;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
+}
+
+/* 5. Floating Cart Toast Notification */
+.deen-cart-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: #ffffff;
+    padding: 14px 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    max-width: 340px;
+    animation: deenSlideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes deenSlideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+
+
+
+
 

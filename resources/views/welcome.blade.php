@@ -257,19 +257,35 @@
     <main class="py-5" id="catalog-section">
         <div class="container">
 
-            <!-- Category Filter Bar -->
-            @if(!empty($categories))
-                <div class="d-flex align-items-center gap-2 overflow-auto pb-3 mb-4 no-scrollbar">
-                    <a href="{{ route('store.index') }}" class="deen-fashion-chip {{ empty($selectedCategory) ? 'active' : '' }}">
-                        <span class="material-symbols-outlined fs-5">grid_view</span> All Fashion
-                    </a>
-                    @foreach($categories as $cat)
-                        <a href="{{ route('store.index', ['category' => $cat['id']]) }}" class="deen-fashion-chip {{ ($selectedCategory == $cat['id']) ? 'active' : '' }}">
-                            <span class="material-symbols-outlined fs-5">checkroom</span> {{ $cat['name'] }}
-                        </a>
-                    @endforeach
+            <!-- Flash Sale Ticker Alert Banner -->
+            <div class="deen-flash-sale-banner mb-4">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fas fa-fire fa-lg text-warning animate-bounce"></i>
+                    <span><strong>FLASH SALE 2026:</strong> Extra ৳300 OFF on orders over ৳2,500! Code: <span class="badge bg-warning text-dark font-monospace">DEEN2026</span></span>
                 </div>
-            @endif
+                <button type="button" class="btn-close btn-close-white btn-sm" onclick="this.parentElement.remove()"></button>
+            </div>
+
+            <!-- Category Filter Bar & Collapsible Mobile Filter Trigger -->
+            <div class="d-flex align-items-center justify-content-between gap-2 pb-3 mb-4">
+                @if(!empty($categories))
+                    <div class="d-flex align-items-center gap-2 overflow-auto no-scrollbar flex-grow-1 me-2">
+                        <a href="{{ route('store.index') }}" class="deen-fashion-chip {{ empty($selectedCategory) ? 'active' : '' }}">
+                            <span class="material-symbols-outlined fs-5">grid_view</span> All
+                        </a>
+                        @foreach($categories as $cat)
+                            <a href="{{ route('store.index', ['category' => $cat['id']]) }}" class="deen-fashion-chip {{ ($selectedCategory == $cat['id']) ? 'active' : '' }}">
+                                <span class="material-symbols-outlined fs-5">checkroom</span> {{ $cat['name'] }}
+                            </a>
+                        @endforeach
+                    </div>
+                @endif
+
+                <!-- Collapsible Mobile Filter Drawer Trigger Button -->
+                <button type="button" class="deen-filter-trigger-btn flex-shrink-0" onclick="openMobileFilterDrawer()">
+                    <span class="material-symbols-outlined fs-5">tune</span> <span class="d-none d-sm-inline">Filter & Sort</span>
+                </button>
+            </div>
 
 
             <!-- Section Header -->
@@ -302,12 +318,22 @@
                         <div class="deen-retail-card">
                             <div class="deen-retail-img-box">
                                 @if($image)
-                                    <img src="{{ $image }}" class="deen-retail-img" alt="{{ $product['name'] }}">
+                                    <img src="{{ $image }}" loading="lazy" class="deen-retail-img" alt="{{ $product['name'] }}">
                                 @else
                                     <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-light">
                                         <i class="fas fa-tshirt fa-4x text-secondary opacity-40"></i>
                                     </div>
                                 @endif
+
+                                <!-- Wishlist Heart Toggle Button -->
+                                <button type="button" class="deen-wishlist-btn" data-id="{{ $product['id'] }}" onclick="toggleWishlist({{ $product['id'] }}, '{{ addslashes($product['name']) }}', {{ $price }}, '{{ addslashes($image) }}', this)" title="Save to Favorites">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+
+                                <!-- 1-Tap Quick View Overlay Button -->
+                                <button type="button" class="deen-quickview-btn" onclick="openProductModal({{ $product['id'] }})">
+                                    <i class="fas fa-eye me-1"></i> Quick View
+                                </button>
 
                                 @if($discountPercent > 0)
                                     <span class="deen-discount-ribbon">-{{ $discountPercent }}% OFF</span>
@@ -323,13 +349,32 @@
                             <div class="deen-retail-body">
                                 <h5 class="deen-retail-title" title="{{ $product['name'] }}">{{ $product['name'] }}</h5>
 
-                                <div class="deen-rating-stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <span class="text-muted ms-1 small">(4.9)</span>
+                                <div class="d-flex align-items-center justify-content-between mb-1">
+                                    <div class="deen-rating-stars">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star-half-alt text-warning"></i>
+                                        <span class="text-muted ms-1 small fw-bold">4.9 (248)</span>
+                                    </div>
+
+                                    <!-- Stock Urgency Badge -->
+                                    <span class="deen-urgency-badge">
+                                        <i class="fas fa-bolt"></i> Only {{ rand(2, 4) }} left!
+                                    </span>
+                                </div>
+
+                                <!-- Inline Color & Size Variant Preview -->
+                                <div class="deen-variant-row">
+                                    <span class="deen-variant-dot" style="background: #1e293b;" title="Indigo Denim"></span>
+                                    <span class="deen-variant-dot" style="background: #0f172a;" title="Obsidian Black"></span>
+                                    <span class="deen-variant-dot" style="background: #64748b;" title="Washed Grey"></span>
+                                    <div class="ms-auto d-flex gap-1">
+                                        <span class="deen-mini-size-chip">30</span>
+                                        <span class="deen-mini-size-chip">32</span>
+                                        <span class="deen-mini-size-chip">34</span>
+                                    </div>
                                 </div>
 
                                 <div class="deen-retail-price-row">
@@ -381,8 +426,144 @@
                 </div>
             @endif
 
+            <!-- 6. CUSTOMER TESTIMONIALS & VERIFIED USER REVIEWS -->
+            <section class="my-5 pt-3">
+                <div class="text-center mb-4">
+                    <span class="badge bg-warning text-dark font-monospace px-3 py-2 rounded-pill uppercase fw-bold mb-2">Real Customer Love</span>
+                    <h3 class="fw-bold text-dark mb-1">What Bangladesh Shoppers Say</h3>
+                    <p class="text-muted small">Over 15,000+ verified retail fashion buyers across Dhaka, Chittagong & Sylhet</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="deen-testimonial-card">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop" class="deen-testimonial-avatar" alt="Reviewer">
+                                <div>
+                                    <div class="fw-bold text-white">Nusrat Jahan</div>
+                                    <div class="small text-warning"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (5.0)</div>
+                                </div>
+                            </div>
+                            <p class="small text-white-50 mb-0">"The 13.5oz Raw Washed Denim Jeans fit amazingly! Delivery was fast in Gulshan (24 hours). 100% authentic quality!"</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="deen-testimonial-card">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop" class="deen-testimonial-avatar" alt="Reviewer">
+                                <div>
+                                    <div class="fw-bold text-white">Ayman Rahman</div>
+                                    <div class="small text-warning"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (5.0)</div>
+                                </div>
+                            </div>
+                            <p class="small text-white-50 mb-0">"Ordered Oxford Shirts and Polo tees. bKash payment was smooth and product fabric quality exceeded expectations."</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="deen-testimonial-card">
+                            <div class="d-flex align-items-center gap-3 mb-3">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop" class="deen-testimonial-avatar" alt="Reviewer">
+                                <div>
+                                    <div class="fw-bold text-white">Sabrina Islam</div>
+                                    <div class="small text-warning"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (5.0)</div>
+                                </div>
+                            </div>
+                            <p class="small text-white-50 mb-0">"Deen Commerce mobile app checkout was super quick. Tracked my Steadfast courier delivery right in the app!"</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- INSTAGRAM SHOPPABLE FEED (#deen-insta-feed) -->
+            <section class="my-5" id="deen-insta-feed">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div>
+                        <h4 class="fw-bold text-dark mb-1"><i class="fab fa-instagram text-danger me-2"></i> @DEENCOMMERCE Shoppable Lookbook</h4>
+                        <p class="text-muted small mb-0">Tag us on Instagram to get featured & win ৳1,000 shopping vouchers</p>
+                    </div>
+                    <a href="https://instagram.com" target="_blank" class="btn btn-sm btn-outline-dark rounded-pill fw-bold">Follow Us &rarr;</a>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-6 col-md-3">
+                        <div class="deen-insta-card">
+                            <img src="https://deencommerce.com/wp-content/uploads/2026/07/101-0100-149-Front.jpg" class="deen-insta-img" alt="Insta Feed 1">
+                            <div class="deen-insta-hotspot" onclick="openProductModal(1)" title="Shop This Look">
+                                <i class="fas fa-bag-shopping"></i>
+                            </div>
+                            <div class="deen-insta-overlay">
+                                <div class="small text-white fw-bold">Washed Denim Look • Tagged @tanvir_dhaka</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="deen-insta-card">
+                            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&auto=format&fit=crop" class="deen-insta-img" alt="Insta Feed 2">
+                            <div class="deen-insta-hotspot" onclick="openProductModal(2)" title="Shop This Look">
+                                <i class="fas fa-bag-shopping"></i>
+                            </div>
+                            <div class="deen-insta-overlay">
+                                <div class="small text-white fw-bold">Urban Slim Oxford • Tagged @samir_urban</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="deen-insta-card">
+                            <img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?w=500&auto=format&fit=crop" class="deen-insta-img" alt="Insta Feed 3">
+                            <div class="deen-insta-hotspot" onclick="openProductModal(3)" title="Shop This Look">
+                                <i class="fas fa-bag-shopping"></i>
+                            </div>
+                            <div class="deen-insta-overlay">
+                                <div class="small text-white fw-bold">Polo Casual Fit • Tagged @rakib_style</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="deen-insta-card">
+                            <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&auto=format&fit=crop" class="deen-insta-img" alt="Insta Feed 4">
+                            <div class="deen-insta-hotspot" onclick="openProductModal(4)" title="Shop This Look">
+                                <i class="fas fa-bag-shopping"></i>
+                            </div>
+                            <div class="deen-insta-overlay">
+                                <div class="small text-white fw-bold">Streetwear Outerwear • Tagged @faisal_bd</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. "SHOP NOW" PROMOTIONAL BANNER FOR SALE ITEMS -->
+            <section class="my-5">
+                <div class="deen-shop-now-banner text-center text-md-start">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <span class="badge bg-warning text-dark font-monospace fw-bold px-3 py-2 rounded-pill mb-3">Limited Time Flash Sale</span>
+                            <h2 class="display-6 fw-extrabold text-white mb-2">Up to 40% OFF Premium Urban Apparel</h2>
+                            <p class="text-white-50 fs-5 mb-4">Elevate your street wardrobe with authentic Bangladeshi crafted denim and cotton shirts.</p>
+                            <div class="d-flex flex-wrap align-items-center gap-3">
+                                <a href="#catalog-section" class="btn btn-warning btn-lg rounded-pill fw-bold px-5 text-dark shadow">
+                                    Shop Sale Items Now <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                                <span class="text-white-50 small"><i class="fas fa-truck text-warning me-1"></i> Free Shipping Over ৳2,000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
         </div>
     </main>
+
+    <!-- RECENTLY VIEWED PRODUCTS SECTION -->
+    <section id="recentlyViewedSection" class="py-4 bg-light border-top border-bottom my-4 d-none">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <h5 class="fw-bold text-dark mb-0"><i class="fas fa-history text-warning me-2"></i> Recently Viewed Products</h5>
+                <button onclick="localStorage.removeItem('deen_recently_viewed'); renderRecentlyViewed();" class="btn btn-sm btn-link text-muted p-0 text-decoration-none small">Clear History</button>
+            </div>
+            <div class="d-flex gap-3 overflow-auto pb-2 no-scrollbar" id="recentlyViewedContainer"></div>
+        </div>
+    </section>
 
     <!-- Floating Cart Button -->
     <a href="#" onclick="event.preventDefault(); openCartModal();" class="deen-floating-cart">
@@ -475,6 +656,58 @@
             <i class="fab fa-telegram-plane"></i>
             <span class="deen-telegram-pulse"></span>
         </button>
+    </div>
+
+    <!-- COLLAPSIBLE MOBILE FILTER DRAWER MODAL -->
+    <div class="modal fade" id="mobileFilterDrawer" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-end modal-md">
+            <div class="modal-content border-0 shadow-lg bg-dark text-white rounded-4 overflow-hidden">
+                <div class="modal-header border-secondary p-3">
+                    <h5 class="modal-title fw-bold text-white"><span class="material-symbols-outlined align-middle me-2 text-warning">tune</span> Filter & Sort Apparel</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <form method="GET" action="{{ route('store.index') }}" class="modal-body p-4">
+                    <!-- Category Select -->
+                    <div class="mb-4">
+                        <label class="form-label text-warning small fw-bold mb-2"><i class="fas fa-list me-1"></i> Category Collection</label>
+                        <select name="category" class="form-select bg-dark text-white border-secondary rounded-3">
+                            <option value="">All Fashion Categories</option>
+                            @if(!empty($categories))
+                                @foreach($categories as $cat)
+                                    <option value="{{ $cat['id'] }}" {{ ($selectedCategory == $cat['id']) ? 'selected' : '' }}>
+                                        {{ $cat['name'] }} ({{ $cat['count'] ?? 0 }})
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+
+                    <!-- Search Input -->
+                    <div class="mb-4">
+                        <label class="form-label text-warning small fw-bold mb-2"><i class="fas fa-search me-1"></i> Keywords / Search</label>
+                        <input type="text" name="search" class="form-control bg-dark text-white border-secondary rounded-3" placeholder="e.g. Raw Washed Jeans, Polo..." value="{{ $searchQuery ?? '' }}">
+                    </div>
+
+                    <!-- Stock Status Option -->
+                    <div class="mb-4">
+                        <label class="form-label text-warning small fw-bold mb-2"><i class="fas fa-box-check me-1"></i> Stock Status</label>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input bg-dark border-secondary" type="checkbox" id="filterInStockOnly" checked>
+                            <label class="form-check-label text-white small" for="filterInStockOnly">In Stock Items Only</label>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 mt-4 pt-3 border-top border-secondary">
+                        <button type="submit" class="btn btn-warning btn-lg rounded-pill fw-bold text-dark shadow">
+                            <span class="material-symbols-outlined align-middle me-1">check_circle</span> Apply Filters
+                        </button>
+                        <a href="{{ route('store.index') }}" class="btn btn-outline-light rounded-pill fw-bold">
+                            Reset All Filters
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <!-- PREDICTIVE MOBILE SEARCH OVERLAY MODAL -->
@@ -762,6 +995,11 @@
         setTimeout(() => {
             document.getElementById('predictiveSearchInput')?.focus();
         }, 400);
+    }
+
+    function openMobileFilterDrawer() {
+        const modal = new bootstrap.Modal(document.getElementById('mobileFilterDrawer'));
+        modal.show();
     }
 
     function setPredictiveSearch(val) {
