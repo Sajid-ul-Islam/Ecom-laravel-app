@@ -30,15 +30,15 @@
             </form>
         </div>
 
-        <!-- Products Grid -->
-        <div class="row g-4 mb-5">
+        <!-- Products Grid (2-Column Mobile Grid) -->
+        <div class="row g-2 g-sm-3 g-md-4 mb-5">
             @forelse($products as $product)
                 @php
                     $image = $product['images'][0]['src'] ?? null;
                     $price = (float)($product['price'] ?? 0);
                     $regularPrice = isset($product['regular_price']) ? (float)$product['regular_price'] : null;
                 @endphp
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="col-6 col-md-4 col-lg-3">
                     <div class="deen-retail-card">
                         <div class="deen-retail-img-box">
                             @if($image)

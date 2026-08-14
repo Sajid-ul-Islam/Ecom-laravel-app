@@ -673,3 +673,438 @@ h1, h2, h3, h4, h5, h6, .deen-brand-logo, .deen-hero-heading, .deen-retail-title
 .timeline-pulse {
     animation: pulseGlow 2s infinite;
 }
+
+/* ==========================================================================
+   MOBILE-FIRST INDUSTRY STANDARD E-COMMERCE DESIGN SYSTEM (THUMB ZONE UX)
+   ========================================================================== */
+
+/* 1. Mobile Bottom Thumb-Zone Navigation Bar */
+.deen-mobile-bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-nav, rgba(11, 19, 43, 0.96));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-color, rgba(245, 158, 11, 0.35));
+    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.35);
+    z-index: 1040;
+    padding: 6px 4px max(6px, env(safe-area-inset-bottom));
+}
+
+@media (max-width: 991.98px) {
+    .deen-mobile-bottom-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    
+    body {
+        padding-bottom: 74px !important;
+    }
+    
+    /* Adjust Floating Cart Button on Mobile to stay above Bottom Nav */
+    .deen-floating-cart {
+        bottom: 84px !important;
+        right: 18px !important;
+        width: 52px !important;
+        height: 52px !important;
+        font-size: 1.15rem !important;
+    }
+}
+
+.deen-mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted, #94a3b8);
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 12px;
+    transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+.deen-mobile-nav-item .nav-icon {
+    font-size: 1.35rem;
+    margin-bottom: 2px;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.deen-mobile-nav-item:hover,
+.deen-mobile-nav-item.active {
+    color: var(--accent-color, #f59e0b);
+}
+
+.deen-mobile-nav-item.active .nav-icon {
+    transform: translateY(-2px) scale(1.15);
+    color: var(--accent-color, #f59e0b);
+}
+
+.deen-mobile-nav-badge {
+    position: absolute;
+    top: 2px;
+    right: 50%;
+    transform: translateX(14px);
+    background: #e11d48;
+    color: #ffffff;
+    font-size: 0.65rem;
+    font-weight: 900;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    border: 1.5px solid var(--bg-main, #0b132b);
+    box-shadow: 0 2px 6px rgba(225, 29, 72, 0.4);
+}
+
+/* 2. Predictive Live Search Dropdown & Mobile Overlay Drawer */
+.deen-search-wrapper {
+    position: relative;
+}
+
+.deen-search-results-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 6px;
+    background: var(--bg-card, #111c35);
+    border: 1px solid var(--border-color, rgba(245, 158, 11, 0.35));
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+    z-index: 1050;
+    overflow: hidden;
+    max-height: 420px;
+    overflow-y: auto;
+    display: none;
+}
+
+.deen-search-results-dropdown.show {
+    display: block;
+    animation: fadeInDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.deen-search-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    color: var(--text-primary, #ffffff);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background 0.2s ease;
+}
+
+.deen-search-item:last-child {
+    border-bottom: none;
+}
+
+.deen-search-item:hover {
+    background: var(--accent-glow, rgba(245, 158, 11, 0.15));
+    color: var(--text-primary, #ffffff);
+}
+
+.deen-search-thumb {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #1e293b;
+    flex-shrink: 0;
+}
+
+.deen-search-info {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.deen-search-name {
+    font-weight: 700;
+    font-size: 0.88rem;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.deen-search-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+}
+
+.deen-search-price {
+    font-weight: 800;
+    color: var(--accent-color, #f59e0b);
+}
+
+/* Mobile Predictive Search Offcanvas Drawer */
+.deen-mobile-search-modal .modal-content {
+    background: var(--bg-main, #0b132b);
+    color: var(--text-primary, #ffffff);
+    border: none;
+}
+
+/* 3. Sticky Mobile Bottom Product CTA Bar (Thumb Zone Action) */
+.deen-mobile-sticky-cta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-nav, rgba(11, 19, 43, 0.98));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-color, rgba(245, 158, 11, 0.35));
+    padding: 10px 16px max(10px, env(safe-area-inset-bottom));
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.4);
+    z-index: 1045;
+}
+
+@media (max-width: 767.98px) {
+    .deen-mobile-sticky-cta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+    
+    .deen-product-detail-page {
+        padding-bottom: 80px !important;
+    }
+}
+
+.deen-mobile-cta-price {
+    display: flex;
+    flex-direction: column;
+}
+
+.deen-mobile-cta-price .amount {
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: var(--accent-color, #f59e0b);
+    line-height: 1.1;
+}
+
+.deen-mobile-cta-price .old-amount {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-decoration: line-through;
+}
+
+.deen-mobile-cta-actions {
+    display: flex;
+    gap: 8px;
+    flex-grow: 1;
+    max-width: 240px;
+}
+
+.deen-mobile-cta-btn {
+    flex: 1;
+    border-radius: 50rem;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 0.65rem 0.8rem;
+    text-align: center;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    white-space: nowrap;
+}
+
+/* 4. Optimized Mobile Grid & Touch Card System */
+@media (max-width: 575.98px) {
+    .deen-retail-img-box {
+        height: 185px !important;
+    }
+    
+    .deen-retail-body {
+        padding: 0.9rem !important;
+    }
+    
+    .deen-retail-title {
+        font-size: 0.92rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+    
+    .deen-retail-price {
+        font-size: 1.18rem !important;
+    }
+
+    .deen-retail-old-price {
+        font-size: 0.8rem !important;
+    }
+    
+    .deen-btn-cart {
+        padding: 0.55rem 0.8rem !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .deen-discount-ribbon,
+    .deen-stock-badge {
+        font-size: 0.65rem !important;
+        padding: 3px 8px !important;
+    }
+}
+
+/* No-Scrollbar Utility */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* ==========================================================================
+   TELEGRAM CUSTOMER ASSISTANT CHATBOT WIDGET (@DEEN_Commerce_bot)
+   ========================================================================== */
+
+.deen-telegram-widget-wrapper {
+    position: fixed;
+    bottom: 96px;
+    right: 28px;
+    z-index: 1045;
+}
+
+@media (max-width: 991.98px) {
+    .deen-telegram-widget-wrapper {
+        bottom: 146px;
+        right: 18px;
+    }
+}
+
+.deen-telegram-trigger {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0088cc, #006699);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 25px rgba(0, 136, 204, 0.45);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    text-decoration: none;
+}
+
+.deen-telegram-trigger:hover {
+    transform: scale(1.1) rotate(-8deg);
+    color: #ffffff;
+    box-shadow: 0 12px 30px rgba(0, 136, 204, 0.6);
+}
+
+.deen-telegram-pulse {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 14px;
+    height: 14px;
+    background: #10b981;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+    animation: tgPulse 2s infinite;
+}
+
+@keyframes tgPulse {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.deen-telegram-popover {
+    position: absolute;
+    bottom: 68px;
+    right: 0;
+    width: 320px;
+    background: var(--bg-card, #111c35);
+    border: 1px solid var(--border-color, rgba(0, 136, 204, 0.4));
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    display: none;
+    animation: popoverFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1050;
+}
+
+.deen-telegram-popover.show {
+    display: block;
+}
+
+@keyframes popoverFadeIn {
+    from { opacity: 0; transform: translateY(12px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.deen-telegram-header {
+    background: linear-gradient(135deg, #0088cc, #0b132b);
+    color: #ffffff;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.deen-telegram-body {
+    padding: 16px;
+    color: var(--text-primary, #ffffff);
+}
+
+.deen-telegram-chat-bubble {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    margin-bottom: 14px;
+    line-height: 1.45;
+}
+
+.deen-telegram-btn {
+    background: linear-gradient(135deg, #0088cc 0%, #005580 100%);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.88rem;
+    border: none;
+    border-radius: 50rem;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+    transition: all 0.25s ease;
+    width: 100%;
+}
+
+.deen-telegram-btn:hover {
+    background: #0088cc;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 136, 204, 0.6);
+}
+
+

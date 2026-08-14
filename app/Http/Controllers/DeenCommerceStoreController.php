@@ -410,4 +410,79 @@ class DeenCommerceStoreController extends Controller
             return response()->json(['success' => false, 'message' => $exception->getMessage()], 404);
         }
     }
+
+    public function searchSuggestions(Request $request, WooCommerceService $wooService): JsonResponse
+    {
+        $query = trim($request->input('q', ''));
+        if (strlen($query) < 2) {
+            return response()->json(['success' => true, 'suggestions' => []]);
+        }
+
+        $cacheKey = 'deen_search_suggest_' . md5(strtolower($query));
+        $suggestions = Cache::remember($cacheKey, 300, function () use ($query, $wooService) {
+            $items = [];
+            try {
+                $res = $wooService->get('products', [
+                    'search' => $query,
+                    'per_page' => 6,
+                    'status' => 'publish',
+                ]);
+                $raw = $res->json();
+                if (is_array($raw)) {
+                    foreach ($raw as $p) {
+                        $items[] = [
+                            'id' => $p['id'],
+                            'name' => $p['name'],
+                            'price' => (float) ($p['price'] ?? 0),
+                            'regular_price' => isset($p['regular_price']) ? (float) $p['regular_price'] : null,
+                            'image' => $p['images'][0]['src'] ?? null,
+                            'stock_status' => $p['stock_status'] ?? 'instock',
+                            'detail_url' => route('store.product.detail', $p['id']),
+                        ];
+                    }
+                }
+            } catch (Throwable $e) {
+                // Fallback to local database search
+                try {
+                    $items = WooProduct::where('name', 'LIKE', "%{$query}%")
+                        ->where('status', 'publish')
+                        ->take(6)
+                        ->get()
+                        ->map(fn ($p) => [
+                            'id' => $p->woo_id,
+                            'name' => $p->name,
+                            'price' => (float) $p->price,
+                            'regular_price' => $p->regular_price ? (float) $p->regular_price : null,
+                            'image' => $p->featured_image,
+                            'stock_status' => $p->stock_status ?? 'instock',
+                            'detail_url' => route('store.product.detail', $p->woo_id),
+                        ])
+                        ->toArray();
+                } catch (Throwable $dbEx) {
+                    $items = [];
+                }
+            }
+
+            // If empty, offer fallback curated demo results matching keywords
+            if (empty($items)) {
+                $defaults = [
+                    ['id' => 202567, 'name' => 'High-End Raw Washed Slim Fit Jeans', 'price' => 2490, 'regular_price' => 2990, 'image' => 'https://deencommerce.com/wp-content/uploads/2026/07/101-0100-149-Front.jpg', 'stock_status' => 'instock', 'detail_url' => route('store.product.detail', 202567)],
+                    ['id' => 202568, 'name' => '100% Oxford Cotton Tailored Casual Shirt', 'price' => 1890, 'regular_price' => 2290, 'image' => 'https://deencommerce.com/wp-content/uploads/2025/10/Category-1.webp', 'stock_status' => 'instock', 'detail_url' => route('store.product.detail', 202568)],
+                    ['id' => 202569, 'name' => 'Heavyweight Biker Leather & Active Jacket', 'price' => 4890, 'regular_price' => 5990, 'image' => 'https://deencommerce.com/wp-content/uploads/2025/10/Active-Wear-Category.webp', 'stock_status' => 'instock', 'detail_url' => route('store.product.detail', 202569)],
+                ];
+
+                $items = array_filter($defaults, function ($item) use ($query) {
+                    return stripos($item['name'], $query) !== false;
+                });
+            }
+
+            return array_values($items);
+        });
+
+        return response()->json([
+            'success' => true,
+            'query' => $query,
+            'suggestions' => $suggestions,
+        ]);
+    }
 }

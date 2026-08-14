@@ -218,6 +218,24 @@
     </div>
 </div>
 
+<!-- STICKY MOBILE BOTTOM CTA BAR (THUMB ZONE ERGONOMICS) -->
+<div class="deen-mobile-sticky-cta">
+    <div class="deen-mobile-cta-price">
+        <span class="amount">৳{{ number_format($price, 2) }}</span>
+        @if($regularPrice && $regularPrice > $price)
+            <span class="old-amount">৳{{ number_format($regularPrice, 2) }}</span>
+        @endif
+    </div>
+    <div class="deen-mobile-cta-actions">
+        <button onclick="addSingleToCart({{ $product['id'] }}, '{{ addslashes($product['name']) }}', {{ $price }}, '{{ addslashes($mainImg) }}')" class="btn btn-dark deen-mobile-cta-btn">
+            <i class="fas fa-shopping-bag me-1"></i> Add
+        </button>
+        <button onclick="buyNow({{ $product['id'] }}, '{{ addslashes($product['name']) }}', {{ $price }}, '{{ addslashes($mainImg) }}')" class="btn btn-danger deen-mobile-cta-btn">
+            Buy Now
+        </button>
+    </div>
+</div>
+
 <script>
 let currentSelectedSize = '32';
 
@@ -244,7 +262,7 @@ function addSingleToCart(id, name, price, img) {
     const qty = parseInt(document.getElementById('itemQty').value) || 1;
     const sizeName = name + ' (Size: ' + currentSelectedSize + ')';
     
-    let cart = JSON.parse(localStorage.getItem('deen_cart') || '[]');
+    let cart = getStoredCart();
     const existing = cart.find(item => item.id === id && item.size === currentSelectedSize);
     
     if (existing) {
@@ -254,14 +272,18 @@ function addSingleToCart(id, name, price, img) {
     }
     
     localStorage.setItem('deen_cart', JSON.stringify(cart));
+    if (typeof syncCartBadges === 'function') {
+        syncCartBadges();
+    }
     
     const toast = document.getElementById('cartToast');
-    document.getElementById('toastMessage').innerText = name + ' (Size ' + currentSelectedSize + ' x ' + qty + ') added to bag!';
-    toast.classList.remove('d-none');
-    
-    setTimeout(() => {
-        toast.classList.add('d-none');
-    }, 4000);
+    if (toast) {
+        document.getElementById('toastMessage').innerText = name + ' (Size ' + currentSelectedSize + ' x ' + qty + ') added to bag!';
+        toast.classList.remove('d-none');
+        setTimeout(() => {
+            toast.classList.add('d-none');
+        }, 4000);
+    }
 }
 
 function buyNow(id, name, price, img) {

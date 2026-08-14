@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeenCommerceStoreController;
 
 Route::get('/', [DeenCommerceStoreController::class, 'index'])->name('store.index');
+Route::get('/store/search/suggestions', [DeenCommerceStoreController::class, 'searchSuggestions'])->name('store.search.suggestions');
 Route::get('/store/product/{id}', [DeenCommerceStoreController::class, 'showProduct'])->name('store.product.show');
 Route::get('/categories', [DeenCommerceStoreController::class, 'categories'])->name('store.categories');
 Route::get('/category/{id}', [DeenCommerceStoreController::class, 'categoryProducts'])->name('store.category');

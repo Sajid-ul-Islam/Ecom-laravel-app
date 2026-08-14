@@ -40,10 +40,10 @@
             </button>
 
             <div class="collapse navbar-collapse" id="deenRetailNavbar">
-                <!-- Search Bar with Category Select -->
-                <form method="GET" action="{{ route('store.index') }}" class="mx-auto my-2 my-lg-0" style="max-width: 520px; width: 100%;">
+                <!-- Search Bar with Category Select & Predictive Dropdown Wrapper -->
+                <form method="GET" action="{{ route('store.index') }}" class="mx-auto my-2 my-lg-0 deen-search-wrapper" style="max-width: 520px; width: 100%;">
                     <div class="input-group">
-                        <select name="category" class="form-select bg-dark text-white-50 border-secondary rounded-start-pill text-truncate" style="max-width: 150px; font-size: 0.85rem;">
+                        <select name="category" class="form-select bg-dark text-white-50 border-secondary rounded-start-pill text-truncate d-none d-sm-block" style="max-width: 140px; font-size: 0.85rem;">
                             <option value="">All Categories</option>
                             @if(!empty($categories))
                                 @foreach($categories as $cat)
@@ -53,9 +53,11 @@
                                 @endforeach
                             @endif
                         </select>
-                        <input type="text" name="search" class="form-control bg-dark text-white border-secondary px-3" placeholder="Search jeans, shirts, polos..." value="{{ $searchQuery ?? '' }}">
+                        <input type="text" id="desktopHeaderSearchInput" name="search" class="form-control bg-dark text-white border-secondary px-3" placeholder="Search jeans, shirts, polos..." value="{{ $searchQuery ?? '' }}" autocomplete="off" onkeyup="handleHeaderPredictiveSearch(this.value)">
                         <button class="btn btn-primary rounded-end-pill px-3" type="submit"><i class="fas fa-search"></i></button>
                     </div>
+                    <!-- Desktop Predictive Dropdown Container -->
+                    <div id="desktopSearchDropdown" class="deen-search-results-dropdown"></div>
                 </form>
 
                 <ul class="navbar-nav ms-auto align-items-center gap-2">
@@ -270,8 +272,8 @@
                 </div>
             </div>
 
-            <!-- Products Grid -->
-            <div class="row g-4 mb-5">
+            <!-- Products Grid (2-Column Mobile Grid for Amazon/Daraz Industry Standard UX) -->
+            <div class="row g-2 g-sm-3 g-md-4 mb-5">
                 @forelse($products as $product)
                     @php
                         $image = $product['images'][0]['src'] ?? null;
@@ -285,7 +287,7 @@
                             $discountPercent = round((($regularPrice - $price) / $regularPrice) * 100);
                         }
                     @endphp
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="col-6 col-md-4 col-lg-3">
                         <div class="deen-retail-card">
                             <div class="deen-retail-img-box">
                                 @if($image)
@@ -437,10 +439,13 @@
                         <li><a href="{{ route('woocommerce.dashboard') }}" class="text-white-50 text-decoration-none">WooCommerce Integration Hub</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 text-md-end">
+                <div class="col-md-4 text-md-end d-flex flex-column align-items-md-end gap-2">
                     <span class="badge bg-danger px-3 py-2 rounded-pill small">
                         <i class="fas fa-bolt me-1"></i> REST API Target: https://deencommerce.com
                     </span>
+                    <a href="https://t.me/DEEN_Commerce_bot" target="_blank" class="btn btn-outline-info btn-sm rounded-pill px-3 fw-bold text-white">
+                        <i class="fab fa-telegram me-1"></i> 24/7 Support: @DEEN_Commerce_bot
+                    </a>
                 </div>
             </div>
             <div class="my-4 text-center">
@@ -458,7 +463,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-    let cart = [];
+    let cart = getStoredCart();
 
     function addToCart(id, name, price, img) {
         const existing = cart.find(item => item.id === id);
@@ -467,13 +472,16 @@
         } else {
             cart.push({ id, name, price, img, qty: 1 });
         }
+        localStorage.setItem('deen_cart', JSON.stringify(cart));
+        syncCartBadges();
         updateCartUI();
         openCartModal();
     }
 
     function updateCartUI() {
+        cart = getStoredCart();
         const count = cart.reduce((acc, item) => acc + item.qty, 0);
-        document.getElementById('cartCount').innerText = count;
+        syncCartBadges();
 
         const cartList = document.getElementById('cartItemsList');
         const cartTotal = document.getElementById('cartTotal');
@@ -554,7 +562,59 @@
             .catch(err => {
                 modalBody.innerHTML = '<div class="alert alert-danger">Failed to connect to WooCommerce API.</div>';
             });
+    let headerSearchDebounce;
+
+    function handleHeaderPredictiveSearch(query) {
+        clearTimeout(headerSearchDebounce);
+        const dropdown = document.getElementById('desktopSearchDropdown');
+
+        if (!query || query.trim().length < 2) {
+            dropdown.classList.remove('show');
+            dropdown.innerHTML = '';
+            return;
+        }
+
+        headerSearchDebounce = setTimeout(() => {
+            fetch('/store/search/suggestions?q=' + encodeURIComponent(query.trim()))
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success && data.suggestions && data.suggestions.length > 0) {
+                        let html = '';
+                        data.suggestions.forEach(item => {
+                            const img = item.image || 'https://deencommerce.com/wp-content/uploads/2026/07/101-0100-149-Front.jpg';
+                            html += `
+                                <a href="${item.detail_url}" class="deen-search-item">
+                                    <img src="${img}" class="deen-search-thumb" alt="${item.name}">
+                                    <div class="deen-search-info">
+                                        <div class="deen-search-name">${item.name}</div>
+                                        <div class="deen-search-meta">
+                                            <span class="deen-search-price">৳${item.price.toFixed(2)}</span>
+                                            <span class="badge bg-success rounded-pill px-2">In Stock</span>
+                                        </div>
+                                    </div>
+                                    <span class="material-symbols-outlined text-warning fs-5">arrow_forward</span>
+                                </a>
+                            `;
+                        });
+                        dropdown.innerHTML = html;
+                        dropdown.classList.add('show');
+                    } else {
+                        dropdown.classList.remove('show');
+                        dropdown.innerHTML = '';
+                    }
+                })
+                .catch(() => {
+                    dropdown.classList.remove('show');
+                });
+        }, 300);
     }
+
+    document.addEventListener('click', (e) => {
+        const dropdown = document.getElementById('desktopSearchDropdown');
+        if (dropdown && !e.target.closest('.deen-search-wrapper')) {
+            dropdown.classList.remove('show');
+        }
+    });
     </script>
 </body>
 </html>

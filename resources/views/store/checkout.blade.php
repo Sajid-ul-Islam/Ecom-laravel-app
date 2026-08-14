@@ -361,6 +361,37 @@ function selectPayment(labelEl, method) {
 function prepareCartSubmission() {
     document.getElementById('cartDataInput').value = JSON.stringify(cartState);
     localStorage.removeItem('deen_cart');
+    localStorage.removeItem('deen_checkout_form');
 }
+
+// Auto-save form inputs to localStorage for seamless mobile experience
+document.addEventListener('input', (e) => {
+    if (e.target.closest('#checkoutForm')) {
+        const formData = {
+            first_name: document.querySelector('[name="first_name"]')?.value || '',
+            last_name: document.querySelector('[name="last_name"]')?.value || '',
+            email: document.querySelector('[name="email"]')?.value || '',
+            phone: document.querySelector('[name="phone"]')?.value || '',
+            address: document.querySelector('[name="address"]')?.value || '',
+            city: document.querySelector('[name="city"]')?.value || '',
+        };
+        localStorage.setItem('deen_checkout_form', JSON.stringify(formData));
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedForm = localStorage.getItem('deen_checkout_form');
+    if (savedForm) {
+        try {
+            const data = JSON.parse(savedForm);
+            if (data.first_name) document.querySelector('[name="first_name"]').value = data.first_name;
+            if (data.last_name) document.querySelector('[name="last_name"]').value = data.last_name;
+            if (data.email) document.querySelector('[name="email"]').value = data.email;
+            if (data.phone) document.querySelector('[name="phone"]').value = data.phone;
+            if (data.address) document.querySelector('[name="address"]').value = data.address;
+            if (data.city) document.querySelector('[name="city"]').value = data.city;
+        } catch(e) {}
+    }
+});
 </script>
 @endsection
