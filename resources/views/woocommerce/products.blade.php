@@ -61,7 +61,7 @@
                     <div class="woo-product-card">
                         <div class="position-relative">
                             @if($product->featured_image)
-                                <img src="{{ $product->featured_image }}" class="woo-product-img" alt="{{ $product->name }}">
+                                <img src="{{ $product->featured_image }}" loading="lazy" class="woo-product-img" alt="{{ $product->name }}">
                             @else
                                 <div class="woo-product-img d-flex align-items-center justify-content-center bg-light">
                                     <i class="fas fa-box-open fa-3x text-muted opacity-50"></i>

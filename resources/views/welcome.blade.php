@@ -321,7 +321,7 @@
  <i class="fas fa-plus"></i>
  <div class="deen-hotspot-popover">
  <div class="d-flex align-items-center gap-2 mb-2">
- <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=200&auto=format&fit=crop" class="rounded-2 border">
+ <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=200&auto=format&fit=crop" loading="lazy" alt="Raw Selvedge Denim Jacket" class="rounded-2 border">
  <div>
  <div class="fw-bold small text-dark">Raw Selvedge Denim Jacket</div>
  <div class="fw-bold text-primary small">৳3,450.00</div>
@@ -339,7 +339,7 @@
  <i class="fas fa-plus"></i>
  <div class="deen-hotspot-popover">
  <div class="d-flex align-items-center gap-2 mb-2">
- <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=200&auto=format&fit=crop" class="rounded-2 border">
+ <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=200&auto=format&fit=crop" loading="lazy" alt="Structured Oxford Button-Down" class="rounded-2 border">
  <div>
  <div class="fw-bold small text-dark">Structured Oxford Button-Down</div>
  <div class="fw-bold text-primary small">৳1,850.00</div>
@@ -357,7 +357,7 @@
  <i class="fas fa-plus"></i>
  <div class="deen-hotspot-popover">
  <div class="d-flex align-items-center gap-2 mb-2">
- <img src="https://deencommerce.com/wp-content/uploads/2026/07/101-0100-149-Front.jpg" class="rounded-2 border">
+ <img src="https://deencommerce.com/wp-content/uploads/2026/07/101-0100-149-Front.jpg" loading="lazy" alt="13.5oz Washed Slim Denim Jeans" class="rounded-2 border">
  <div>
  <div class="fw-bold small text-dark">13.5oz Washed Slim Denim Jeans</div>
  <div class="fw-bold text-primary small">৳2,250.00</div>
@@ -404,7 +404,7 @@
  <div class="d-flex align-items-center justify-content-between p-2.5 rounded-3 border bg-white">
  <div class="d-flex align-items-center gap-2.5">
  <div class="deen-avatar-md deen-avatar-rounded">
- <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=100&auto=format&fit=crop" class="w-100 h-100 object-fit-cover rounded-2">
+ <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=100&auto=format&fit=crop" loading="lazy" alt="Raw Selvedge Denim Jacket" class="w-100 h-100 object-fit-cover rounded-2">
  </div>
  <div>
  <div class="fw-bold small text-dark">Raw Selvedge Denim Jacket</div>
@@ -417,7 +417,7 @@
  <div class="d-flex align-items-center justify-content-between p-2.5 rounded-3 border bg-white">
  <div class="d-flex align-items-center gap-2.5">
  <div class="deen-avatar-md deen-avatar-rounded">
- <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=100&auto=format&fit=crop" class="w-100 h-100 object-fit-cover rounded-2">
+ <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=100&auto=format&fit=crop" loading="lazy" alt="Structured Oxford Shirt" class="w-100 h-100 object-fit-cover rounded-2">
  </div>
  <div>
  <div class="fw-bold small text-dark">Structured Oxford Shirt</div>
@@ -430,7 +430,7 @@
  <div class="d-flex align-items-center justify-content-between p-2.5 rounded-3 border bg-white">
  <div class="d-flex align-items-center gap-2.5">
  <div class="deen-avatar-md deen-avatar-rounded">
- <img src="https://deencommerce.com/wp-content/uploads/2026/07/101-0100-149-Front.jpg" class="w-100 h-100 object-fit-cover rounded-2">
+ <img src="https://deencommerce.com/wp-content/uploads/2026/07/101-0100-149-Front.jpg" loading="lazy" alt="13.5oz Washed Slim Jeans" class="w-100 h-100 object-fit-cover rounded-2">
  </div>
  <div>
  <div class="fw-bold small text-dark">13.5oz Washed Slim Jeans</div>
@@ -493,7 +493,7 @@
  <div class="col-md-4">
  <div class="deen-perk-card deen-pastel-linen d-block p-4">
  <div class="d-flex align-items-center gap-3 mb-3">
- <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop" alt="Reviewer">
+ <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop" loading="lazy" alt="Nusrat Jahan - Deen Commerce customer">
  <div>
  <div class="fw-semibold text-dark">Nusrat Jahan</div>
  <div class="deen-rating-stars mb-0"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (5.0)</div>
@@ -505,7 +505,7 @@
  <div class="col-md-4">
  <div class="deen-perk-card deen-pastel-sage d-block p-4">
  <div class="d-flex align-items-center gap-3 mb-3">
- <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop" alt="Reviewer">
+ <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop" loading="lazy" alt="Ayman Rahman - Deen Commerce customer">
  <div>
  <div class="fw-semibold text-dark">Ayman Rahman</div>
  <div class="deen-rating-stars mb-0"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (5.0)</div>
@@ -517,7 +517,7 @@
  <div class="col-md-4">
  <div class="deen-perk-card deen-pastel-azure d-block p-4">
  <div class="d-flex align-items-center gap-3 mb-3">
- <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop" alt="Reviewer">
+ <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop" loading="lazy" alt="Sabrina Islam - Deen Commerce customer">
  <div>
  <div class="fw-semibold text-dark">Sabrina Islam</div>
  <div class="deen-rating-stars mb-0"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (5.0)</div>

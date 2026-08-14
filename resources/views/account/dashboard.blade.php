@@ -310,7 +310,7 @@
  @foreach($activeOrder['items'] as $item)
  <div class="d-flex align-items-center justify-content-between p-3 rounded-3 border bg-white">
  <div class="d-flex align-items-center gap-3">
- <img src="{{ asset('images/deen-logo-dark.png') }}" class="rounded-2 border p-1" alt="Deen Product" onerror="this.src='https://deencommerce.com/wp-content/uploads/2025/04/cropped-Deen-Logo-scaled-1.png'">
+ <img src="{{ asset('images/deen-logo-dark.png') }}" loading="lazy" class="rounded-2 border p-1" alt="Deen Commerce product" onerror="this.src='https://deencommerce.com/wp-content/uploads/2025/04/cropped-Deen-Logo-scaled-1.png'">
  <div>
  <div class="fw-semibold text-dark small">{{ $item['name'] }}</div>
  <div class="text-secondary small">Qty: {{ $item['qty'] }} &bull; ৳{{ number_format($item['price'], 2) }} each</div>
@@ -324,7 +324,7 @@
  @else
  <div class="d-flex align-items-center justify-content-between p-3 rounded-3 border bg-white">
  <div class="d-flex align-items-center gap-3">
- <img src="{{ asset('images/deen-logo-dark.png') }}" class="rounded-2 border p-1" alt="Deen Product" onerror="this.src='https://deencommerce.com/wp-content/uploads/2025/04/cropped-Deen-Logo-scaled-1.png'">
+ <img src="{{ asset('images/deen-logo-dark.png') }}" loading="lazy" class="rounded-2 border p-1" alt="Deen Commerce product" onerror="this.src='https://deencommerce.com/wp-content/uploads/2025/04/cropped-Deen-Logo-scaled-1.png'">
  <div>
  <div class="fw-semibold text-dark small">High-End Raw Washed Jeans - Slim Fit (Size 32)</div>
  <div class="text-secondary small">Qty: 2 &bull; ৳2,490.00 each</div>

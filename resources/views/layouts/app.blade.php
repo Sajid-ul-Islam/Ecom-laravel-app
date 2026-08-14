@@ -100,8 +100,8 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Customer Navigation with Collections Dropdown & Icons -->
-                    <ul class="navbar-nav me-auto ms-lg-3 gap-1 align-items-center">
+                    <!-- Left Customer Navigation: Clean Storefront & Collections -->
+                    <ul class="navbar-nav me-auto ms-lg-4 gap-1 align-items-center">
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('/') ? 'active text-white fw-bold' : 'text-white-50' }}" href="{{ url('/') }}" {{ request()->is('/') ? 'aria-current="page"' : '' }}>
                                 <span class="material-symbols-outlined nav-icon">storefront</span>
@@ -153,18 +153,6 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->is('my-account*') ? 'active text-white fw-bold' : 'text-white-50' }}" href="{{ route('account.orders') }}" {{ request()->is('my-account*') ? 'aria-current="page"' : '' }}>
-                                <span class="material-symbols-outlined nav-icon text-success">local_shipping</span>
-                                <span>Track Order</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white-50" href="#" onclick="event.preventDefault(); openLoyaltyModal();">
-                                <span class="material-symbols-outlined nav-icon text-warning">hotel_class</span>
-                                <span>VIP Vault</span>
-                            </a>
-                        </li>
                     </ul>
 
                     <!-- Center Instant Search Capsule (Desktop) -->
@@ -174,7 +162,7 @@
                         <kbd class="deen-kbd">Ctrl K</kbd>
                     </div>
 
-                    <!-- Right Customer Actions with Modern Icons & Badges -->
+                    <!-- Right Customer Actions with Clean Luxury Toolbar -->
                     <ul class="navbar-nav ms-auto align-items-center gap-2">
                         <!-- Custom Theme Picker Selector -->
                         <li class="nav-item dropdown">
@@ -229,15 +217,6 @@
                                     </button>
                                 </li>
                             </ul>
-                        </li>
-
-                        <!-- Deen VIP Loyalty Coins Pill -->
-                        <li class="nav-item">
-                            <button type="button" onclick="openLoyaltyModal()" class="deen-coins-pill" title="450 VIP Loyalty Coins Available">
-                                <span class="material-symbols-outlined fs-6 text-warning">monetization_on</span>
-                                <span>450</span>
-                                <span class="d-none d-xl-inline text-white-50" style="font-size: 0.68rem; letter-spacing: 0.05em;">COINS</span>
-                            </button>
                         </li>
 
                         <!-- Saved Wishlist Icon Button -->
@@ -1053,13 +1032,14 @@
 
  function updateThemeLabel(themeName) {
  const names = {
- denim: 'Washed Denim',
+ denim: '13.5oz Denim',
  dark: 'Midnight Dark',
+ glass: 'Crystal Glass',
  neon: 'Cyberpunk Neon',
  light: 'Studio Light'
  };
  const el = document.getElementById('currentThemeName');
- if (el) el.innerText = names[themeName] || 'Washed Denim';
+ if (el) el.innerText = names[themeName] || '13.5oz Denim';
  }
 
  /* GLOBAL CART PERSISTENCE & SYNC */
@@ -1111,7 +1091,7 @@
  html += `
  <div class="d-flex align-items-center justify-content-between border-bottom pb-2">
  <div class="d-flex align-items-center gap-2">
- <img src="${img}" class="deen-avatar-2xl deen-avatar-cover rounded-2 border">
+ <img src="${img}" loading="lazy" alt="Cart item" class="deen-avatar-2xl deen-avatar-cover rounded-2 border">
  <div>
  <div class="fw-bold small text-dark text-truncate" class="deen-max-160">${item.name}</div>
  <div class="small text-muted">৳${item.price.toFixed(2)} x ${item.qty}</div>
@@ -1233,7 +1213,7 @@
  const regPrice = item.regular_price ? `<span class="small text-white-50 text-decoration-line-through me-1">৳${item.regular_price}</span>` : '';
  html += `
  <a href="${item.detail_url}" class="deen-search-item rounded-3">
- <img src="${img}" class="deen-search-thumb" alt="${item.name}">
+ <img src="${img}" loading="lazy" alt="${item.name}" class="deen-search-thumb">
  <div class="deen-search-info">
  <div class="deen-search-name text-white">${item.name}</div>
  <div class="deen-search-meta">
@@ -1357,7 +1337,7 @@
  html += `
  <div class="d-flex align-items-center justify-content-between border-bottom pb-2">
  <div class="d-flex align-items-center gap-2">
- <img src="${img}" class="deen-avatar-3xl deen-avatar-cover rounded-2 border">
+ <img src="${img}" loading="lazy" alt="Wishlist item" class="deen-avatar-3xl deen-avatar-cover rounded-2 border">
  <div>
  <div class="fw-bold small text-dark text-truncate" class="deen-max-170">${item.name}</div>
  <div class="fw-bold text-primary small">৳${parseFloat(item.price).toFixed(2)}</div>
@@ -1436,7 +1416,7 @@
  const img = item.img || 'https://deencommerce.com/wp-content/uploads/2026/07/101-0100-149-Front.jpg';
  html += `
  <a href="/store/product/${item.id}" onclick="trackRecentlyViewed(${item.id}, '${item.name.replace(/'/g, "\\'")}', ${item.price}, '${img}')" class="deen-recently-card shadow-sm">
- <img src="${img}" class="deen-recently-img" alt="${item.name}">
+ <img src="${img}" loading="lazy" alt="${item.name}" class="deen-recently-img">
  <div class="fw-bold small text-white text-truncate" title="${item.name}">${item.name}</div>
  <div class="fw-bold text-warning small">৳${parseFloat(item.price).toFixed(2)}</div>
  </a>

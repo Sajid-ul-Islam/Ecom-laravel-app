@@ -192,96 +192,349 @@ html[data-theme="azure"] {
     --brand-blue: #1d4ed8;
 }
 
-/* 4. Split-Complementary Obsidian & Amber (Serene Dark Luxury Harmony)
-   - 60% Dominant Canvas: Deep Carbon Noir (#0C0F17)
-   - 30% Structure & Contrast: Slate Granite Obsidian (#131722)
+/* 4. Split-Complementary Obsidian & Amber (Midnight Studio Dark)
+   - 60% Dominant Canvas: Deep Carbon Noir (#0B0F19)
+   - 30% Structure & Contrast: Slate Granite Obsidian (#111827 / #151E32)
    - 10% Split-Complementary Accent: Luminous Amber (#F59E0B) + Electric Violet (#8B5CF6) */
 html[data-theme="dark"] {
     --theory-rule: "60-30-10 Split-Complementary Dark";
-    --bg-main: #0c0f17;
-    --bg-surface: #131722;
-    --bg-card: #131722;
-    --bg-nav: rgba(12, 15, 23, 0.92);
+    --bg-main: #0b0f19;
+    --bg-surface: #111827;
+    --bg-card: #151e32;
+    --bg-nav: rgba(11, 15, 25, 0.95);
     --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --border-color: rgba(255, 255, 255, 0.09);
-    --hero-gradient: radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.08) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 45%), linear-gradient(180deg, #0e1320 0%, #0c0f17 100%);
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.12);
+    --hero-gradient: radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.08) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 45%), linear-gradient(180deg, #0e1320 0%, #0b0f19 100%);
     --accent-color: #f59e0b;
     --accent-color-hover: #d97706;
     --accent-glow: rgba(245, 158, 11, 0.25);
     --accent-contrast: #0f172a;
     --brand-blue: #8b5cf6;
 
-    /* Dark Mode Pastel Adaptation Tokens */
-    --pastel-sage: rgba(16, 185, 129, 0.14);
-    --pastel-sage-border: rgba(16, 185, 129, 0.35);
+    /* Dark Mode Pastel Adaptation Tokens (High-Contrast) */
+    --pastel-sage: rgba(16, 185, 129, 0.16);
+    --pastel-sage-border: rgba(16, 185, 129, 0.4);
     --pastel-sage-text: #6ee7b7;
-    --pastel-sage-badge: rgba(16, 185, 129, 0.22);
+    --pastel-sage-badge: rgba(16, 185, 129, 0.25);
 
-    --pastel-linen: rgba(255, 255, 255, 0.05);
-    --pastel-linen-border: rgba(255, 255, 255, 0.12);
-    --pastel-linen-text: #e2e8f0;
-    --pastel-linen-badge: rgba(255, 255, 255, 0.08);
+    --pastel-linen: rgba(255, 255, 255, 0.08);
+    --pastel-linen-border: rgba(255, 255, 255, 0.18);
+    --pastel-linen-text: #f1f5f9;
+    --pastel-linen-badge: rgba(255, 255, 255, 0.12);
 
-    --pastel-azure: rgba(37, 99, 235, 0.14);
-    --pastel-azure-border: rgba(37, 99, 235, 0.35);
+    --pastel-azure: rgba(37, 99, 235, 0.16);
+    --pastel-azure-border: rgba(37, 99, 235, 0.4);
     --pastel-azure-text: #93c5fd;
-    --pastel-azure-badge: rgba(37, 99, 235, 0.22);
+    --pastel-azure-badge: rgba(37, 99, 235, 0.25);
 
-    --pastel-lavender: rgba(139, 92, 246, 0.14);
-    --pastel-lavender-border: rgba(139, 92, 246, 0.35);
+    --pastel-lavender: rgba(139, 92, 246, 0.16);
+    --pastel-lavender-border: rgba(139, 92, 246, 0.4);
     --pastel-lavender-text: #c4b5fd;
-    --pastel-lavender-badge: rgba(139, 92, 246, 0.22);
+    --pastel-lavender-badge: rgba(139, 92, 246, 0.25);
 
-    --pastel-sand: rgba(245, 158, 11, 0.14);
-    --pastel-sand-border: rgba(245, 158, 11, 0.35);
+    --pastel-sand: rgba(245, 158, 11, 0.16);
+    --pastel-sand-border: rgba(245, 158, 11, 0.4);
     --pastel-sand-text: #fde68a;
-    --pastel-sand-badge: rgba(245, 158, 11, 0.22);
+    --pastel-sand-badge: rgba(245, 158, 11, 0.25);
 
-    --deen-border-hairline: 1px solid rgba(255, 255, 255, 0.08);
-    --deen-border-subtle: 1px solid rgba(255, 255, 255, 0.14);
-    --deen-shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
-    --deen-shadow-card: 0 10px 30px -4px rgba(0, 0, 0, 0.5);
-    --deen-shadow-hover: 0 20px 40px -8px rgba(0, 0, 0, 0.65);
+    --deen-border-hairline: 1px solid rgba(255, 255, 255, 0.10);
+    --deen-border-subtle: 1px solid rgba(255, 255, 255, 0.18);
+    --deen-shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
+    --deen-shadow-card: 0 10px 30px -4px rgba(0, 0, 0, 0.55);
+    --deen-shadow-hover: 0 20px 40px -8px rgba(0, 0, 0, 0.70);
 }
 
-/* 5. Triadic Crimson Sunset & Sandstone (Warm Mediterranean Luxury Harmony)
-   - 60% Dominant Canvas: Warm Sandstone Pearl (#FAF6F0)
-   - 30% Structure & Contrast: Deep Espresso Charcoal (#1F1816)
-   - 10% Triadic Accent: Radiant Coral Crimson (#E11D48) */
-html[data-theme="sunset"] {
-    --theory-rule: "60-30-10 Triadic Warm";
-    --bg-main: #faf6f0;
+/* Dark Mode Global Component Overrides */
+html[data-theme="dark"] body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+}
+
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .modal-content,
+html[data-theme="dark"] .dropdown-menu,
+html[data-theme="dark"] .deen-product-card,
+html[data-theme="dark"] .deen-frame,
+html[data-theme="dark"] .deen-micro-cart-drawer,
+html[data-theme="dark"] .deen-quick-add-flyout {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+html[data-theme="dark"] .table {
+    --bs-table-bg: transparent !important;
+    --bs-table-color: var(--text-primary) !important;
+    color: var(--text-primary) !important;
+}
+
+html[data-theme="dark"] .table-light {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: var(--text-secondary) !important;
+}
+
+html[data-theme="dark"] .form-control,
+html[data-theme="dark"] .form-select,
+html[data-theme="dark"] .input-group-text {
+    background-color: #111827 !important;
+    border-color: rgba(255, 255, 255, 0.16) !important;
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] .form-control::placeholder {
+    color: #94a3b8 !important;
+}
+
+html[data-theme="dark"] .text-dark {
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] .text-secondary {
+    color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] .text-muted {
+    color: #94a3b8 !important;
+}
+
+html[data-theme="dark"] .bg-white,
+html[data-theme="dark"] .bg-light {
+    background-color: #111827 !important;
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] .border,
+html[data-theme="dark"] .border-top,
+html[data-theme="dark"] .border-bottom,
+html[data-theme="dark"] .border-start,
+html[data-theme="dark"] .border-end {
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* 5. Cyberpunk Urban Neon (Electric Rose & Cyber Cyan High-Voltage Harmony)
+   - 60% Dominant Canvas: Deep Midnight Obsidian (#050508)
+   - 30% Structure & Contrast: Charcoal Slate with Neon Trim (#0F1017 / #141522)
+   - 10% Action Accent: Electric Rose (#F43F5E) & Cyber Cyan (#06B6D4) */
+html[data-theme="neon"] {
+    --theory-rule: "60-30-10 Cyberpunk Urban Neon";
+    --bg-main: #050508;
+    --bg-surface: #0f1017;
+    --bg-card: #141522;
+    --bg-nav: rgba(9, 10, 16, 0.95);
+    --text-primary: #ffffff;
+    --text-secondary: #e2e8f0;
+    --text-muted: #a1a1aa;
+    --border-color: rgba(244, 63, 94, 0.30);
+    --hero-gradient: radial-gradient(circle at 10% 20%, rgba(244, 63, 94, 0.14) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.14) 0%, transparent 45%), linear-gradient(180deg, #090a10 0%, #050508 100%);
+    --accent-color: #f43f5e;
+    --accent-color-hover: #e11d48;
+    --accent-glow: rgba(244, 63, 94, 0.40);
+    --accent-contrast: #ffffff;
+    --brand-blue: #06b6d4;
+
+    /* Neon Mode Pastel Adapters */
+    --pastel-sage: rgba(6, 182, 212, 0.16);
+    --pastel-sage-border: rgba(6, 182, 212, 0.45);
+    --pastel-sage-text: #67e8f9;
+    --pastel-sage-badge: rgba(6, 182, 212, 0.25);
+
+    --pastel-linen: rgba(255, 255, 255, 0.08);
+    --pastel-linen-border: rgba(244, 63, 94, 0.35);
+    --pastel-linen-text: #ffffff;
+    --pastel-linen-badge: rgba(255, 255, 255, 0.12);
+
+    --pastel-azure: rgba(6, 182, 212, 0.18);
+    --pastel-azure-border: rgba(6, 182, 212, 0.50);
+    --pastel-azure-text: #a5f3fc;
+    --pastel-azure-badge: rgba(6, 182, 212, 0.28);
+
+    --pastel-lavender: rgba(244, 63, 94, 0.18);
+    --pastel-lavender-border: rgba(244, 63, 94, 0.45);
+    --pastel-lavender-text: #fda4af;
+    --pastel-lavender-badge: rgba(244, 63, 94, 0.28);
+
+    --pastel-sand: rgba(245, 158, 11, 0.18);
+    --pastel-sand-border: rgba(245, 158, 11, 0.45);
+    --pastel-sand-text: #fde68a;
+    --pastel-sand-badge: rgba(245, 158, 11, 0.28);
+
+    --deen-border-hairline: 1px solid rgba(244, 63, 94, 0.25);
+    --deen-border-subtle: 1px solid rgba(6, 182, 212, 0.35);
+    --deen-shadow-subtle: 0 4px 20px -2px rgba(244, 63, 94, 0.25);
+    --deen-shadow-card: 0 10px 30px -4px rgba(244, 63, 94, 0.30);
+    --deen-shadow-hover: 0 20px 40px -8px rgba(6, 182, 212, 0.45);
+}
+
+/* Neon Mode Global Component Overrides */
+html[data-theme="neon"] body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+}
+
+html[data-theme="neon"] .card,
+html[data-theme="neon"] .modal-content,
+html[data-theme="neon"] .dropdown-menu,
+html[data-theme="neon"] .deen-product-card,
+html[data-theme="neon"] .deen-frame,
+html[data-theme="neon"] .deen-micro-cart-drawer,
+html[data-theme="neon"] .deen-quick-add-flyout {
+    background-color: #12131d !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(244, 63, 94, 0.35) !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(244, 63, 94, 0.15) !important;
+}
+
+html[data-theme="neon"] .deen-product-card:hover {
+    border-color: #06b6d4 !important;
+    box-shadow: 0 12px 35px rgba(6, 182, 212, 0.3), 0 0 20px rgba(6, 182, 212, 0.2) !important;
+}
+
+html[data-theme="neon"] .table {
+    --bs-table-bg: transparent !important;
+    --bs-table-color: #ffffff !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="neon"] .table-light {
+    background-color: rgba(244, 63, 94, 0.08) !important;
+    color: #e2e8f0 !important;
+}
+
+html[data-theme="neon"] .form-control,
+html[data-theme="neon"] .form-select,
+html[data-theme="neon"] .input-group-text {
+    background-color: #0f1017 !important;
+    border-color: rgba(244, 63, 94, 0.4) !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="neon"] .form-control:focus,
+html[data-theme="neon"] .form-select:focus {
+    border-color: #06b6d4 !important;
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.25) !important;
+}
+
+html[data-theme="neon"] .text-dark {
+    color: #ffffff !important;
+}
+
+html[data-theme="neon"] .text-secondary {
+    color: #e2e8f0 !important;
+}
+
+html[data-theme="neon"] .text-muted {
+    color: #a1a1aa !important;
+}
+
+html[data-theme="neon"] .bg-white,
+html[data-theme="neon"] .bg-light {
+    background-color: #0f1017 !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="neon"] .border,
+html[data-theme="neon"] .border-top,
+html[data-theme="neon"] .border-bottom,
+html[data-theme="neon"] .border-start,
+html[data-theme="neon"] .border-end {
+    border-color: rgba(244, 63, 94, 0.25) !important;
+}
+
+/* 6. Studio Minimal Light (Crisp Editorial Gallery Harmony)
+   - 60% Dominant Canvas: Pure Gallery White (#FFFFFF)
+   - 30% Structure & Contrast: Deep Slate (#0F172A / #1E293B)
+   - 10% Action Accent: Ocean Cobalt (#2563EB) */
+html[data-theme="light"] {
+    --theory-rule: "60-30-10 Studio Minimal Light";
+    --bg-main: #ffffff;
     --bg-surface: #ffffff;
     --bg-card: #ffffff;
-    --bg-nav: rgba(250, 246, 240, 0.94);
-    --text-primary: #1f1816;
-    --text-secondary: #59433e;
-    --text-muted: #7d655f;
-    --border-color: rgba(31, 24, 22, 0.09);
-    --hero-gradient: radial-gradient(circle at 10% 20%, rgba(225, 29, 72, 0.07) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.07) 0%, transparent 45%), linear-gradient(180deg, #ffffff 0%, #faf6f0 100%);
-    --accent-color: #e11d48;
-    --accent-color-hover: #be123c;
-    --accent-glow: rgba(225, 29, 72, 0.22);
+    --bg-nav: rgba(255, 255, 255, 0.96);
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --hero-gradient: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.04) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(15, 23, 42, 0.03) 0%, transparent 40%), linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    --accent-color: #2563eb;
+    --accent-color-hover: #1d4ed8;
+    --accent-glow: rgba(37, 99, 235, 0.20);
     --accent-contrast: #ffffff;
-    --brand-blue: #be123c;
+    --brand-blue: #2563eb;
+
+    --deen-border-hairline: 1px solid #e2e8f0;
+    --deen-border-subtle: 1px solid #cbd5e1;
+    --deen-shadow-subtle: 0 2px 10px rgba(15, 23, 42, 0.05);
+    --deen-shadow-card: 0 8px 24px rgba(15, 23, 42, 0.06);
+    --deen-shadow-hover: 0 16px 36px rgba(15, 23, 42, 0.10);
 }
 
-/* 6. Crystal Glassmorphism & Aurora Glow (Ultra-Modern Frosted Glass Aesthetic)
+/* Light Mode Global Component Overrides */
+html[data-theme="light"] body {
+    background-color: #ffffff;
+    color: #0f172a;
+}
+
+html[data-theme="light"] .deen-navbar {
+    background: rgba(255, 255, 255, 0.96) !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+}
+
+html[data-theme="light"] .deen-navbar .nav-link {
+    color: #475569 !important;
+}
+
+html[data-theme="light"] .deen-navbar .nav-link:hover,
+html[data-theme="light"] .deen-navbar .nav-link.active {
+    color: #0f172a !important;
+    font-weight: 700;
+}
+
+html[data-theme="light"] .card,
+html[data-theme="light"] .modal-content,
+html[data-theme="light"] .dropdown-menu,
+html[data-theme="light"] .deen-product-card {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05) !important;
+}
+
+html[data-theme="light"] .form-control,
+html[data-theme="light"] .form-select,
+html[data-theme="light"] .input-group-text {
+    background-color: #ffffff !important;
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
+}
+
+html[data-theme="light"] .text-dark {
+    color: #0f172a !important;
+}
+
+html[data-theme="light"] .text-secondary {
+    color: #334155 !important;
+}
+
+html[data-theme="light"] .text-muted {
+    color: #64748b !important;
+}
+
+/* 7. Crystal Glassmorphism & Aurora Glow (Ultra-Modern Frosted Glass Aesthetic)
    - 60% Dominant Canvas: Deep Aurora Obsidian Mesh with Frosted Iridescence
    - 30% Structure & Contrast: Translucent Frosted Glass (backdrop-filter: blur(24px) saturate(190%))
    - 10% Action Accent: Luminous Cyber Cyan (#06B6D4) & Neon Aurora Rose (#F43F5E) */
 html[data-theme="glass"] {
     --theory-rule: "60-30-10 Crystal Glassmorphism";
     --bg-main: #070b14;
-    --bg-surface: rgba(255, 255, 255, 0.07);
-    --bg-card: rgba(255, 255, 255, 0.08);
-    --bg-nav: rgba(10, 15, 29, 0.68);
-    --text-primary: #f8fafc;
-    --text-secondary: #cbd5e1;
-    --text-muted: #94a3b8;
-    --border-color: rgba(255, 255, 255, 0.16);
+    --bg-surface: rgba(255, 255, 255, 0.08);
+    --bg-card: rgba(255, 255, 255, 0.09);
+    --bg-nav: rgba(10, 15, 29, 0.75);
+    --text-primary: #ffffff;
+    --text-secondary: #e2e8f0;
+    --text-muted: #cbd5e1;
+    --border-color: rgba(255, 255, 255, 0.20);
     --hero-gradient: radial-gradient(at 15% 15%, rgba(99, 102, 241, 0.22) 0px, transparent 50%),
                      radial-gradient(at 85% 20%, rgba(236, 72, 153, 0.18) 0px, transparent 50%),
                      radial-gradient(at 50% 80%, rgba(6, 182, 212, 0.20) 0px, transparent 50%),
@@ -292,37 +545,37 @@ html[data-theme="glass"] {
     --accent-contrast: #08121f;
     --brand-blue: #6366f1;
 
-    /* Glass Morphism Adapted Pastel Tokens */
-    --pastel-sage: rgba(16, 185, 129, 0.15);
-    --pastel-sage-border: rgba(52, 211, 153, 0.4);
+    /* Glass Morphism Adapted Pastel Tokens (High-Contrast) */
+    --pastel-sage: rgba(16, 185, 129, 0.18);
+    --pastel-sage-border: rgba(52, 211, 153, 0.5);
     --pastel-sage-text: #6ee7b7;
-    --pastel-sage-badge: rgba(16, 185, 129, 0.25);
+    --pastel-sage-badge: rgba(16, 185, 129, 0.28);
 
-    --pastel-linen: rgba(255, 255, 255, 0.09);
-    --pastel-linen-border: rgba(255, 255, 255, 0.22);
-    --pastel-linen-text: #f1f5f9;
-    --pastel-linen-badge: rgba(255, 255, 255, 0.15);
+    --pastel-linen: rgba(255, 255, 255, 0.12);
+    --pastel-linen-border: rgba(255, 255, 255, 0.28);
+    --pastel-linen-text: #ffffff;
+    --pastel-linen-badge: rgba(255, 255, 255, 0.18);
 
-    --pastel-azure: rgba(6, 182, 212, 0.15);
-    --pastel-azure-border: rgba(34, 211, 238, 0.4);
-    --pastel-azure-text: #67e8f9;
-    --pastel-azure-badge: rgba(6, 182, 212, 0.25);
+    --pastel-azure: rgba(6, 182, 212, 0.18);
+    --pastel-azure-border: rgba(34, 211, 238, 0.5);
+    --pastel-azure-text: #a5f3fc;
+    --pastel-azure-badge: rgba(6, 182, 212, 0.28);
 
-    --pastel-lavender: rgba(168, 85, 247, 0.15);
-    --pastel-lavender-border: rgba(192, 132, 252, 0.4);
-    --pastel-lavender-text: #d8b4fe;
-    --pastel-lavender-badge: rgba(168, 85, 247, 0.25);
+    --pastel-lavender: rgba(168, 85, 247, 0.18);
+    --pastel-lavender-border: rgba(192, 132, 252, 0.5);
+    --pastel-lavender-text: #e9d5ff;
+    --pastel-lavender-badge: rgba(168, 85, 247, 0.28);
 
-    --pastel-sand: rgba(251, 191, 36, 0.15);
-    --pastel-sand-border: rgba(251, 191, 36, 0.4);
+    --pastel-sand: rgba(251, 191, 36, 0.18);
+    --pastel-sand-border: rgba(251, 191, 36, 0.5);
     --pastel-sand-text: #fde68a;
-    --pastel-sand-badge: rgba(251, 191, 36, 0.25);
+    --pastel-sand-badge: rgba(251, 191, 36, 0.28);
 
-    --deen-border-hairline: 1px solid rgba(255, 255, 255, 0.15);
-    --deen-border-subtle: 1px solid rgba(255, 255, 255, 0.25);
-    --deen-shadow-subtle: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
-    --deen-shadow-card: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
-    --deen-shadow-hover: 0 20px 50px 0 rgba(6, 182, 212, 0.25);
+    --deen-border-hairline: 1px solid rgba(255, 255, 255, 0.18);
+    --deen-border-subtle: 1px solid rgba(255, 255, 255, 0.28);
+    --deen-shadow-subtle: 0 8px 32px 0 rgba(0, 0, 0, 0.38);
+    --deen-shadow-card: 0 12px 40px 0 rgba(0, 0, 0, 0.48);
+    --deen-shadow-hover: 0 20px 50px 0 rgba(6, 182, 212, 0.28);
 }
 
 /* Glassmorphism Global Elements when data-theme="glass" is active */
@@ -1681,8 +1934,8 @@ html[data-theme="light"] .deen-brand-subtitle {
 }
 
 .deen-btn-card-action {
-    background: #ffffff;
-    border: 1px solid rgba(226, 232, 240, 1);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
     color: var(--text-primary);
     border-radius: var(--deen-radius-full);
     font-weight: 600;
@@ -1694,15 +1947,15 @@ html[data-theme="light"] .deen-brand-subtitle {
     justify-content: center;
     gap: 6px;
     text-decoration: none;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: all 0.25s ease;
 }
+
 .deen-btn-card-action:hover {
-    background: #0f172a;
-    color: #ffffff !important;
-    border-color: #0f172a;
-    box-shadow: 0 8px 16px -2px rgba(15, 23, 42, 0.2);
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--accent-contrast, #ffffff) !important;
     transform: translateY(-1px);
+    box-shadow: 0 4px 14px var(--accent-glow);
 }
 
 /* ==========================================================================
@@ -1778,9 +2031,9 @@ html[data-theme="light"] .deen-brand-subtitle {
 }
 
 .btn-deen-outline {
-    background: #ffffff;
+    background: var(--bg-surface);
     color: var(--text-primary) !important;
-    border: 1px solid rgba(226, 232, 240, 1);
+    border: 1px solid var(--border-color);
     border-radius: var(--deen-radius-full);
     font-weight: 600;
     font-size: 0.9rem;
@@ -1794,8 +2047,9 @@ html[data-theme="light"] .deen-brand-subtitle {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 .btn-deen-outline:hover {
-    background: #f8fafc;
-    border-color: var(--text-primary);
+    background: var(--bg-card);
+    border-color: var(--accent-color);
+    color: var(--text-primary) !important;
     transform: translateY(-1px);
     box-shadow: var(--deen-shadow-subtle);
 }

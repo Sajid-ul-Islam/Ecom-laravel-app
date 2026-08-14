@@ -251,7 +251,7 @@ function renderCheckoutList() {
  html += `
  <div class="d-flex align-items-center justify-content-between p-2 rounded-3 bg-white border">
  <div class="d-flex align-items-center gap-3">
- <img src="${img}" class="rounded-2 border">
+ <img src="${img}" loading="lazy" alt="Cart item" class="rounded-2 border">
  <div>
  <div class="fw-semibold text-dark small text-truncate">${item.name}</div>
  <div class="text-secondary small">৳${item.price.toFixed(2)}</div>

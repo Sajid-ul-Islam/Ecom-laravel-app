@@ -360,7 +360,7 @@
  <div class="container d-flex align-items-center justify-content-between gap-2 gap-md-4">
  <div class="d-flex align-items-center gap-3 overflow-hidden">
  @if($mainImg)
- <img src="{{ $mainImg }}" class="deen-sticky-thumb d-none d-sm-block" alt="{{ $product['name'] }}">
+ <img src="{{ $mainImg }}" loading="lazy" class="deen-sticky-thumb d-none d-sm-block" alt="{{ $product['name'] }}">
  @endif
  <div class="overflow-hidden">
  <div class="fw-bold text-dark small text-truncate">{{ $product['name'] }}</div>
