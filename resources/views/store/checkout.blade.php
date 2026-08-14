@@ -323,11 +323,16 @@ function recalculateTotals(overrideSubtotal = null) {
 function applyCouponCode() {
     const code = (document.getElementById('couponInput').value || '').trim().toUpperCase();
     const statusEl = document.getElementById('couponStatus');
+    const subtotal = cartState.reduce((acc, item) => acc + (item.price * item.qty), 0);
 
     if (code === 'DEEN2026') {
-        appliedDiscount = 300;
+        appliedDiscount = subtotal * 0.20;
         statusEl.className = 'small mt-1 text-success fw-bold';
-        statusEl.innerText = '✓ Promo Code DEEN2026 Applied (৳300 OFF)';
+        statusEl.innerText = `✓ Promo Code DEEN2026 Applied (20% OFF: -৳${appliedDiscount.toFixed(2)})`;
+    } else if (code === 'DEEN10') {
+        appliedDiscount = 100;
+        statusEl.className = 'small mt-1 text-success fw-bold';
+        statusEl.innerText = '✓ Promo Code DEEN10 Applied (৳100 OFF)';
     } else if (code === 'FREESHIP') {
         appliedDiscount = parseFloat(document.getElementById('shippingZoneSelect').value || 60);
         statusEl.className = 'small mt-1 text-success fw-bold';
@@ -335,7 +340,7 @@ function applyCouponCode() {
     } else {
         appliedDiscount = 0;
         statusEl.className = 'small mt-1 text-danger fw-bold';
-        statusEl.innerText = '✗ Invalid or Expired Promo Code';
+        statusEl.innerText = '✗ Invalid or Expired Promo Code. Try DEEN2026 or DEEN10.';
     }
 
     renderCheckoutList();

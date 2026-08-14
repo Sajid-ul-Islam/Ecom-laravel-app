@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\WooProduct;
+use App\Services\SmsNotificationService;
 use App\Services\WooCommerceService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -372,6 +373,14 @@ class DeenCommerceStoreController extends Controller
         ];
 
         session(['recent_order_' . $orderId => $orderData]);
+
+        // Dispatch instant order confirmation SMS to customer
+        try {
+            $smsService = app(SmsNotificationService::class);
+            $smsService->sendOrderConfirmationSms($validated['phone'] ?? '', $orderId, $totalAmount);
+        } catch (\Throwable $ex) {
+            // Silently handle SMS exception so checkout flow never breaks
+        }
 
         return redirect()->route('store.order.success', ['id' => $orderId]);
     }

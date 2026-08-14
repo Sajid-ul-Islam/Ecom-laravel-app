@@ -16,13 +16,21 @@
 
     <!-- Deen Commerce Retail Custom CSS -->
     <link href="{{ asset('css/deen-commerce-store.css') }}" rel="stylesheet">
+
+    <!-- PWA Web App Manifest & Service Worker Meta -->
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+    <meta name="theme-color" content="#0b132b">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 
 
 <body>
-    <!-- Top Announcement Bar -->
-    <div class="deen-promo-bar">
-        <i class="fas fa-truck-fast me-1"></i> FREE SHIPPING ON ORDERS OVER ৳2,000 &bull; NEW SEASON DENIM & URBAN FASHION 2026
+    <!-- Top Announcement Bar with Flash Sale Ticking Timer -->
+    <div class="deen-promo-bar d-flex justify-content-center align-items-center gap-2 flex-wrap">
+        <span><i class="fas fa-bolt text-warning me-1"></i> FLASH SALE 20% OFF (USE: <strong>DEEN2026</strong>)</span>
+        <span class="deen-countdown-badge" id="flashSaleTimer">ENDS IN 05h : 42m : 18s</span>
+        <span class="d-none d-md-inline">&bull; FREE NATIONWIDE SHIPPING OVER ৳2,000</span>
     </div>
 
     <!-- Deen Commerce Retail Navbar -->
@@ -30,7 +38,6 @@
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url('/') }}">
                 <img src="https://deencommerce.com/wp-content/uploads/2025/04/Deen-Logo-Light-scaled.png" alt="Deen Commerce (দীন কমার্স)" style="height: 38px; object-fit: contain;">
-                <span class="deen-leather-patch ms-1">Denim Apparel</span>
             </a>
 
             <!-- Mobile Header Action Buttons -->
@@ -105,15 +112,21 @@
                         <a class="nav-link text-warning fw-semibold" href="{{ route('woocommerce.dashboard') }}"><i class="fas fa-sync-alt me-1"></i> WooCommerce Hub</a>
                     </li>
 
+                    <li class="nav-item ms-lg-2">
+                        <a href="{{ route('store.checkout') }}" class="btn btn-warning rounded-pill px-3 fw-bold text-dark shadow-sm">
+                            <i class="fas fa-lock me-1"></i> Checkout
+                        </a>
+                    </li>
+
                     @guest
-                        <li class="nav-item ms-lg-2">
+                        <li class="nav-item">
                             <a class="btn btn-outline-light rounded-pill px-3" href="{{ route('login') }}">Sign In</a>
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-primary rounded-pill px-3 fw-bold" href="{{ route('register') }}">Join Store</a>
                         </li>
                     @else
-                        <li class="nav-item ms-lg-2">
+                        <li class="nav-item">
                             <a class="btn btn-primary rounded-pill px-3" href="{{ url('/home') }}"><i class="fas fa-user-circle me-1"></i> My Account</a>
                         </li>
                     @endguest
@@ -565,12 +578,6 @@
         </div>
     </section>
 
-    <!-- Floating Cart Button -->
-    <a href="#" onclick="event.preventDefault(); openCartModal();" class="deen-floating-cart">
-        <i class="fas fa-shopping-bag"></i>
-        <span class="deen-cart-count" id="cartCount">0</span>
-    </a>
-
     <!-- Cart Modal Drawer -->
     <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-end modal-md">
@@ -769,37 +776,72 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-5 mt-5 border-top border-secondary">
+    <!-- Streamlined Modern Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4 border-top border-secondary">
         <div class="container">
             <div class="row g-4 mb-4">
-                <div class="col-md-5">
-                    <h5 class="fw-bold text-white mb-2">Deen Commerce Retail Store</h5>
-                    <p class="text-muted small">Your premier destination for urban fashion, washed denim jeans, casual shirts, and outerwear. Connected live to Deen Commerce REST API.</p>
+                <!-- Col 1: Brand & Slogan -->
+                <div class="col-lg-4 col-md-6">
+                    <a href="/" class="d-inline-flex align-items-center gap-2 mb-3 text-decoration-none">
+                        <img src="https://deencommerce.com/wp-content/uploads/2025/04/Deen-Logo-Light-scaled.png" style="height: 36px; object-fit: contain;" alt="Deen Commerce">
+                        <span class="badge bg-warning text-dark font-monospace fw-bold">দেশের প্রথম ডেনিম ব্র্যান্ড</span>
+                    </a>
+                    <p class="text-white-50 small mb-3">DEEN is Bangladesh's premier denim & lifestyle fashion brand. Crafted with premium 13.5oz stretch denim and cotton comfort weaves.</p>
+                    <div class="d-flex gap-2">
+                        <a href="https://facebook.com/deencommerce" target="_blank" class="btn btn-outline-light btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/deencommerce" target="_blank" class="btn btn-outline-light btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fab fa-instagram"></i></a>
+                        <a href="https://t.me/DEEN_Commerce_bot" target="_blank" class="btn btn-outline-light btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fab fa-telegram"></i></a>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <h6 class="fw-bold text-white mb-2">Quick Navigation</h6>
-                    <ul class="list-unstyled text-muted small mb-0">
-                        <li><a href="#catalog-section" class="text-white-50 text-decoration-none">Fashion Apparel</a></li>
-                        <li><a href="{{ route('woocommerce.products') }}" class="text-white-50 text-decoration-none">Product Catalog</a></li>
-                        <li><a href="{{ route('woocommerce.dashboard') }}" class="text-white-50 text-decoration-none">WooCommerce Integration Hub</a></li>
+
+                <!-- Col 2: Customer Care -->
+                <div class="col-lg-2 col-6">
+                    <h6 class="fw-bold text-white text-uppercase small mb-3">Customer Care</h6>
+                    <ul class="list-unstyled small text-white-50 d-flex flex-column gap-2 mb-0">
+                        <li><a href="#" onclick="event.preventDefault(); trackOrderInline();" class="text-white-50 text-decoration-none"><i class="fas fa-truck text-warning me-1"></i> Track Order</a></li>
+                        <li><a href="#sizeGuideModal" data-bs-toggle="modal" class="text-white-50 text-decoration-none"><i class="fas fa-ruler me-1"></i> Size Guide</a></li>
+                        <li><a href="{{ route('store.checkout') }}" class="text-white-50 text-decoration-none"><i class="fas fa-rotate-left me-1"></i> Easy Returns</a></li>
+                        <li><a href="#" onclick="event.preventDefault(); openLoyaltyModal();" class="text-white-50 text-decoration-none"><i class="fas fa-coins text-warning me-1"></i> VIP Rewards</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 text-md-end d-flex flex-column align-items-md-end gap-2">
-                    <span class="badge bg-danger px-3 py-2 rounded-pill small">
-                        <i class="fas fa-bolt me-1"></i> REST API Target: https://deencommerce.com
-                    </span>
-                    <a href="https://t.me/DEEN_Commerce_bot" target="_blank" class="btn btn-outline-info btn-sm rounded-pill px-3 fw-bold text-white">
-                        <i class="fab fa-telegram me-1"></i> 24/7 Support: @DEEN_Commerce_bot
-                    </a>
+
+                <!-- Col 3: Fashion Collections -->
+                <div class="col-lg-3 col-6">
+                    <h6 class="fw-bold text-white text-uppercase small mb-3">Fashion Collections</h6>
+                    <ul class="list-unstyled small text-white-50 d-flex flex-column gap-2 mb-0">
+                        <li><a href="{{ route('store.categories') }}" class="text-white-50 text-decoration-none">Raw Washed Denim Jeans</a></li>
+                        <li><a href="{{ route('store.categories') }}" class="text-white-50 text-decoration-none">Urban Slim Oxford Shirts</a></li>
+                        <li><a href="{{ route('store.categories') }}" class="text-white-50 text-decoration-none">Casual Polo T-Shirts</a></li>
+                        <li><a href="{{ route('store.categories') }}" class="text-white-50 text-decoration-none">Outerwear & Leather Jackets</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Customer Support -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold text-white text-uppercase small mb-3">Customer Support</h6>
+                    <div class="mb-3">
+                        <a href="https://t.me/DEEN_Commerce_bot" target="_blank" class="btn btn-outline-info btn-sm rounded-pill w-100 fw-bold mb-2">
+                            <i class="fab fa-telegram me-1"></i> Chat @DEEN_Commerce_bot
+                        </a>
+                        <a href="https://wa.me/8801700000000" target="_blank" class="btn btn-outline-success btn-sm rounded-pill w-100 fw-bold">
+                            <i class="fab fa-whatsapp me-1"></i> WhatsApp Support
+                        </a>
+                    </div>
+                    <div class="small text-white-50">
+                        <i class="fas fa-shield-alt text-success me-1"></i> 256-Bit SSL Secure Checkout
+                    </div>
                 </div>
             </div>
-            <div class="my-4 text-center">
-                <p class="text-white-50 small mb-2">Supported Payment Gateways & Banking Partners in Bangladesh</p>
-                <img src="https://deencommerce.com/wp-content/uploads/2026/03/SSLCommerz-Pay-With-logo-All-Size-01-2048x240-1.png" alt="Payment Methods" class="img-fluid rounded bg-white p-2" style="max-height: 54px;">
-            </div>
-            <div class="border-top border-secondary pt-3 text-center text-muted small">
-                &copy; {{ date('Y') }} Deen Commerce Retail Fashion E-Store. All rights reserved.
+
+            <div class="border-top border-secondary pt-3 text-center text-white-50 small d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                <div>&copy; {{ date('Y') }} Deen Commerce (https://deencommerce.com). All Rights Reserved.</div>
+                <div class="d-flex gap-3">
+                    <span class="text-warning fw-bold">bKash</span>
+                    <span class="text-warning fw-bold">Nagad</span>
+                    <span class="text-warning fw-bold">Rocket</span>
+                    <span class="text-info fw-bold">Visa / MasterCard</span>
+                    <span class="text-success fw-bold">COD</span>
+                </div>
             </div>
         </div>
     </footer>
@@ -1108,8 +1150,31 @@
         }
     });
 
+    function startFlashSaleTimer() {
+        let totalSeconds = 5 * 3600 + 42 * 60 + 18;
+        const timerEl = document.getElementById('flashSaleTimer');
+        if (!timerEl) return;
+
+        setInterval(() => {
+            if (totalSeconds <= 0) totalSeconds = 24 * 3600;
+            totalSeconds--;
+            const hrs = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+            const mins = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+            const secs = String(totalSeconds % 60).padStart(2, '0');
+            timerEl.innerText = `ENDS IN ${hrs}h : ${mins}m : ${secs}s`;
+        }, 1000);
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
         syncCartBadges();
+        startFlashSaleTimer();
+
+        // Register Progressive Web App Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('Deen PWA ServiceWorker Registered:', reg.scope))
+                .catch(err => console.log('ServiceWorker registration failed:', err));
+        }
     });
     </script>
 </body>

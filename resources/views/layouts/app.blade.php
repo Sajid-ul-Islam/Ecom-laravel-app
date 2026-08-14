@@ -21,6 +21,12 @@
     <link href="{{ asset('css/deen-commerce-store.css') }}" rel="stylesheet">
     <link href="{{ asset('css/woocommerce-dashboard.css') }}" rel="stylesheet">
 
+    <!-- PWA Web App Manifest & Service Worker Meta -->
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+    <meta name="theme-color" content="#0b132b">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
     <!-- Immediate Theme Restoration Script -->
     <script>
         (function() {
@@ -43,7 +49,6 @@
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url('/') }}">
                     <img src="https://deencommerce.com/wp-content/uploads/2025/04/Deen-Logo-Light-scaled.png" alt="Deen Commerce" style="height: 38px; object-fit: contain;">
-                    <span class="deen-leather-patch ms-1">Denim Apparel</span>
                 </a>
 
                 <!-- Mobile Header Direct Action Buttons (Search & Cart & Toggle) -->
@@ -133,6 +138,11 @@
                         </li>
 
                         <li class="nav-item me-1">
+                            <a class="btn btn-sm btn-warning rounded-pill px-3 fw-bold text-dark d-inline-flex align-items-center gap-1 shadow-sm" href="{{ route('store.checkout') }}">
+                                <i class="fas fa-lock me-1"></i> Checkout
+                            </a>
+                        </li>
+                        <li class="nav-item me-1">
                             <a class="btn btn-sm btn-outline-warning rounded-pill px-3 fw-bold text-white d-inline-flex align-items-center gap-1" href="{{ route('woocommerce.dashboard') }}">
                                 <i class="fas fa-shield-alt me-1"></i> Admin Portal Access
                             </a>
@@ -185,6 +195,75 @@
         <main>
             @yield('content')
         </main>
+
+        <!-- Streamlined Modern Footer -->
+        <footer class="bg-dark text-white pt-5 pb-4 border-top border-secondary">
+            <div class="container">
+                <div class="row g-4 mb-4">
+                    <!-- Col 1: Brand & Slogan -->
+                    <div class="col-lg-4 col-md-6">
+                        <a href="/" class="d-inline-flex align-items-center gap-2 mb-3 text-decoration-none">
+                            <img src="https://deencommerce.com/wp-content/uploads/2025/04/Deen-Logo-Light-scaled.png" style="height: 36px; object-fit: contain;" alt="Deen Commerce">
+                            <span class="badge bg-warning text-dark font-monospace fw-bold">দেশের প্রথম ডেনিম ব্র্যান্ড</span>
+                        </a>
+                        <p class="text-white-50 small mb-3">DEEN is Bangladesh's premier denim & lifestyle fashion brand. Crafted with premium 13.5oz stretch denim and cotton comfort weaves.</p>
+                        <div class="d-flex gap-2">
+                            <a href="https://facebook.com/deencommerce" target="_blank" class="btn btn-outline-light btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://instagram.com/deencommerce" target="_blank" class="btn btn-outline-light btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fab fa-instagram"></i></a>
+                            <a href="https://t.me/DEEN_Commerce_bot" target="_blank" class="btn btn-outline-light btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fab fa-telegram"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Col 2: Customer Care -->
+                    <div class="col-lg-2 col-6">
+                        <h6 class="fw-bold text-white text-uppercase small mb-3">Customer Care</h6>
+                        <ul class="list-unstyled small text-white-50 d-flex flex-column gap-2 mb-0">
+                            <li><a href="#" onclick="event.preventDefault(); openOrderTrackModal();" class="text-white-50 text-decoration-none"><i class="fas fa-truck text-warning me-1"></i> Track Order</a></li>
+                            <li><a href="{{ route('store.checkout') }}" class="text-white-50 text-decoration-none"><i class="fas fa-rotate-left me-1"></i> Easy Returns</a></li>
+                            <li><a href="#" onclick="event.preventDefault(); openLoyaltyModal();" class="text-white-50 text-decoration-none"><i class="fas fa-coins text-warning me-1"></i> VIP Rewards</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Col 3: Fashion Collections -->
+                    <div class="col-lg-3 col-6">
+                        <h6 class="fw-bold text-white text-uppercase small mb-3">Fashion Collections</h6>
+                        <ul class="list-unstyled small text-white-50 d-flex flex-column gap-2 mb-0">
+                            <li><a href="{{ route('store.categories') }}" class="text-white-50 text-decoration-none">Raw Washed Denim Jeans</a></li>
+                            <li><a href="{{ route('store.categories') }}" class="text-white-50 text-decoration-none">Urban Slim Oxford Shirts</a></li>
+                            <li><a href="{{ route('store.categories') }}" class="text-white-50 text-decoration-none">Casual Polo T-Shirts</a></li>
+                            <li><a href="{{ route('store.categories') }}" class="text-white-50 text-decoration-none">Outerwear & Leather Jackets</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Col 4: Customer Support -->
+                    <div class="col-lg-3 col-md-6">
+                        <h6 class="fw-bold text-white text-uppercase small mb-3">Customer Support</h6>
+                        <div class="mb-3">
+                            <a href="https://t.me/DEEN_Commerce_bot" target="_blank" class="btn btn-outline-info btn-sm rounded-pill w-100 fw-bold mb-2">
+                                <i class="fab fa-telegram me-1"></i> Chat @DEEN_Commerce_bot
+                            </a>
+                            <a href="https://wa.me/8801700000000" target="_blank" class="btn btn-outline-success btn-sm rounded-pill w-100 fw-bold">
+                                <i class="fab fa-whatsapp me-1"></i> WhatsApp Support
+                            </a>
+                        </div>
+                        <div class="small text-white-50">
+                            <i class="fas fa-shield-alt text-success me-1"></i> 256-Bit SSL Secure Checkout
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-top border-secondary pt-3 text-center text-white-50 small d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+                    <div>&copy; {{ date('Y') }} Deen Commerce (https://deencommerce.com). All Rights Reserved.</div>
+                    <div class="d-flex gap-3">
+                        <span class="text-warning fw-bold">bKash</span>
+                        <span class="text-warning fw-bold">Nagad</span>
+                        <span class="text-warning fw-bold">Rocket</span>
+                        <span class="text-info fw-bold">Visa / MasterCard</span>
+                        <span class="text-success fw-bold">COD</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
         <!-- STICKY MOBILE BOTTOM THUMB-ZONE NAVIGATION BAR -->
         <div class="deen-mobile-bottom-nav">
@@ -346,6 +425,15 @@
                     </div>
                 </div>
                 <div class="modal-footer border-top p-3 d-flex flex-column gap-2">
+                    <!-- Coupon Code Input Box -->
+                    <div class="deen-coupon-box w-100 mb-2">
+                        <div class="input-group input-group-sm">
+                            <input type="text" id="cartCouponInput" class="form-control bg-dark text-white border-secondary rounded-start-pill uppercase" placeholder="Coupon Code (e.g. DEEN2026)">
+                            <button onclick="applyCartCoupon()" class="btn btn-warning rounded-end-pill font-monospace fw-bold text-dark px-3">Apply</button>
+                        </div>
+                        <div id="cartCouponMessage" class="small mt-1 text-center font-monospace"></div>
+                    </div>
+
                     <div class="d-flex justify-content-between w-100 fw-bold fs-5 text-dark">
                         <span>Total:</span>
                         <span id="globalCartTotal">৳0.00</span>
@@ -582,8 +670,43 @@
         });
         html += '</div>';
 
+        let appliedCoupon = localStorage.getItem('deen_applied_coupon');
+        let discountAmount = 0;
+        let discountLabel = '';
+
+        if (appliedCoupon === 'DEEN2026') {
+            discountAmount = total * 0.20;
+            discountLabel = '20% OFF (DEEN2026)';
+        } else if (appliedCoupon === 'DEEN10') {
+            discountAmount = 100;
+            discountLabel = '৳100 OFF (DEEN10)';
+        }
+
+        if (discountAmount > 0) {
+            let finalTotal = Math.max(0, total - discountAmount);
+            totalContainer.innerHTML = `<span class="text-decoration-line-through text-muted fs-6 me-2">৳${total.toFixed(2)}</span> <span class="text-danger fw-bold">৳${finalTotal.toFixed(2)}</span> <div class="text-success small fw-bold mt-1"><i class="fas fa-tag me-1"></i> Coupon: ${discountLabel}</div>`;
+        } else {
+            totalContainer.innerText = '৳' + total.toFixed(2);
+        }
+
         listContainer.innerHTML = html;
-        totalContainer.innerText = '৳' + total.toFixed(2);
+    }
+
+    function applyCartCoupon() {
+        const input = document.getElementById('cartCouponInput');
+        const msg = document.getElementById('cartCouponMessage');
+        if (!input || !msg) return;
+
+        const code = input.value.trim().toUpperCase();
+        if (code === 'DEEN2026' || code === 'DEEN10') {
+            localStorage.setItem('deen_applied_coupon', code);
+            msg.className = 'small mt-1 text-center font-monospace text-success fw-bold';
+            msg.innerText = '✓ Coupon ' + code + ' Applied Successfully!';
+            renderGlobalCartList();
+        } else {
+            msg.className = 'small mt-1 text-center font-monospace text-danger fw-bold';
+            msg.innerText = '✕ Invalid Coupon Code. Try DEEN2026 or DEEN10.';
+        }
     }
 
     function removeGlobalCartItem(idx) {
@@ -875,6 +998,13 @@
         syncCartBadges();
         syncWishlistUI();
         renderRecentlyViewed();
+
+        // Register Progressive Web App Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(reg => console.log('Deen PWA ServiceWorker Registered:', reg.scope))
+                .catch(err => console.log('ServiceWorker registration failed:', err));
+        }
     });
     </script>
 </body>

@@ -1,24 +1,25 @@
-/* Deen Commerce Retail Fashion E-Commerce Stylesheet — Enhanced UI/UX */
+/* Deen Commerce Official Brand Stylesheet — https://deencommerce.com */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-    --deen-primary: #2563eb;
-    --deen-primary-hover: #1d4ed8;
-    --deen-accent: #e11d48;
-    --deen-accent-hover: #be123c;
+    --deen-brand-orange: #fa4a00;
+    --deen-primary: #fa4a00;
+    --deen-primary-hover: #e04200;
+    --deen-accent: #fa4a00;
+    --deen-accent-hover: #e04200;
     --deen-emerald: #059669;
-    --deen-amber: #d97706;
+    --deen-amber: #fa4a00;
     --deen-indigo: #0b132b;
     --deen-denim-wash: #1c2541;
-    --deen-copper: #f59e0b;
+    --deen-copper: #fa4a00;
     --deen-dark: #0f172a;
     --deen-dark-card: #1e293b;
     --deen-light-bg: #f8fafc;
     --deen-border: #e2e8f0;
-    --deen-font-heading: 'Outfit', sans-serif;
-    --deen-font-body: 'Plus Jakarta Sans', sans-serif;
-    --deen-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08);
-    --deen-shadow-hover: 0 25px 50px -12px rgba(15, 23, 42, 0.18);
+    --deen-font-heading: 'Century Gothic', 'Outfit', sans-serif;
+    --deen-font-body: 'Century Gothic', 'Plus Jakarta Sans', sans-serif;
+    --deen-shadow: 0 10px 30px -5px rgba(250, 74, 0, 0.12);
+    --deen-shadow-hover: 0 25px 50px -12px rgba(250, 74, 0, 0.25);
 
     /* Default Theme Variables */
     --bg-main: #0b132b;
@@ -26,22 +27,22 @@
     --bg-nav: rgba(11, 19, 43, 0.96);
     --text-primary: #ffffff;
     --text-muted: #94a3b8;
-    --accent-color: #f59e0b;
-    --accent-glow: rgba(245, 158, 11, 0.4);
-    --border-color: rgba(245, 158, 11, 0.35);
+    --accent-color: #fa4a00;
+    --accent-glow: rgba(250, 74, 0, 0.4);
+    --border-color: rgba(250, 74, 0, 0.35);
     --hero-gradient: linear-gradient(135deg, #0b132b 0%, #1c2541 50%, #0f172a 100%);
 }
 
-/* 1. Washed Denim Theme (Default) */
+/* 1. Official Deen Orange Brand Theme (Default) */
 html[data-theme="denim"], html:not([data-theme]) {
     --bg-main: #0b132b;
     --bg-card: #111c35;
     --bg-nav: rgba(11, 19, 43, 0.96);
     --text-primary: #ffffff;
     --text-muted: #94a3b8;
-    --accent-color: #f59e0b;
-    --accent-glow: rgba(245, 158, 11, 0.4);
-    --border-color: rgba(245, 158, 11, 0.35);
+    --accent-color: #fa4a00;
+    --accent-glow: rgba(250, 74, 0, 0.4);
+    --border-color: rgba(250, 74, 0, 0.35);
     --hero-gradient: linear-gradient(135deg, #0b132b 0%, #1c2541 50%, #0f172a 100%);
 }
 
@@ -1630,11 +1631,90 @@ h1, h2, h3, h4, h5, h6, .deen-brand-logo, .deen-hero-heading, .deen-retail-title
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     max-width: 340px;
     animation: deenSlideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+/* 6. Coupon Code Input Box & Discount Badges */
+.deen-coupon-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px dashed var(--deen-brand-orange);
+    border-radius: 12px;
+    padding: 10px;
 }
 
-@keyframes deenSlideInRight {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+.deen-coupon-input {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 8px;
+    text-transform: uppercase;
+}
+
+.deen-coupon-input:focus {
+    border-color: var(--deen-brand-orange);
+    box-shadow: 0 0 10px rgba(250, 74, 0, 0.3);
+}
+
+/* 7. Flash Sale Ticking Countdown Timer */
+.deen-countdown-badge {
+    background: linear-gradient(135deg, #fa4a00 0%, #dc2626 100%);
+    color: #ffffff;
+    font-family: monospace;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(250, 74, 0, 0.4);
+}
+
+/* 8. Size Measurement Chart Table */
+.deen-size-table {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.deen-size-table th {
+    background: #0f172a;
+    color: var(--deen-brand-orange);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.deen-size-table td {
+    vertical-align: middle;
+    font-size: 0.9rem;
+}
+
+/* 9. Interactive Star Rating Selector */
+.deen-star-selector {
+    display: flex;
+    gap: 8px;
+    font-size: 1.5rem;
+    color: #cbd5e1;
+    cursor: pointer;
+}
+
+.deen-star-selector i.active {
+    color: #f59e0b;
+}
+
+/* 10. Social Product Share Buttons */
+.deen-share-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.deen-share-btn.wa { background: #25d366; color: #ffffff; }
+.deen-share-btn.fb { background: #1877f2; color: #ffffff; }
+.deen-share-btn.copy { background: #64748b; color: #ffffff; }
+
+.deen-share-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 

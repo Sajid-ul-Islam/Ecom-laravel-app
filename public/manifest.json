@@ -1,0 +1,22 @@
+{
+  "name": "Deen Commerce - দেশের প্রথম ডেনিম ব্র্যান্ড",
+  "short_name": "Deen App",
+  "description": "Deen Commerce is Bangladesh's premier denim & urban fashion e-commerce brand.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b132b",
+  "theme_color": "#fa4a00",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://deencommerce.com/wp-content/uploads/2025/09/Deen-Logo-1x1-V2.webp",
+      "sizes": "192x192",
+      "type": "image/webp"
+    },
+    {
+      "src": "https://deencommerce.com/wp-content/uploads/2025/09/Deen-Logo-1x1-V2.webp",
+      "sizes": "512x512",
+      "type": "image/webp"
+    }
+  ]
+}

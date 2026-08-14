@@ -138,6 +138,20 @@
                         </div>
                     </div>
 
+                    <!-- Social Product Share Bar -->
+                    <div class="d-flex align-items-center gap-2 mb-4">
+                        <span class="small fw-bold text-muted me-1">Share this item:</span>
+                        <a href="https://wa.me/?text={{ urlencode('Check out ' . $product['name'] . ' on Deen Commerce: ' . request()->fullUrl()) }}" target="_blank" class="deen-share-btn wa" title="Share on WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" target="_blank" class="deen-share-btn fb" title="Share on Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <button onclick="navigator.clipboard.writeText(window.location.href); alert('Product link copied to clipboard!');" class="deen-share-btn copy" title="Copy Product Link">
+                            <i class="fas fa-link"></i>
+                        </button>
+                    </div>
+
                     <!-- Trust Signals Bar -->
                     <div class="p-3 rounded-4 bg-light border">
                         <div class="row g-2 text-center text-muted small fw-bold">
@@ -170,6 +184,11 @@
                 </li>
                 <li class="nav-item">
                     <button class="nav-link fw-bold text-dark" id="shipping-tab" data-bs-toggle="tab" data-bs-target="#shipping-pane" type="button"><i class="fas fa-truck me-2"></i> Shipping & Returns</button>
+                </li>
+                <li class="nav-item ms-auto">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#reviewModal" class="btn btn-warning btn-sm rounded-pill fw-bold text-dark px-3">
+                        <i class="fas fa-edit me-1"></i> Write a Review
+                    </button>
                 </li>
             </ul>
 
@@ -299,23 +318,7 @@
     </div>
 </div>
 
-<!-- STICKY MOBILE BOTTOM CTA BAR (THUMB ZONE ERGONOMICS) -->
-<div class="deen-mobile-sticky-cta">
-    <div class="deen-mobile-cta-price">
-        <span class="amount">৳{{ number_format($price, 2) }}</span>
-        @if($regularPrice && $regularPrice > $price)
-            <span class="old-amount">৳{{ number_format($regularPrice, 2) }}</span>
-        @endif
-    </div>
-    <div class="deen-mobile-cta-actions">
-        <button onclick="addSingleToCart({{ $product['id'] }}, '{{ addslashes($product['name']) }}', {{ $price }}, '{{ addslashes($mainImg) }}')" class="btn btn-dark deen-mobile-cta-btn">
-            <i class="fas fa-shopping-bag me-1"></i> Add
-        </button>
-        <button onclick="buyNow({{ $product['id'] }}, '{{ addslashes($product['name']) }}', {{ $price }}, '{{ addslashes($mainImg) }}')" class="btn btn-danger deen-mobile-cta-btn">
-            Buy Now
-        </button>
-    </div>
-</div>
+
 
 <script>
 let currentSelectedSize = '32';
@@ -378,4 +381,77 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
+    <!-- BANGLADESHI APPAREL SIZE GUIDE MODAL -->
+    <div class="modal fade" id="sizeGuideModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow-lg rounded-4 bg-dark text-white">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title fw-bold text-white"><i class="fas fa-ruler-combined me-2 text-warning"></i> Deen Denim & Apparel Size Measurement Chart</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-white-50 small mb-3">All measurements are provided in inches and centimeters for standard Bangladeshi retail fit.</p>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-striped text-center deen-size-table rounded-3 overflow-hidden">
+                            <thead>
+                                <tr>
+                                    <th>Size</th>
+                                    <th>Waist (Inches)</th>
+                                    <th>Hips (Inches)</th>
+                                    <th>Thigh (Inches)</th>
+                                    <th>Length (Inches)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><strong class="text-warning">XS (28)</strong></td><td>28" (71cm)</td><td>36" (91cm)</td><td>22" (56cm)</td><td>39" (99cm)</td></tr>
+                                <tr><td><strong class="text-warning">S (30)</strong></td><td>30" (76cm)</td><td>38" (96cm)</td><td>23" (58cm)</td><td>40" (101cm)</td></tr>
+                                <tr class="table-active"><td><strong class="text-warning">M (32)</strong></td><td>32" (81cm)</td><td>40" (101cm)</td><td>24" (61cm)</td><td>41" (104cm)</td></tr>
+                                <tr><td><strong class="text-warning">L (34)</strong></td><td>34" (86cm)</td><td>42" (106cm)</td><td>25" (63cm)</td><td>41.5" (105cm)</td></tr>
+                                <tr><td><strong class="text-warning">XL (36)</strong></td><td>36" (91cm)</td><td>44" (111cm)</td><td>26" (66cm)</td><td>42" (106cm)</td></tr>
+                                <tr><td><strong class="text-warning">XXL (38)</strong></td><td>38" (96cm)</td><td>46" (116cm)</td><td>27" (68cm)</td><td>42.5" (108cm)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-outline-light rounded-pill" data-bs-dismiss="modal">Close Size Guide</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CUSTOMER REVIEW SUBMISSION MODAL -->
+    <div class="modal fade" id="reviewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 bg-dark text-white">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title fw-bold text-white"><i class="fas fa-star me-2 text-warning"></i> Write a Customer Review</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="reviewForm" onsubmit="event.preventDefault(); alert('Thank you! Your verified review has been submitted for approval.'); bootstrap.Modal.getInstance(document.getElementById('reviewModal')).hide();">
+                        <div class="mb-3">
+                            <label class="form-label text-white-50 small fw-bold">Select Rating</label>
+                            <div class="deen-star-selector">
+                                <i class="fas fa-star active" onclick="setReviewRating(1)"></i>
+                                <i class="fas fa-star active" onclick="setReviewRating(2)"></i>
+                                <i class="fas fa-star active" onclick="setReviewRating(3)"></i>
+                                <i class="fas fa-star active" onclick="setReviewRating(4)"></i>
+                                <i class="fas fa-star active" onclick="setReviewRating(5)"></i>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white-50 small fw-bold">Your Name *</label>
+                            <input type="text" class="form-control bg-dark text-white border-secondary rounded-3" placeholder="Sajid Ahmed" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white-50 small fw-bold">Your Review Comments *</label>
+                            <textarea class="form-control bg-dark text-white border-secondary rounded-3" rows="4" placeholder="Comfortable denim stretch fit, premium stitch quality!" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100 rounded-pill font-monospace fw-bold text-dark py-2">Submit Verified Review</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
