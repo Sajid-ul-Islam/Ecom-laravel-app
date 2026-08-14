@@ -269,27 +269,104 @@ This log file tracks development iterations, completed tasks, architectural mile
 
 ---
 
+## Epoch 18: Separated Admin Panel & Customer View Architecture Implemented
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
+
+### Milestones Implemented:
+1. **Master Admin Layout (`resources/views/layouts/admin.blade.php`)**:
+   - Built dedicated Admin Management & Analytics Control Hub layout with distinct dark theme styling (`#0f172a`), dedicated admin sidebar navigation, live REST API status badge, and explicit **"Customer Store View"** toggle button.
+   - Bound admin views (`admin/analytics`, `woocommerce/dashboard`, `woocommerce/products`, `woocommerce/orders`, `woocommerce/logs`) to `@extends('layouts.admin')`.
+2. **Refined Customer View (`resources/views/layouts/app.blade.php`)**:
+   - Refined Customer Storefront layout focused purely on retail shopping, product catalog browsing, and customer account workflows.
+   - Added distinct **"Admin Portal Access"** badge button in top navbar for seamless one-click switching.
+3. **Route Entrypoint**:
+   - Added `Route::redirect('/admin', '/admin/analytics')` providing an intuitive `/admin` entrypoint.
+
+---
+
+## Epoch 19: Authentic Washed Denim Twill Background Vibe Implemented
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
+
+### Milestones Implemented:
+1. **13.5oz Raw Washed Denim Twill Background (`deen-commerce-store.css`)**:
+   - Applied repeating linear gradient twill weave pattern (`.denim-vibe-bg`, `.deen-fashion-hero`) simulating authentic 13.5oz washed denim texture with deep indigo gradients (`#0b132b` -> `#1c2541` -> `#0f172a`).
+2. **Golden Copper Double Stitching & Genuine Leather Patch Badges**:
+   - `.denim-copper-stitch`: Applied dashed golden copper rivet stitching border accents (`#f59e0b`).
+   - `.deen-leather-patch`: Styled brand badges as genuine brown leather waistband patches (`#78350f` -> `#92400e`) with copper stitching and embossed gold typography.
+3. **Indigo Denim Cards**:
+   - `.deen-denim-card`: Styled showcase cards with dark indigo fill (`#111c35`), copper hover glowing borders, and smooth elevation.
+
+---
+
+## Epoch 20: Google Material Symbols & Material Design 3 System Implemented
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
+
+### Milestones Implemented:
+1. **Google Material Symbols Integration**:
+   - Loaded `Material Symbols Outlined` font in `layouts/app.blade.php`, `layouts/admin.blade.php`, and `welcome.blade.php`.
+   - Created `.material-symbols-outlined` CSS utility with anti-aliasing and middle alignment.
+2. **Material Design 3 (M3) Components (`deen-commerce-store.css`)**:
+   - `.m3-chip`: Interactive M3 chip elements for category filters and badges.
+   - `.m3-fab`: Material Floating Action Button with ambient glow and hover scale.
+3. **UI Elements Upgraded**:
+   - Upgraded storefront perk icons (`local_shipping`, `verified`, `autorenew`, `support_agent`) and category filter chips (`grid_view`, `checkroom`) to native Google Material Symbols.
+
+---
+
+## Epoch 21: State-of-the-Art Retail Checkout Page Implemented
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
+
+### Milestones Implemented:
+1. **Retail Checkout Page (`resources/views/store/checkout.blade.php`)**:
+   - **Shipping & Delivery Form**: Customer Name, Email, Phone, Address, City/District.
+   - **Delivery Zone Selector**: Inside Dhaka (৳60), Outside Dhaka (৳120), Express 24h (৳150) dynamically adjusting totals.
+   - **Interactive Payment Method Cards**: bKash Instant (with TrxID input), Nagad Mobile Payment, Cash on Delivery (COD), SSLCommerz Credit/Debit Card.
+   - **Order Summary Sidebar**: Item thumbnails, quantity increment/decrement (+ / -), item deletion, promo coupon application (`DEEN2026` / `FREESHIP`), and breakdown matrix.
+2. **Order Placement Workflow**:
+   - Submits `POST /checkout`, generates order confirmation payload, clears cart state, and redirects to printable order receipt (`/order-success/{id}`).
+
+---
+
+## Epoch 22: Custom Theme Switcher Engine Implemented
+**Timestamp**: 2026-08-14
+**Status**: Completed & Verified
+
+### Milestones Implemented:
+1. **Custom Theme Switcher Engine (`deen-commerce-store.css`)**:
+   - Configured 4 themes via CSS root variables (`[data-theme="denim"]`, `[data-theme="dark"]`, `[data-theme="neon"]`, `[data-theme="light"]`).
+   - **13.5oz Washed Denim (Default)**: Authentic indigo twill weave with golden copper accents.
+   - **Midnight Studio Dark**: Luxury obsidian black with neon violet highlights.
+   - **Cyberpunk Urban Neon**: High-contrast charcoal with electric pink accents.
+   - **Studio Minimal Light**: Crisp slate background with deep ocean navy typography.
+2. **Interactive Theme Switcher Dropdown & Persistence**:
+   - Integrated theme selector widget (`#themePickerBtn` & `#adminThemePickerBtn`) in top navbar headers ([layouts/app.blade.php](file:///home/bengali/Documents/GitHub/B2B-StockLot-E-Commerce-BD/resources/views/layouts/app.blade.php) & [layouts/admin.blade.php](file:///home/bengali/Documents/GitHub/B2B-StockLot-E-Commerce-BD/resources/views/layouts/admin.blade.php)).
+   - **FOUC Prevention Script**: Restores user's chosen theme instantly from `localStorage.getItem('deen_theme')` before initial render.
+
+---
+
 ## Verification & Empirical Diagnostics Matrix
 
 | Endpoint Name | URL Path | Method | HTTP Status |
 |---|---|---|---|
-| Storefront Homepage | `/` | `GET` | `200 OK` |
-| Categories Directory | `/categories` | `GET` | `200 OK` |
+| Customer View Storefront | `/` | `GET` | `200 OK` |
+| Customer View Categories | `/categories` | `GET` | `200 OK` |
 | Category Products Filter | `/category/1` | `GET` | `200 OK` |
 | Product Landing Page (API ID) | `/product/202567` | `GET` | `200 OK` |
-| Product Landing Page (Fallback) | `/product/1` | `GET` | `200 OK` |
-| Retail Checkout | `/checkout` | `GET` | `200 OK` |
+| Retail Checkout Page | `/checkout` | `GET` | `200 OK` |
+| Process Checkout Order | `/checkout` | `POST` | `302 Redirect` |
 | Order Confirmation Receipt | `/order-success/123456` | `GET` | `200 OK` |
 | Customer Account Dashboard | `/my-account` | `GET` | `200 OK` |
 | Customer Order History | `/my-account/orders` | `GET` | `200 OK` |
 | Live 5-Stage Order Tracking | `/my-account/orders/877729` | `GET` | `200 OK` |
-| Unified Sign In / Sign Up Page | `/login` | `GET` | `200 OK` |
-| Google OAuth Redirect | `/auth/google` | `GET` | `302 Redirect` |
-| Executive BI Analytics Dashboard | `/admin/analytics` | `GET` | `200 OK` |
-| BI Analytics Metrics JSON API | `/admin/api/metrics` | `GET` | `200 OK` |
-| WooCommerce Integration Hub | `/woocommerce/dashboard` | `GET` | `200 OK` |
-| WooCommerce Synced Products | `/woocommerce/products` | `GET` | `200 OK` |
-| WooCommerce Synced Orders | `/woocommerce/orders` | `GET` | `200 OK` |
-| WooCommerce Audit Logs | `/woocommerce/logs` | `GET` | `200 OK` |
+| Admin Panel Entrypoint | `/admin` | `GET` | `302 Redirect` |
+| Admin BI Analytics Dashboard | `/admin/analytics` | `GET` | `200 OK` |
+| Admin Integration Hub | `/woocommerce/dashboard` | `GET` | `200 OK` |
+| Admin Synced Catalog | `/woocommerce/products` | `GET` | `200 OK` |
+| Admin Synced Orders | `/woocommerce/orders` | `GET` | `200 OK` |
+| Admin API Audit Logs | `/woocommerce/logs` | `GET` | `200 OK` |
 
 - **PHPUnit Test Suite**: 100% Passing.

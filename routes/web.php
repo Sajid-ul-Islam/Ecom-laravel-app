@@ -106,8 +106,10 @@ Route::patch('/profile/{user}', [ProfilesController::class, 'update'])->name('pr
 
 
 // Admin Routes
+Route::redirect('/admin', '/admin/analytics')->name('admin.dashboard');
 Route::get('/admin/analytics', [App\Http\Controllers\AdminAnalyticsController::class, 'index'])->name('admin.analytics');
 Route::get('/admin/api/metrics', [App\Http\Controllers\AdminAnalyticsController::class, 'apiMetrics'])->name('admin.api.metrics');
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/users', [HomeController::class, 'myUsers'])->name('admin.users');

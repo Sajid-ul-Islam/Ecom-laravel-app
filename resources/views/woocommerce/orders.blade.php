@@ -1,9 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-<link href="{{ asset('css/woocommerce-dashboard.css') }}" rel="stylesheet">
-
 <div class="woo-dashboard-wrapper">
+
     <!-- Hero Header -->
     <div class="woo-header-hero">
         <div class="container">

@@ -11,8 +11,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Outfit, Plus Jakarta Sans & Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+
     <!-- Deen Commerce Retail Custom CSS -->
     <link href="{{ asset('css/deen-commerce-store.css') }}" rel="stylesheet">
 </head>
@@ -29,8 +30,9 @@
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url('/') }}">
                 <img src="https://deencommerce.com/wp-content/uploads/2025/04/Deen-Logo-Light-scaled.png" alt="Deen Commerce (দীন কমার্স)" style="height: 38px; object-fit: contain;">
-                <span class="deen-brand-badge ms-1">Retail Store</span>
+                <span class="deen-leather-patch ms-1">Denim Apparel</span>
             </a>
+
 
 
             <button class="navbar-toggler text-white border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#deenRetailNavbar">
@@ -199,7 +201,7 @@
             <div class="row g-4">
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="deen-perk-item">
-                        <div class="deen-perk-icon"><i class="fas fa-truck-fast"></i></div>
+                        <div class="deen-perk-icon"><span class="material-symbols-outlined fs-2 text-warning">local_shipping</span></div>
                         <div>
                             <div class="deen-perk-title">Free Fast Shipping</div>
                             <div class="deen-perk-desc">On orders over ৳2,000</div>
@@ -208,7 +210,7 @@
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="deen-perk-item">
-                        <div class="deen-perk-icon"><i class="fas fa-shield-check"></i></div>
+                        <div class="deen-perk-icon"><span class="material-symbols-outlined fs-2 text-success">verified</span></div>
                         <div>
                             <div class="deen-perk-title">100% Authentic</div>
                             <div class="deen-perk-desc">Original Deen Quality</div>
@@ -217,7 +219,7 @@
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="deen-perk-item">
-                        <div class="deen-perk-icon"><i class="fas fa-rotate-left"></i></div>
+                        <div class="deen-perk-icon"><span class="material-symbols-outlined fs-2 text-info">autorenew</span></div>
                         <div>
                             <div class="deen-perk-title">7 Days Returns</div>
                             <div class="deen-perk-desc">Hassle-free Exchange</div>
@@ -226,7 +228,7 @@
                 </div>
                 <div class="col-12 col-sm-6 col-lg-3">
                     <div class="deen-perk-item">
-                        <div class="deen-perk-icon"><i class="fas fa-headset"></i></div>
+                        <div class="deen-perk-icon"><span class="material-symbols-outlined fs-2 text-primary">support_agent</span></div>
                         <div>
                             <div class="deen-perk-title">24/7 Support</div>
                             <div class="deen-perk-desc">Dedicated Care Team</div>
@@ -237,6 +239,7 @@
         </div>
     </div>
 
+
     <!-- Main Fashion Storefront -->
     <main class="py-5" id="catalog-section">
         <div class="container">
@@ -245,15 +248,16 @@
             @if(!empty($categories))
                 <div class="d-flex align-items-center gap-2 overflow-auto pb-3 mb-4 no-scrollbar">
                     <a href="{{ route('store.index') }}" class="deen-fashion-chip {{ empty($selectedCategory) ? 'active' : '' }}">
-                        <i class="fas fa-border-all"></i> All Fashion
+                        <span class="material-symbols-outlined fs-5">grid_view</span> All Fashion
                     </a>
                     @foreach($categories as $cat)
                         <a href="{{ route('store.index', ['category' => $cat['id']]) }}" class="deen-fashion-chip {{ ($selectedCategory == $cat['id']) ? 'active' : '' }}">
-                            {{ $cat['name'] }}
+                            <span class="material-symbols-outlined fs-5">checkroom</span> {{ $cat['name'] }}
                         </a>
                     @endforeach
                 </div>
             @endif
+
 
             <!-- Section Header -->
             <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">

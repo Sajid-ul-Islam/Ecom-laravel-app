@@ -1,8 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-<div class="py-4 bg-light">
-    <div class="container-fluid px-4">
+<div class="py-2">
+    <div class="container-fluid px-0">
+
 
         <!-- Top Header & Date Range Filter -->
         <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
