@@ -1,0 +1,297 @@
+/* WooCommerce Integration Hub & Dashboard Stylesheet */
+:root {
+    --woo-primary: #4f46e5;
+    --woo-primary-hover: #4338ca;
+    --woo-accent: #7c3aed;
+    --woo-success: #10b981;
+    --woo-warning: #f59e0b;
+    --woo-danger: #ef4444;
+    --woo-dark: #0f172a;
+    --woo-dark-card: #1e293b;
+    --woo-dark-border: #334155;
+    --woo-light-bg: #f8fafc;
+    --woo-glass: rgba(255, 255, 255, 0.85);
+    --woo-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+}
+
+/* Base Body & Glass Layout */
+.woo-dashboard-wrapper {
+    background: #f1f5f9;
+    min-height: 100vh;
+    padding-bottom: 3rem;
+}
+
+.woo-header-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311b92 100%);
+    color: #ffffff;
+    padding: 3rem 0 5rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.woo-header-hero::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, rgba(15, 23, 42, 0) 70%);
+    pointer-events: none;
+}
+
+.woo-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: #ffffff;
+}
+
+.woo-subtitle {
+    color: #94a3b8;
+    font-size: 1rem;
+}
+
+/* Stat Cards */
+.woo-stat-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: var(--woo-shadow);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.woo-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.12);
+    border-color: #cbd5e1;
+}
+
+.woo-stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.woo-stat-icon.primary { background: rgba(79, 70, 229, 0.1); color: var(--woo-primary); }
+.woo-stat-icon.success { background: rgba(16, 185, 129, 0.1); color: var(--woo-success); }
+.woo-stat-icon.warning { background: rgba(245, 158, 11, 0.1); color: var(--woo-warning); }
+.woo-stat-icon.danger  { background: rgba(239, 68, 68, 0.1);  color: var(--woo-danger);  }
+.woo-stat-icon.accent  { background: rgba(124, 58, 237, 0.1); color: var(--woo-accent);  }
+
+.woo-stat-value {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-top: 0.5rem;
+}
+
+.woo-stat-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #64748b;
+}
+
+/* Live Pulse Indicator */
+.woo-live-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--woo-success);
+    margin-right: 6px;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: woo-pulse 1.8s infinite;
+}
+
+@keyframes woo-pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Glassmorphism Cards */
+.woo-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: var(--woo-shadow);
+    margin-bottom: 1.5rem;
+}
+
+.woo-card-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.woo-card-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+/* Custom Buttons */
+.btn-woo-primary {
+    background: linear-gradient(135deg, var(--woo-primary) 0%, var(--woo-accent) 100%);
+    color: #ffffff;
+    border: none;
+    padding: 0.625rem 1.25rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+
+.btn-woo-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+    color: #ffffff;
+}
+
+.btn-woo-secondary {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+    padding: 0.625rem 1.25rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.btn-woo-secondary:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+/* Badges */
+.woo-badge {
+    padding: 0.35em 0.75em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 50rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.woo-badge-success { background: #d1fae5; color: #065f46; }
+.woo-badge-warning { background: #fef3c7; color: #92400e; }
+.woo-badge-danger  { background: #fee2e2; color: #991b1b; }
+.woo-badge-info    { background: #e0e7ff; color: #3730a3; }
+.woo-badge-secondary { background: #f1f5f9; color: #475569; }
+
+/* Product Grid Cards */
+.woo-product-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    transition: all 0.25s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.woo-product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px -5px rgba(0,0,0,0.1);
+}
+
+.woo-product-img {
+    height: 180px;
+    background: #f8fafc;
+    object-fit: cover;
+    width: 100%;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.woo-product-body {
+    padding: 1.25rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.woo-product-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.woo-price-tag {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--woo-primary);
+}
+
+/* Custom Table */
+.woo-table {
+    margin: 0;
+}
+
+.woo-table th {
+    background: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.woo-table td {
+    padding: 1rem 1.25rem;
+    vertical-align: middle;
+    color: #334155;
+    font-size: 0.875rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Navigation Tabs */
+.woo-nav-tabs {
+    display: flex;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 6px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.woo-nav-link {
+    color: #cbd5e1;
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.woo-nav-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.woo-nav-link.active {
+    background: #ffffff;
+    color: #0f172a;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}

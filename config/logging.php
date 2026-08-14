@@ -89,6 +89,13 @@ return [
             'driver' => 'errorlog',
             'level' => 'debug',
         ],
+
+        'woocommerce' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/woocommerce.log'),
+            'level' => 'debug',
+            'days' => 14,
+        ],
     ],
 
 ];

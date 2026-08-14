@@ -24,8 +24,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $interval = (int) config('woocommerce.sync_interval', 5);
+        $schedule->command('sync:woocommerce')
+            ->cron("*/{$interval} * * * *")
+            ->withoutOverlapping();
     }
 
     /**

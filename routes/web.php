@@ -25,9 +25,11 @@ use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use App\Http\Controllers\DeenCommerceStoreController;
+
+Route::get('/', [DeenCommerceStoreController::class, 'index'])->name('store.index');
+Route::get('/store/product/{id}', [DeenCommerceStoreController::class, 'showProduct'])->name('store.product.show');
+
 
 // Authentication Routes...
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -97,3 +99,16 @@ Route::get('/stocklots', [ProductController::class, 'index'])->defaults('stocklo
 
 // Search routes
 Route::get('/search', [SearchController::class, 'index'])->name('search.index');
+
+// WooCommerce Integration Routes
+use App\Http\Controllers\WooCommerceDashboardController;
+
+Route::prefix('woocommerce')->name('woocommerce.')->group(function () {
+    Route::get('/dashboard', [WooCommerceDashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('/products', [WooCommerceDashboardController::class, 'products'])->name('products');
+    Route::get('/orders', [WooCommerceDashboardController::class, 'orders'])->name('orders');
+    Route::get('/logs', [WooCommerceDashboardController::class, 'logs'])->name('logs');
+    Route::post('/sync', [WooCommerceDashboardController::class, 'triggerSync'])->name('sync');
+    Route::post('/retry-failures', [WooCommerceDashboardController::class, 'retryFailures'])->name('retry-failures');
+});
+
