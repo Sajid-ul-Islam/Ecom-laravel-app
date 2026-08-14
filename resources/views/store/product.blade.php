@@ -15,7 +15,7 @@
 <div class="deen-section-py-lg">
  <div class="container">
  <!-- Toast Notification Alert -->
- <div id="cartToast" class="alert de-toast position-fixed top-0 end-0 m-4 rounded-4 shadow-lg border d-none" style="z-index: 1050; max-width: 380px; background: var(--deen-bg-surface); border-color: var(--deen-border-subtle) !important;">
+ <div id="cartToast" class="alert de-toast position-fixed top-0 end-0 m-4 rounded-4 shadow-lg border d-none">
  <div class="d-flex align-items-center gap-3">
  <span class="material-symbols-outlined fs-2 text-success">check_circle</span>
  <div>
@@ -63,7 +63,7 @@
  @if(!empty($product['images']) && count($product['images']) > 1)
  <div class="d-flex gap-2 overflow-auto pb-2">
  @foreach($product['images'] as $img)
- <img src="{{ $img['src'] }}" onclick="switchMainImage(this.src)" class="rounded-3 border cursor-pointer thumb-img" style="width: 76px; height: 76px; object-fit: cover; border-color: var(--deen-border-subtle) !important;" alt="Thumbnail">
+ <button type="button" onclick="switchMainImage('{{ $img['src'] }}')" class="rounded-3 border cursor-pointer thumb-img bg-transparent p-0" style="width: 76px; height: 76px;" aria-label="View product image thumbnail"><img src="{{ $img['src'] }}" class="rounded-3" style="width: 76px; height: 76px; object-fit: cover;" alt="Product thumbnail"></button>
  @endforeach
  </div>
  @endif
@@ -107,11 +107,11 @@
  <!-- Fabric & Denim Wash Swatches -->
  <div class="mb-3">
  <label class="small fw-semibold text-dark mb-2 d-block">Select Wash & Texture:</label><div class="deen-card-swatches" role="radiogroup" aria-label="Select fabric wash color">
-                            <button type="button" class="deen-swatch-dot swatch-indigo active" onclick="document.getElementById('mainProductImg').src='{{ $mainImg }}'; this.parentElement.querySelectorAll('.deen-swatch-dot').forEach(s => { s.classList.remove('active'); s.setAttribute('aria-checked', 'false'); }); this.classList.add('active'); this.setAttribute('aria-checked', 'true');" title="Raw Indigo" role="radio" aria-checked="true" aria-label="Raw Indigo"></button>
-                            <button type="button" class="deen-swatch-dot swatch-vintage" onclick="document.getElementById('mainProductImg').src='https://images.unsplash.com/photo-1542272604-787c3835535d?w=900&auto=format&fit=crop'; this.parentElement.querySelectorAll('.deen-swatch-dot').forEach(s => { s.classList.remove('active'); s.setAttribute('aria-checked', 'false'); }); this.classList.add('active'); this.setAttribute('aria-checked', 'true');" title="Vintage Light Wash" role="radio" aria-checked="false" aria-label="Vintage Light Wash"></button>
-                            <button type="button" class="deen-swatch-dot swatch-black" onclick="document.getElementById('mainProductImg').src='https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=900&auto=format&fit=crop'; this.parentElement.querySelectorAll('.deen-swatch-dot').forEach(s => { s.classList.remove('active'); s.setAttribute('aria-checked', 'false'); }); this.classList.add('active'); this.setAttribute('aria-checked', 'true');" title="Stonewashed Black" role="radio" aria-checked="false" aria-label="Stonewashed Black"></button>
-                            <button type="button" class="deen-swatch-dot swatch-ecru" onclick="document.getElementById('mainProductImg').src='https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=900&auto=format&fit=crop'; this.parentElement.querySelectorAll('.deen-swatch-dot').forEach(s => { s.classList.remove('active'); s.setAttribute('aria-checked', 'false'); }); this.classList.add('active'); this.setAttribute('aria-checked', 'true');" title="Raw Ecru" role="radio" aria-checked="false" aria-label="Raw Ecru"></button>
-                        </div>
+ <button type="button" class="deen-swatch-dot swatch-indigo active" onclick="document.getElementById('mainProductImg').src='{{ $mainImg }}'; this.parentElement.querySelectorAll('.deen-swatch-dot').forEach(s => { s.classList.remove('active'); s.setAttribute('aria-checked', 'false'); }); this.classList.add('active'); this.setAttribute('aria-checked', 'true');" title="Raw Indigo" role="radio" aria-checked="true" aria-label="Raw Indigo"></button>
+ <button type="button" class="deen-swatch-dot swatch-vintage" onclick="document.getElementById('mainProductImg').src='https://images.unsplash.com/photo-1542272604-787c3835535d?w=900&auto=format&fit=crop'; this.parentElement.querySelectorAll('.deen-swatch-dot').forEach(s => { s.classList.remove('active'); s.setAttribute('aria-checked', 'false'); }); this.classList.add('active'); this.setAttribute('aria-checked', 'true');" title="Vintage Light Wash" role="radio" aria-checked="false" aria-label="Vintage Light Wash"></button>
+ <button type="button" class="deen-swatch-dot swatch-black" onclick="document.getElementById('mainProductImg').src='https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=900&auto=format&fit=crop'; this.parentElement.querySelectorAll('.deen-swatch-dot').forEach(s => { s.classList.remove('active'); s.setAttribute('aria-checked', 'false'); }); this.classList.add('active'); this.setAttribute('aria-checked', 'true');" title="Stonewashed Black" role="radio" aria-checked="false" aria-label="Stonewashed Black"></button>
+ <button type="button" class="deen-swatch-dot swatch-ecru" onclick="document.getElementById('mainProductImg').src='https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=900&auto=format&fit=crop'; this.parentElement.querySelectorAll('.deen-swatch-dot').forEach(s => { s.classList.remove('active'); s.setAttribute('aria-checked', 'false'); }); this.classList.add('active'); this.setAttribute('aria-checked', 'true');" title="Raw Ecru" role="radio" aria-checked="false" aria-label="Raw Ecru"></button>
+ </div>
  </div>
 
  <!-- Size Selector Swatches -->
@@ -126,11 +126,11 @@
  </div>
  </div>
  <div class="d-flex flex-wrap gap-2" id="sizeSwatches" role="radiogroup" aria-label="Select garment size"><button type="button" class="deen-size-swatch" onclick="selectSize(this, 'XS')" role="radio" aria-checked="false" aria-label="Size XS">XS</button>
-                            <button type="button" class="deen-size-swatch" onclick="selectSize(this, 'S')" role="radio" aria-checked="false" aria-label="Size S">S</button>
-                            <button type="button" class="deen-size-swatch active" onclick="selectSize(this, 'M')" role="radio" aria-checked="true" aria-label="Size M">M</button>
-                            <button type="button" class="deen-size-swatch" onclick="selectSize(this, 'L')" role="radio" aria-checked="false" aria-label="Size L">L</button>
-                            <button type="button" class="deen-size-swatch" onclick="selectSize(this, 'XL')" role="radio" aria-checked="false" aria-label="Size XL">XL</button>
-                            <button type="button" class="deen-size-swatch" onclick="selectSize(this, 'XXL')" role="radio" aria-checked="false" aria-label="Size XXL">XXL</button>
+ <button type="button" class="deen-size-swatch" onclick="selectSize(this, 'S')" role="radio" aria-checked="false" aria-label="Size S">S</button>
+ <button type="button" class="deen-size-swatch active" onclick="selectSize(this, 'M')" role="radio" aria-checked="true" aria-label="Size M">M</button>
+ <button type="button" class="deen-size-swatch" onclick="selectSize(this, 'L')" role="radio" aria-checked="false" aria-label="Size L">L</button>
+ <button type="button" class="deen-size-swatch" onclick="selectSize(this, 'XL')" role="radio" aria-checked="false" aria-label="Size XL">XL</button>
+ <button type="button" class="deen-size-swatch" onclick="selectSize(this, 'XXL')" role="radio" aria-checked="false" aria-label="Size XXL">XXL</button>
  </div>
  </div>
 
@@ -156,8 +156,8 @@
  <!-- Social Share -->
  <div class="d-flex align-items-center gap-2 mb-4 pt-2">
  <span class="small text-secondary me-2">Share this piece:</span>
- <a href="https://wa.me/?text={{ urlencode('Check out ' . $product['name'] . ' on Deen Commerce: ' . request()->fullUrl()) }}" target="_blank" class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center"><i class="fab fa-whatsapp"></i></a>
- <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" target="_blank" class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center"><i class="fab fa-facebook-f"></i></a>
+ <a href="https://wa.me/?text={{ urlencode('Check out ' . $product['name'] . ' on Deen Commerce: ' . request()->fullUrl()) }}" target="_blank" class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+ <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->fullUrl()) }}" target="_blank" class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center" aria-label="Share on Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
  <button onclick="navigator.clipboard.writeText(window.location.href); alert('Piece link copied to clipboard.');" class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center" aria-label="Copy product link to clipboard"><i class="fas fa-link"></i></button>
  </div>
 

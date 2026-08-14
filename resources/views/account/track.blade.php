@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="py-5">
- <div class="container py-2" style="max-width: 960px;">
+ <div class="container py-2">
 
  <!-- Header -->
  <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
@@ -44,8 +44,8 @@
 
  <!-- Stepper Bar -->
  <div class="position-relative my-5 px-2 px-md-4">
- <div class="position-absolute top-50 start-0 w-100 translate-middle-y" style="height: 4px; background: #e2e8f0; z-index: 1;">
- <div class="h-100" style="width: 60%; background: linear-gradient(90deg, #10b981 0%, #2563eb 100%);"></div>
+ <div class="position-absolute top-50 start-0 w-100 translate-middle-y">
+ <div class="h-100"></div>
  </div>
 
  <div class="d-flex justify-content-between position-relative">
@@ -69,8 +69,8 @@
 
  <!-- Step 3: In Transit -->
  <div class="text-center"><div class="rounded-circle d-inline-flex align-items-center justify-content-center fw-bold text-white shadow-lg ring-pulse" role="img" aria-label="Step 3: In Transit - Current status">
-                                        <span class="material-symbols-outlined fs-5" aria-hidden="true">local_shipping</span>
-                                    </div>
+ <span class="material-symbols-outlined fs-5" aria-hidden="true">local_shipping</span>
+ </div>
  <div class="fw-bold text-primary small mt-2">In Transit</div>
  <div class="text-secondary">At Courier Hub</div>
  </div>
@@ -145,7 +145,7 @@
 
  <div class="table-responsive mb-4">
  <table class="table align-middle">
- <thead class="table-light text-uppercase small text-secondary" style="font-size: 0.70rem; letter-spacing: 0.05em;">
+ <thead class="table-light text-uppercase small text-secondary">
  <tr>
  <th>Item Name</th>
  <th class="text-center">Qty</th>

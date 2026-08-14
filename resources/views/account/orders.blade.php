@@ -29,7 +29,7 @@
  <div class="deen-frame p-4 p-md-5 bg-white shadow-sm">
  <div class="table-responsive">
  <table class="table align-middle">
- <thead class="table-light text-uppercase small text-secondary" style="font-size: 0.70rem; letter-spacing: 0.05em;">
+ <thead class="table-light text-uppercase small text-secondary">
  <tr>
  <th>Order #</th>
  <th>Date Placed</th>

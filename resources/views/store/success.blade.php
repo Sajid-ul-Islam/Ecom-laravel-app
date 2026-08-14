@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="deen-section-py-lg min-vh-100">
- <div class="container" style="max-width: 820px;">
+ <div class="container">
  <!-- Success Confirmation Header -->
  <div class="text-center mb-5">
  <div class="deen-vibrant-pill emerald p-3 d-inline-flex align-items-center justify-content-center mb-3 shadow-sm rounded-circle" style="width: 76px; height: 76px; background: #ecfdf5; border: 2px solid #a7f3d0;">
@@ -78,7 +78,7 @@
  <span>Delivery Charge:</span>
  <span class="text-dark fw-semibold">FREE</span>
  </div>
- <div class="d-flex justify-content-between w-100 border-top mt-3 pt-3 fs-5 fw-bold text-dark" style="max-width: 300px; border-color: var(--deen-border-subtle) !important;">
+ <div class="d-flex justify-content-between w-100 border-top mt-3 pt-3 fs-5 fw-bold text-dark">
  <span>Grand Total:</span>
  <span class="font-display">৳{{ number_format($order['total'], 2) }}</span>
  </div>

@@ -9,7 +9,7 @@
  <div class="col-md-8">
  <span class="deen-vibrant-pill indigo mb-3">Collection Index</span>
  <h1 class="deen-title-lg mb-2"><span class="deen-gradient-text">{{ $category['name'] ?? 'Curated Line' }}</span></h1>
- <p class="text-secondary mb-0" style="max-width: 580px; line-height: 1.7;">
+ <p class="text-secondary mb-0">
  {{ !empty($category['description']) ? strip_tags($category['description']) : 'Authentic retail apparel lines crafted with premium heavyweight denim and natural weaves.' }}
  </p>
  </div>
@@ -29,7 +29,7 @@
  </div>
  <form method="GET" action="{{ route('store.category', $category['id'] ?? 1) }}" class="d-flex align-items-center gap-2">
  <label for="sort" class="small fw-semibold text-secondary mb-0 me-1">Sort Line:</label>
- <select name="sort" id="sort" class="form-select form-select-sm rounded-pill border-0 bg-light px-3 py-1 fw-semibold text-dark shadow-none" style="width: 190px; border: var(--deen-border-hairline) !important;" onchange="this.form.submit()">
+ <select name="sort" id="sort" class="form-select form-select-sm rounded-pill border-0 bg-light px-3 py-1 fw-semibold text-dark shadow-none" onchange="this.form.submit()">
  <option value="newest" {{ $sort === 'newest' ? 'selected' : '' }}>Newest Arrivals</option>
  <option value="price_low" {{ $sort === 'price_low' ? 'selected' : '' }}>Price: Low to High</option>
  <option value="price_high" {{ $sort === 'price_high' ? 'selected' : '' }}>Price: High to Low</option>
@@ -67,16 +67,15 @@
  <i class="fas fa-heart"></i>
  </button>
 
- <span class="deen-stock-badge">In Stock</span>
  </div>
 
  <div class="deen-retail-body">
  <!-- Instant Fabric & Wash Swatches --><div class="deen-card-swatches" role="radiogroup" aria-label="Select fabric wash color">
-                            <button type="button" class="deen-swatch-dot swatch-indigo active" onclick="swapCategoryCardImage(this, '{{ $image }}')" title="Raw Indigo" role="radio" aria-checked="true" aria-label="Raw Indigo"></button>
-                            <button type="button" class="deen-swatch-dot swatch-vintage" onclick="swapCategoryCardImage(this, 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&auto=format&fit=crop')" title="Vintage Light Wash" role="radio" aria-checked="false" aria-label="Vintage Light Wash"></button>
-                            <button type="button" class="deen-swatch-dot swatch-black" onclick="swapCategoryCardImage(this, 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&auto=format&fit=crop')" title="Stonewashed Black" role="radio" aria-checked="false" aria-label="Stonewashed Black"></button>
-                            <button type="button" class="deen-swatch-dot swatch-ecru" onclick="swapCategoryCardImage(this, 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&auto=format&fit=crop')" title="Raw Ecru" role="radio" aria-checked="false" aria-label="Raw Ecru"></button>
-                        </div>
+ <button type="button" class="deen-swatch-dot swatch-indigo active" onclick="swapCategoryCardImage(this, '{{ $image }}')" title="Raw Indigo" role="radio" aria-checked="true" aria-label="Raw Indigo"></button>
+ <button type="button" class="deen-swatch-dot swatch-vintage" onclick="swapCategoryCardImage(this, 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&auto=format&fit=crop')" title="Vintage Light Wash" role="radio" aria-checked="false" aria-label="Vintage Light Wash"></button>
+ <button type="button" class="deen-swatch-dot swatch-black" onclick="swapCategoryCardImage(this, 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&auto=format&fit=crop')" title="Stonewashed Black" role="radio" aria-checked="false" aria-label="Stonewashed Black"></button>
+ <button type="button" class="deen-swatch-dot swatch-ecru" onclick="swapCategoryCardImage(this, 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&auto=format&fit=crop')" title="Raw Ecru" role="radio" aria-checked="false" aria-label="Raw Ecru"></button>
+ </div>
 
  <h3 class="deen-retail-title" title="{{ $product['name'] }}">{{ $product['name'] }}</h3>
 
@@ -169,21 +168,21 @@ function swapCategoryCardImage(swatchEl, newImgUrl) {
 }
 
 function addCategoryItemToCart(id, name, price, img) {
-    if (typeof addToCart === 'function') {
-        addToCart(id, name, price, img);
-        return;
-    }
-    let cart = getStoredCart();
-    const existing = cart.find(item => item.id === id);
-    if (existing) {
-        existing.qty = (existing.qty || 1) + 1;
-    } else {
-        cart.push({ id, name, price, img, qty: 1, size: 'M' });
-    }
-    localStorage.setItem('deen_cart', JSON.stringify(cart));
-    if (typeof syncCartBadges === 'function') {
-        syncCartBadges();
-    }
+ if (typeof addToCart === 'function') {
+ addToCart(id, name, price, img);
+ return;
+ }
+ let cart = getStoredCart();
+ const existing = cart.find(item => item.id === id);
+ if (existing) {
+ existing.qty = (existing.qty || 1) + 1;
+ } else {
+ cart.push({ id, name, price, img, qty: 1, size: 'M' });
+ }
+ localStorage.setItem('deen_cart', JSON.stringify(cart));
+ if (typeof syncCartBadges === 'function') {
+ syncCartBadges();
+ }
 }
 const addCategoryItemToBag = addCategoryItemToCart;
 

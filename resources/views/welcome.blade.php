@@ -67,7 +67,7 @@
  @if(!empty($heroSlides) && count($heroSlides) > 1)
  <div class="d-flex align-items-center justify-content-center gap-2 mt-4">
  @foreach($heroSlides as $index => $slide)
- <button type="button" data-bs-target="#deenHeroCarousel" data-bs-slide-to="{{ $index }}" class="btn p-0 rounded-pill {{ $index === 0 ? 'bg-dark' : 'bg-secondary opacity-40' }}" style="width: 28px; height: 3px;" aria-label="Slide {{ $index + 1 }}"></button>
+ <button type="button" data-bs-target="#deenHeroCarousel" data-bs-slide-to="{{ $index }}" class="btn p-0 rounded-pill {{ $index === 0 ? 'bg-dark' : 'bg-secondary opacity-40' }}" aria-label="Slide {{ $index + 1 }}"></button>
  @endforeach
  </div>
  @endif
@@ -212,20 +212,18 @@
  <span class="deen-discount-ribbon">-{{ $discountPercent }}%</span>
  @endif
 
- @if($stockStatus === 'instock' || ($stockQty && $stockQty > 0))
- <span class="deen-stock-badge">In Stock</span>
- @else
- <span class="deen-stock-badge" style="background: var(--pastel-sand); color: var(--pastel-sand-text);">Sold Out</span>
+ @if(!($stockStatus === 'instock' || ($stockQty && $stockQty > 0)))
+ <span class="deen-soldout-badge">Sold Out</span>
  @endif
  </div>
 
  <div class="deen-retail-body">
  <!-- Instant Fabric & Wash Swatches --><div class="deen-card-swatches" role="radiogroup" aria-label="Select fabric wash color">
-                                    <button type="button" class="deen-swatch-dot swatch-indigo active" onclick="swapCardImage(this, '{{ $image }}')" title="Raw Indigo" role="radio" aria-checked="true" aria-label="Raw Indigo"></button>
-                                    <button type="button" class="deen-swatch-dot swatch-vintage" onclick="swapCardImage(this, 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&auto=format&fit=crop')" title="Vintage Light Wash" role="radio" aria-checked="false" aria-label="Vintage Light Wash"></button>
-                                    <button type="button" class="deen-swatch-dot swatch-black" onclick="swapCardImage(this, 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&auto=format&fit=crop')" title="Stonewashed Black" role="radio" aria-checked="false" aria-label="Stonewashed Black"></button>
-                                    <button type="button" class="deen-swatch-dot swatch-ecru" onclick="swapCardImage(this, 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&auto=format&fit=crop')" title="Raw Ecru" role="radio" aria-checked="false" aria-label="Raw Ecru"></button>
-                                </div>
+ <button type="button" class="deen-swatch-dot swatch-indigo active" onclick="swapCardImage(this, '{{ $image }}')" title="Raw Indigo" role="radio" aria-checked="true" aria-label="Raw Indigo"></button>
+ <button type="button" class="deen-swatch-dot swatch-vintage" onclick="swapCardImage(this, 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&auto=format&fit=crop')" title="Vintage Light Wash" role="radio" aria-checked="false" aria-label="Vintage Light Wash"></button>
+ <button type="button" class="deen-swatch-dot swatch-black" onclick="swapCardImage(this, 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&auto=format&fit=crop')" title="Stonewashed Black" role="radio" aria-checked="false" aria-label="Stonewashed Black"></button>
+ <button type="button" class="deen-swatch-dot swatch-ecru" onclick="swapCardImage(this, 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&auto=format&fit=crop')" title="Raw Ecru" role="radio" aria-checked="false" aria-label="Raw Ecru"></button>
+ </div>
 
  <a href="{{ route('store.product.detail', $product['id']) }}" class="deen-retail-title" title="{{ $product['name'] }}">
  {{ $product['name'] }}
@@ -240,7 +238,13 @@
  <i class="fas fa-star-half-alt"></i>
  <span class="text-muted ms-1 small">4.9</span>
  </div>
- <span class="small text-muted">Authentic</span>
+ <span class="small text-muted d-inline-flex align-items-center gap-1">
+ @if($stockStatus === 'instock' || ($stockQty && $stockQty > 0))
+ <span class="deen-stock-dot"></span> In Stock
+ @else
+ <span class="deen-stock-dot soldout"></span> Sold Out
+ @endif
+ </span>
  </div>
 
  <div class="deen-retail-price-row mb-3">
@@ -283,7 +287,7 @@
  <div>
  <span class="deen-pastel-pill azure mb-2">Precision Sizing Tool</span>
  <h3 class="deen-title-md mb-1">Unsure About Your Exact Waist or Chest Size?</h3>
- <p class="text-secondary small mb-0" style="max-width: 520px; line-height: 1.7;">
+ <p class="text-secondary small mb-0">
  Take our 10-second interactive body metric estimator. Calibrated for authentic Bangladeshi male dimensions.
  </p>
  </div>
@@ -567,7 +571,7 @@
  <div class="col-lg-8">
  <span class="deen-pastel-pill sage mb-3">Limited Capsule Release</span>
  <h2 class="display-6 fw-semibold text-dark mb-2">Refined Urban Apparel for Spring 2026</h2>
- <p class="text-secondary mb-4" style="max-width: 520px; line-height: 1.8;">
+ <p class="text-secondary mb-4">
  Experience the intersection of heavy-duty denim durability and modern architectural silhouettes. Designed for everyday comfort and lasting longevity.
  </p>
  <div class="d-flex flex-wrap align-items-center gap-3">
@@ -593,22 +597,6 @@
  if (modal) {
  new bootstrap.Modal(modal).show();
  }
- }
-
- /* Homepage-specific: Flash Sale Countdown Timer */
- function startFlashSaleTimer() {
- let totalSeconds = 5 * 3600 + 42 * 60 + 18;
- const timerEl = document.getElementById('flashSaleTimer');
- if (!timerEl) return;
-
- setInterval(() => {
- if (totalSeconds <= 0) totalSeconds = 24 * 3600;
- totalSeconds--;
- const hrs = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
- const mins = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
- const secs = String(totalSeconds % 60).padStart(2, '0');
- timerEl.innerText = `ENDS IN ${hrs}h : ${mins}m : ${secs}s`;
- }, 1000);
  }
 
  /* Homepage-specific: Add Complete Outfit Bundle to Cart */
@@ -655,10 +643,7 @@
  swatchEl.classList.add('active');
  }
 
- document.addEventListener('DOMContentLoaded', () => {
- startFlashSaleTimer();
-
- // Setup Dynamic Video Card Hover & Autoplay on Viewport
+ document.addEventListener('DOMContentLoaded', () => { // Setup Dynamic Video Card Hover & Autoplay on Viewport
  document.querySelectorAll('.deen-card-video-box').forEach(box => {
  const vid = box.querySelector('video');
  if (vid) {

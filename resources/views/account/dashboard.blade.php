@@ -208,8 +208,8 @@
  <!-- 5-STAGE INTERACTIVE PROGRESS STEPPER -->
  <div class="position-relative my-5 px-2 px-md-4">
  <!-- Background Track Line -->
- <div class="position-absolute top-50 start-0 w-100 translate-middle-y" style="height: 4px; background: #e2e8f0; z-index: 1;">
- <div class="h-100" style="width: 60%; background: linear-gradient(90deg, #10b981 0%, #2563eb 100%);"></div>
+ <div class="position-absolute top-50 start-0 w-100 translate-middle-y">
+ <div class="h-100"></div>
  </div>
 
  <div class="d-flex justify-content-between position-relative">
@@ -233,8 +233,8 @@
 
  <!-- Step 3: In Transit -->
  <div class="text-center"><div class="rounded-circle d-inline-flex align-items-center justify-content-center fw-bold text-white shadow-lg ring-pulse" role="img" aria-label="Step 3: In Transit - Current status">
-                                        <span class="material-symbols-outlined fs-5" aria-hidden="true">local_shipping</span>
-                                    </div>
+ <span class="material-symbols-outlined fs-5" aria-hidden="true">local_shipping</span>
+ </div>
  <div class="fw-bold text-primary small mt-2">In Transit</div>
  <div class="text-secondary">On Courier Van</div>
  </div>
@@ -310,7 +310,7 @@
  @foreach($activeOrder['items'] as $item)
  <div class="d-flex align-items-center justify-content-between p-3 rounded-3 border bg-white">
  <div class="d-flex align-items-center gap-3">
- <img src="{{ asset('images/deen-logo-dark.png') }}" class="rounded-2 border p-1" style="width: 48px; height: 48px; object-fit: contain;" alt="Deen Product" onerror="this.src='https://deencommerce.com/wp-content/uploads/2025/04/cropped-Deen-Logo-scaled-1.png'">
+ <img src="{{ asset('images/deen-logo-dark.png') }}" class="rounded-2 border p-1" alt="Deen Product" onerror="this.src='https://deencommerce.com/wp-content/uploads/2025/04/cropped-Deen-Logo-scaled-1.png'">
  <div>
  <div class="fw-semibold text-dark small">{{ $item['name'] }}</div>
  <div class="text-secondary small">Qty: {{ $item['qty'] }} &bull; ৳{{ number_format($item['price'], 2) }} each</div>
@@ -324,7 +324,7 @@
  @else
  <div class="d-flex align-items-center justify-content-between p-3 rounded-3 border bg-white">
  <div class="d-flex align-items-center gap-3">
- <img src="{{ asset('images/deen-logo-dark.png') }}" class="rounded-2 border p-1" style="width: 48px; height: 48px; object-fit: contain;" alt="Deen Product" onerror="this.src='https://deencommerce.com/wp-content/uploads/2025/04/cropped-Deen-Logo-scaled-1.png'">
+ <img src="{{ asset('images/deen-logo-dark.png') }}" class="rounded-2 border p-1" alt="Deen Product" onerror="this.src='https://deencommerce.com/wp-content/uploads/2025/04/cropped-Deen-Logo-scaled-1.png'">
  <div>
  <div class="fw-semibold text-dark small">High-End Raw Washed Jeans - Slim Fit (Size 32)</div>
  <div class="text-secondary small">Qty: 2 &bull; ৳2,490.00 each</div>
@@ -374,7 +374,7 @@
 
  <div class="table-responsive">
  <table class="table align-middle">
- <thead class="table-light text-uppercase small text-secondary" style="font-size: 0.70rem; letter-spacing: 0.05em;">
+ <thead class="table-light text-uppercase small text-secondary">
  <tr>
  <th>Order #</th>
  <th>Date Placed</th>
@@ -637,7 +637,7 @@
  TAB 5: SECURITY & PASSWORD UPDATE
  ====================================================================== -->
  <div class="tab-pane fade" id="tab-security" role="tabpanel">
- <div class="deen-frame p-4 p-md-5 bg-white mb-4 shadow-sm" style="max-width: 600px;">
+ <div class="deen-frame p-4 p-md-5 bg-white mb-4 shadow-sm">
  <div class="d-flex align-items-center gap-2 mb-4 pb-2 border-bottom">
  <span class="material-symbols-outlined text-danger fs-4">lock_reset</span>
  <div>

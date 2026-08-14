@@ -824,6 +824,19 @@ p {
     opacity: 0.85;
 }
 
+/* Flash Sale Timer Badge Pulse */
+@keyframes timer-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+.deen-flash-timer {
+    animation: timer-pulse 2s ease-in-out infinite;
+    background: #dc2626;
+    color: #ffffff;
+    font-family: var(--deen-font-display);
+    letter-spacing: 0.03em;
+}
+
 .topbar-item {
     display: inline-flex;
     align-items: center;
@@ -1147,6 +1160,122 @@ html[data-theme="light"] .deen-account-pill {
     justify-content: center;
 }
 
+/* --- Modern Interactive Header Search Capsule --- */
+.deen-search-pill {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    padding: 6px 14px;
+    color: rgba(255, 255, 255, 0.7);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    min-width: 200px;
+    max-width: 290px;
+    user-select: none;
+}
+
+html[data-theme="light"] .deen-search-pill {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+}
+
+.deen-search-pill:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+html[data-theme="light"] .deen-search-pill:hover {
+    background: #e2e8f0;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+
+.deen-search-pill .placeholder-text {
+    font-size: 0.82rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+}
+
+.deen-kbd {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.85);
+    font-family: inherit;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 4px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme="light"] .deen-kbd {
+    background: #e2e8f0;
+    border-color: #cbd5e1;
+    color: #475569;
+}
+
+/* --- High-Converting Header Cart Pill Button --- */
+.deen-cart-pill-btn {
+    background: var(--deen-brand-orange, #fa541c);
+    color: #ffffff !important;
+    border: none;
+    border-radius: 9999px;
+    padding: 6px 14px 6px 10px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px rgba(250, 84, 28, 0.35);
+    text-decoration: none;
+}
+
+.deen-cart-pill-btn:hover {
+    background: #ea580c;
+    color: #ffffff !important;
+    transform: translateY(-1.5px);
+    box-shadow: 0 6px 20px rgba(250, 84, 28, 0.45);
+}
+
+.deen-cart-count-badge {
+    background: #ffffff;
+    color: var(--deen-brand-orange, #fa541c);
+    font-size: 0.70rem;
+    font-weight: 800;
+    padding: 1px 7px;
+    border-radius: 9999px;
+    line-height: 1.2;
+}
+
+.deen-brand-subtitle {
+    font-size: 0.56rem;
+    letter-spacing: 0.16em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1;
+    margin-top: 1px;
+}
+
+html[data-theme="light"] .deen-brand-subtitle {
+    color: #64748b;
+}
+
 .deen-navbar .nav-link {
     font-size: 0.88rem;
     font-weight: 500;
@@ -1427,14 +1556,46 @@ html[data-theme="light"] .deen-account-pill {
     position: absolute;
     top: 12px;
     right: 12px;
-    background: #ecfdf5;
-    border: 1px solid #a7f3d0;
-    color: #047857;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
     font-size: 0.68rem;
     font-weight: 700;
-    padding: 4px 10px;
+    padding: 3px 9px;
     border-radius: var(--deen-radius-full);
     z-index: 2;
+}
+
+.deen-soldout-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(239, 68, 68, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: var(--deen-radius-full);
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.35);
+}
+
+.deen-stock-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    display: inline-block;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.deen-stock-dot.soldout {
+    background: #ef4444;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
 }
 
 .deen-wishlist-btn {
@@ -3164,11 +3325,16 @@ textarea:focus-visible {
 .deen-fs-70 { font-size: 0.70rem; }
 .deen-fs-72 { font-size: 0.72rem; }
 .deen-fs-74 { font-size: 0.74rem; }
+.deen-fs-75 { font-size: 0.75rem; }
 .deen-fs-76 { font-size: 0.76rem; }
 .deen-fs-82 { font-size: 0.82rem; }
+.deen-fs-135 { font-size: 1.35rem; }
 .deen-fs-8 { font-size: 8px; }
 .deen-fs-11 { font-size: 11px; }
 .deen-fs-13 { font-size: 13px; }
+
+/* --- Combined Font Size + Letter Spacing --- */
+.deen-fs-70-ls { font-size: 0.70rem; letter-spacing: 0.05em; }
 
 /* --- Background Surface Utilities --- */
 .deen-bg-surface { background-color: var(--deen-bg-surface); }
@@ -3200,6 +3366,14 @@ textarea:focus-visible {
 .deen-max-170 { max-width: 170px; }
 .deen-max-220 { max-width: 220px; }
 .deen-max-300 { max-width: 300px; }
+.deen-max-520 { max-width: 520px; }
+.deen-max-580 { max-width: 580px; }
+.deen-max-600 { max-width: 600px; }
+.deen-max-820 { max-width: 820px; }
+.deen-max-960 { max-width: 960px; }
+
+/* --- Min-Width Utilities --- */
+.deen-minw-220 { min-width: 220px; }
 
 /* --- Line-Height Utilities --- */
 .deen-lh-tight { line-height: 1.7; }
