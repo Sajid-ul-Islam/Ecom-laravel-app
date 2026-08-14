@@ -29,16 +29,26 @@ use App\Http\Controllers\DeenCommerceStoreController;
 
 Route::get('/', [DeenCommerceStoreController::class, 'index'])->name('store.index');
 Route::get('/store/product/{id}', [DeenCommerceStoreController::class, 'showProduct'])->name('store.product.show');
+Route::get('/categories', [DeenCommerceStoreController::class, 'categories'])->name('store.categories');
+Route::get('/category/{id}', [DeenCommerceStoreController::class, 'categoryProducts'])->name('store.category');
+Route::get('/product/{id}', [DeenCommerceStoreController::class, 'productDetail'])->name('store.product.detail');
+Route::get('/checkout', [DeenCommerceStoreController::class, 'checkout'])->name('store.checkout');
+Route::post('/checkout', [DeenCommerceStoreController::class, 'processCheckout'])->name('store.checkout.process');
+Route::get('/order-success/{id}', [DeenCommerceStoreController::class, 'orderSuccess'])->name('store.order.success');
 
 
-// Authentication Routes...
-Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('login', [LoginController::class, 'login']);
+
+// Unified Authentication Routes
+Route::get('login', [App\Http\Controllers\Auth\UnifiedAuthController::class, 'showAuthForm'])->name('login');
+Route::post('login', [App\Http\Controllers\Auth\UnifiedAuthController::class, 'login']);
+Route::get('register', [App\Http\Controllers\Auth\UnifiedAuthController::class, 'showAuthForm'])->name('register');
+Route::post('register', [App\Http\Controllers\Auth\UnifiedAuthController::class, 'register']);
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-// Registration Routes...
-Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('register', [RegisterController::class, 'register']);
+// Google OAuth 2.0 Integration Routes
+Route::get('auth/google', [App\Http\Controllers\Auth\UnifiedAuthController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('auth/google/callback', [App\Http\Controllers\Auth\UnifiedAuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
+
 
 // Password Reset Routes...
 Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
@@ -76,8 +86,10 @@ Route::patch('/quotations/{quotation}/accept', [QuotationController::class, 'acc
 Route::patch('/quotations/{quotation}/reject', [QuotationController::class, 'reject'])->name('quotations.reject');
 
 // Category Routes
-Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+Route::get('/categories', [DeenCommerceStoreController::class, 'categories'])->name('store.categories');
+Route::get('/categories/{id}', [DeenCommerceStoreController::class, 'categoryProducts'])->name('store.category');
+
+
 
 // Profile Routes
 Route::get('/profile/{user}', [ProfilesController::class, 'index'])->name('profile.show');
@@ -85,9 +97,13 @@ Route::get('/profile/{user}/edit', [ProfilesController::class, 'edit'])->name('p
 Route::patch('/profile/{user}', [ProfilesController::class, 'update'])->name('profile.update');
 
 // Admin Routes
+Route::get('/admin/analytics', [App\Http\Controllers\AdminAnalyticsController::class, 'index'])->name('admin.analytics');
+Route::get('/admin/api/metrics', [App\Http\Controllers\AdminAnalyticsController::class, 'apiMetrics'])->name('admin.api.metrics');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin/users', [HomeController::class, 'myUsers'])->name('admin.users');
 });
+
 
 // API Routes for AJAX calls
 Route::prefix('api')->middleware('auth')->group(function () {

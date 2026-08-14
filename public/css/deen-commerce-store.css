@@ -1,129 +1,161 @@
-/* Deen Commerce Flagship B2B E-Commerce Storefront Stylesheet */
+/* Deen Commerce Retail Fashion E-Commerce Stylesheet */
 :root {
     --deen-primary: #2563eb;
     --deen-primary-hover: #1d4ed8;
-    --deen-accent: #f59e0b;
+    --deen-accent: #e11d48;
+    --deen-gold: #f59e0b;
     --deen-dark: #0f172a;
-    --deen-card-bg: #ffffff;
-    --deen-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #311b92 100%);
-    --deen-gold: #fbbf24;
-    --deen-success: #10b981;
-    --deen-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+    --deen-dark-card: #1e293b;
+    --deen-light-bg: #f8fafc;
+    --deen-border: #e2e8f0;
+    --deen-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08);
 }
 
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background-color: #f8fafc;
-    color: #334155;
+    color: #1e293b;
+    line-height: 1.6;
 }
 
-/* Deen Commerce Navbar */
+/* Retail Fashion Top Announcement Bar */
+.deen-promo-bar {
+    background: linear-gradient(90deg, #e11d48 0%, #7c3aed 100%);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 0;
+    text-align: center;
+    letter-spacing: 0.03em;
+}
+
+/* Retail Navbar */
 .deen-navbar {
-    background: rgba(15, 23, 42, 0.95);
+    background: rgba(15, 23, 42, 0.96);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0.85rem 0;
+    padding: 0.9rem 0;
 }
 
-.deen-logo-text {
-    font-size: 1.35rem;
+.deen-brand-logo {
+    font-size: 1.4rem;
     font-weight: 800;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.03em;
     color: #ffffff;
+    text-decoration: none;
 }
 
-.deen-logo-tag {
-    background: linear-gradient(135deg, var(--deen-primary), #7c3aed);
+.deen-brand-badge {
+    background: linear-gradient(135deg, #e11d48, #7c3aed);
     color: #ffffff;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 700;
-    padding: 0.2rem 0.5rem;
+    padding: 0.2rem 0.55rem;
     border-radius: 50rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
 }
 
-/* Hero Billboard */
-.deen-hero {
-    background: var(--deen-gradient);
+/* Hero Fashion Showcase Banner */
+.deen-fashion-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
     color: #ffffff;
-    padding: 4rem 0 6rem 0;
+    padding: 4.5rem 0 6rem 0;
     position: relative;
     overflow: hidden;
 }
 
-.deen-hero::before {
+.deen-fashion-hero::after {
     content: '';
     position: absolute;
-    top: -30%;
+    top: -40%;
     right: -10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(124, 58, 237, 0.25) 0%, rgba(15, 23, 42, 0) 70%);
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, rgba(225, 29, 72, 0.25) 0%, rgba(15, 23, 42, 0) 70%);
     pointer-events: none;
 }
 
-.deen-hero-badge {
+.deen-hero-tag {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(8px);
-    padding: 6px 14px;
-    border-radius: 50rem;
+    background: rgba(225, 29, 72, 0.15);
+    border: 1px solid rgba(225, 29, 72, 0.3);
+    color: #f43f5e;
     font-size: 0.85rem;
-    font-weight: 600;
-    color: #fbbf24;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 50rem;
     margin-bottom: 1.25rem;
-}
-
-.deen-hero-title {
-    font-size: 3rem;
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.03em;
-    color: #ffffff;
-}
-
-.deen-hero-subtitle {
-    color: #cbd5e1;
-    font-size: 1.15rem;
-    font-weight: 400;
-    max-width: 620px;
-}
-
-/* Stats Counter Pill */
-.deen-stat-pill {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 16px;
-    padding: 1.25rem;
-    text-align: center;
-    backdrop-filter: blur(10px);
-}
-
-.deen-stat-num {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #ffffff;
-    line-height: 1;
-}
-
-.deen-stat-label {
-    font-size: 0.8rem;
-    color: #94a3b8;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-top: 0.35rem;
 }
 
-/* Category Filter Bar */
-.deen-category-chip {
+.deen-hero-heading {
+    font-size: 3.25rem;
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+    color: #ffffff;
+}
+
+.deen-hero-desc {
+    color: #cbd5e1;
+    font-size: 1.15rem;
+    max-width: 580px;
+}
+
+/* Retail Perks Section */
+.deen-perks-box {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 1.75rem 2rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: var(--deen-shadow);
+    margin-top: -3.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.deen-perk-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.deen-perk-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--deen-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.deen-perk-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 2px;
+}
+
+.deen-perk-desc {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Category Filter Chips */
+.deen-fashion-chip {
     background: #ffffff;
     color: #334155;
-    border: 1px solid #e2e8f0;
-    padding: 0.5rem 1.25rem;
+    border: 1px solid #cbd5e1;
+    padding: 0.55rem 1.35rem;
     border-radius: 50rem;
     font-size: 0.875rem;
     font-weight: 600;
@@ -135,15 +167,15 @@ body {
     gap: 6px;
 }
 
-.deen-category-chip:hover, .deen-category-chip.active {
-    background: var(--deen-primary);
+.deen-fashion-chip:hover, .deen-fashion-chip.active {
+    background: #0f172a;
     color: #ffffff;
-    border-color: var(--deen-primary);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    border-color: #0f172a;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
 }
 
-/* Product Cards */
-.deen-product-card {
+/* Retail Fashion Product Cards */
+.deen-retail-card {
     background: #ffffff;
     border-radius: 20px;
     border: 1px solid #e2e8f0;
@@ -153,67 +185,70 @@ body {
     display: flex;
     flex-direction: column;
     box-shadow: var(--deen-shadow);
+    position: relative;
 }
 
-.deen-product-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.15);
+.deen-retail-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.16);
     border-color: #cbd5e1;
 }
 
-.deen-product-img-wrapper {
+.deen-retail-img-box {
     position: relative;
-    height: 220px;
+    height: 260px;
     background: #f1f5f9;
     overflow: hidden;
 }
 
-.deen-product-img {
+.deen-retail-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.deen-product-card:hover .deen-product-img {
-    transform: scale(1.06);
+.deen-retail-card:hover .deen-retail-img {
+    transform: scale(1.08);
 }
 
-.deen-badge-live {
+.deen-discount-ribbon {
     position: absolute;
     top: 12px;
     left: 12px;
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(4px);
+    background: #e11d48;
     color: #ffffff;
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-size: 0.72rem;
+    font-weight: 800;
     padding: 4px 10px;
     border-radius: 50rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    box-shadow: 0 4px 10px rgba(225, 29, 72, 0.3);
 }
 
-.deen-badge-stock {
+.deen-stock-badge {
     position: absolute;
     top: 12px;
     right: 12px;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 700;
     padding: 4px 10px;
     border-radius: 50rem;
 }
 
-.deen-product-body {
+.deen-retail-body {
     padding: 1.25rem;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 
-.deen-product-title {
+.deen-retail-title {
     font-size: 1.05rem;
     font-weight: 700;
     color: #0f172a;
-    line-height: 1.35;
+    line-height: 1.4;
     margin-bottom: 0.5rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -221,42 +256,136 @@ body {
     overflow: hidden;
 }
 
-.deen-price-section {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
+.deen-rating-stars {
+    color: #f59e0b;
+    font-size: 0.8rem;
     margin-bottom: 0.75rem;
 }
 
-.deen-price-current {
-    font-size: 1.35rem;
-    font-weight: 800;
-    color: var(--deen-primary);
+.deen-retail-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 1rem;
 }
 
-.deen-price-old {
+.deen-retail-price {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.deen-retail-old-price {
     font-size: 0.9rem;
     color: #94a3b8;
     text-decoration: line-through;
 }
 
-/* Bulk Discount Banner */
-.deen-bulk-banner {
-    background: #f0fdf4;
-    border: 1px dashed #86efac;
-    color: #166534;
-    font-size: 0.78rem;
-    font-weight: 600;
-    padding: 6px 10px;
-    border-radius: 8px;
-    margin-bottom: 1rem;
+.deen-btn-cart {
+    background: #0f172a;
+    color: #ffffff;
+    border: none;
+    border-radius: 50rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 0.6rem 1.25rem;
+    transition: all 0.2s ease;
 }
 
-/* Interactive Calculator Container */
-.deen-calc-box {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+.deen-btn-cart:hover {
+    background: var(--deen-primary);
     color: #ffffff;
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+}
+
+/* Size Swatch Selectors */
+.deen-size-swatch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.deen-size-swatch:hover, .deen-size-swatch.active {
+    border-color: #0f172a;
+    background: #0f172a;
+    color: #ffffff;
+}
+
+/* Payment Method Cards */
+.deen-payment-card {
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.deen-payment-card:hover, .deen-payment-card.active {
+    border-color: var(--deen-primary);
+    background: #eff6ff;
+}
+
+/* Invoice Receipt Card */
+.deen-receipt-card {
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
+    overflow: hidden;
+}
+
+/* Floating Cart Counter Badge */
+.deen-floating-cart {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #0f172a;
+    color: #ffffff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.35);
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    text-decoration: none;
+}
+
+.deen-floating-cart:hover {
+    transform: scale(1.1);
+    color: #ffffff;
+}
+
+.deen-cart-count {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #e11d48;
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #0f172a;
 }
