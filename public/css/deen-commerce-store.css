@@ -1,201 +1,2190 @@
-/* Deen Commerce Official Brand Stylesheet — https://deencommerce.com */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+/* ==========================================================================
+   DEEN COMMERCE — ARCHITECTURAL EDITORIAL DESIGN SYSTEM
+   Theme: Calm, Clean Professionalism & Vast Negative Space
+   Palette: Soft Pastel Card Accents, Thin Structured Lines, Elegant Typography
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@500;600;700&display=swap');
 
 :root {
-    --deen-brand-orange: #fa4a00;
-    --deen-primary: #fa4a00;
-    --deen-primary-hover: #e04200;
-    --deen-accent: #fa4a00;
-    --deen-accent-hover: #e04200;
-    --deen-emerald: #059669;
-    --deen-amber: #fa4a00;
-    --deen-indigo: #0b132b;
-    --deen-denim-wash: #1c2541;
-    --deen-copper: #fa4a00;
-    --deen-dark: #0f172a;
-    --deen-dark-card: #1e293b;
-    --deen-light-bg: #f8fafc;
-    --deen-border: #e2e8f0;
-    --deen-font-heading: 'Century Gothic', 'Outfit', sans-serif;
-    --deen-font-body: 'Century Gothic', 'Plus Jakarta Sans', sans-serif;
-    --deen-shadow: 0 10px 30px -5px rgba(250, 74, 0, 0.12);
-    --deen-shadow-hover: 0 25px 50px -12px rgba(250, 74, 0, 0.25);
+    /* 1. Core Brand & Signature Colors */
+    --deen-brand-orange: #fa541c;
+    --deen-primary: #0f172a;
+    --deen-primary-hover: #1e293b;
+    --deen-accent: #fa541c;
+    --deen-accent-hover: #ea580c;
 
-    /* Default Theme Variables */
-    --bg-main: #0b132b;
-    --bg-card: #111c35;
-    --bg-nav: rgba(11, 19, 43, 0.96);
-    --text-primary: #ffffff;
-    --text-muted: #94a3b8;
-    --accent-color: #fa4a00;
-    --accent-glow: rgba(250, 74, 0, 0.4);
-    --border-color: rgba(250, 74, 0, 0.35);
-    --hero-gradient: linear-gradient(135deg, #0b132b 0%, #1c2541 50%, #0f172a 100%);
-}
+    /* 2. Vibrant Modern Accent System */
+    --vibrant-indigo: #2563eb;
+    --vibrant-indigo-dark: #1d4ed8;
+    --vibrant-indigo-light: #eff6ff;
+    --vibrant-indigo-border: #bfdbfe;
 
-/* 1. Official Deen Orange Brand Theme (Default) */
-html[data-theme="denim"], html:not([data-theme]) {
-    --bg-main: #0b132b;
-    --bg-card: #111c35;
-    --bg-nav: rgba(11, 19, 43, 0.96);
-    --text-primary: #ffffff;
-    --text-muted: #94a3b8;
-    --accent-color: #fa4a00;
-    --accent-glow: rgba(250, 74, 0, 0.4);
-    --border-color: rgba(250, 74, 0, 0.35);
-    --hero-gradient: linear-gradient(135deg, #0b132b 0%, #1c2541 50%, #0f172a 100%);
-}
+    --vibrant-orange: #fa541c;
+    --vibrant-orange-hover: #ea580c;
+    --vibrant-orange-light: #fff7ed;
+    --vibrant-orange-border: #fed7aa;
 
-/* 2. Midnight Studio Dark Theme */
-html[data-theme="dark"] {
-    --bg-main: #090d16;
-    --bg-card: #131b2e;
-    --bg-nav: rgba(9, 13, 22, 0.96);
-    --text-primary: #f8fafc;
-    --text-muted: #94a3b8;
-    --accent-color: #7c3aed;
-    --accent-glow: rgba(124, 58, 237, 0.4);
-    --border-color: rgba(124, 58, 237, 0.3);
-    --hero-gradient: linear-gradient(135deg, #090d16 0%, #1e1b4b 50%, #090d16 100%);
-}
+    --vibrant-emerald: #10b981;
+    --vibrant-emerald-dark: #047857;
+    --vibrant-emerald-light: #ecfdf5;
+    --vibrant-emerald-border: #a7f3d0;
 
-/* 3. Cyberpunk Urban Neon Theme */
-html[data-theme="neon"] {
-    --bg-main: #12131c;
-    --bg-card: #1a1c29;
-    --bg-nav: rgba(18, 19, 28, 0.96);
-    --text-primary: #ffffff;
-    --text-muted: #cbd5e1;
-    --accent-color: #ec4899;
-    --accent-glow: rgba(236, 72, 153, 0.4);
-    --border-color: rgba(236, 72, 153, 0.4);
-    --hero-gradient: linear-gradient(135deg, #12131c 0%, #31102f 50%, #12131c 100%);
-}
+    --vibrant-amber: #f59e0b;
+    --vibrant-amber-dark: #b45309;
+    --vibrant-amber-light: #fffbeb;
+    --vibrant-amber-border: #fde68a;
 
-/* 4. Studio Light Theme */
-html[data-theme="light"] {
+    --vibrant-purple: #8b5cf6;
+    --vibrant-purple-dark: #6d28d9;
+    --vibrant-purple-light: #f5f3ff;
+    --vibrant-purple-border: #ddd6fe;
+
+    --vibrant-rose: #f43f5e;
+    --vibrant-rose-dark: #be123c;
+    --vibrant-rose-light: #fff1f2;
+    --vibrant-rose-border: #fecdd3;
+
+    --vibrant-cyan: #06b6d4;
+    --vibrant-cyan-dark: #0e7490;
+    --vibrant-cyan-light: #ecfeff;
+    --vibrant-cyan-border: #a5f3fc;
+    
+    /* 3. Luminous Pastel & Glass Card Accents */
+    --pastel-sage: #ecfdf5;
+    --pastel-sage-border: #a7f3d0;
+    --pastel-sage-text: #065f46;
+    --pastel-sage-badge: #d1fae5;
+
+    --pastel-linen: #f8fafc;
+    --pastel-linen-border: #e2e8f0;
+    --pastel-linen-text: #334155;
+    --pastel-linen-badge: #f1f5f9;
+
+    --pastel-azure: #eff6ff;
+    --pastel-azure-border: #bfdbfe;
+    --pastel-azure-text: #1e40af;
+    --pastel-azure-badge: #dbeafe;
+
+    --pastel-lavender: #f5f3ff;
+    --pastel-lavender-border: #ddd6fe;
+    --pastel-lavender-text: #5b21b6;
+    --pastel-lavender-badge: #ede9fe;
+
+    --pastel-sand: #fffbeb;
+    --pastel-sand-border: #fde68a;
+    --pastel-sand-text: #92400e;
+    --pastel-sand-badge: #fef3c7;
+
+    /* 4. Crisp Hairline & Border System */
+    --deen-border-hairline: 1px solid rgba(15, 23, 42, 0.08);
+    --deen-border-subtle: 1px solid rgba(15, 23, 42, 0.12);
+    --deen-border-strong: 1px solid rgba(15, 23, 42, 0.20);
+    --deen-border-grid: 1px solid rgba(15, 23, 42, 0.06);
+    --deen-border-dashed: 1px dashed rgba(15, 23, 42, 0.18);
+
+    /* 5. Typography Tokens */
+    --deen-font-display: 'Outfit', -apple-system, sans-serif;
+    --deen-font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    --deen-font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --deen-font-serif: 'Cinzel', serif;
+
+    /* 6. Negative Space Scales */
+    --space-section-y: 5.5rem;
+    --space-section-y-lg: 7.5rem;
+    --space-card-p: 2.25rem;
+    --space-grid-gap: 2.25rem;
+    --deen-radius-sm: 8px;
+    --deen-radius-md: 14px;
+    --deen-radius-lg: 20px;
+    --deen-radius-xl: 30px;
+    --deen-radius-full: 9999px;
+
+    /* 7. Luminous Clean Shadows */
+    --deen-shadow-subtle: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
+    --deen-shadow-card: 0 12px 32px -4px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+    --deen-shadow-hover: 0 24px 48px -8px rgba(15, 23, 42, 0.12), 0 6px 16px -2px rgba(15, 23, 42, 0.04);
+    --deen-shadow-float: 0 25px 60px -12px rgba(15, 23, 42, 0.16);
+    --deen-shadow-vibrant: 0 10px 25px -3px rgba(37, 99, 235, 0.25);
+    --deen-shadow-orange: 0 10px 25px -3px rgba(250, 84, 28, 0.30);
+
+    /* 8. Default Clean Background */
     --bg-main: #f8fafc;
+    --bg-surface: #ffffff;
     --bg-card: #ffffff;
-    --bg-nav: rgba(255, 255, 255, 0.96);
+    --bg-nav: rgba(255, 255, 255, 0.88);
     --text-primary: #0f172a;
+    --text-secondary: #475569;
     --text-muted: #64748b;
-    --accent-color: #2563eb;
-    --accent-glow: rgba(37, 99, 235, 0.3);
-    --border-color: #cbd5e1;
-    --hero-gradient: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #ffffff 100%);
+    --border-color: rgba(15, 23, 42, 0.08);
+    --hero-gradient: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(250, 84, 28, 0.05) 0%, transparent 40%), linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    --accent-color: #fa541c;
+    --accent-glow: rgba(250, 84, 28, 0.18);
 }
 
-/* Dynamic Body Color Shift */
+/* ==========================================================================
+   COLOR THEORY HARMONIES & 60-30-10 ARCHITECTURE
+   ========================================================================== */
+
+/* 1. Complementary Denim & Terracotta (Default Signature Harmony)
+   - 60% Dominant Canvas: Crisp Alabaster (#FBFBFD)
+   - 30% Structure & Contrast: Deep Raw Denim (#0F172A)
+   - 10% Complementary Action Accent: Terracotta Flame (#FA541C) */
+html[data-theme="denim"], html:not([data-theme]) {
+    --theory-rule: "60-30-10 Complementary";
+    --bg-main: #fbfbfd;
+    --bg-surface: #ffffff;
+    --bg-card: #ffffff;
+    --bg-nav: rgba(255, 255, 255, 0.94);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --border-color: rgba(15, 23, 42, 0.08);
+    --hero-gradient: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.06) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(250, 84, 28, 0.06) 0%, transparent 40%), linear-gradient(180deg, #ffffff 0%, #fbfbfd 100%);
+    --accent-color: #fa541c;
+    --accent-color-hover: #ea580c;
+    --accent-glow: rgba(250, 84, 28, 0.20);
+    --accent-contrast: #ffffff;
+    --brand-blue: #2563eb;
+}
+
+/* 2. Analogous Botanical Sage & Emerald (Organic Fresh Harmony)
+   - 60% Dominant Canvas: Natural Pure Linen (#F4F7F4)
+   - 30% Structure & Contrast: Deep Forest Cypress (#132A1F)
+   - 10% Analogous Accent: Vivid Botanical Mint (#10B981) */
+html[data-theme="botanical"] {
+    --theory-rule: "60-30-10 Analogous";
+    --bg-main: #f4f7f4;
+    --bg-surface: #ffffff;
+    --bg-card: #ffffff;
+    --bg-nav: rgba(244, 247, 244, 0.94);
+    --text-primary: #132a1f;
+    --text-secondary: #3f5e50;
+    --text-muted: #5e8071;
+    --border-color: rgba(19, 42, 31, 0.09);
+    --hero-gradient: radial-gradient(circle at 15% 25%, rgba(16, 185, 129, 0.08) 0%, transparent 40%), radial-gradient(circle at 85% 75%, rgba(5, 150, 105, 0.06) 0%, transparent 40%), linear-gradient(180deg, #ffffff 0%, #f4f7f4 100%);
+    --accent-color: #10b981;
+    --accent-color-hover: #059669;
+    --accent-glow: rgba(16, 185, 129, 0.22);
+    --accent-contrast: #ffffff;
+    --brand-blue: #047857;
+}
+
+/* 3. Monochromatic Royal Azure (Tonal Blue Luxury Harmony)
+   - 60% Dominant Canvas: Cool Ice Mist (#F0F6FF)
+   - 30% Structure & Contrast: Midnight Nautical Marine (#0B192C)
+   - 10% Monochromatic Accent: Electric Cobalt (#2563EB) */
+html[data-theme="azure"] {
+    --theory-rule: "60-30-10 Monochromatic";
+    --bg-main: #f0f6ff;
+    --bg-surface: #ffffff;
+    --bg-card: #ffffff;
+    --bg-nav: rgba(240, 246, 255, 0.94);
+    --text-primary: #0b192c;
+    --text-secondary: #334e68;
+    --text-muted: #627d98;
+    --border-color: rgba(11, 25, 44, 0.09);
+    --hero-gradient: radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.09) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.06) 0%, transparent 45%), linear-gradient(180deg, #ffffff 0%, #f0f6ff 100%);
+    --accent-color: #2563eb;
+    --accent-color-hover: #1d4ed8;
+    --accent-glow: rgba(37, 99, 235, 0.22);
+    --accent-contrast: #ffffff;
+    --brand-blue: #1d4ed8;
+}
+
+/* 4. Split-Complementary Obsidian & Amber (Serene Dark Luxury Harmony)
+   - 60% Dominant Canvas: Deep Carbon Noir (#0C0F17)
+   - 30% Structure & Contrast: Slate Granite Obsidian (#131722)
+   - 10% Split-Complementary Accent: Luminous Amber (#F59E0B) + Electric Violet (#8B5CF6) */
+html[data-theme="dark"] {
+    --theory-rule: "60-30-10 Split-Complementary Dark";
+    --bg-main: #0c0f17;
+    --bg-surface: #131722;
+    --bg-card: #131722;
+    --bg-nav: rgba(12, 15, 23, 0.92);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border-color: rgba(255, 255, 255, 0.09);
+    --hero-gradient: radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.08) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 45%), linear-gradient(180deg, #0e1320 0%, #0c0f17 100%);
+    --accent-color: #f59e0b;
+    --accent-color-hover: #d97706;
+    --accent-glow: rgba(245, 158, 11, 0.25);
+    --accent-contrast: #0f172a;
+    --brand-blue: #8b5cf6;
+
+    /* Dark Mode Pastel Adaptation Tokens */
+    --pastel-sage: rgba(16, 185, 129, 0.14);
+    --pastel-sage-border: rgba(16, 185, 129, 0.35);
+    --pastel-sage-text: #6ee7b7;
+    --pastel-sage-badge: rgba(16, 185, 129, 0.22);
+
+    --pastel-linen: rgba(255, 255, 255, 0.05);
+    --pastel-linen-border: rgba(255, 255, 255, 0.12);
+    --pastel-linen-text: #e2e8f0;
+    --pastel-linen-badge: rgba(255, 255, 255, 0.08);
+
+    --pastel-azure: rgba(37, 99, 235, 0.14);
+    --pastel-azure-border: rgba(37, 99, 235, 0.35);
+    --pastel-azure-text: #93c5fd;
+    --pastel-azure-badge: rgba(37, 99, 235, 0.22);
+
+    --pastel-lavender: rgba(139, 92, 246, 0.14);
+    --pastel-lavender-border: rgba(139, 92, 246, 0.35);
+    --pastel-lavender-text: #c4b5fd;
+    --pastel-lavender-badge: rgba(139, 92, 246, 0.22);
+
+    --pastel-sand: rgba(245, 158, 11, 0.14);
+    --pastel-sand-border: rgba(245, 158, 11, 0.35);
+    --pastel-sand-text: #fde68a;
+    --pastel-sand-badge: rgba(245, 158, 11, 0.22);
+
+    --deen-border-hairline: 1px solid rgba(255, 255, 255, 0.08);
+    --deen-border-subtle: 1px solid rgba(255, 255, 255, 0.14);
+    --deen-shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+    --deen-shadow-card: 0 10px 30px -4px rgba(0, 0, 0, 0.5);
+    --deen-shadow-hover: 0 20px 40px -8px rgba(0, 0, 0, 0.65);
+}
+
+/* 5. Triadic Crimson Sunset & Sandstone (Warm Mediterranean Luxury Harmony)
+   - 60% Dominant Canvas: Warm Sandstone Pearl (#FAF6F0)
+   - 30% Structure & Contrast: Deep Espresso Charcoal (#1F1816)
+   - 10% Triadic Accent: Radiant Coral Crimson (#E11D48) */
+html[data-theme="sunset"] {
+    --theory-rule: "60-30-10 Triadic Warm";
+    --bg-main: #faf6f0;
+    --bg-surface: #ffffff;
+    --bg-card: #ffffff;
+    --bg-nav: rgba(250, 246, 240, 0.94);
+    --text-primary: #1f1816;
+    --text-secondary: #59433e;
+    --text-muted: #7d655f;
+    --border-color: rgba(31, 24, 22, 0.09);
+    --hero-gradient: radial-gradient(circle at 10% 20%, rgba(225, 29, 72, 0.07) 0%, transparent 45%), radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.07) 0%, transparent 45%), linear-gradient(180deg, #ffffff 0%, #faf6f0 100%);
+    --accent-color: #e11d48;
+    --accent-color-hover: #be123c;
+    --accent-glow: rgba(225, 29, 72, 0.22);
+    --accent-contrast: #ffffff;
+    --brand-blue: #be123c;
+}
+
+/* 6. Crystal Glassmorphism & Aurora Glow (Ultra-Modern Frosted Glass Aesthetic)
+   - 60% Dominant Canvas: Deep Aurora Obsidian Mesh with Frosted Iridescence
+   - 30% Structure & Contrast: Translucent Frosted Glass (backdrop-filter: blur(24px) saturate(190%))
+   - 10% Action Accent: Luminous Cyber Cyan (#06B6D4) & Neon Aurora Rose (#F43F5E) */
+html[data-theme="glass"] {
+    --theory-rule: "60-30-10 Crystal Glassmorphism";
+    --bg-main: #070b14;
+    --bg-surface: rgba(255, 255, 255, 0.07);
+    --bg-card: rgba(255, 255, 255, 0.08);
+    --bg-nav: rgba(10, 15, 29, 0.68);
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.16);
+    --hero-gradient: radial-gradient(at 15% 15%, rgba(99, 102, 241, 0.22) 0px, transparent 50%),
+                     radial-gradient(at 85% 20%, rgba(236, 72, 153, 0.18) 0px, transparent 50%),
+                     radial-gradient(at 50% 80%, rgba(6, 182, 212, 0.20) 0px, transparent 50%),
+                     linear-gradient(135deg, #070b14 0%, #0d1322 50%, #0a0f1d 100%);
+    --accent-color: #06b6d4;
+    --accent-color-hover: #0891b2;
+    --accent-glow: rgba(6, 182, 212, 0.35);
+    --accent-contrast: #08121f;
+    --brand-blue: #6366f1;
+
+    /* Glass Morphism Adapted Pastel Tokens */
+    --pastel-sage: rgba(16, 185, 129, 0.15);
+    --pastel-sage-border: rgba(52, 211, 153, 0.4);
+    --pastel-sage-text: #6ee7b7;
+    --pastel-sage-badge: rgba(16, 185, 129, 0.25);
+
+    --pastel-linen: rgba(255, 255, 255, 0.09);
+    --pastel-linen-border: rgba(255, 255, 255, 0.22);
+    --pastel-linen-text: #f1f5f9;
+    --pastel-linen-badge: rgba(255, 255, 255, 0.15);
+
+    --pastel-azure: rgba(6, 182, 212, 0.15);
+    --pastel-azure-border: rgba(34, 211, 238, 0.4);
+    --pastel-azure-text: #67e8f9;
+    --pastel-azure-badge: rgba(6, 182, 212, 0.25);
+
+    --pastel-lavender: rgba(168, 85, 247, 0.15);
+    --pastel-lavender-border: rgba(192, 132, 252, 0.4);
+    --pastel-lavender-text: #d8b4fe;
+    --pastel-lavender-badge: rgba(168, 85, 247, 0.25);
+
+    --pastel-sand: rgba(251, 191, 36, 0.15);
+    --pastel-sand-border: rgba(251, 191, 36, 0.4);
+    --pastel-sand-text: #fde68a;
+    --pastel-sand-badge: rgba(251, 191, 36, 0.25);
+
+    --deen-border-hairline: 1px solid rgba(255, 255, 255, 0.15);
+    --deen-border-subtle: 1px solid rgba(255, 255, 255, 0.25);
+    --deen-shadow-subtle: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+    --deen-shadow-card: 0 12px 40px 0 rgba(0, 0, 0, 0.45);
+    --deen-shadow-hover: 0 20px 50px 0 rgba(6, 182, 212, 0.25);
+}
+
+/* Glassmorphism Global Elements when data-theme="glass" is active */
+html[data-theme="glass"] body {
+    background: var(--hero-gradient);
+    background-attachment: fixed;
+    color: var(--text-primary);
+}
+
+html[data-theme="glass"] .deen-navbar {
+    background: rgba(10, 15, 29, 0.65) !important;
+    backdrop-filter: blur(24px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+html[data-theme="glass"] .deen-brand-logo {
+    filter: brightness(0) invert(1) drop-shadow(0 0 12px rgba(6, 182, 212, 0.6));
+}
+
+html[data-theme="glass"] .deen-frame,
+html[data-theme="glass"] .card,
+html[data-theme="glass"] .modal-content,
+html[data-theme="glass"] .dropdown-menu,
+html[data-theme="glass"] .deen-micro-cart-drawer,
+html[data-theme="glass"] .deen-quick-add-flyout {
+    background: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(24px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 0 rgba(255, 255, 255, 0.2) !important;
+    color: #f8fafc !important;
+}
+
+html[data-theme="glass"] .deen-mobile-bottom-nav {
+    background: rgba(10, 15, 29, 0.75) !important;
+    backdrop-filter: blur(28px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+html[data-theme="glass"] .deen-product-card {
+    background: rgba(255, 255, 255, 0.06) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
+}
+
+html[data-theme="glass"] .deen-product-card:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(6, 182, 212, 0.5) !important;
+    box-shadow: 0 16px 40px rgba(6, 182, 212, 0.2), inset 0 1px 0 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+html[data-theme="glass"] .table {
+    --bs-table-bg: transparent !important;
+    --bs-table-color: var(--text-primary) !important;
+    color: #f8fafc !important;
+}
+
+html[data-theme="glass"] .table-light {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: var(--text-secondary) !important;
+}
+
+html[data-theme="glass"] .form-control,
+html[data-theme="glass"] .form-select,
+html[data-theme="glass"] .input-group-text {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+    color: #f8fafc !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+html[data-theme="glass"] .btn-outline-dark,
+html[data-theme="glass"] .btn-outline-secondary {
+    color: #f8fafc !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+html[data-theme="glass"] .btn-outline-dark:hover,
+html[data-theme="glass"] .btn-outline-secondary:hover {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-color: rgba(255, 255, 255, 0.45) !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="glass"] .btn-dark {
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.9) 0%, rgba(37, 99, 235, 0.9) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 16px rgba(6, 182, 212, 0.35) !important;
+}
+
+html[data-theme="glass"] .btn-dark:hover {
+    background: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%) !important;
+    box-shadow: 0 6px 24px rgba(6, 182, 212, 0.5) !important;
+    transform: translateY(-1px);
+}
+
+html[data-theme="glass"] .topbar-chip {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: #f8fafc !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+html[data-theme="glass"] .deen-footer {
+    background: rgba(10, 15, 29, 0.7) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+html[data-theme="glass"] .bg-white {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    color: #f8fafc !important;
+}
+
+html[data-theme="glass"] .bg-light {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    color: #f8fafc !important;
+}
+
+html[data-theme="glass"] .text-dark {
+    color: #f8fafc !important;
+}
+
+html[data-theme="glass"] .text-secondary {
+    color: #cbd5e1 !important;
+}
+
+html[data-theme="glass"] .text-muted {
+    color: #94a3b8 !important;
+}
+
+html[data-theme="glass"] .border,
+html[data-theme="glass"] .border-top,
+html[data-theme="glass"] .border-bottom,
+html[data-theme="glass"] .border-start,
+html[data-theme="glass"] .border-end {
+    border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+html[data-theme="glass"] .nav-tabs .nav-link {
+    color: #cbd5e1 !important;
+    border-color: transparent !important;
+}
+
+html[data-theme="glass"] .nav-tabs .nav-link.active {
+    color: #06b6d4 !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(6, 182, 212, 0.4) !important;
+    backdrop-filter: blur(16px) !important;
+}
+
+/* Glassmorphic Standalone Component Utilities */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px) saturate(190%);
+    -webkit-backdrop-filter: blur(24px) saturate(190%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+    border-radius: var(--deen-radius-lg);
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    border-radius: var(--deen-radius-lg);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(6, 182, 212, 0.5);
+    box-shadow: 0 16px 40px rgba(6, 182, 212, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+.glass-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.3rem 0.85rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--deen-radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #f8fafc;
+}
+
+/* ==========================================================================
+   BASE & TYPOGRAPHY FOUNDATIONS
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: var(--deen-font-body);
     background-color: var(--bg-main);
     color: var(--text-primary);
-    line-height: 1.6;
+    line-height: 1.75;
+    font-size: 0.975rem;
+    font-weight: 400;
     transition: background-color 0.4s ease, color 0.4s ease;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
 }
 
-/* Theme Dropdown Switcher Styling */
-.deen-theme-picker {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px);
-    border: 1px solid var(--border-color);
+h1, h2, h3, h4, h5, h6,
+.deen-brand-logo,
+.deen-hero-heading,
+.deen-section-title,
+.deen-retail-title {
+    font-family: var(--deen-font-heading);
     color: var(--text-primary);
-    border-radius: 50rem;
-    padding: 0.35rem 0.85rem;
-    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+}
+
+p {
+    color: var(--text-secondary);
+    line-height: 1.75;
+}
+
+/* Refined Eyebrows & Structural Labels */
+.deen-eyebrow {
+    font-family: var(--deen-font-body);
+    font-size: 0.72rem;
     font-weight: 700;
-    transition: all 0.2s ease;
-}
-.deen-theme-picker:hover {
-    background: var(--accent-glow);
-    border-color: var(--accent-color);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0.85rem;
 }
 
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-::-webkit-scrollbar-track {
-    background: #0b132b;
-}
-::-webkit-scrollbar-thumb {
-    background: #1c2541;
-    border: 1px dashed #f59e0b;
-    border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: #f59e0b;
+.deen-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.6;
 }
 
 /* Selection Highlight */
 ::selection {
-    background: rgba(245, 158, 11, 0.35);
-    color: #ffffff;
+    background: rgba(250, 74, 0, 0.18);
+    color: var(--text-primary);
 }
 
-body {
-    font-family: var(--deen-font-body);
-    background-color: #f1f5f9;
-    color: #1e293b;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
+/* Minimalist Hairline Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(18, 22, 31, 0.15);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(18, 22, 31, 0.3);
 }
 
-/* Authentic Washed Denim Background Vibe */
-.denim-vibe-bg, .deen-fashion-hero {
-    background-color: #0b132b;
-    background-image: 
-        radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.3) 0%, transparent 75%),
-        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.025) 0px, rgba(255, 255, 255, 0.025) 2px, transparent 2px, transparent 4px),
-        repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.18) 0px, rgba(0, 0, 0, 0.18) 2px, transparent 2px, transparent 4px),
-        linear-gradient(135deg, #0b132b 0%, #1c2541 50%, #0f172a 100%);
+/* ==========================================================================
+   SOFT PASTEL CARD UTILITIES
+   ========================================================================== */
+
+.deen-pastel-sage {
+    background-color: var(--pastel-sage) !important;
+    border: 1px solid var(--pastel-sage-border) !important;
+    color: var(--pastel-sage-text) !important;
+}
+.deen-pastel-linen {
+    background-color: var(--pastel-linen) !important;
+    border: 1px solid var(--pastel-linen-border) !important;
+    color: var(--pastel-linen-text) !important;
+}
+.deen-pastel-azure {
+    background-color: var(--pastel-azure) !important;
+    border: 1px solid var(--pastel-azure-border) !important;
+    color: var(--pastel-azure-text) !important;
+}
+.deen-pastel-lavender {
+    background-color: var(--pastel-lavender) !important;
+    border: 1px solid var(--pastel-lavender-border) !important;
+    color: var(--pastel-lavender-text) !important;
+}
+.deen-pastel-sand {
+    background-color: var(--pastel-sand) !important;
+    border: 1px solid var(--pastel-sand-border) !important;
+    color: var(--pastel-sand-text) !important;
+}
+
+/* Luminous Vibrant Badges & Pills */
+.deen-vibrant-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: var(--deen-radius-full);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.deen-vibrant-pill.indigo {
+    background: var(--vibrant-indigo-light);
+    border: 1px solid var(--vibrant-indigo-border);
+    color: var(--vibrant-indigo-dark);
+}
+.deen-vibrant-pill.emerald {
+    background: var(--vibrant-emerald-light);
+    border: 1px solid var(--vibrant-emerald-border);
+    color: var(--vibrant-emerald-dark);
+}
+.deen-vibrant-pill.orange {
+    background: var(--vibrant-orange-light);
+    border: 1px solid var(--vibrant-orange-border);
+    color: var(--vibrant-orange);
+}
+.deen-vibrant-pill.amber {
+    background: var(--vibrant-amber-light);
+    border: 1px solid var(--vibrant-amber-border);
+    color: var(--vibrant-amber-dark);
+}
+.deen-vibrant-pill.purple {
+    background: var(--vibrant-purple-light);
+    border: 1px solid var(--vibrant-purple-border);
+    color: var(--vibrant-purple-dark);
+}
+.deen-vibrant-pill.rose {
+    background: var(--vibrant-rose-light);
+    border: 1px solid var(--vibrant-rose-border);
+    color: var(--vibrant-rose-dark);
+}
+
+/* Vibrant Gradient Text */
+.deen-gradient-text {
+    background: linear-gradient(135deg, #0f172a 20%, #2563eb 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.deen-gradient-orange {
+    background: linear-gradient(135deg, #fa541c 0%, #ff7a45 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.deen-gradient-indigo {
+    background: linear-gradient(135deg, #1d4ed8 0%, #6366f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.deen-gradient-emerald {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Delicate Pastel Badges & Pills */
+.deen-pastel-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: var(--deen-radius-full);
+    border: 1px solid transparent;
+    transition: all 0.25s ease;
+}
+.deen-pastel-pill.sage {
+    background: var(--pastel-sage);
+    border-color: var(--pastel-sage-border);
+    color: var(--pastel-sage-text);
+}
+.deen-pastel-pill.linen {
+    background: var(--pastel-linen);
+    border-color: var(--pastel-linen-border);
+    color: var(--pastel-linen-text);
+}
+.deen-pastel-pill.azure {
+    background: var(--pastel-azure);
+    border-color: var(--pastel-azure-border);
+    color: var(--pastel-azure-text);
+}
+.deen-pastel-pill.lavender {
+    background: var(--pastel-lavender);
+    border-color: var(--pastel-lavender-border);
+    color: var(--pastel-lavender-text);
+}
+.deen-pastel-pill.sand {
+    background: var(--pastel-sand);
+    border-color: var(--pastel-sand-border);
+    color: var(--pastel-sand-text);
+}
+
+/* Thin Structural Frame Lines */
+.deen-frame {
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-lg);
+    background: var(--bg-card);
+    box-shadow: var(--deen-shadow-subtle);
+}
+
+.deen-divider-hairline {
+    height: 1px;
+    background: var(--border-color);
+    margin: 3.5rem 0;
+    border: none;
+}
+
+/* Vast Negative Space Section Helper */
+.deen-section {
+    padding-top: var(--space-section-y);
+    padding-bottom: var(--space-section-y);
+}
+.deen-section-lg {
+    padding-top: var(--space-section-y-lg);
+    padding-bottom: var(--space-section-y-lg);
+}
+
+/* ==========================================================================
+   TOP PROMOTIONAL BAR & NAVBAR
+   ========================================================================== */
+
+.deen-promo-bar {
+    background: var(--pastel-linen);
+    color: var(--pastel-linen-text);
+    border-bottom: 1px solid var(--pastel-linen-border);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 7px 20px;
+    transition: all 0.3s ease;
+}
+
+/* Promo bar as a floating capsule on mobile — matches the thumb-zone dock */
+@media (max-width: 991.98px) {
+    .deen-promo-bar {
+        margin: calc(8px + env(safe-area-inset-top)) 14px 8px;
+        border: var(--deen-border-hairline);
+        border-bottom: var(--deen-border-hairline);
+        border-radius: var(--deen-radius-xl);
+        box-shadow: var(--deen-shadow-float);
+        background: color-mix(in srgb, var(--pastel-linen) 90%, transparent);
+        backdrop-filter: blur(24px) saturate(1.3);
+        -webkit-backdrop-filter: blur(24px) saturate(1.3);
+        padding: 10px 18px;
+        font-size: 0.7rem;
+        line-height: 1.5;
+    }
+    /* Keep rich promo content (perks, code pill) wrapping inside the capsule */
+    .deen-promo-bar .mx-auto,
+    .deen-promo-bar .d-flex.flex-wrap {
+        max-width: 100%;
+        min-width: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+.deen-promo-bar a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.deen-promo-bar a:hover {
+    opacity: 0.85;
+}
+
+.topbar-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+.topbar-icon-box {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.topbar-icon-box.bg-emerald-light {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+}
+
+.topbar-icon-box.bg-blue-light {
+    background: rgba(37, 99, 235, 0.15);
+    color: #2563eb;
+}
+
+.topbar-icon-box.bg-amber-light {
+    background: rgba(245, 158, 11, 0.18);
+    color: #d97706;
+}
+
+.topbar-icon-box.bg-orange-light {
+    background: rgba(250, 84, 28, 0.15);
+    color: #fa541c;
+}
+
+.topbar-icon-box.bg-purple-light {
+    background: rgba(147, 51, 234, 0.15);
+    color: #9333ea;
+}
+
+.topbar-icon-box.bg-slate-light {
+    background: rgba(15, 23, 42, 0.08);
+    color: var(--text-secondary);
+}
+
+.topbar-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid var(--deen-border-hairline);
+    border-radius: var(--deen-radius-full);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.topbar-chip:hover {
+    background: #ffffff;
+    border-color: var(--text-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.deen-promo-code-pill {
+    background: #ffffff;
+    border: 1px dashed #f59e0b;
+    color: #b45309;
+    font-family: var(--deen-font-display);
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: var(--deen-radius-sm);
+    font-size: 0.72rem;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.deen-promo-code-pill:hover {
+    background: #fef3c7;
+    border-color: #d97706;
+}
+
+.deen-navbar {
+    background: var(--bg-nav);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: var(--deen-border-hairline);
+    padding: 1.15rem 0;
+    transition: all 0.3s ease;
+    z-index: 1030;
+}
+
+.deen-brand-logo {
+    height: 38px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: middle;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.deen-brand-logo:hover {
+    transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+    .deen-brand-logo {
+        height: 32px;
+        max-width: 120px;
+    }
+}
+
+/* ==========================================================================
+   DEEN.im BRAND IDENTITY & HEADER ICON SYSTEM
+   ========================================================================== */
+
+.deen-brand-lockup {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 1px;
+    text-decoration: none;
+    line-height: 1;
+    user-select: none;
+}
+
+.deen-brand-text {
+    font-family: 'Outfit', 'Cinzel', 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.55rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
     color: #ffffff;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+    line-height: 1;
+}
+
+html[data-theme="light"] .deen-brand-text {
+    color: #0f172a;
+}
+
+.deen-domain-badge {
+    display: inline-flex;
+    align-items: baseline;
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--deen-brand-orange, #fa541c);
+    letter-spacing: -0.02em;
+    transition: all 0.25s ease;
+}
+
+.deen-domain-dot {
+    color: #f59e0b; /* Amber gold dot */
+    font-weight: 900;
+    margin-right: 0.5px;
+    animation: deenDotGlow 3s infinite ease-in-out;
+}
+
+.deen-domain-pill {
+    background: linear-gradient(135deg, rgba(250, 84, 28, 0.2) 0%, rgba(245, 158, 11, 0.25) 100%);
+    border: 1px solid rgba(250, 84, 28, 0.4);
+    color: #fa541c;
+    font-size: 0.70rem;
+    font-weight: 800;
+    padding: 1px 6px;
+    border-radius: 6px;
+    margin-left: 4px;
+    text-transform: lowercase;
+    letter-spacing: 0.04em;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+@keyframes deenDotGlow {
+    0%, 100% { opacity: 1; filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.8)); }
+    50% { opacity: 0.65; filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.4)); }
+}
+
+.navbar-brand:hover .deen-brand-text {
+    color: #fa541c;
+    transform: translateY(-0.5px);
+}
+
+.navbar-brand:hover .deen-domain-badge {
+    color: #f59e0b;
+}
+
+/* Header Icon Actions */
+.deen-header-icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    padding: 0;
+    position: relative;
+}
+
+html[data-theme="light"] .deen-header-icon-btn {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #0f172a;
+}
+
+.deen-header-icon-btn:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    transform: translateY(-1.5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+html[data-theme="light"] .deen-header-icon-btn:hover {
+    background: #edf2f7;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+
+.deen-header-icon-btn.active,
+.deen-header-icon-btn:focus-visible {
+    outline: none;
+    border-color: var(--deen-brand-orange, #fa541c);
+    box-shadow: 0 0 0 3px rgba(250, 84, 28, 0.25);
+}
+
+.deen-header-badge {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 9999px;
+    color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    border: 1.5px solid var(--bg-nav, #0f172a);
+}
+
+.deen-coins-pill {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.25) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: #fde68a;
+    font-weight: 700;
+    font-size: 0.78rem;
+    padding: 6px 12px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.deen-coins-pill:hover {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.28) 0%, rgba(217, 119, 6, 0.38) 100%);
+    border-color: #f59e0b;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+}
+
+.deen-account-pill {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    padding: 4px 12px 4px 6px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+html[data-theme="light"] .deen-account-pill {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #0f172a;
+}
+
+.deen-account-pill:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.deen-account-pill .avatar-circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--deen-brand-orange, #fa541c);
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deen-navbar .nav-link {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-secondary) !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: var(--deen-radius-full);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.deen-navbar .nav-link:hover,
+.deen-navbar .nav-link.active {
+    color: var(--text-primary) !important;
+    background: rgba(18, 22, 31, 0.04);
+}
+
+/* Theme Dropdown Switcher */
+.deen-theme-picker {
+    background: transparent;
+    border: var(--deen-border-subtle);
+    color: var(--text-primary);
+    border-radius: var(--deen-radius-full);
+    padding: 0.35rem 0.95rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+.deen-theme-picker:hover {
+    background: rgba(18, 22, 31, 0.05);
+    border-color: var(--text-primary);
+}
+
+/* VIP Loyalty Coin Pill */
+.deen-loyalty-badge {
+    background: var(--pastel-sand);
+    border: 1px solid var(--pastel-sand-border);
+    color: var(--pastel-sand-text);
+    font-weight: 700;
+    font-size: 0.76rem;
+    padding: 6px 14px;
+    border-radius: var(--deen-radius-full);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.deen-loyalty-badge:hover {
+    transform: translateY(-1px);
+    background: var(--pastel-linen);
+    box-shadow: var(--deen-shadow-subtle);
+}
+
+/* ==========================================================================
+   HERO EDITORIAL SHOWCASE
+   ========================================================================== */
+
+.deen-fashion-hero {
+    background: var(--hero-gradient);
+    border-bottom: var(--deen-border-hairline);
+    padding: 4rem 0 5.5rem;
     position: relative;
     overflow: hidden;
 }
 
-/* Denim Copper Double Stitching */
-.denim-copper-stitch {
-    border: 2px dashed rgba(245, 158, 11, 0.5) !important;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-
-/* Genuine Leather Patch Brand Badge */
-.deen-leather-patch {
-    background: linear-gradient(135deg, #78350f 0%, #92400e 50%, #451a03 100%);
-    color: #fef3c7;
-    border: 1px dashed #f59e0b;
-    font-weight: 800;
-    padding: 0.35rem 0.85rem;
-    border-radius: 6px;
-    letter-spacing: 0.08em;
+.deen-hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--pastel-azure);
+    border: 1px solid var(--pastel-azure-border);
+    color: var(--pastel-azure-text);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    padding: 6px 16px;
+    border-radius: var(--deen-radius-full);
+    margin-bottom: 1.5rem;
 }
 
-/* Indigo Denim Card Accent */
-.deen-denim-card {
-    background: #111c35;
-    border: 1px solid rgba(59, 130, 246, 0.25);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    border-radius: 16px;
+.deen-hero-heading {
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+}
+
+.deen-hero-desc {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 540px;
+    margin-bottom: 2.25rem;
+}
+
+.deen-hero-showcase-card {
+    background: var(--bg-card);
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-xl);
+    padding: 1.75rem;
+    box-shadow: var(--deen-shadow-card);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+.deen-hero-showcase-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--deen-shadow-hover);
+}
+
+/* ==========================================================================
+   VALUE PERKS SECTION (4 SOFT PASTEL CARDS)
+   ========================================================================== */
+
+.deen-perks-box {
+    margin-top: -2.5rem;
+    position: relative;
+    z-index: 10;
+    margin-bottom: 3.5rem;
+}
+
+.deen-perk-card {
+    border-radius: var(--deen-radius-lg);
+    padding: 1.75rem 1.5rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--deen-shadow-subtle);
 }
-.deen-denim-card:hover {
-    border-color: rgba(245, 158, 11, 0.55);
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 20px 40px rgba(11, 19, 43, 0.5), 0 0 20px rgba(245, 158, 11, 0.2);
-}
-
-h1, h2, h3, h4, h5, h6, .deen-brand-logo, .deen-hero-heading, .deen-retail-title {
-    font-family: var(--deen-font-heading);
+.deen-perk-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--deen-shadow-card);
 }
 
-/* Google Material Symbols & Material Design 3 System */
+.deen-perk-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--deen-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.deen-perk-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 2px;
+}
+
+.deen-perk-desc {
+    font-size: 0.8rem;
+    opacity: 0.85;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ==========================================================================
+   CATEGORY CHIPS & FILTERS
+   ========================================================================== */
+
+.deen-fashion-chip {
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    border: var(--deen-border-hairline);
+    padding: 0.55rem 1.35rem;
+    border-radius: var(--deen-radius-full);
+    font-size: 0.84rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.deen-fashion-chip:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+}
+
+.deen-fashion-chip.active {
+    background: var(--text-primary);
+    color: var(--bg-main) !important;
+    border-color: var(--text-primary);
+    box-shadow: var(--deen-shadow-subtle);
+}
+
+.deen-filter-trigger-btn {
+    background: var(--bg-surface);
+    border: var(--deen-border-hairline);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.84rem;
+    padding: 0.55rem 1.25rem;
+    border-radius: var(--deen-radius-full);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+.deen-filter-trigger-btn:hover {
+    border-color: var(--text-primary);
+}
+
+/* ==========================================================================
+   RETAIL PRODUCT CARDS (CLEAN & VIBRANT)
+   ========================================================================== */
+
+.deen-retail-card {
+    background: var(--bg-card);
+    border-radius: var(--deen-radius-lg);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--deen-shadow-subtle);
+    position: relative;
+}
+
+.deen-retail-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 35px -8px rgba(15, 23, 42, 0.10), 0 0 0 1px rgba(37, 99, 235, 0.2);
+    border-color: rgba(37, 99, 235, 0.3);
+}
+
+.deen-retail-img-box {
+    position: relative;
+    height: 290px;
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+    overflow: hidden;
+    border-bottom: 1px solid rgba(241, 245, 249, 1);
+}
+
+.deen-retail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.deen-retail-card:hover .deen-retail-img {
+    transform: scale(1.05);
+}
+
+.deen-discount-ribbon {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: linear-gradient(135deg, #fa541c 0%, #ff4d4f 100%);
+    color: #ffffff;
+    border: none;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 4px 10px;
+    border-radius: var(--deen-radius-full);
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(250, 84, 28, 0.35);
+}
+
+.deen-stock-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #047857;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--deen-radius-full);
+    z-index: 2;
+}
+
+.deen-wishlist-btn {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(8px);
+    color: #1e293b;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    z-index: 5;
+    transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+}
+.deen-wishlist-btn:hover, .deen-wishlist-btn.active {
+    background: #e11d48;
+    color: #ffffff;
+    border-color: #e11d48;
+    transform: scale(1.08);
+}
+
+.deen-retail-body {
+    padding: 1.5rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.deen-retail-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin-bottom: 0.45rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.deen-retail-card:hover .deen-retail-title {
+    color: var(--accent-color);
+}
+
+.deen-rating-stars {
+    color: #f59e0b;
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.deen-retail-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 1.25rem;
+}
+
+.deen-retail-price {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+    font-family: var(--deen-font-display);
+}
+
+.deen-retail-old-price {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+.deen-btn-card-action {
+    background: #ffffff;
+    border: 1px solid rgba(226, 232, 240, 1);
+    color: var(--text-primary);
+    border-radius: var(--deen-radius-full);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.65rem 1.25rem;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+.deen-btn-card-action:hover {
+    background: #0f172a;
+    color: #ffffff !important;
+    border-color: #0f172a;
+    box-shadow: 0 8px 16px -2px rgba(15, 23, 42, 0.2);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   BUTTON SYSTEM (CLEAN, VIBRANT & HIGH-CONVERTING)
+   ========================================================================== */
+
+.btn-deen-primary {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff !important;
+    border: 1px solid #0f172a;
+    border-radius: var(--deen-radius-full);
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 0.75rem 1.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 14px 0 rgba(15, 23, 42, 0.18);
+}
+.btn-deen-primary:hover {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px -2px rgba(15, 23, 42, 0.28);
+}
+
+.btn-deen-vibrant {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: #ffffff !important;
+    border: 1px solid #1d4ed8;
+    border-radius: var(--deen-radius-full);
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 0.75rem 1.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--deen-shadow-vibrant);
+}
+.btn-deen-vibrant:hover {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px -4px rgba(37, 99, 235, 0.4);
+    color: #ffffff !important;
+}
+
+.btn-deen-orange {
+    background: linear-gradient(135deg, #fa541c 0%, #ea580c 100%);
+    color: #ffffff !important;
+    border: 1px solid #ea580c;
+    border-radius: var(--deen-radius-full);
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 0.75rem 1.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: var(--deen-shadow-orange);
+}
+.btn-deen-orange:hover {
+    background: linear-gradient(135deg, #ff7a45 0%, #fa541c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px -4px rgba(250, 84, 28, 0.45);
+    color: #ffffff !important;
+}
+
+.btn-deen-outline {
+    background: #ffffff;
+    color: var(--text-primary) !important;
+    border: 1px solid rgba(226, 232, 240, 1);
+    border-radius: var(--deen-radius-full);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.75rem 1.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+.btn-deen-outline:hover {
+    background: #f8fafc;
+    border-color: var(--text-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--deen-shadow-subtle);
+}
+
+/* Social OAuth Buttons & Auth Modal Enhancements */
+.deen-social-btn-google {
+    background: #ffffff;
+    color: #1f2937 !important;
+    border: 1.5px solid #e2e8f0;
+    border-radius: var(--deen-radius-full);
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 0.65rem 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.deen-social-btn-google:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
+    color: #0f172a !important;
+}
+
+.deen-social-btn-fb {
+    background: linear-gradient(135deg, #1877f2 0%, #166fe5 100%);
+    color: #ffffff !important;
+    border: 1.5px solid #1877f2;
+    border-radius: var(--deen-radius-full);
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 0.65rem 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(24, 119, 242, 0.25);
+}
+.deen-social-btn-fb:hover {
+    background: linear-gradient(135deg, #166fe5 0%, #1465d2 100%);
+    border-color: #1465d2;
+    box-shadow: 0 6px 18px rgba(24, 119, 242, 0.35);
+    transform: translateY(-1px);
+    color: #ffffff !important;
+}
+
+.deen-auth-perks-box {
+    background: linear-gradient(135deg, rgba(250, 84, 28, 0.06) 0%, rgba(37, 99, 235, 0.06) 100%);
+    border: 1px dashed var(--deen-border-subtle);
+    border-radius: var(--deen-radius-md);
+    padding: 0.75rem 1rem;
+}
+
+html[data-theme="glass"] .deen-social-btn-google {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    color: #ffffff !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+html[data-theme="glass"] .deen-social-btn-google:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.45) !important;
+}
+
+/* ==========================================================================
+   FLASH SALE & PROMO BANNERS (VIBRANT ACCENTS)
+   ========================================================================== */
+
+.deen-flash-sale-banner {
+    background: linear-gradient(135deg, #fff7ed 0%, #fef3c7 100%);
+    border: 1px solid #fde68a;
+    color: #92400e;
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 14px 24px;
+    border-radius: var(--deen-radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 16px rgba(245, 158, 11, 0.12);
+}
+
+.deen-countdown-badge {
+    background: linear-gradient(135deg, #fa541c 0%, #ea580c 100%);
+    border: none;
+    color: #ffffff;
+    font-family: var(--deen-font-display);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    border-radius: var(--deen-radius-full);
+    box-shadow: 0 3px 10px rgba(250, 84, 28, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.deen-promo-showcase {
+    background: var(--pastel-sage);
+    border: 1px solid var(--pastel-sage-border);
+    border-radius: var(--deen-radius-xl);
+    padding: 4rem 3rem;
+    color: var(--pastel-sage-text);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   PRODUCT DETAIL PAGE EDITORIAL LAYOUT
+   ========================================================================== */
+
+.deen-product-gallery-frame {
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-xl);
+    background: #f8fafc;
+    overflow: hidden;
+    height: 480px;
+    position: relative;
+}
+
+.deen-size-swatch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    height: 48px;
+    padding: 0 14px;
+    border: var(--deen-border-subtle);
+    border-radius: var(--deen-radius-md);
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--text-primary);
+    background: var(--bg-surface);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.deen-size-swatch:hover, .deen-size-swatch.active {
+    border-color: var(--text-primary);
+    background: var(--text-primary);
+    color: var(--bg-main);
+}
+
+.deen-spec-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.deen-spec-table tr {
+    border-bottom: var(--deen-border-hairline);
+}
+.deen-spec-table td {
+    padding: 12px 0;
+    font-size: 0.9rem;
+}
+.deen-spec-table td:first-child {
+    color: var(--text-muted);
+    font-weight: 500;
+    width: 38%;
+}
+.deen-spec-table td:last-child {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   CHECKOUT & FORMS (CLEAN ARCHITECTURE)
+   ========================================================================== */
+
+.deen-checkout-summary-card {
+    background: var(--pastel-linen);
+    border: 1px solid var(--pastel-linen-border);
+    border-radius: var(--deen-radius-xl);
+    padding: 2.25rem;
+    color: var(--pastel-linen-text);
+}
+
+.deen-payment-card {
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-lg);
+    padding: 1.35rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: var(--bg-surface);
+}
+.deen-payment-card:hover, .deen-payment-card.active {
+    border-color: var(--text-primary);
+    background: var(--pastel-azure);
+    box-shadow: var(--deen-shadow-subtle);
+}
+
+.deen-input {
+    background: var(--bg-surface);
+    border: var(--deen-border-subtle);
+    border-radius: var(--deen-radius-md);
+    padding: 0.75rem 1.15rem;
+    font-size: 0.92rem;
+    color: var(--text-primary);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+}
+.deen-input:focus {
+    outline: none;
+    border-color: var(--text-primary);
+    box-shadow: 0 0 0 3px rgba(18, 22, 31, 0.08);
+}
+
+/* ==========================================================================
+   FOOTER (SPACIOUS & STRUCTURED)
+   ========================================================================== */
+
+.deen-footer {
+    background: var(--bg-surface);
+    border-top: var(--deen-border-hairline);
+    padding: 5rem 0 3.5rem;
+}
+
+.deen-footer h6 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+}
+
+.deen-footer-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: color 0.2s ease;
+}
+.deen-footer-link:hover {
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   SEARCH & INTERACTIVE MODALS
+   ========================================================================== */
+
+.deen-search-wrapper {
+    position: relative;
+}
+
+.deen-search-results-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 8px;
+    background: var(--bg-surface);
+    border: var(--deen-border-subtle);
+    border-radius: var(--deen-radius-lg);
+    box-shadow: var(--deen-shadow-float);
+    z-index: 1050;
+    overflow: hidden;
+    max-height: 420px;
+    overflow-y: auto;
+    display: none;
+}
+.deen-search-results-dropdown.show {
+    display: block;
+    animation: fadeInDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.deen-search-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 18px;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: var(--deen-border-hairline);
+    transition: background 0.2s ease;
+}
+.deen-search-item:last-child {
+    border-bottom: none;
+}
+.deen-search-item:hover {
+    background: rgba(18, 22, 31, 0.04);
+}
+
+.deen-search-thumb {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: var(--deen-radius-sm);
+    border: var(--deen-border-hairline);
+    background: #f1f5f9;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   MOBILE HEADER POLISH (TOGGLER & BRAND ALIGNMENT)
+   ========================================================================== */
+
+@media (max-width: 991.98px) {
+    .deen-navbar .navbar-toggler {
+        width: 38px;
+        height: 38px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .deen-navbar .navbar-brand img {
+        height: 32px;
+    }
+}
+
+/* ==========================================================================
+   MOBILE-FIRST THUMB-ZONE DOCK (REFINED CAPSULE)
+   ========================================================================== */
+
+.deen-mobile-bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    left: 14px;
+    right: 14px;
+    margin: 0 auto;
+    max-width: 500px;
+    background: var(--bg-nav);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-xl);
+    box-shadow: var(--deen-shadow-float);
+    z-index: 1040;
+    padding: 14px 4px 8px;
+}
+
+@media (max-width: 991.98px) {
+    .deen-mobile-bottom-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2px;
+    }
+    body {
+        padding-bottom: calc(96px + env(safe-area-inset-bottom)) !important;
+    }
+}
+
+.deen-mobile-nav-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 0;
+    min-width: 0;
+    gap: 3px;
+    padding: 6px 2px 4px;
+    border-radius: var(--deen-radius-md);
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    text-align: center;
+    transition: color 0.2s ease;
+}
+.deen-mobile-nav-item .nav-icon {
+    font-size: 21px;
+    line-height: 1;
+}
+.deen-mobile-nav-item:hover, .deen-mobile-nav-item.active {
+    color: var(--text-primary);
+}
+
+/* Center raised unified Bag & Shopping Cart action button */
+.deen-mobile-nav-fab {
+    flex: 0 0 64px;
+    margin-top: -28px;
+    padding: 0 2px 2px;
+}
+.deen-mobile-nav-fab .fab-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--text-primary) 0%, #1e293b 100%);
+    color: #ffffff;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.28), 0 0 0 3.5px var(--bg-surface);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+.deen-mobile-nav-fab:hover .fab-circle,
+.deen-mobile-nav-fab:active .fab-circle {
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.35), 0 0 0 3.5px var(--bg-surface);
+}
+
+/* Cart / wishlist count badges on the dock */
+.deen-mobile-nav-badge {
+    position: absolute;
+    top: -4px;
+    right: 50%;
+    transform: translateX(18px);
+    min-width: 17px;
+    height: 17px;
+    padding: 0 4px;
+    border-radius: 50rem;
+    background: var(--deen-accent, #fa4a00);
+    color: #ffffff;
+    font-size: 0.58rem;
+    font-weight: 700;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--bg-nav, #ffffff);
+}
+.deen-mobile-nav-badge.bg-danger {
+    background: #e11d48;
+}
+.deen-mobile-nav-fab .deen-mobile-nav-badge {
+    top: -2px;
+    right: 6px;
+    transform: none;
+}
+
+/* ==========================================================================
+   FLOATING TELEGRAM LIVE-CHAT WIDGET
+   ========================================================================== */
+
+.deen-telegram-widget-wrapper {
+    position: fixed;
+    bottom: 96px;
+    right: 24px;
+    z-index: 1045;
+}
+.deen-telegram-trigger {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0088cc, #006699);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    border: none;
+    box-shadow: var(--deen-shadow-float);
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.25s ease;
+}
+.deen-telegram-trigger:hover {
+    transform: scale(1.08);
+}
+.deen-telegram-pulse {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 13px;
+    height: 13px;
+    background: #10b981;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+}
+.deen-telegram-popover {
+    position: absolute;
+    bottom: 64px;
+    right: 0;
+    width: 300px;
+    max-width: calc(100vw - 32px);
+    background: var(--bg-surface);
+    border: var(--deen-border-subtle);
+    border-radius: var(--deen-radius-lg);
+    box-shadow: var(--deen-shadow-float);
+    overflow: hidden;
+    display: none;
+}
+.deen-telegram-popover.show {
+    display: block;
+}
+.deen-telegram-header {
+    background: linear-gradient(135deg, #0088cc, #006699);
+    color: #ffffff;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.deen-telegram-body {
+    padding: 16px;
+}
+.deen-telegram-chat-bubble {
+    background: var(--bg-card);
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-md);
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+.deen-chat-faq-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    background: var(--bg-card);
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-md);
+    padding: 10px 12px;
+    font-size: 0.82rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+.deen-chat-faq-btn:hover {
+    border-color: var(--text-primary);
+    background: var(--pastel-azure);
+}
+.deen-telegram-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #0088cc, #006699);
+    color: #ffffff;
+    border-radius: var(--deen-radius-full);
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+@media (max-width: 991.98px) {
+    .deen-telegram-widget-wrapper {
+        bottom: calc(104px + env(safe-area-inset-bottom));
+        right: 16px;
+    }
+}
+
+/* Material Symbols Integration */
 .material-symbols-outlined {
     font-family: 'Material Symbols Outlined';
     font-weight: normal;
@@ -212,760 +2201,2256 @@ h1, h2, h3, h4, h5, h6, .deen-brand-logo, .deen-hero-heading, .deen-retail-title
     -webkit-font-smoothing: antialiased;
 }
 
-/* Material Design 3 Chips */
-.m3-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #e2e8f0;
-    padding: 6px 14px;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
-}
-.m3-chip:hover {
-    background: rgba(245, 158, 11, 0.2);
-    border-color: #f59e0b;
-    color: #ffffff;
-}
+/* No scrollbar utility */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Material Floating Action Button (FAB) */
-.m3-fab {
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-    color: #ffffff;
+/* ==========================================================================
+   HIGH-CONVERTING UX MECHANIC 1: STICKY MICRO-CARTS
+   ========================================================================== */
+
+.deen-micro-cart-pill {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1045;
+    background: var(--bg-surface);
+    border: var(--deen-border-subtle);
+    border-radius: var(--deen-radius-full);
+    box-shadow: var(--deen-shadow-float);
+    padding: 10px 18px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
-    transition: all 0.3s ease;
-    border: none;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
-.m3-fab:hover {
-    transform: scale(1.08) rotate(-3deg);
-    box-shadow: 0 10px 25px rgba(245, 158, 11, 0.5);
-    color: #ffffff;
+.deen-micro-cart-pill:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 16px 36px rgba(18, 22, 31, 0.14);
 }
-
-
-/* Retail Fashion Top Announcement Bar */
-.deen-promo-bar {
-    background: linear-gradient(90deg, #b45309 0%, #1e2548 40%, #0b132b 70%, #d97706 100%);
-    background-size: 200% 200%;
-    animation: gradientShift 6s ease infinite;
-    color: #ffffff;
-    font-size: 0.8rem;
-    font-weight: 700;
-    padding: 7px 0;
-    text-align: center;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    border-bottom: 1px dashed rgba(245, 158, 11, 0.4);
+@media (max-width: 991.98px) {
+    /* Merge Bag & Shopping Cart in Mobile View: Hide redundant floating pill */
+    .deen-micro-cart-pill {
+        display: none !important;
+    }
 }
 
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Retail Navbar */
-.deen-navbar {
-    background: rgba(11, 19, 43, 0.96);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px dashed rgba(245, 158, 11, 0.35);
-    padding: 0.9rem 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
-}
-
-
-.deen-brand-logo {
-    font-size: 1.45rem;
-    font-weight: 900;
-    letter-spacing: -0.03em;
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.deen-brand-badge {
-    background: linear-gradient(135deg, #e11d48, #7c3aed);
-    color: #ffffff;
-    font-size: 0.68rem;
-    font-weight: 800;
-    padding: 0.25rem 0.65rem;
-    border-radius: 50rem;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    box-shadow: 0 2px 8px rgba(225, 29, 72, 0.4);
-}
-
-/* Hero Fashion Showcase Banner */
-.deen-fashion-hero {
-    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
-    color: #ffffff;
-    position: relative;
-    overflow: hidden;
-}
-
-.deen-fashion-hero::after {
-    content: '';
-    position: absolute;
-    top: -40%;
-    right: -10%;
-    width: 650px;
-    height: 650px;
-    background: radial-gradient(circle, rgba(225, 29, 72, 0.25) 0%, rgba(15, 23, 42, 0) 70%);
-    pointer-events: none;
-}
-
-.deen-hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(225, 29, 72, 0.15);
-    border: 1px solid rgba(225, 29, 72, 0.35);
-    color: #f43f5e;
-    font-size: 0.85rem;
-    font-weight: 800;
-    padding: 7px 18px;
-    border-radius: 50rem;
-    margin-bottom: 1.25rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.15);
-}
-
-.deen-hero-heading {
-    font-size: 3.35rem;
-    font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: -0.035em;
-    color: #ffffff;
-}
-
-.deen-hero-desc {
-    color: #cbd5e1;
-    font-size: 1.15rem;
-    max-width: 580px;
-}
-
-/* Retail Perks Section */
-.deen-perks-box {
-    background: #ffffff;
-    border-radius: 24px;
-    padding: 1.85rem 2.25rem;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.1);
-    margin-top: -3.5rem;
-    position: relative;
-    z-index: 10;
-}
-
-.deen-perk-item {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    transition: transform 0.2s ease;
-}
-
-.deen-perk-item:hover {
-    transform: translateY(-2px);
-}
-
-.deen-perk-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 16px;
-    background: rgba(37, 99, 235, 0.1);
-    color: var(--deen-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.35rem;
-    flex-shrink: 0;
-    box-shadow: inset 0 2px 4px rgba(37, 99, 235, 0.15);
-}
-
-.deen-perk-title {
-    font-size: 0.95rem;
-    font-weight: 800;
-    color: #0f172a;
-    margin-bottom: 2px;
-}
-
-.deen-perk-desc {
-    font-size: 0.8rem;
-    color: #64748b;
-    margin: 0;
-}
-
-/* Category Filter Chips */
-.deen-fashion-chip {
-    background: #ffffff;
-    color: #334155;
-    border: 1px solid #cbd5e1;
-    padding: 0.6rem 1.45rem;
-    border-radius: 50rem;
-    font-size: 0.875rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.25s ease;
-    white-space: nowrap;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-}
-
-.deen-fashion-chip:hover, .deen-fashion-chip.active {
-    background: #0f172a;
-    color: #ffffff;
-    border-color: #0f172a;
-    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.25);
-    transform: translateY(-2px);
-}
-
-/* Retail Fashion Product Cards */
-.deen-retail-card {
-    background: #ffffff;
-    border-radius: 22px;
-    border: 1px solid #e2e8f0;
-    overflow: hidden;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    height: 100%;
+.deen-micro-cart-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 440px;
+    height: 100vh;
+    background: var(--bg-surface);
+    border-left: var(--deen-border-hairline);
+    box-shadow: -12px 0 40px rgba(18, 22, 31, 0.18);
+    z-index: 1060;
     display: flex;
     flex-direction: column;
-    box-shadow: var(--deen-shadow);
-    position: relative;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.deen-micro-cart-drawer.open {
+    transform: translateX(0);
 }
 
-.deen-retail-card:hover {
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: var(--deen-shadow-hover);
-    border-color: #cbd5e1;
+.deen-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(18, 22, 31, 0.45);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1055;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.deen-drawer-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-.deen-retail-img-box {
+.deen-micro-cart-header {
+    padding: 1.5rem 1.75rem;
+    border-bottom: var(--deen-border-hairline);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-surface);
+}
+
+.deen-micro-cart-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1.5rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.deen-micro-cart-footer {
+    padding: 1.5rem 1.75rem;
+    border-top: var(--deen-border-hairline);
+    background: var(--bg-surface);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.deen-shipping-progress-box {
+    background: var(--pastel-linen);
+    border: 1px solid var(--pastel-linen-border);
+    border-radius: var(--deen-radius-md);
+    padding: 12px 14px;
+}
+.deen-shipping-progress-bar {
+    height: 6px;
+    border-radius: var(--deen-radius-full);
+    background: rgba(18, 22, 31, 0.08);
+    overflow: hidden;
+    margin-top: 8px;
+}
+.deen-shipping-progress-fill {
+    height: 100%;
+    background: var(--pastel-sage-text);
+    border-radius: var(--deen-radius-full);
+    transition: width 0.4s ease;
+}
+
+.deen-micro-cart-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px;
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-md);
+    background: var(--bg-card);
+    transition: border-color 0.2s ease;
+}
+.deen-micro-cart-item:hover {
+    border-color: var(--deen-border-subtle);
+}
+
+.deen-micro-cart-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: var(--deen-radius-sm);
+    border: var(--deen-border-hairline);
+    flex-shrink: 0;
+}
+
+.deen-stepper-btn {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--deen-border-hairline);
+    background: var(--bg-surface);
+    border-radius: var(--deen-radius-sm);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.deen-stepper-btn:hover {
+    background: rgba(18, 22, 31, 0.06);
+    border-color: var(--deen-border-strong);
+}
+
+/* ==========================================================================
+   HIGH-CONVERTING UX MECHANIC 2: ONE-TAP STICKY FOOTERS
+   ========================================================================== */
+
+.deen-sticky-buy-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    background: var(--bg-surface);
+    border-top: var(--deen-border-hairline);
+    box-shadow: 0 -8px 24px rgba(18, 22, 31, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 12px 16px;
+    transform: translateY(110%);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+.deen-sticky-buy-footer.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+@media (max-width: 991.98px) {
+    .deen-sticky-buy-footer {
+        bottom: calc(72px + env(safe-area-inset-bottom));
+        border-radius: var(--deen-radius-xl);
+        margin: 0 12px;
+        box-shadow: var(--deen-shadow-float);
+        border: var(--deen-border-subtle);
+    }
+}
+
+.deen-sticky-thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--deen-radius-sm);
+    object-fit: cover;
+    border: var(--deen-border-hairline);
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   HIGH-CONVERTING UX MECHANIC 3: PROGRESSIVE DISCLOSURES
+   ========================================================================== */
+
+.deen-disclosure-card {
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-lg);
+    background: var(--bg-surface);
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 1rem;
+}
+.deen-disclosure-card:hover {
+    border-color: var(--deen-border-subtle);
+}
+
+.deen-disclosure-header {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--deen-font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text-primary);
+    transition: background 0.2s ease;
+}
+.deen-disclosure-header:hover {
+    background: rgba(18, 22, 31, 0.02);
+}
+
+.deen-disclosure-chevron {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-main);
+    border: var(--deen-border-hairline);
+    color: var(--text-secondary);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s ease;
+}
+.deen-disclosure-card.expanded .deen-disclosure-chevron {
+    transform: rotate(180deg);
+    background: var(--pastel-azure);
+    color: var(--pastel-azure-text);
+}
+
+.deen-disclosure-body {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    border-top: var(--deen-border-hairline);
+    display: none;
+}
+.deen-disclosure-card.expanded .deen-disclosure-body {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.deen-spec-sheet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+.deen-spec-sheet-item {
+    padding: 12px 14px;
+    background: var(--bg-main);
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-md);
+}
+.deen-spec-sheet-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+.deen-spec-sheet-val {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   HIGH-CONVERTING UX MECHANIC 4: DYNAMIC VIDEO CARDS
+   ========================================================================== */
+
+.deen-card-video-box {
     position: relative;
-    height: 270px;
-    background: #f1f5f9;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
-.deen-retail-img {
+.deen-card-video {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 2;
 }
 
-.deen-retail-card:hover .deen-retail-img {
-    transform: scale(1.08);
+.deen-retail-card:hover .deen-card-video,
+.deen-retail-card.is-video-playing .deen-card-video {
+    opacity: 1;
 }
 
+.deen-video-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: rgba(18, 22, 31, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: var(--deen-radius-full);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+.deen-retail-card:hover .deen-video-badge {
+    background: var(--pastel-azure);
+    color: var(--pastel-azure-text);
+    border: 1px solid var(--pastel-azure-border);
+}
+
+/* ==========================================================================
+   MEN'S APPAREL UX 1: 2-STEP SIZING CALCULATOR & ESTIMATOR
+   ========================================================================== */
+
+.deen-calc-step-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+.deen-calc-step-pill {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: var(--deen-radius-full);
+}
+
+.deen-slider-container {
+    background: var(--bg-main);
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-lg);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+}
+.deen-slider-val {
+    font-family: var(--deen-font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.deen-range-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: var(--deen-radius-full);
+    background: rgba(18, 22, 31, 0.12);
+    outline: none;
+    margin-top: 10px;
+}
+.deen-range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--text-primary);
+    cursor: pointer;
+    box-shadow: var(--deen-shadow-subtle);
+    border: 2px solid #ffffff;
+    transition: transform 0.15s ease;
+}
+.deen-range-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+.deen-fit-btn {
+    border: var(--deen-border-hairline);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    border-radius: var(--deen-radius-md);
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+.deen-fit-btn.active, .deen-fit-btn:hover {
+    border-color: var(--text-primary);
+    background: var(--text-primary);
+    color: var(--bg-main);
+}
+
+.deen-calc-result-box {
+    background: var(--pastel-sage);
+    border: 1px solid var(--pastel-sage-border);
+    border-radius: var(--deen-radius-xl);
+    padding: 1.75rem;
+    text-align: center;
+}
+
+/* ==========================================================================
+   MEN'S APPAREL UX 2: SHOP-THE-LOOK HOTSPOTS & OUTFIT BUNDLING
+   ========================================================================== */
+
+.deen-look-canvas {
+    position: relative;
+    border-radius: var(--deen-radius-xl);
+    overflow: hidden;
+    box-shadow: var(--deen-shadow-card);
+    border: var(--deen-border-hairline);
+}
+
+.deen-hotspot-pin {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--text-primary);
+    color: var(--bg-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 14px rgba(18, 22, 31, 0.35);
+    transition: transform 0.2s ease;
+}
+.deen-hotspot-pin:hover {
+    transform: translate(-50%, -50%) scale(1.15);
+}
+
+.deen-hotspot-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    animation: hotspotPulse 2s infinite cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+@keyframes hotspotPulse {
+    0% { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(1.8); opacity: 0; }
+}
+
+.deen-hotspot-popover {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    width: 260px;
+    background: var(--bg-surface);
+    border: var(--deen-border-subtle);
+    border-radius: var(--deen-radius-lg);
+    box-shadow: var(--deen-shadow-float);
+    padding: 12px 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 20;
+}
+.deen-hotspot-pin:hover .deen-hotspot-popover,
+.deen-hotspot-pin.active .deen-hotspot-popover {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.deen-look-bundle-bar {
+    background: var(--bg-surface);
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-lg);
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--deen-shadow-subtle);
+}
+
+/* ==========================================================================
+   MEN'S APPAREL UX 3: INSTANT FABRIC & WASH SWATCHES
+   ========================================================================== */
+
+.deen-card-swatches {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.deen-swatch-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 0 1px rgba(18, 22, 31, 0.18);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.deen-swatch-dot:hover, .deen-swatch-dot.active {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 2px var(--text-primary);
+}
+
+/* Swatch Color Variables */
+.swatch-indigo { background: #1b2a47; }
+.swatch-vintage { background: #4a6c8e; }
+.swatch-black { background: #262729; }
+.swatch-ecru { background: #e3dac9; }
+.swatch-khaki { background: #8a7a5d; }
+
+/* ==========================================================================
+   MEN'S APPAREL UX 4: QUICK-ADD FLYOUT DRAWER
+   ========================================================================== */
+
+.deen-quick-add-flyout {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--bg-surface);
+    border-top: var(--deen-border-subtle);
+    border-left: var(--deen-border-subtle);
+    border-right: var(--deen-border-subtle);
+    border-top-left-radius: var(--deen-radius-xl);
+    border-top-right-radius: var(--deen-radius-xl);
+    box-shadow: 0 -12px 36px rgba(18, 22, 31, 0.2);
+    padding: 1.5rem;
+    z-index: 1058;
+    transform: translateY(110%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.deen-quick-add-flyout.open {
+    transform: translateY(0);
+}
+
+.deen-quick-add-btn {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--deen-radius-full);
+    border: var(--deen-border-hairline);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+}
+.deen-quick-add-btn:hover {
+    background: var(--text-primary);
+    color: var(--bg-main);
+}
+
+/* ==========================================================================
+   MOBILE POLISH (OVERFLOW & CARD ACTION FIT)
+   ========================================================================== */
+
+/* Tighten g-5 gutters on small screens so negative row margins never overflow */
+@media (max-width: 575.98px) {
+    .row.g-5 {
+        --bs-gutter-x: 1.5rem;
+    }
+}
+
+/* Card action buttons stack instead of overflowing the 2-col grid on phones */
+@media (max-width: 767.98px) {
+    .deen-retail-body .d-flex.gap-2 {
+        flex-wrap: wrap;
+        min-width: 0;
+    }
+    .deen-retail-body .d-flex.gap-2 .btn-deen-primary {
+        flex: 1 1 100%;
+        padding: 0.6rem 1rem;
+    }
+    .deen-retail-body .d-flex.gap-2 .deen-quick-add-btn {
+        flex: 1 1 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 8px 10px;
+    }
+}
+
+/* ==========================================================================
+   STICKY SCROLL-UP SEARCH BAR (MOBILE)
+   ========================================================================== */
+
+.deen-scroll-search {
+    display: none;
+}
+
+@media (max-width: 991.98px) {
+    .deen-scroll-search {
+        position: fixed;
+        top: 92px;
+        left: 14px;
+        right: 14px;
+        z-index: 1032;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 16px;
+        background: var(--bg-nav);
+        backdrop-filter: blur(24px) saturate(1.5);
+        -webkit-backdrop-filter: blur(24px) saturate(1.5);
+        border: var(--deen-border-hairline);
+        border-radius: var(--deen-radius-full);
+        box-shadow: var(--deen-shadow-float);
+        color: var(--text-muted);
+        font-size: 0.82rem;
+        font-weight: 500;
+        text-align: left;
+        cursor: pointer;
+        transform: translateY(-170%);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .deen-scroll-search .material-symbols-outlined {
+        font-size: 20px;
+    }
+    .deen-scroll-search .deen-scroll-search-label {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .deen-scroll-search.visible {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+}
+
+/* Very narrow screens: collapse into a compact icon-only circle */
+@media (max-width: 359.98px) {
+    .deen-scroll-search {
+        left: auto;
+        right: 14px;
+        width: 48px;
+        height: 48px;
+        padding: 0;
+        justify-content: center;
+        text-align: center;
+        border-radius: 50%;
+    }
+    .deen-scroll-search .deen-scroll-search-label,
+    .deen-scroll-search .material-symbols-outlined:last-child {
+        display: none;
+    }
+    .deen-scroll-search .material-symbols-outlined {
+        font-size: 22px;
+    }
+    /* Let footer payment pills wrap instead of overflowing */
+    footer .d-flex.align-items-center.gap-3 {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* Hide-on-scroll navbar (mobile) — more reading room while scrolling down */
+@media (max-width: 991.98px) {
+    .deen-navbar {
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .deen-navbar.deen-navbar-hidden {
+        transform: translateY(-100%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .deen-scroll-search,
+    .deen-navbar {
+        transition: none;
+    }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: FOCUS-VISIBLE STATES & KEYBOARD NAVIGATION
+   ========================================================================== */
+
+/* Global focus-visible ring for all interactive elements */
+*:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 2px;
+}
+
+/* Remove default outline for mouse users */
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* --- Buttons --- */
+button:focus-visible,
+.btn:focus-visible,
+.btn-deen-primary:focus-visible,
+.btn-deen-outline:focus-visible,
+.btn-deen-vibrant:focus-visible,
+.btn-deen-orange:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--accent-glow, rgba(250, 84, 28, 0.2));
+}
+
+/* --- Links --- */
+a:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* --- Form Inputs --- */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 1px;
+    box-shadow: 0 0 0 3px var(--accent-glow, rgba(250, 84, 28, 0.15));
+}
+
+/* --- Swatch Dots (color/size selectors) --- */
+.deen-swatch-dot:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 3px;
+    transform: scale(1.2);
+}
+
+/* --- Size Swatches --- */
+.deen-size-swatch:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--accent-glow, rgba(250, 84, 28, 0.2));
+}
+
+/* --- Wishlist Heart Button --- */
+.deen-wishlist-btn:focus-visible {
+    outline: 2px solid #f43f5e;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.2);
+}
+
+/* --- Hotspot Pins --- */
+.deen-hotspot-pin:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 3px;
+    transform: scale(1.15);
+}
+
+/* --- Disclosure / Accordion Headers --- */
+.deen-disclosure-header:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: -2px;
+    border-radius: var(--deen-radius-md);
+}
+
+/* --- Payment Cards --- */
+.deen-payment-card:focus-within {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--accent-glow, rgba(250, 84, 28, 0.15));
+}
+
+/* --- Fit Preference Buttons --- */
+.deen-fit-btn:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 2px;
+}
+
+/* --- Range Sliders --- */
+.deen-range-slider:focus-visible {
+    outline: none;
+}
+.deen-range-slider:focus-visible::-webkit-slider-thumb {
+    box-shadow: 0 0 0 4px var(--accent-glow, rgba(250, 84, 28, 0.3));
+}
+.deen-range-slider:focus-visible::-moz-range-thumb {
+    box-shadow: 0 0 0 4px var(--accent-glow, rgba(250, 84, 28, 0.3));
+}
+
+/* --- Theme Picker --- */
+.deen-theme-picker:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 2px;
+}
+
+/* --- Navigation Links --- */
+.deen-navbar .nav-link:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: -2px;
+    border-radius: var(--deen-radius-full);
+}
+
+/* --- Mobile Bottom Nav --- */
+.deen-mobile-nav-item:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: -2px;
+    border-radius: var(--deen-radius-md);
+}
+
+/* --- Dropdown Items --- */
+.dropdown-item:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: -2px;
+    background-color: rgba(250, 84, 28, 0.08);
+}
+
+/* --- Category Chips --- */
+.deen-fashion-chip:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 2px;
+}
+
+/* --- Filter Trigger --- */
+.deen-filter-trigger-btn:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 2px;
+}
+
+/* --- Quick Add Button --- */
+.deen-quick-add-btn:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 2px;
+}
+
+/* --- Card Action Button --- */
+.deen-btn-card-action:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 2px;
+}
+
+/* --- Micro Cart --- */
+.deen-micro-cart-pill:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 2px;
+}
+.deen-stepper-btn:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 2px;
+}
+
+/* --- Telegram Trigger --- */
+.deen-telegram-trigger:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+}
+
+/* --- Chat FAQ Buttons --- */
+.deen-chat-faq-btn:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 2px;
+}
+
+/* --- Search Items --- */
+.deen-search-item:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: -2px;
+    background-color: var(--pastel-linen);
+}
+
+/* --- Mobile Search Chips --- */
+.m3-chip:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+/* --- Toast Close Button --- */
+.deen-toast .btn-close:focus-visible {
+    outline: 2px solid var(--accent-color, #fa541c);
+    outline-offset: 2px;
+}
+
+/* --- Skip to Main Content Link (for screen readers) --- */
+.deen-skip-link {
+    position: absolute;
+    top: -100px;
+    left: 16px;
+    background: var(--text-primary);
+    color: var(--bg-main);
+    padding: 12px 24px;
+    border-radius: var(--deen-radius-md);
+    font-weight: 700;
+    font-size: 0.92rem;
+    z-index: 9999;
+    transition: top 0.2s ease;
+    text-decoration: none;
+}
+.deen-skip-link:focus {
+    top: 16px;
+}
+
+/* --- Reduced Motion: disable animations for focus rings --- */
+@media (prefers-reduced-motion: reduce) {
+    *:focus-visible {
+        transition: none;
+    }
+}
+
+/* --- High Contrast Mode Support --- */
+@media (forced-colors: active) {
+    *:focus-visible {
+        outline: 2px solid Highlight;
+    }
+    .deen-wishlist-btn:focus-visible {
+        outline-color: Highlight;
+    }
+    .deen-hotspot-pin:focus-visible {
+        outline-color: Highlight;
+    }
+}
+
+/* ==========================================================================
+   DESIGN SYSTEM UTILITY CLASSES
+   Extracted from inline styles across Blade templates.
+   Use these instead of style="..." for consistency & maintainability.
+   ========================================================================== */
+
+/* --- Font Size Utilities (caption / meta / label scale) --- */
+.deen-fs-68 { font-size: 0.68rem; }
+.deen-fs-70 { font-size: 0.70rem; }
+.deen-fs-72 { font-size: 0.72rem; }
+.deen-fs-74 { font-size: 0.74rem; }
+.deen-fs-76 { font-size: 0.76rem; }
+.deen-fs-82 { font-size: 0.82rem; }
+.deen-fs-8 { font-size: 8px; }
+.deen-fs-11 { font-size: 11px; }
+.deen-fs-13 { font-size: 13px; }
+
+/* --- Background Surface Utilities --- */
+.deen-bg-surface { background-color: var(--deen-bg-surface); }
+.deen-bg-canvas { background-color: var(--deen-bg-canvas); }
+
+/* --- Border Color Utilities --- */
+.deen-bc-hairline { border-color: var(--deen-border-hairline) !important; }
+.deen-bc-subtle { border-color: var(--deen-border-subtle) !important; }
+.deen-bc-surface {
+    background-color: var(--deen-bg-surface);
+    border-color: var(--deen-border-hairline) !important;
+}
+
+/* --- Avatar / Icon Circle Sizing --- */
+.deen-avatar-xs { width: 24px; height: 24px; }
+.deen-avatar-sm { width: 32px; height: 32px; }
+.deen-avatar-md { width: 36px; height: 36px; }
+.deen-avatar-lg { width: 38px; height: 38px; }
+.deen-avatar-xl { width: 44px; height: 44px; }
+.deen-avatar-2xl { width: 48px; height: 48px; }
+.deen-avatar-3xl { width: 50px; height: 50px; }
+.deen-avatar-hero { width: 72px; height: 72px; }
+.deen-avatar-cover { object-fit: cover; }
+.deen-avatar-circle { border-radius: 50%; }
+
+/* --- Max-Width Utilities --- */
+.deen-max-90 { max-width: 90px; }
+.deen-max-160 { max-width: 160px; }
+.deen-max-170 { max-width: 170px; }
+.deen-max-220 { max-width: 220px; }
+.deen-max-300 { max-width: 300px; }
+
+/* --- Line-Height Utilities --- */
+.deen-lh-tight { line-height: 1.7; }
+.deen-lh-relaxed { line-height: 1.8; }
+
+/* --- Letter-Spacing Utilities --- */
+.deen-ls-wide { letter-spacing: 0.05em; }
+
+/* --- Height Utilities --- */
+.deen-h-lookbook { height: 280px; }
+.deen-h-track { height: 4px; }
+
+/* --- Step Indicator (Order Tracking Stepper) --- */
+.deen-step-active {
+    width: 44px;
+    height: 44px;
+    background: #2563eb;
+    box-shadow: 0 0 16px rgba(37, 99, 235, 0.4);
+}
+.deen-step-done {
+    width: 44px;
+    height: 44px;
+    background: #10b981;
+}
+.deen-step-pending {
+    width: 44px;
+    height: 44px;
+}
+
+/* --- Thumbnail Image Sizing --- */
+.deen-thumb-sm { width: 50px; height: 50px; object-fit: cover; }
+.deen-thumb-md { width: 56px; height: 56px; object-fit: cover; }
+.deen-thumb-lg { width: 76px; height: 76px; object-fit: cover; }
+
+/* --- Promo / Flash Banner --- */
+.deen-flash-sale-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 1.25rem;
+    border-radius: var(--deen-radius-lg);
+    background: var(--pastel-sand);
+    border: 1px solid var(--pastel-sand-border);
+    color: var(--pastel-sand-text);
+    font-size: 0.88rem;
+    font-weight: 500;
+}
+
+/* --- Step Progress Bar Track --- */
+.deen-step-track {
+    height: 4px;
+    background: #e2e8f0;
+    z-index: 1;
+}
+.deen-step-track-fill {
+    height: 100%;
+    width: 60%;
+    background: linear-gradient(90deg, #10b981 0%, #2563eb 100%);
+}
+
+/* --- Profile Hero Banner --- */
+.deen-profile-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff;
+}
+.deen-profile-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fa541c 0%, #ea580c 100%);
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-family: var(--deen-font-display);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+/* --- Promo Showcase Section --- */
+.deen-promo-showcase {
+    background: var(--pastel-sage);
+    border: 1px solid var(--pastel-sage-border);
+    border-radius: var(--deen-radius-xl);
+    padding: 3rem 3.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- Toast Notification --- */
+.deen-toast {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+    z-index: 1050;
+    max-width: 380px;
+    background: var(--deen-bg-surface);
+    border-color: var(--deen-border-subtle) !important;
+}
+
+/* --- Section Padding with Canvas Background --- */
+.deen-section-py-lg {
+    padding-top: var(--space-section-y-lg);
+    padding-bottom: var(--space-section-y-lg);
+}
+
+/* --- Input Styling --- */
+.deen-input {
+    border-color: var(--deen-border-hairline) !important;
+    border-radius: var(--deen-radius-md);
+    font-size: 0.92rem;
+    padding: 0.7rem 1rem;
+}
+.deen-input:focus {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* --- Checkout Step Indicator --- */
+.deen-step-item {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    background: #e2e8f0;
+    color: #64748b;
+    transition: all 0.2s ease;
+}
+.deen-step-item.completed {
+    background: #10b981;
+    color: #ffffff;
+}
+.deen-step-item.active {
+    background: var(--accent-color);
+    color: #ffffff;
+    box-shadow: 0 0 0 4px var(--accent-glow);
+}
+
+/* --- Payment Method Card --- */
+.deen-payment-card {
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-md);
+    background: var(--bg-card);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.deen-payment-card:hover {
+    border-color: var(--text-primary);
+}
+.deen-payment-card.active {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+.deen-payment-card .check-icon {
+    transition: all 0.2s ease;
+}
+
+/* --- Spec Sheet Grid --- */
+.deen-spec-sheet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+}
+.deen-spec-sheet-item {
+    padding: 1rem;
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-md);
+    background: var(--bg-surface);
+}
+.deen-spec-sheet-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+.deen-spec-sheet-val {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* --- Disclosure / Accordion --- */
+.deen-disclosure-card {
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-md);
+    background: var(--bg-card);
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+}
+.deen-disclosure-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: background 0.2s ease;
+}
+.deen-disclosure-header:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+.deen-disclosure-body {
+    padding: 0 1.25rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+.deen-disclosure-card.expanded .deen-disclosure-body {
+    max-height: 2000px;
+    padding: 0 1.25rem 1.25rem;
+}
+.deen-disclosure-chevron {
+    transition: transform 0.3s ease;
+}
+.deen-disclosure-card.expanded .deen-disclosure-chevron {
+    transform: rotate(180deg);
+}
+
+/* --- Size Swatch Button --- */
+.deen-size-swatch {
+    width: 44px;
+    height: 44px;
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-sm);
+    background: var(--bg-card);
+    font-weight: 600;
+    font-size: 0.82rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.deen-size-swatch:hover {
+    border-color: var(--text-primary);
+}
+.deen-size-swatch.active {
+    background: var(--text-primary);
+    color: var(--bg-main);
+    border-color: var(--text-primary);
+}
+
+/* --- Rating Stars --- */
+.deen-rating-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    color: #f59e0b;
+    font-size: 0.82rem;
+}
+
+/* --- Wishlist Heart Button --- */
+.deen-wishlist-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 5;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+.deen-wishlist-btn:hover,
+.deen-wishlist-btn.active {
+    color: #f43f5e;
+    background: #ffffff;
+    transform: scale(1.1);
+}
+
+/* --- Discount Ribbon --- */
 .deen-discount-ribbon {
     position: absolute;
-    top: 14px;
-    left: 14px;
-    background: linear-gradient(135deg, #e11d48, #be123c);
+    top: 12px;
+    left: 12px;
+    background: var(--accent-color);
     color: #ffffff;
     font-size: 0.72rem;
-    font-weight: 900;
-    padding: 5px 12px;
-    border-radius: 50rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.4);
-    z-index: 2;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--deen-radius-sm);
+    z-index: 5;
 }
 
+/* --- Stock Badge --- */
 .deen-stock-badge {
     position: absolute;
-    top: 14px;
-    right: 14px;
-    font-size: 0.72rem;
-    font-weight: 800;
-    padding: 5px 12px;
-    border-radius: 50rem;
-    z-index: 2;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    bottom: 12px;
+    left: 12px;
+    background: var(--pastel-sage);
+    color: var(--pastel-sage-text);
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--deen-radius-full);
+    z-index: 5;
 }
 
+/* --- Video Badge on Card --- */
+.deen-video-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(15, 23, 42, 0.8);
+    color: #ffffff;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: var(--deen-radius-full);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    z-index: 5;
+}
+
+/* --- Fabric Swatch Dots --- */
+.deen-card-swatches {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+.deen-swatch-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+.deen-swatch-dot.active {
+    border-color: var(--text-primary);
+    transform: scale(1.15);
+}
+.swatch-indigo { background: #1e3a5f; }
+.swatch-vintage { background: #6b8cae; }
+.swatch-black { background: #1a1a2e; }
+.swatch-ecru { background: #f5f0e8; }
+
+/* --- Quick Add Button --- */
+.deen-quick-add-btn {
+    background: var(--bg-card);
+    border: var(--deen-border-hairline);
+    color: var(--text-primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.5rem 0.85rem;
+    border-radius: var(--deen-radius-full);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+.deen-quick-add-btn:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+/* --- Card Action Button --- */
+.deen-btn-card-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 0.5rem;
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-md);
+    transition: all 0.2s ease;
+}
+.deen-btn-card-action:hover {
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+/* --- Primary Action Button --- */
+.btn-deen-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--text-primary);
+    color: var(--bg-main);
+    border: none;
+    padding: 0.65rem 1.5rem;
+    border-radius: var(--deen-radius-full);
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+}
+.btn-deen-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--deen-shadow-hover);
+    color: var(--bg-main);
+}
+
+/* --- Outline Button --- */
+.btn-deen-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text-primary);
+    border: var(--deen-border-subtle);
+    padding: 0.65rem 1.5rem;
+    border-radius: var(--deen-radius-full);
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-decoration: none;
+}
+.btn-deen-outline:hover {
+    border-color: var(--text-primary);
+    transform: translateY(-1px);
+    color: var(--text-primary);
+}
+
+/* --- Vibrant CTA Button --- */
+.btn-deen-vibrant {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-hover) 100%);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--deen-radius-full);
+    font-weight: 700;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+}
+.btn-deen-vibrant:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--deen-shadow-orange);
+    color: #ffffff;
+}
+
+/* --- Orange Button --- */
+.btn-deen-orange {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--deen-radius-full);
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-decoration: none;
+}
+.btn-deen-orange:hover {
+    background: var(--accent-color-hover);
+    color: #ffffff;
+}
+
+/* --- Title Hierarchy --- */
+.deen-title-lg {
+    font-family: var(--deen-font-heading);
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+.deen-title-md {
+    font-family: var(--deen-font-heading);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    color: var(--text-primary);
+}
+.deen-title-sm {
+    font-family: var(--deen-font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.3;
+    color: var(--text-primary);
+}
+.deen-subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* --- Product Title on Card --- */
+.deen-retail-title {
+    display: block;
+    font-family: var(--deen-font-heading);
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    margin-bottom: 6px;
+    line-height: 1.35;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.deen-retail-title:hover {
+    color: var(--accent-color);
+}
+
+/* --- Price Row on Card --- */
+.deen-retail-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+.deen-retail-price {
+    font-family: var(--deen-font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+.deen-retail-old-price {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+/* --- Card Body --- */
 .deen-retail-body {
-    padding: 1.35rem;
+    padding: 1rem 1.15rem 1.25rem;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 
-.deen-retail-title {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: #0f172a;
-    line-height: 1.35;
-    margin-bottom: 0.6rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    transition: color 0.2s ease;
-}
-
-.deen-retail-card:hover .deen-retail-title {
-    color: var(--deen-primary);
-}
-
-.deen-rating-stars {
-    color: #f59e0b;
-    font-size: 0.82rem;
-    margin-bottom: 0.85rem;
-}
-
-.deen-retail-price-row {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    margin-bottom: 1.1rem;
-}
-
-.deen-retail-price {
-    font-size: 1.45rem;
-    font-weight: 900;
-    color: #0f172a;
-}
-
-.deen-retail-old-price {
-    font-size: 0.9rem;
-    color: #94a3b8;
-    text-decoration: line-through;
-}
-
-.deen-btn-cart {
-    background: #0f172a;
-    color: #ffffff;
-    border: none;
-    border-radius: 50rem;
-    font-weight: 800;
-    font-size: 0.875rem;
-    padding: 0.65rem 1.35rem;
-    transition: all 0.25s ease;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
-}
-
-.deen-btn-cart:hover {
-    background: var(--deen-accent);
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(225, 29, 72, 0.4);
-}
-
-/* Size Swatch Selectors */
-.deen-size-swatch {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 46px;
-    height: 46px;
-    border: 2px solid #e2e8f0;
-    border-radius: 14px;
-    font-weight: 800;
-    font-size: 0.9rem;
-    color: #334155;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.deen-size-swatch:hover, .deen-size-swatch.active {
-    border-color: #0f172a;
-    background: #0f172a;
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
-    transform: translateY(-2px);
-}
-
-/* Payment Method Cards */
-.deen-payment-card {
-    border: 2px solid #e2e8f0;
-    border-radius: 18px;
-    padding: 1.35rem;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    background: #ffffff;
-}
-
-.deen-payment-card:hover, .deen-payment-card.active {
-    border-color: var(--deen-primary);
-    background: #eff6ff;
-    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12);
-    transform: translateY(-2px);
-}
-
-/* Invoice Receipt Card */
-.deen-receipt-card {
-    background: #ffffff;
-    border-radius: 28px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
-    overflow: hidden;
-}
-
-/* Floating Cart Counter Badge */
-.deen-floating-cart {
-    position: fixed;
-    bottom: 32px;
-    right: 32px;
-    background: #0f172a;
-    color: #ffffff;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.4);
-    z-index: 1000;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    text-decoration: none;
-}
-
-.deen-floating-cart:hover {
-    transform: scale(1.12) rotate(-5deg);
-    color: #ffffff;
-    background: var(--deen-accent);
-}
-
-.deen-cart-count {
+/* --- Card Video on Hover --- */
+.deen-card-video-box .deen-card-video {
     position: absolute;
-    top: 2px;
-    right: 2px;
-    background: #e11d48;
-    color: #ffffff;
-    font-size: 0.75rem;
-    font-weight: 900;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+}
+.deen-card-video-box:hover .deen-card-video {
+    opacity: 1;
+}
+.deen-card-video-box:hover .deen-card-main-img {
+    opacity: 0;
+}
+
+/* --- Flash Sale Banner --- */
+.deen-flash-sale-banner { /* already defined above, remove duplicate */ }
+
+/* --- Checkout Steps --- */
+.deen-checkout-steps {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid #0f172a;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    gap: 1.5rem;
 }
 
-/* Active Timeline Pulse Animation */
-@keyframes pulseGlow {
-    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.6); }
-    70% { box-shadow: 0 0 0 14px rgba(37, 99, 235, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
-}
-
-.timeline-pulse {
-    animation: pulseGlow 2s infinite;
-}
-
-/* ==========================================================================
-   MOBILE-FIRST INDUSTRY STANDARD E-COMMERCE DESIGN SYSTEM (THUMB ZONE UX)
-   ========================================================================== */
-
-/* 1. Mobile Bottom Thumb-Zone Navigation Bar */
+/* --- Mobile Bottom Navigation --- */
 .deen-mobile-bottom-nav {
-    display: none;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    background: var(--bg-nav, rgba(11, 19, 43, 0.96));
+    background: var(--bg-nav);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-top: 1px solid var(--border-color, rgba(245, 158, 11, 0.35));
-    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.35);
+    border-top: var(--deen-border-hairline);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5rem 0 calc(0.5rem + env(safe-area-inset-bottom));
     z-index: 1040;
-    padding: 6px 4px max(6px, env(safe-area-inset-bottom));
 }
-
-@media (max-width: 991.98px) {
-    .deen-mobile-bottom-nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-    }
-    
-    body {
-        padding-bottom: 74px !important;
-    }
-    
-    /* Adjust Floating Cart Button on Mobile to stay above Bottom Nav */
-    .deen-floating-cart {
-        bottom: 84px !important;
-        right: 18px !important;
-        width: 52px !important;
-        height: 52px !important;
-        font-size: 1.15rem !important;
-    }
-}
-
 .deen-mobile-nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    color: var(--text-muted, #94a3b8);
+    gap: 2px;
     text-decoration: none;
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 6px 10px;
-    border-radius: 12px;
-    transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+    color: var(--text-muted);
+    font-size: 0.62rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
     position: relative;
-    flex: 1;
-    text-align: center;
+    padding: 0.25rem 0.5rem;
 }
-
+.deen-mobile-nav-item.active,
+.deen-mobile-nav-item:hover {
+    color: var(--accent-color);
+}
 .deen-mobile-nav-item .nav-icon {
-    font-size: 1.35rem;
-    margin-bottom: 2px;
-    transition: transform 0.2s ease, color 0.2s ease;
+    font-size: 22px;
 }
-
-.deen-mobile-nav-item:hover,
-.deen-mobile-nav-item.active {
-    color: var(--accent-color, #f59e0b);
+.deen-mobile-nav-fab {
+    margin-top: -18px;
 }
-
-.deen-mobile-nav-item.active .nav-icon {
-    transform: translateY(-2px) scale(1.15);
-    color: var(--accent-color, #f59e0b);
-}
-
-.deen-mobile-nav-badge {
-    position: absolute;
-    top: 2px;
-    right: 50%;
-    transform: translateX(14px);
-    background: #e11d48;
-    color: #ffffff;
-    font-size: 0.65rem;
-    font-weight: 900;
-    min-width: 18px;
-    height: 18px;
-    border-radius: 50rem;
+.deen-mobile-nav-fab .fab-circle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--text-primary);
+    color: var(--bg-main);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 4px;
-    border: 1.5px solid var(--bg-main, #0b132b);
-    box-shadow: 0 2px 6px rgba(225, 29, 72, 0.4);
+    box-shadow: var(--deen-shadow-card);
+    transition: transform 0.2s ease;
+}
+.deen-mobile-nav-fab:hover .fab-circle {
+    transform: scale(1.08);
+}
+.deen-mobile-nav-fab .nav-icon {
+    color: var(--bg-main);
+    font-size: 24px;
+}
+.deen-mobile-nav-badge {
+    position: absolute;
+    top: -2px;
+    right: -4px;
+    background: var(--accent-color);
+    color: #ffffff;
+    font-size: 0.55rem;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* 2. Predictive Live Search Dropdown & Mobile Overlay Drawer */
-.deen-search-wrapper {
+/* --- Micro Cart Pill (Floating) --- */
+.deen-micro-cart-pill {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: var(--bg-card);
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-full);
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: var(--deen-shadow-float);
+    cursor: pointer;
+    z-index: 1035;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.deen-micro-cart-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--deen-shadow-hover);
+}
+
+/* --- Micro Cart Drawer --- */
+.deen-micro-cart-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    max-width: 90vw;
+    height: 100vh;
+    background: var(--bg-card);
+    border-left: var(--deen-border-hairline);
+    z-index: 1060;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+}
+.deen-micro-cart-drawer.open {
+    transform: translateX(0);
+}
+.deen-micro-cart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    border-bottom: var(--deen-border-hairline);
+}
+.deen-micro-cart-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1rem 1.5rem;
+}
+.deen-micro-cart-footer {
+    padding: 1.25rem 1.5rem;
+    border-top: var(--deen-border-hairline);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.deen-micro-cart-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-md);
+    background: var(--bg-surface);
+}
+.deen-micro-cart-img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: var(--deen-radius-sm);
+    border: var(--deen-border-hairline);
+    flex-shrink: 0;
+}
+.deen-stepper-btn {
+    width: 28px;
+    height: 28px;
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-sm);
+    background: var(--bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.deen-stepper-btn:hover {
+    border-color: var(--text-primary);
+}
+
+/* --- Shipping Progress Bar --- */
+.deen-shipping-progress-box {
+    background: var(--pastel-sage);
+    border: 1px solid var(--pastel-sage-border);
+    border-radius: var(--deen-radius-md);
+    padding: 0.75rem 1rem;
+}
+.deen-shipping-progress-bar {
+    height: 6px;
+    background: rgba(16, 185, 129, 0.2);
+    border-radius: var(--deen-radius-full);
+    overflow: hidden;
+}
+.deen-shipping-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #059669);
+    border-radius: var(--deen-radius-full);
+    transition: width 0.4s ease;
+}
+
+/* --- Drawer Backdrop --- */
+.deen-drawer-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1055;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+.deen-drawer-backdrop.show,
+.deen-drawer-backdrop.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* --- Quick Add Flyout --- */
+.deen-quick-add-flyout {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 360px;
+    max-width: 90vw;
+    height: 100vh;
+    background: var(--bg-card);
+    border-left: var(--deen-border-hairline);
+    z-index: 1060;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.deen-quick-add-flyout.open {
+    transform: translateX(0);
+}
+
+/* --- Fit Preference Buttons --- */
+.deen-fit-btn {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-md);
+    background: var(--bg-card);
+    font-weight: 600;
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+.deen-fit-btn:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+}
+.deen-fit-btn.active {
+    background: var(--text-primary);
+    color: var(--bg-main);
+    border-color: var(--text-primary);
+}
+
+/* --- Range Slider --- */
+.deen-slider-container {
+    margin-bottom: 1.5rem;
+}
+.deen-range-slider {
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #e2e8f0;
+    border-radius: var(--deen-radius-full);
+    outline: none;
+}
+.deen-range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(250, 84, 28, 0.3);
+}
+.deen-range-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    cursor: pointer;
+    border: none;
+}
+.deen-slider-val {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--text-primary);
+}
+
+/* --- Calculator Result Box --- */
+.deen-calc-result-box {
+    background: var(--pastel-linen);
+    border: 1px solid var(--pastel-linen-border);
+    border-radius: var(--deen-radius-lg);
+    padding: 1.75rem;
+    text-align: center;
+}
+
+/* --- Order Timeline --- */
+.deen-order-timeline {
     position: relative;
+    padding-left: 2rem;
+}
+.deen-order-timeline::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e2e8f0;
+}
+.deen-timeline-step {
+    position: relative;
+    padding-bottom: 1.5rem;
+    padding-left: 1rem;
+}
+.deen-timeline-step:last-child {
+    padding-bottom: 0;
+}
+.deen-timeline-dot {
+    position: absolute;
+    left: -2rem;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: #64748b;
+    z-index: 2;
+}
+.deen-timeline-step.completed .deen-timeline-dot {
+    background: #10b981;
+    color: #ffffff;
+}
+.deen-timeline-step.active .deen-timeline-dot {
+    background: var(--accent-color);
+    color: #ffffff;
+    box-shadow: 0 0 0 4px var(--accent-glow);
 }
 
+/* --- Recently Viewed Horizontal Scroll --- */
+.deen-recently-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 0.75rem;
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-md);
+    background: var(--bg-card);
+    min-width: 160px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+.deen-recently-card:hover {
+    border-color: var(--accent-color);
+}
+.deen-recently-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: var(--deen-radius-sm);
+}
+
+/* --- Look Canvas (Hotspots) --- */
+.deen-look-canvas {
+    position: relative;
+    border-radius: var(--deen-radius-xl);
+    overflow: hidden;
+    border: var(--deen-border-hairline);
+}
+.deen-hotspot-pin {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    color: var(--accent-color);
+    transition: all 0.2s ease;
+}
+.deen-hotspot-pin:hover {
+    transform: scale(1.15);
+    background: var(--accent-color);
+    color: #ffffff;
+}
+.deen-hotspot-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--accent-color);
+    animation: hotspot-pulse 2s infinite;
+}
+@keyframes hotspot-pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(2); opacity: 0; }
+}
+.deen-hotspot-popover {
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    background: var(--bg-card);
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-md);
+    padding: 0.85rem;
+    box-shadow: var(--deen-shadow-float);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease;
+    z-index: 20;
+}
+.deen-hotspot-pin:hover .deen-hotspot-popover {
+    opacity: 1;
+    visibility: visible;
+}
+.deen-look-bundle-bar {
+    padding-top: 1rem;
+    border-top: var(--deen-border-hairline);
+}
+
+/* --- Telegram Widget --- */
+.deen-telegram-widget-wrapper {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 1035;
+}
+.deen-telegram-trigger {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #0088cc;
+    color: #ffffff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 136, 204, 0.4);
+    position: relative;
+    transition: transform 0.2s ease;
+}
+.deen-telegram-trigger:hover {
+    transform: scale(1.08);
+}
+.deen-telegram-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid #0088cc;
+    animation: telegram-pulse 2s infinite;
+}
+@keyframes telegram-pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+.deen-telegram-popover {
+    position: absolute;
+    bottom: 70px;
+    right: 0;
+    width: 320px;
+    background: var(--bg-card);
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-lg);
+    box-shadow: var(--deen-shadow-float);
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+.deen-telegram-popover.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.deen-telegram-header {
+    background: #0088cc;
+    color: #ffffff;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.deen-telegram-body {
+    padding: 1.25rem;
+}
+.deen-telegram-chat-bubble {
+    background: var(--pastel-linen);
+    border: 1px solid var(--pastel-linen-border);
+    border-radius: var(--deen-radius-md);
+    padding: 0.85rem;
+    font-size: 0.84rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+.deen-telegram-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #0088cc;
+    color: #ffffff;
+    border: none;
+    padding: 0.65rem;
+    border-radius: var(--deen-radius-full);
+    font-weight: 600;
+    font-size: 0.84rem;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+.deen-telegram-btn:hover {
+    background: #006da3;
+    color: #ffffff;
+}
+.deen-chat-faq-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 0.6rem 0.85rem;
+    border: var(--deen-border-hairline);
+    border-radius: var(--deen-radius-md);
+    background: var(--bg-card);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+.deen-chat-faq-btn:hover {
+    border-color: var(--accent-color);
+    background: var(--pastel-sand);
+}
+
+/* --- Search Results Dropdown --- */
 .deen-search-results-dropdown {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    margin-top: 6px;
-    background: var(--bg-card, #111c35);
-    border: 1px solid var(--border-color, rgba(245, 158, 11, 0.35));
-    border-radius: 16px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
-    z-index: 1050;
-    overflow: hidden;
-    max-height: 420px;
+    background: var(--bg-card);
+    border: var(--deen-border-hairline);
+    border-radius: 0 0 var(--deen-radius-md) var(--deen-radius-md);
+    box-shadow: var(--deen-shadow-float);
+    max-height: 400px;
     overflow-y: auto;
+    z-index: 1050;
     display: none;
 }
-
 .deen-search-results-dropdown.show {
     display: block;
-    animation: fadeInDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
 .deen-search-item {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 16px;
-    color: var(--text-primary, #ffffff);
+    padding: 0.75rem 1rem;
     text-decoration: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    transition: background 0.2s ease;
+    color: var(--text-primary);
+    border-bottom: var(--deen-border-hairline);
+    transition: background 0.15s ease;
 }
-
+.deen-search-item:hover {
+    background: var(--pastel-linen);
+}
 .deen-search-item:last-child {
     border-bottom: none;
 }
-
-.deen-search-item:hover {
-    background: var(--accent-glow, rgba(245, 158, 11, 0.15));
-    color: var(--text-primary, #ffffff);
-}
-
 .deen-search-thumb {
     width: 48px;
     height: 48px;
     object-fit: cover;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: #1e293b;
+    border-radius: var(--deen-radius-sm);
     flex-shrink: 0;
 }
-
 .deen-search-info {
     flex-grow: 1;
     min-width: 0;
 }
-
 .deen-search-name {
-    font-weight: 700;
+    font-weight: 600;
     font-size: 0.88rem;
     margin-bottom: 2px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
 .deen-search-meta {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
 }
-
 .deen-search-price {
-    font-weight: 800;
-    color: var(--accent-color, #f59e0b);
+    font-weight: 700;
+    color: var(--accent-color);
 }
 
-/* Mobile Predictive Search Offcanvas Drawer */
-.deen-mobile-search-modal .modal-content {
-    background: var(--bg-main, #0b132b);
-    color: var(--text-primary, #ffffff);
-    border: none;
+/* --- Mobile Search Modal --- */
+.deen-mobile-search-modal .m3-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--deen-radius-full);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-size: 0.84rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.deen-mobile-search-modal .m3-chip:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
-/* 3. Sticky Mobile Bottom Product CTA Bar (Thumb Zone Action) */
-.deen-mobile-sticky-cta {
-    display: none;
+/* --- Cart Toast Notification --- */
+.deen-cart-toast {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--bg-nav, rgba(11, 19, 43, 0.98));
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-top: 1px solid var(--border-color, rgba(245, 158, 11, 0.35));
-    padding: 10px 16px max(10px, env(safe-area-inset-bottom));
-    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.4);
-    z-index: 1045;
+    bottom: 100px;
+    right: 20px;
+    background: #1a1a2e;
+    color: #ffffff;
+    border-radius: var(--deen-radius-lg);
+    padding: 1.25rem;
+    width: 320px;
+    box-shadow: var(--deen-shadow-float);
+    z-index: 1065;
+    transition: all 0.3s ease;
+}
+.deen-cart-toast.d-none {
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
 }
 
-@media (max-width: 767.98px) {
-    .deen-mobile-sticky-cta {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-    }
-    
-    .deen-product-detail-page {
-        padding-bottom: 80px !important;
-    }
-}
-
-.deen-mobile-cta-price {
-    display: flex;
-    flex-direction: column;
-}
-
-.deen-mobile-cta-price .amount {
-    font-size: 1.25rem;
-    font-weight: 900;
-    color: var(--accent-color, #f59e0b);
-    line-height: 1.1;
-}
-
-.deen-mobile-cta-price .old-amount {
-    font-size: 0.75rem;
-    color: #94a3b8;
-    text-decoration: line-through;
-}
-
-.deen-mobile-cta-actions {
-    display: flex;
-    gap: 8px;
-    flex-grow: 1;
-    max-width: 240px;
-}
-
-.deen-mobile-cta-btn {
-    flex: 1;
-    border-radius: 50rem;
-    font-weight: 800;
-    font-size: 0.85rem;
-    padding: 0.65rem 0.8rem;
-    text-align: center;
-    border: none;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    white-space: nowrap;
-}
-
-/* 4. Optimized Mobile Grid & Touch Card System */
-@media (max-width: 575.98px) {
-    .deen-retail-img-box {
-        height: 185px !important;
-    }
-    
-    .deen-retail-body {
-        padding: 0.9rem !important;
-    }
-    
-    .deen-retail-title {
-        font-size: 0.92rem !important;
-        margin-bottom: 0.4rem !important;
-    }
-    
-    .deen-retail-price {
-        font-size: 1.18rem !important;
-    }
-
-    .deen-retail-old-price {
-        font-size: 0.8rem !important;
-    }
-    
-    .deen-btn-cart {
-        padding: 0.55rem 0.8rem !important;
-        font-size: 0.8rem !important;
-    }
-    
-    .deen-discount-ribbon,
-    .deen-stock-badge {
-        font-size: 0.65rem !important;
-        padding: 3px 8px !important;
-    }
-}
-
-/* No-Scrollbar Utility */
+/* --- No Scrollbar Utility --- */
 .no-scrollbar::-webkit-scrollbar {
     display: none;
 }
@@ -974,751 +4459,7 @@ h1, h2, h3, h4, h5, h6, .deen-brand-logo, .deen-hero-heading, .deen-retail-title
     scrollbar-width: none;
 }
 
-/* ==========================================================================
-   TELEGRAM CUSTOMER ASSISTANT CHATBOT WIDGET (@DEEN_Commerce_bot)
-   ========================================================================== */
-
-.deen-telegram-widget-wrapper {
-    position: fixed;
-    bottom: 96px;
-    right: 28px;
-    z-index: 1045;
+/* --- Font Display Utility --- */
+.font-display {
+    font-family: var(--deen-font-display);
 }
-
-@media (max-width: 991.98px) {
-    .deen-telegram-widget-wrapper {
-        bottom: 146px;
-        right: 18px;
-    }
-}
-
-.deen-telegram-trigger {
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #0088cc, #006699);
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    box-shadow: 0 8px 25px rgba(0, 136, 204, 0.45);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative;
-    text-decoration: none;
-}
-
-.deen-telegram-trigger:hover {
-    transform: scale(1.1) rotate(-8deg);
-    color: #ffffff;
-    box-shadow: 0 12px 30px rgba(0, 136, 204, 0.6);
-}
-
-.deen-telegram-pulse {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    width: 14px;
-    height: 14px;
-    background: #10b981;
-    border: 2px solid #ffffff;
-    border-radius: 50%;
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
-    animation: tgPulse 2s infinite;
-}
-
-@keyframes tgPulse {
-    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-}
-
-.deen-telegram-popover {
-    position: absolute;
-    bottom: 68px;
-    right: 0;
-    width: 320px;
-    background: var(--bg-card, #111c35);
-    border: 1px solid var(--border-color, rgba(0, 136, 204, 0.4));
-    border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    display: none;
-    animation: popoverFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 1050;
-}
-
-.deen-telegram-popover.show {
-    display: block;
-}
-
-@keyframes popoverFadeIn {
-    from { opacity: 0; transform: translateY(12px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.deen-telegram-header {
-    background: linear-gradient(135deg, #0088cc, #0b132b);
-    color: #ffffff;
-    padding: 14px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.deen-telegram-body {
-    padding: 16px;
-    color: var(--text-primary, #ffffff);
-}
-
-.deen-telegram-chat-bubble {
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 14px;
-    padding: 12px 14px;
-    font-size: 0.85rem;
-    margin-bottom: 14px;
-    line-height: 1.45;
-}
-
-.deen-telegram-btn {
-    background: linear-gradient(135deg, #0088cc 0%, #005580 100%);
-    color: #ffffff;
-    font-weight: 800;
-    font-size: 0.88rem;
-    border: none;
-    border-radius: 50rem;
-    padding: 10px 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    text-decoration: none;
-    box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
-    transition: all 0.25s ease;
-    width: 100%;
-}
-
-.deen-telegram-btn:hover {
-    background: #0088cc;
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 136, 204, 0.6);
-}
-
-/* ==========================================================================
-   MOBILE FEATURE ENHANCEMENT SUITE (WISHLIST, FILTER DRAWER, TRACKING)
-   ========================================================================== */
-
-/* 1. Wishlist Heart Icon Button */
-.deen-wishlist-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(15, 23, 42, 0.65);
-    backdrop-filter: blur(8px);
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    cursor: pointer;
-    z-index: 5;
-    transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
-}
-
-.deen-wishlist-btn:hover {
-    background: #e11d48;
-    color: #ffffff;
-    transform: scale(1.15);
-    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.5);
-}
-
-.deen-wishlist-btn.active {
-    background: #e11d48;
-    color: #ffffff;
-    border-color: #e11d48;
-    box-shadow: 0 4px 12px rgba(225, 29, 72, 0.4);
-}
-
-/* 2. Quick View Button Overlay on Product Cards */
-.deen-quickview-btn {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(8px);
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 5px 12px;
-    border-radius: 50rem;
-    opacity: 0;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 5;
-    white-space: nowrap;
-    text-decoration: none;
-}
-
-.deen-retail-card:hover .deen-quickview-btn {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
-
-@media (max-width: 767.98px) {
-    .deen-quickview-btn {
-        opacity: 0.95 !important;
-        transform: translateX(-50%) translateY(0) !important;
-        padding: 4px 10px !important;
-        font-size: 0.7rem !important;
-    }
-}
-
-/* 3. Collapsible Mobile Filter Panel & Offcanvas */
-.deen-filter-trigger-btn {
-    background: var(--bg-card, #111c35);
-    border: 1px solid var(--border-color, rgba(245, 158, 11, 0.35));
-    color: var(--text-primary, #ffffff);
-    font-weight: 800;
-    font-size: 0.88rem;
-    padding: 8px 18px;
-    border-radius: 50rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.25s ease;
-}
-
-.deen-filter-trigger-btn:hover {
-    background: var(--accent-color, #f59e0b);
-    color: #0b132b;
-}
-
-/* 4. Order Tracking Visual Timeline */
-.deen-order-timeline {
-    position: relative;
-    padding-left: 28px;
-}
-
-.deen-order-timeline::before {
-    content: '';
-    position: absolute;
-    left: 10px;
-    top: 5px;
-    bottom: 5px;
-    width: 3px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 2px;
-}
-
-.deen-timeline-step {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.deen-timeline-step:last-child {
-    margin-bottom: 0;
-}
-
-.deen-timeline-dot {
-    position: absolute;
-    left: -28px;
-    top: 2px;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: #334155;
-    color: #94a3b8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.7rem;
-    border: 3px solid #0f172a;
-}
-
-.deen-timeline-step.completed .deen-timeline-dot {
-    background: #10b981;
-    color: #ffffff;
-}
-
-.deen-timeline-step.active .deen-timeline-dot {
-    background: #f59e0b;
-    color: #0f172a;
-    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.3);
-}
-
-/* Flash Sale Ticker Notification Banner */
-.deen-flash-sale-banner {
-    background: linear-gradient(90deg, #e11d48, #be123c);
-    color: #ffffff;
-    font-weight: 800;
-    font-size: 0.82rem;
-    padding: 8px 16px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 4px 15px rgba(225, 29, 72, 0.3);
-}
-
-/* Recently Viewed Products Horizontal Scroll Section */
-.deen-recently-card {
-    min-width: 170px;
-    width: 170px;
-    background: var(--bg-card, #111c35);
-    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.12));
-    border-radius: 16px;
-    padding: 10px;
-    text-decoration: none;
-    color: var(--text-primary, #ffffff);
-    transition: all 0.25s ease;
-    flex-shrink: 0;
-}
-
-.deen-recently-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent-color, #f59e0b);
-    color: var(--text-primary, #ffffff);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-}
-
-.deen-recently-img {
-    width: 100%;
-    height: 130px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 8px;
-}
-
-/* Deen VIP Loyalty & Rewards Styling */
-.deen-loyalty-badge {
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-    color: #0b132b;
-    font-weight: 900;
-    font-size: 0.78rem;
-    padding: 4px 12px;
-    border-radius: 50rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    box-shadow: 0 2px 10px rgba(245, 158, 11, 0.4);
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s ease;
-}
-
-.deen-loyalty-badge:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.6);
-}
-
-.deen-vip-card {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border: 1px solid rgba(245, 158, 11, 0.3);
-    border-radius: 20px;
-    padding: 20px;
-    color: #ffffff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-/* Interactive Live Chat FAQ buttons */
-.deen-chat-faq-btn {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #ffffff;
-    font-size: 0.78rem;
-    font-weight: 700;
-    padding: 8px 12px;
-    border-radius: 12px;
-    text-align: left;
-    width: 100%;
-    transition: all 0.2s ease;
-}
-
-.deen-chat-faq-btn:hover {
-    background: rgba(245, 158, 11, 0.2);
-    border-color: #f59e0b;
-    color: #f59e0b;
-}
-
-/* ==========================================================================
-   PRODUCT DISCOVERY & HOMEPAGE FLOW ENHANCEMENTS
-   ========================================================================== */
-
-/* 1. Inline Color & Size Variants */
-.deen-variant-row {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 6px;
-    margin-bottom: 8px;
-}
-
-.deen-variant-dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    border: 2px solid #ffffff;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.deen-variant-dot:hover {
-    transform: scale(1.3);
-}
-
-.deen-mini-size-chip {
-    font-size: 0.65rem;
-    font-weight: 800;
-    padding: 2px 6px;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-primary, #ffffff);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-/* 2. Customer Testimonial Cards */
-.deen-testimonial-card {
-    background: var(--bg-card, #111c35);
-    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.12));
-    border-radius: 20px;
-    padding: 24px;
-    color: var(--text-primary, #ffffff);
-    height: 100%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    transition: transform 0.25s ease;
-}
-
-.deen-testimonial-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent-color, #f59e0b);
-}
-
-.deen-testimonial-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--accent-color, #f59e0b);
-}
-
-/* 3. Instagram Shoppable Feed */
-.deen-insta-card {
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    aspect-ratio: 1 / 1;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.deen-insta-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.deen-insta-card:hover .deen-insta-img {
-    transform: scale(1.08);
-}
-
-.deen-insta-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(15, 23, 42, 0.85) 0%, transparent 60%);
-    display: flex;
-    align-items: flex-end;
-    padding: 14px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.deen-insta-card:hover .deen-insta-overlay {
-    opacity: 1;
-}
-
-.deen-insta-hotspot {
-    position: absolute;
-    top: 35%;
-    left: 45%;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: #f59e0b;
-    color: #0b132b;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    cursor: pointer;
-    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.4);
-    animation: deenPulseHotspot 2s infinite;
-}
-
-@keyframes deenPulseHotspot {
-    0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
-}
-
-/* 4. "Shop Now" Promotional Banner */
-.deen-shop-now-banner {
-    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
-    border-radius: 28px;
-    padding: 48px 32px;
-    color: #ffffff;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.deen-shop-now-banner::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, transparent 70%);
-    border-radius: 50%;
-}
-
-/* ==========================================================================
-   MASTER SPECIFICATION UX ENHANCEMENTS (TOUCH, URGENCY, CHECKOUT PROGRESS)
-   ========================================================================== */
-
-/* 1. Touch-Friendly Target (Min 48px height) */
-.deen-btn-touch {
-    min-height: 48px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-}
-
-/* 2. Stock Urgency Badge ("Only 2 left!") */
-.deen-urgency-badge {
-    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
-    color: #ffffff;
-    font-size: 0.72rem;
-    font-weight: 800;
-    padding: 3px 8px;
-    border-radius: 6px;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    animation: deenUrgencyPulse 1.5s infinite;
-}
-
-@keyframes deenUrgencyPulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.65; }
-    100% { opacity: 1; }
-}
-
-/* 3. Checkout 4-Step Progress Bar */
-.deen-checkout-steps {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    margin-bottom: 24px;
-}
-
-.deen-checkout-steps::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.15);
-    z-index: 1;
-    transform: translateY(-50%);
-}
-
-.deen-step-item {
-    position: relative;
-    z-index: 2;
-    background: #0f172a;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    border: 2px solid #334155;
-    color: #94a3b8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 0.85rem;
-}
-
-.deen-step-item.active {
-    background: #f59e0b;
-    border-color: #f59e0b;
-    color: #0b132b;
-    box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.3);
-}
-
-.deen-step-item.completed {
-    background: #10b981;
-    border-color: #10b981;
-    color: #ffffff;
-}
-
-/* 4. Size Grid Swatches ([XS] [S] [M] [L] [XL] [XXL]) */
-.deen-size-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 8px;
-}
-
-@media (max-width: 575.98px) {
-    .deen-size-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-.deen-size-grid-btn {
-    min-height: 44px;
-    background: #f8fafc;
-    border: 1px solid #cbd5e1;
-    color: #1e293b;
-    font-weight: 800;
-    font-size: 0.85rem;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.deen-size-grid-btn:hover {
-    border-color: #0f172a;
-    background: #e2e8f0;
-}
-
-.deen-size-grid-btn.active {
-    background: #0f172a;
-    border-color: #0f172a;
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
-}
-
-/* 5. Floating Cart Toast Notification */
-.deen-cart-toast {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-    background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(245, 158, 11, 0.4);
-    color: #ffffff;
-    padding: 14px 20px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    max-width: 340px;
-    animation: deenSlideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-/* 6. Coupon Code Input Box & Discount Badges */
-.deen-coupon-box {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px dashed var(--deen-brand-orange);
-    border-radius: 12px;
-    padding: 10px;
-}
-
-.deen-coupon-input {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    font-weight: 600;
-    border-radius: 8px;
-    text-transform: uppercase;
-}
-
-.deen-coupon-input:focus {
-    border-color: var(--deen-brand-orange);
-    box-shadow: 0 0 10px rgba(250, 74, 0, 0.3);
-}
-
-/* 7. Flash Sale Ticking Countdown Timer */
-.deen-countdown-badge {
-    background: linear-gradient(135deg, #fa4a00 0%, #dc2626 100%);
-    color: #ffffff;
-    font-family: monospace;
-    font-weight: 800;
-    padding: 4px 10px;
-    border-radius: 20px;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 12px rgba(250, 74, 0, 0.4);
-}
-
-/* 8. Size Measurement Chart Table */
-.deen-size-table {
-    border-color: rgba(255, 255, 255, 0.15);
-}
-
-.deen-size-table th {
-    background: #0f172a;
-    color: var(--deen-brand-orange);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-}
-
-.deen-size-table td {
-    vertical-align: middle;
-    font-size: 0.9rem;
-}
-
-/* 9. Interactive Star Rating Selector */
-.deen-star-selector {
-    display: flex;
-    gap: 8px;
-    font-size: 1.5rem;
-    color: #cbd5e1;
-    cursor: pointer;
-}
-
-.deen-star-selector i.active {
-    color: #f59e0b;
-}
-
-/* 10. Social Product Share Buttons */
-.deen-share-btn {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    border: none;
-}
-
-.deen-share-btn.wa { background: #25d366; color: #ffffff; }
-.deen-share-btn.fb { background: #1877f2; color: #ffffff; }
-.deen-share-btn.copy { background: #64748b; color: #ffffff; }
-
-.deen-share-btn:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-}
-
-
-
-
-
-

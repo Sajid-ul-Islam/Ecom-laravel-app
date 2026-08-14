@@ -54,7 +54,7 @@
                 <div class="card border-0 rounded-4 shadow-sm h-100 p-3 bg-white">
                     <div class="d-flex align-items-center justify-content-between mb-2">
                         <span class="small text-muted fw-bold text-uppercase">Total Orders / AOV</span>
-                        <div class="bg-success-subtle text-success rounded-circle p-2"><i class="fas fa-shopping-bag fs-5"></i></div>
+                        <div class="bg-success-subtle text-success rounded-circle p-2"><i class="fas fa-shopping-cart fs-5"></i></div>
                     </div>
                     <div class="fs-2 fw-bold text-dark">{{ number_format($metrics['totalOrders']) }}</div>
                     <div class="small text-muted mt-2">

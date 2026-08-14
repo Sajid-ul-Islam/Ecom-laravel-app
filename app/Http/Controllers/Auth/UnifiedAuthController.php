@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +34,7 @@ class UnifiedAuthController extends Controller
 
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->intended(route('account.dashboard'))->with('success', 'Welcome back to your Deen Client Profile!');
         }
 
         return back()->withErrors([
@@ -58,7 +58,7 @@ class UnifiedAuthController extends Controller
 
         Auth::login($user);
 
-        return redirect('/')->with('success', 'Account created successfully! Welcome to Deen Commerce.');
+        return redirect()->route('account.dashboard')->with('success', 'Account created successfully! Welcome to your Deen Commerce Client Profile.');
     }
 
     public function redirectToGoogle(): RedirectResponse
@@ -90,12 +90,50 @@ class UnifiedAuthController extends Controller
                 );
 
                 Auth::login($user);
-                return redirect('/')->with('success', 'Successfully signed in with Google!');
+                return redirect()->route('account.dashboard')->with('success', 'Successfully signed in with Google! Welcome to your Client Profile.');
             }
         } catch (Throwable $e) {
             return redirect()->route('login')->withErrors(['email' => 'Google Authentication failed. Please try again.']);
         }
 
-        return redirect('/');
+        return redirect()->route('account.dashboard');
+    }
+
+    public function redirectToFacebook(): RedirectResponse
+    {
+        try {
+            if (class_exists(\Laravel\Socialite\Facades\Socialite::class) && config('services.facebook.client_id')) {
+                return \Laravel\Socialite\Facades\Socialite::driver('facebook')->redirect();
+            }
+        } catch (Throwable $e) {
+            // Fallback for demonstration
+        }
+
+        // Simulates Facebook OAuth flow if socialite credentials are pending in .env
+        return redirect()->route('login')->with('info', 'Facebook Login integration active. Please configure FACEBOOK_CLIENT_ID in .env for production credentials.');
+    }
+
+    public function handleFacebookCallback(): RedirectResponse
+    {
+        try {
+            if (class_exists(\Laravel\Socialite\Facades\Socialite::class) && config('services.facebook.client_id')) {
+                $facebookUser = \Laravel\Socialite\Facades\Socialite::driver('facebook')->user();
+
+                $user = User::firstOrCreate(
+                    ['email' => $facebookUser->getEmail() ?? ($facebookUser->getId() . '@facebook.deencommerce.com')],
+                    [
+                        'name' => $facebookUser->getName() ?? $facebookUser->getNickname() ?? 'Facebook Member',
+                        'password' => Hash::make(rand(10000000, 99999999)),
+                    ]
+                );
+
+                Auth::login($user);
+                return redirect()->route('account.dashboard')->with('success', 'Successfully signed in with Facebook! Welcome to your Deen Client Profile.');
+            }
+        } catch (Throwable $e) {
+            return redirect()->route('login')->withErrors(['email' => 'Facebook Authentication failed. Please try again.']);
+        }
+
+        return redirect()->route('account.dashboard');
     }
 }

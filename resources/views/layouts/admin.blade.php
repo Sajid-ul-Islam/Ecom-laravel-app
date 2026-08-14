@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Deen Commerce') }} - Administration & Management Hub</title>
-    <link rel="icon" href="https://deencommerce.com/wp-content/uploads/2025/04/cropped-cropped-Deen-Logo-scaled-1.png" type="image/png">
+    <link rel="icon" href="{{ asset('images/deen-favicon.png') }}" type="image/png">
 
     <!-- Bootstrap 5 CSS & FontAwesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -71,7 +71,7 @@
     <header class="admin-topbar sticky-top py-2 px-4 d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center gap-3">
             <a href="{{ route('admin.analytics') }}" class="d-flex align-items-center gap-2 text-decoration-none">
-                <img src="https://deencommerce.com/wp-content/uploads/2025/04/Deen-Logo-Light-scaled.png" alt="Deen Commerce" style="height: 34px; object-fit: contain;">
+                <img src="{{ asset('images/deen-logo-light.png') }}" alt="Deen Commerce" style="height: 34px; object-fit: contain;" onerror="this.src='https://deencommerce.com/wp-content/uploads/2025/04/Deen-Logo-Light-scaled.png'">
                 <span class="badge bg-warning text-dark fw-bold uppercase px-2 py-1">ADMIN CONTROL PANEL</span>
             </a>
         </div>
@@ -112,11 +112,11 @@
                         </button>
                     </li>
                     <li>
-                        <button class="dropdown-item d-flex align-items-center gap-2 py-2" type="button" onclick="changeDeenTheme('light')">
-                            <span class="material-symbols-outlined text-primary fs-5">light_mode</span>
+                        <button class="dropdown-item d-flex align-items-center gap-2 py-2" type="button" onclick="changeDeenTheme('glass')">
+                            <span class="material-symbols-outlined text-info fs-5">blur_on</span>
                             <div>
-                                <div class="fw-bold">Studio Minimal Light</div>
-                                <div class="small text-white-50">Clean slate & ocean navy</div>
+                                <div class="fw-bold">✨ Crystal Glassmorphism</div>
+                                <div class="small text-white-50">Frosted glass & aurora glow</div>
                             </div>
                         </button>
                     </li>
@@ -154,7 +154,7 @@
                         <i class="fas fa-box-open fa-lg text-success"></i> Synced Products
                     </a>
                     <a href="{{ route('woocommerce.orders') }}" class="admin-nav-item {{ request()->is('woocommerce/orders') ? 'active' : '' }}">
-                        <i class="fas fa-shopping-bag fa-lg text-info"></i> Synced Orders
+                        <i class="fas fa-shopping-cart fa-lg text-info"></i> Synced Orders
                     </a>
                     <a href="{{ route('woocommerce.logs') }}" class="admin-nav-item {{ request()->is('woocommerce/logs') ? 'active' : '' }}">
                         <i class="fas fa-list-alt fa-lg text-secondary"></i> REST API Logs
@@ -189,7 +189,8 @@
             denim: 'Washed Denim',
             dark: 'Midnight Dark',
             neon: 'Cyberpunk Neon',
-            light: 'Studio Light'
+            light: 'Studio Light',
+            glass: '✨ Crystal Glass'
         };
         const el = document.getElementById('adminCurrentThemeName');
         const userEl = document.getElementById('currentThemeName');

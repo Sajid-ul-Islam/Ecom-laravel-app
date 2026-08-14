@@ -46,9 +46,11 @@ Route::get('register', [App\Http\Controllers\Auth\UnifiedAuthController::class, 
 Route::post('register', [App\Http\Controllers\Auth\UnifiedAuthController::class, 'register']);
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-// Google OAuth 2.0 Integration Routes
+// Google & Facebook OAuth 2.0 Integration Routes
 Route::get('auth/google', [App\Http\Controllers\Auth\UnifiedAuthController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [App\Http\Controllers\Auth\UnifiedAuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
+Route::get('auth/facebook', [App\Http\Controllers\Auth\UnifiedAuthController::class, 'redirectToFacebook'])->name('auth.facebook');
+Route::get('auth/facebook/callback', [App\Http\Controllers\Auth\UnifiedAuthController::class, 'handleFacebookCallback'])->name('auth.facebook.callback');
 
 
 // Password Reset Routes...
@@ -98,6 +100,7 @@ Route::prefix('my-account')->name('account.')->group(function () {
     Route::get('/orders', [App\Http\Controllers\CustomerAccountController::class, 'orders'])->name('orders');
     Route::get('/orders/{id}', [App\Http\Controllers\CustomerAccountController::class, 'trackOrder'])->name('orders.track');
     Route::post('/profile', [App\Http\Controllers\CustomerAccountController::class, 'updateProfile'])->name('profile.update');
+    Route::post('/password', [App\Http\Controllers\CustomerAccountController::class, 'updatePassword'])->name('password.update');
 });
 
 // Profile Routes

@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Deen Commerce - Retail Fashion & Apparel') }}</title>
+    <title>{{ config('app.name', 'DEEN.im — Bangladesh\'s Premier Denim & Urban Apparel') }}</title>
 
     <!-- Bootstrap 5 CSS & FontAwesome -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -39,26 +39,52 @@
 
 
 <body>
+    <!-- Skip to Main Content (Accessibility) -->
+    <a href="#main-content" class="deen-skip-link">Skip to main content</a>
+
     <div id="app">
-        <!-- Top Announcement Bar -->
+        <!-- Top Announcement Bar with DEEN.im Privileges -->
         <div class="deen-promo-bar">
-            <i class="fas fa-truck-fast me-1"></i> FREE SHIPPING ON ORDERS OVER ৳2,000 &bull; NEW SEASON DENIM & URBAN FASHION 2026
+            <div class="container d-flex align-items-center justify-content-between flex-wrap gap-2 text-center text-md-start">
+                <div class="d-inline-flex align-items-center gap-2 mx-auto mx-md-0">
+                    <span class="badge bg-warning text-dark font-monospace fw-bold" style="font-size: 0.68rem; padding: 2px 6px;">DEEN.im</span>
+                    <span><i class="fas fa-truck-fast me-1 text-warning"></i> FREE SHIPPING NATIONWIDE OVER ৳2,000 &bull; NEW SEASON DENIM 2026</span>
+                </div>
+                <div class="d-none d-md-flex align-items-center gap-3 ms-auto" style="font-size: 0.72rem;">
+                    <span><i class="fas fa-shield-halved text-info me-1"></i> 7-Day Fit Guarantee</span>
+                    <span>&bull;</span>
+                    <a href="https://t.me/DEEN_Commerce_bot" target="_blank" class="text-white-50 text-decoration-none hover-white">
+                        <i class="fab fa-telegram text-warning me-1"></i> VIP Concierge: @DEEN_Commerce_bot
+                    </a>
+                </div>
+            </div>
         </div>
 
         <nav class="navbar navbar-expand-lg deen-navbar sticky-top">
             <div class="container">
-                <a class="navbar-brand d-flex align-items-center gap-2" href="{{ url('/') }}">
-                    <img src="https://deencommerce.com/wp-content/uploads/2025/04/Deen-Logo-Light-scaled.png" alt="Deen Commerce" style="height: 38px; object-fit: contain;">
+                <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="{{ url('/') }}" title="DEEN.im — Bangladesh's Premier Denim & Urban Apparel">
+                    <img src="{{ asset('images/deen-logo-dark.png') }}" alt="DEEN" class="deen-brand-logo" onerror="this.src='https://deencommerce.com/wp-content/uploads/2025/04/cropped-Deen-Logo-scaled-1.png'">
+                    <div class="deen-brand-lockup d-flex align-items-baseline">
+                        <span class="deen-brand-text">DEEN</span>
+                        <span class="deen-domain-badge"><span class="deen-domain-dot">.</span>im</span>
+                    </div>
                 </a>
 
-                <!-- Mobile Header Direct Action Buttons (Search & Cart & Toggle) -->
+                <!-- Mobile Header Direct Action Buttons (Search, Wishlist, Cart, Account, Toggle) -->
                 <div class="d-flex align-items-center gap-2 d-lg-none ms-auto me-2">
-                    <button class="btn btn-outline-warning btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" onclick="openMobileSearchModal()" title="Instant Search">
+                    <button class="deen-header-icon-btn" onclick="openMobileSearchModal()" title="Search products" aria-label="Search products">
                         <span class="material-symbols-outlined fs-5">search</span>
                     </button>
-                    <button class="btn btn-warning btn-sm rounded-circle p-2 position-relative d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" onclick="openGlobalCartModal()" title="Cart">
-                        <span class="material-symbols-outlined fs-5 text-dark">shopping_bag</span>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="headerMobileCartBadge">0</span>
+                    <button class="deen-header-icon-btn position-relative" onclick="openWishlistModal()" title="Saved Wishlist" aria-label="Saved Wishlist">
+                        <span class="material-symbols-outlined fs-5 text-danger">favorite</span>
+                        <span class="deen-header-badge bg-danger" id="headerMobileWishlistBadge">0</span>
+                    </button>
+                    <button class="deen-header-icon-btn position-relative" onclick="openGlobalCartModal()" title="Shopping Cart" aria-label="Shopping Cart">
+                        <span class="material-symbols-outlined fs-5 text-white">shopping_cart</span>
+                        <span class="deen-header-badge bg-primary" id="headerMobileCartBadge">0</span>
+                    </button>
+                    <button class="deen-header-icon-btn" onclick="openMobileAccountModal()" title="Client Account" aria-label="Client Account">
+                        <span class="material-symbols-outlined fs-5">person</span>
                     </button>
                 </div>
 
@@ -69,26 +95,48 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Customer Navigation -->
-                    <ul class="navbar-nav me-auto ms-lg-4 gap-1">
+                    <!-- Left Customer Navigation with Icons -->
+                    <ul class="navbar-nav me-auto ms-lg-4 gap-1 align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('/') ? 'active text-white fw-bold' : 'text-white-50' }}" href="{{ url('/') }}"><i class="fas fa-store me-1"></i> Storefront</a>
+                            <a class="nav-link {{ request()->is('/') ? 'active text-white fw-bold' : 'text-white-50' }}" href="{{ url('/') }}">
+                                <span class="material-symbols-outlined nav-icon">storefront</span>
+                                <span>Storefront</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('categories*') || request()->is('category*') ? 'active text-white fw-bold' : 'text-white-50' }}" href="{{ route('store.categories') }}"><i class="fas fa-tshirt me-1"></i> Categories Directory</a>
+                            <a class="nav-link {{ request()->is('categories*') || request()->is('category*') ? 'active text-white fw-bold' : 'text-white-50' }}" href="{{ route('store.categories') }}">
+                                <span class="material-symbols-outlined nav-icon">grid_view</span>
+                                <span>Categories</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('my-account*') ? 'active text-white fw-bold' : 'text-white-50' }}" href="{{ route('account.orders') }}"><i class="fas fa-truck-fast me-1 text-success"></i> Track Order</a>
+                            <a class="nav-link {{ request()->is('my-account*') ? 'active text-white fw-bold' : 'text-white-50' }}" href="{{ route('account.orders') }}">
+                                <span class="material-symbols-outlined nav-icon text-success">local_shipping</span>
+                                <span>Track Order</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white-50" href="#" onclick="event.preventDefault(); openLoyaltyModal();">
+                                <span class="material-symbols-outlined nav-icon text-warning">hotel_class</span>
+                                <span>VIP Club</span>
+                            </a>
                         </li>
                     </ul>
 
-                    <!-- Right Customer & Admin Access Navigation -->
+                    <!-- Right Customer Actions with Modern Icons & Badges -->
                     <ul class="navbar-nav ms-auto align-items-center gap-2">
+                        <!-- Desktop Search Icon Button -->
+                        <li class="nav-item">
+                            <button type="button" class="deen-header-icon-btn" onclick="openMobileSearchModal()" title="Instant Search" aria-label="Search">
+                                <span class="material-symbols-outlined fs-5">search</span>
+                            </button>
+                        </li>
+
                         <!-- Custom Theme Picker Selector -->
-                        <li class="nav-item me-1 dropdown">
-                            <button class="deen-theme-picker dropdown-toggle d-flex align-items-center gap-1 border-secondary text-white" type="button" id="themePickerBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                        <li class="nav-item dropdown">
+                            <button class="deen-theme-picker dropdown-toggle d-flex align-items-center gap-1.5 border-secondary text-white" type="button" id="themePickerBtn" data-bs-toggle="dropdown" aria-expanded="false" title="Change Theme Mode">
                                 <span class="material-symbols-outlined fs-6 text-warning">palette</span>
-                                <span id="currentThemeName">Denim Vibe</span>
+                                <span id="currentThemeName" class="d-none d-xl-inline">Denim Vibe</span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow-lg border border-secondary" aria-labelledby="themePickerBtn">
                                 <li>
@@ -106,6 +154,15 @@
                                         <div>
                                             <div class="fw-bold">Midnight Studio Dark</div>
                                             <div class="small text-white-50">Luxury obsidian & neon violet</div>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item d-flex align-items-center gap-2 py-2" type="button" onclick="changeDeenTheme('glass')">
+                                        <span class="material-symbols-outlined text-info fs-5">blur_on</span>
+                                        <div>
+                                            <div class="fw-bold">Crystal Glassmorphism</div>
+                                            <div class="small text-white-50">Frosted aurora & translucent glass</div>
                                         </div>
                                     </button>
                                 </li>
@@ -130,69 +187,140 @@
                             </ul>
                         </li>
 
-                        <!-- Deen VIP Loyalty & Rewards Points Badge -->
-                        <li class="nav-item me-2">
-                            <button type="button" onclick="openLoyaltyModal()" class="deen-loyalty-badge" title="View Deen VIP Club Rewards">
-                                <i class="fas fa-crown"></i> <span>VIP 450 COINS</span>
+                        <!-- Deen VIP Loyalty Coins Pill -->
+                        <li class="nav-item">
+                            <button type="button" onclick="openLoyaltyModal()" class="deen-coins-pill" title="450 VIP Loyalty Coins Available">
+                                <span class="material-symbols-outlined fs-6 text-warning">monetization_on</span>
+                                <span>450</span>
+                                <span class="d-none d-xl-inline text-white-50" style="font-size: 0.68rem; letter-spacing: 0.05em;">COINS</span>
                             </button>
                         </li>
 
-                        <li class="nav-item me-1">
-                            <a class="btn btn-sm btn-warning rounded-pill px-3 fw-bold text-dark d-inline-flex align-items-center gap-1 shadow-sm" href="{{ route('store.checkout') }}">
-                                <i class="fas fa-lock me-1"></i> Checkout
-                            </a>
-                        </li>
-                        <li class="nav-item me-1">
-                            <a class="btn btn-sm btn-outline-warning rounded-pill px-3 fw-bold text-white d-inline-flex align-items-center gap-1" href="{{ route('woocommerce.dashboard') }}">
-                                <i class="fas fa-shield-alt me-1"></i> Admin Portal Access
-                            </a>
+                        <!-- Saved Wishlist Icon Button -->
+                        <li class="nav-item">
+                            <button type="button" class="deen-header-icon-btn position-relative" onclick="openWishlistModal()" title="Saved Wishlist" aria-label="Saved Wishlist">
+                                <span class="material-symbols-outlined fs-5 text-danger">favorite</span>
+                                <span class="deen-header-badge bg-danger" id="navWishlistCount">0</span>
+                            </button>
                         </li>
 
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('login') }}"><i class="fas fa-sign-in-alt me-1"></i> {{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="btn btn-sm btn-primary rounded-pill px-3 fw-bold" href="{{ route('register') }}">{{ __('Sign Up') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white fw-semibold" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-user-circle me-1 text-primary"></i> {{ Auth::user()->name }}
-                                </a>
+                        <!-- Shopping Cart Icon Button -->
+                        <li class="nav-item">
+                            <button type="button" class="deen-header-icon-btn position-relative" onclick="openGlobalCartModal()" title="Shopping Cart" aria-label="Shopping Cart">
+                                <span class="material-symbols-outlined fs-5 text-white">shopping_cart</span>
+                                <span class="deen-header-badge bg-primary" id="cartCount">0</span>
+                            </button>
+                        </li>
 
-                                <div class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('account.dashboard') }}">
-                                        <i class="fas fa-user-circle me-2 text-primary"></i> My Account Dashboard
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('account.orders') }}">
-                                        <i class="fas fa-box-open me-2 text-success"></i> Track My Orders
-                                    </a>
-                                    <hr class="dropdown-divider">
-                                    <a class="dropdown-item" href="{{ route('admin.analytics') }}">
-                                        <i class="fas fa-chart-line me-2 text-warning"></i> Admin Analytics Hub
-                                    </a>
-                                    <hr class="dropdown-divider">
+                        <!-- Checkout Action Button -->
+                        <li class="nav-item">
+                            <a class="btn btn-sm btn-warning rounded-pill px-3 py-1.5 fw-bold text-dark d-inline-flex align-items-center gap-1 shadow-sm" href="{{ route('store.checkout') }}" title="Secure Checkout">
+                                <span class="material-symbols-outlined fs-6">lock</span>
+                                <span class="d-none d-md-inline">Checkout</span>
+                            </a>
+                        </li>
 
-                                    <a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <i class="fas fa-sign-out-alt me-2"></i> {{ __('Logout') }}
-                                    </a>
+                        <!-- Admin Portal Link -->
+                        <li class="nav-item">
+                            <a class="deen-header-icon-btn" href="{{ route('woocommerce.dashboard') }}" title="Admin Portal & WooCommerce Hub" aria-label="Admin Portal">
+                                <span class="material-symbols-outlined fs-5 text-warning">admin_panel_settings</span>
+                            </a>
+                        </li>
 
+                        <!-- Account Navigation Menu (Icon with Dropdown) -->
+                        <li class="nav-item dropdown">
+                            @guest
+                                <button class="deen-header-icon-btn dropdown-toggle dropdown-toggle-no-caret" type="button" id="accountDropdownBtn" data-bs-toggle="dropdown" aria-expanded="false" title="Account & Services" aria-label="Account">
+                                    <span class="material-symbols-outlined fs-5">person</span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow-lg border border-secondary p-2" aria-labelledby="accountDropdownBtn" style="min-width: 220px;">
+                                    <li class="px-3 py-2 border-bottom border-secondary mb-1">
+                                        <div class="fw-bold small text-white">DEEN.im Membership</div>
+                                        <div class="small text-white-50" style="font-size: 0.72rem;">Access orders & VIP rewards</div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2 rounded-2" href="#" onclick="event.preventDefault(); openAuthModal('login');">
+                                            <span class="material-symbols-outlined text-primary fs-5">login</span>
+                                            <span>Sign In</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2 rounded-2" href="#" onclick="event.preventDefault(); openAuthModal('register');">
+                                            <span class="material-symbols-outlined text-warning fs-5">person_add</span>
+                                            <span>Join VIP Club</span>
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider border-secondary my-1"></li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2 rounded-2" href="#" onclick="event.preventDefault(); openOrderTrackModal();">
+                                            <span class="material-symbols-outlined text-success fs-5">local_shipping</span>
+                                            <span>Track Order</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2 rounded-2" href="#" onclick="event.preventDefault(); openWishlistModal();">
+                                            <span class="material-symbols-outlined text-danger fs-5">favorite</span>
+                                            <span>Saved Wishlist</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            @else
+                                <button class="deen-account-pill dropdown-toggle dropdown-toggle-no-caret" type="button" id="accountDropdownBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="avatar-circle">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</div>
+                                    <span class="small fw-bold text-white d-none d-md-inline">{{ Auth::user()->name }}</span>
+                                    <span class="material-symbols-outlined fs-6 text-white-50">expand_more</span>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow-lg border border-secondary p-2" aria-labelledby="accountDropdownBtn" style="min-width: 220px;">
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2 rounded-2" href="{{ route('account.dashboard') }}">
+                                            <span class="material-symbols-outlined text-primary fs-5">dashboard</span>
+                                            <span>My Account Profile</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2 rounded-2" href="{{ route('account.orders') }}">
+                                            <span class="material-symbols-outlined text-success fs-5">local_shipping</span>
+                                            <span>Track My Orders</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2 rounded-2" href="#" onclick="event.preventDefault(); openWishlistModal();">
+                                            <span class="material-symbols-outlined text-danger fs-5">favorite</span>
+                                            <span>Saved Wishlist</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2 rounded-2" href="#" onclick="event.preventDefault(); openLoyaltyModal();">
+                                            <span class="material-symbols-outlined text-warning fs-5">military_tech</span>
+                                            <span>VIP Reward Coins</span>
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider border-secondary my-1"></li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2 rounded-2" href="{{ route('admin.analytics') }}">
+                                            <span class="material-symbols-outlined text-info fs-5">analytics</span>
+                                            <span>Admin Analytics</span>
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider border-secondary my-1"></li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2 text-danger rounded-2" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <span class="material-symbols-outlined fs-5">logout</span>
+                                            <span>Sign Out</span>
+                                        </a>
+                                    </li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                </div>
-                            </li>
-                        @endguest
+                                </ul>
+                            @endguest
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <main>
+        <main id="main-content" tabindex="-1">
             @yield('content')
         </main>
 
@@ -202,15 +330,19 @@
                 <div class="row g-4 mb-4">
                     <!-- Col 1: Brand & Slogan -->
                     <div class="col-lg-4 col-md-6">
-                        <a href="/" class="d-inline-flex align-items-center gap-2 mb-3 text-decoration-none">
-                            <img src="https://deencommerce.com/wp-content/uploads/2025/04/Deen-Logo-Light-scaled.png" style="height: 36px; object-fit: contain;" alt="Deen Commerce">
-                            <span class="badge bg-warning text-dark font-monospace fw-bold">দেশের প্রথম ডেনিম ব্র্যান্ড</span>
+                        <a href="{{ url('/') }}" class="d-inline-flex align-items-center gap-2 mb-3 text-decoration-none">
+                            <img src="{{ asset('images/deen-logo-dark.png') }}" class="deen-brand-logo" alt="DEEN" onerror="this.src='https://deencommerce.com/wp-content/uploads/2025/04/cropped-Deen-Logo-scaled-1.png'">
+                            <div class="deen-brand-lockup d-flex align-items-baseline">
+                                <span class="deen-brand-text text-white">DEEN</span>
+                                <span class="deen-domain-badge"><span class="deen-domain-dot">.</span>im</span>
+                            </div>
+                            <span class="badge bg-warning text-dark font-monospace fw-bold ms-1">দেশের প্রথম ডেনিম ব্র্যান্ড</span>
                         </a>
-                        <p class="text-white-50 small mb-3">DEEN is Bangladesh's premier denim & lifestyle fashion brand. Crafted with premium 13.5oz stretch denim and cotton comfort weaves.</p>
+                        <p class="text-white-50 small mb-3">DEEN.im is Bangladesh's premier denim & lifestyle fashion brand. Crafted with premium 13.5oz stretch denim and cotton comfort weaves.</p>
                         <div class="d-flex gap-2">
-                            <a href="https://facebook.com/deencommerce" target="_blank" class="btn btn-outline-light btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://instagram.com/deencommerce" target="_blank" class="btn btn-outline-light btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fab fa-instagram"></i></a>
-                            <a href="https://t.me/DEEN_Commerce_bot" target="_blank" class="btn btn-outline-light btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;"><i class="fab fa-telegram"></i></a>
+                            <a href="https://facebook.com/deencommerce" target="_blank" class="btn btn-outline-light btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" class="btn btn-outline-light btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center deen-avatar-md"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://instagram.com/deencommerce" target="_blank" class="btn btn-outline-light btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center deen-avatar-md"><i class="fab fa-instagram"></i></a>
+                            <a href="https://t.me/DEEN_Commerce_bot" target="_blank" class="btn btn-outline-light btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center deen-avatar-md"><i class="fab fa-telegram"></i></a>
                         </div>
                     </div>
 
@@ -267,31 +399,26 @@
 
         <!-- STICKY MOBILE BOTTOM THUMB-ZONE NAVIGATION BAR -->
         <div class="deen-mobile-bottom-nav">
-            <a href="{{ route('store.index') }}" class="deen-mobile-nav-item {{ request()->is('/') ? 'active' : '' }}">
+            <a href="{{ route('store.index') }}" class="deen-mobile-nav-item {{ request()->is('/') ? 'active' : '' }}" title="Shop" aria-label="Shop">
                 <span class="material-symbols-outlined nav-icon">storefront</span>
                 <span>Shop</span>
             </a>
-            <a href="{{ route('store.categories') }}" class="deen-mobile-nav-item {{ request()->is('categories*') || request()->is('category*') ? 'active' : '' }}">
+            <a href="{{ route('store.categories') }}" class="deen-mobile-nav-item {{ request()->is('categories*') || request()->is('category*') ? 'active' : '' }}" title="Categories" aria-label="Categories">
                 <span class="material-symbols-outlined nav-icon">grid_view</span>
                 <span>Categories</span>
             </a>
-            <a href="#" onclick="event.preventDefault(); openMobileSearchModal();" class="deen-mobile-nav-item">
+            <a href="#" onclick="event.preventDefault(); openMobileSearchModal();" class="deen-mobile-nav-item" title="Search" aria-label="Search">
                 <span class="material-symbols-outlined nav-icon">search</span>
                 <span>Search</span>
             </a>
-            <a href="#" onclick="event.preventDefault(); openWishlistModal();" class="deen-mobile-nav-item">
-                <span class="material-symbols-outlined nav-icon text-danger">favorite</span>
-                <span>Wishlist</span>
-                <span class="deen-mobile-nav-badge bg-danger" id="bottomNavWishlistBadge">0</span>
-            </a>
-            <a href="#" onclick="event.preventDefault(); openGlobalCartModal();" class="deen-mobile-nav-item">
-                <span class="material-symbols-outlined nav-icon">shopping_bag</span>
-                <span>Bag</span>
+            <a href="#" onclick="event.preventDefault(); openGlobalCartModal();" class="deen-mobile-nav-item" title="Cart" aria-label="Cart">
+                <span class="material-symbols-outlined nav-icon">shopping_cart</span>
+                <span>Cart</span>
                 <span class="deen-mobile-nav-badge" id="bottomNavCartBadge">0</span>
             </a>
-            <a href="#" onclick="event.preventDefault(); openOrderTrackModal();" class="deen-mobile-nav-item {{ request()->is('my-account*') ? 'active' : '' }}">
-                <span class="material-symbols-outlined nav-icon text-success">local_shipping</span>
-                <span>Track</span>
+            <a href="#" onclick="event.preventDefault(); openMobileAccountModal();" class="deen-mobile-nav-item {{ request()->is('my-account*') ? 'active' : '' }}" title="Account" aria-label="Account">
+                <span class="material-symbols-outlined nav-icon">person</span>
+                <span>Account</span>
             </a>
         </div>
 
@@ -304,7 +431,7 @@
                         <i class="fab fa-telegram fa-lg text-white"></i>
                         <div>
                             <div class="fw-bold small">DEEN Instant Support</div>
-                            <div class="small opacity-75" style="font-size: 0.72rem;"><i class="fas fa-circle text-success me-1" style="font-size: 8px;"></i> @DEEN_Commerce_bot Online</div>
+                            <div class="small opacity-75" class="deen-fs-72"><i class="fas fa-circle text-success me-1" class="deen-fs-8"></i> @DEEN_Commerce_bot Online</div>
                         </div>
                     </div>
                     <button type="button" class="btn-close btn-close-white btn-sm" onclick="toggleTelegramChatPopover()"></button>
@@ -340,7 +467,7 @@
             </div>
 
             <!-- Floating Trigger Button -->
-            <button class="deen-telegram-trigger" onclick="toggleTelegramChatPopover()" title="Chat with @DEEN_Commerce_bot on Telegram">
+            <button class="deen-telegram-trigger" onclick="toggleTelegramChatPopover()" title="Chat with @DEEN_Commerce_bot on Telegram" aria-label="Open live chat support" aria-expanded="false" aria-controls="telegramChatPopover">
                 <i class="fab fa-telegram-plane"></i>
                 <span class="deen-telegram-pulse"></span>
             </button>
@@ -392,17 +519,17 @@
     <!-- FLOATING CART TOAST NOTIFICATION -->
     <div id="globalCartToast" class="deen-cart-toast d-none">
         <div class="d-flex align-items-center gap-3">
-            <div class="bg-success text-white rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+            <div class="bg-success text-white rounded-circle p-2 d-flex align-items-center justify-content-center deen-avatar-lg">
                 <i class="fas fa-check"></i>
             </div>
             <div class="flex-grow-1">
-                <div class="fw-bold text-white small" id="toastItemTitle">Item added to bag!</div>
+                <div class="fw-bold text-white small" id="toastItemTitle">Item added to cart!</div>
                 <div class="small text-white-50">Free shipping available</div>
             </div>
         </div>
         <div class="d-flex gap-2 mt-3 pt-2 border-top border-secondary">
             <button onclick="openGlobalCartModal(); document.getElementById('globalCartToast').classList.add('d-none');" class="btn btn-warning btn-sm rounded-pill fw-bold text-dark flex-grow-1">
-                View Bag
+                View Cart
             </button>
             <button onclick="document.getElementById('globalCartToast').classList.add('d-none');" class="btn btn-outline-light btn-sm rounded-pill fw-bold">
                 Continue Shopping
@@ -410,18 +537,18 @@
         </div>
     </div>
 
-    <!-- GLOBAL SHOPPING BAG MODAL -->
+    <!-- GLOBAL SHOPPING CART MODAL -->
     <div class="modal fade" id="globalCartModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-end modal-md">
             <div class="modal-content border-0 shadow-lg rounded-4">
                 <div class="modal-header bg-dark text-white border-0">
-                    <h5 class="modal-title fw-bold"><i class="fas fa-shopping-bag me-2 text-danger"></i> Shopping Bag</h5>
+                    <h5 class="modal-title fw-bold"><i class="fas fa-shopping-cart me-2 text-danger"></i> Shopping Cart</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body p-4" id="globalCartItemsList">
                     <div class="text-center py-4 text-muted">
-                        <i class="fas fa-shopping-bag fa-3x mb-3 opacity-40"></i>
-                        <p class="mb-0">Your shopping bag is empty.</p>
+                        <i class="fas fa-shopping-cart fa-3x mb-3 opacity-40"></i>
+                        <p class="mb-0">Your shopping cart is currently empty.</p>
                     </div>
                 </div>
                 <div class="modal-footer border-top p-3 d-flex flex-column gap-2">
@@ -586,6 +713,299 @@
         </div>
     </div>
 
+    <!-- MOBILE ACCOUNT NAVIGATION DRAWER / MODAL -->
+    <div class="modal fade" id="mobileAccountModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden bg-white">
+                <div class="modal-header bg-dark text-white border-0 py-3">
+                    <h5 class="modal-title fw-bold fs-6 d-flex align-items-center gap-2 mb-0">
+                        <span class="material-symbols-outlined text-warning fs-5">account_circle</span>
+                        <span>Client Account & Services</span>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-3">
+                    @auth
+                        <div class="p-3 deen-frame deen-pastel-azure mb-3 rounded-3">
+                            <div class="d-flex align-items-center gap-2.5">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center bg-primary text-white fw-bold shadow-2xs" style="width: 40px; height: 40px;">
+                                    {{ strtoupper(substr(Auth::user()->name ?? 'U', 0, 1)) }}
+                                </div>
+                                <div class="overflow-hidden">
+                                    <div class="fw-bold text-dark text-truncate">{{ Auth::user()->name }}</div>
+                                    <div class="small text-secondary text-truncate" style="max-width: 170px;">{{ Auth::user()->email }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="p-3 deen-frame deen-pastel-linen mb-3 rounded-3">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center bg-dark text-white" style="width: 36px; height: 36px;">
+                                        <span class="material-symbols-outlined fs-5">person</span>
+                                    </div>
+                                    <div>
+                                        <div class="fw-bold text-dark small">Client Membership</div>
+                                        <div class="text-secondary" style="font-size: 0.70rem;">Sign in or create account</div>
+                                    </div>
+                                </div>
+                                <button type="button" onclick="closeMobileAccountModal(); openAuthModal('login');" class="btn btn-sm btn-dark rounded-pill px-3 py-1 fw-semibold d-inline-flex align-items-center gap-1 shadow-none" style="font-size: 0.78rem;">
+                                    <span class="material-symbols-outlined fs-6">login</span>
+                                    <span>Sign In</span>
+                                </button>
+                            </div>
+                            <!-- Quick 1-Tap OAuth in Mobile Drawer -->
+                            <div class="row g-2 pt-2 border-top">
+                                <div class="col-6">
+                                    <a href="{{ route('auth.google') }}" class="btn deen-social-btn-google w-100 py-1.5 px-2 text-truncate" style="font-size: 0.75rem;">
+                                        <svg width="14" height="14" viewBox="0 0 48 48">
+                                            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                                            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                                            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.28-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24s.92 7.54 2.56 10.78l7.97-6.19z"/>
+                                            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                                        </svg>
+                                        <span>Google</span>
+                                    </a>
+                                </div>
+                                <div class="col-6">
+                                    <a href="{{ route('auth.facebook') }}" class="btn deen-social-btn-fb w-100 py-1.5 px-2 text-truncate" style="font-size: 0.75rem;">
+                                        <i class="fab fa-facebook-f" style="font-size: 0.75rem;"></i>
+                                        <span>Facebook</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endauth
+
+                    <div class="d-flex flex-column gap-2">
+                        <!-- Track Order -->
+                        <a href="#" onclick="event.preventDefault(); closeMobileAccountModal(); openOrderTrackModal();" class="d-flex align-items-center justify-content-between p-2.5 rounded-3 border bg-white text-decoration-none text-dark shadow-sm">
+                            <div class="d-flex align-items-center gap-2.5">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center bg-success bg-opacity-10 text-success" style="width: 36px; height: 36px;">
+                                    <span class="material-symbols-outlined fs-5">local_shipping</span>
+                                </div>
+                                <div>
+                                    <div class="fw-semibold small">Track Live Order</div>
+                                    <div class="text-secondary" style="font-size: 0.70rem;">Real-time courier dispatch status</div>
+                                </div>
+                            </div>
+                            <span class="material-symbols-outlined text-secondary fs-5">chevron_right</span>
+                        </a>
+
+                        <!-- Saved Wishlist -->
+                        <a href="#" onclick="event.preventDefault(); closeMobileAccountModal(); openWishlistModal();" class="d-flex align-items-center justify-content-between p-2.5 rounded-3 border bg-white text-decoration-none text-dark shadow-sm">
+                            <div class="d-flex align-items-center gap-2.5">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center bg-danger bg-opacity-10 text-danger" style="width: 36px; height: 36px;">
+                                    <span class="material-symbols-outlined fs-5">favorite</span>
+                                </div>
+                                <div>
+                                    <div class="fw-semibold small">Saved Wishlist</div>
+                                    <div class="text-secondary" style="font-size: 0.70rem;">Favorite denim & apparel picks</div>
+                                </div>
+                            </div>
+                            <span class="badge bg-danger rounded-pill" id="mobileAccountWishlistBadge">0</span>
+                        </a>
+
+                        <!-- VIP Rewards Vault -->
+                        <a href="#" onclick="event.preventDefault(); closeMobileAccountModal(); openLoyaltyModal();" class="d-flex align-items-center justify-content-between p-2.5 rounded-3 border bg-white text-decoration-none text-dark shadow-sm">
+                            <div class="d-flex align-items-center gap-2.5">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center bg-warning bg-opacity-10 text-warning" style="width: 36px; height: 36px;">
+                                    <span class="material-symbols-outlined fs-5">military_tech</span>
+                                </div>
+                                <div>
+                                    <div class="fw-semibold small">VIP Rewards Vault</div>
+                                    <div class="text-secondary" style="font-size: 0.70rem;">Coins balance & discount coupons</div>
+                                </div>
+                            </div>
+                            <span class="deen-pastel-pill sand py-0.5 px-2" style="font-size: 0.70rem;">450 Coins</span>
+                        </a>
+
+                        @auth
+                            <!-- Customer Profile & Orders -->
+                            <a href="{{ route('account.dashboard') }}" class="d-flex align-items-center justify-content-between p-2.5 rounded-3 border bg-white text-decoration-none text-dark shadow-sm">
+                                <div class="d-flex align-items-center gap-2.5">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center bg-primary bg-opacity-10 text-primary" style="width: 36px; height: 36px;">
+                                        <span class="material-symbols-outlined fs-5">manage_accounts</span>
+                                    </div>
+                                    <div>
+                                        <div class="fw-semibold small">My Profile & Addresses</div>
+                                        <div class="text-secondary" style="font-size: 0.70rem;">Manage delivery details</div>
+                                    </div>
+                                </div>
+                                <span class="material-symbols-outlined text-secondary fs-5">chevron_right</span>
+                            </a>
+
+                            <!-- Logout -->
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="d-flex align-items-center justify-content-between p-2.5 rounded-3 border border-danger-subtle bg-danger bg-opacity-10 text-decoration-none text-danger shadow-sm">
+                                <div class="d-flex align-items-center gap-2.5">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center bg-danger text-white" style="width: 36px; height: 36px;">
+                                        <span class="material-symbols-outlined fs-5">logout</span>
+                                    </div>
+                                    <div class="fw-semibold small">Sign Out</div>
+                                </div>
+                                <span class="material-symbols-outlined fs-5">chevron_right</span>
+                            </a>
+                        @endauth
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UNIFIED SIGN IN & SIGN UP MODAL -->
+    <div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden bg-white">
+                <div class="modal-header bg-dark text-white border-0 py-3">
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="material-symbols-outlined text-warning fs-5">lock_person</span>
+                        <h5 class="modal-title fw-bold fs-6 mb-0" id="modalAuthTitle">Welcome Back to Deen</h5>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <!-- VIP Micro-Banner -->
+                    <div class="deen-auth-perks-box mb-3">
+                        <div class="d-flex align-items-center justify-content-between gap-1 text-center text-md-start flex-wrap">
+                            <div class="d-flex align-items-center gap-1">
+                                <span class="material-symbols-outlined fs-6 text-warning">monetization_on</span>
+                                <span class="small fw-bold text-dark" style="font-size: 0.75rem;">50 Free Coins</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-1">
+                                <span class="material-symbols-outlined fs-6 text-primary">local_shipping</span>
+                                <span class="small fw-bold text-dark" style="font-size: 0.75rem;">Free Delivery Pass</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-1">
+                                <span class="material-symbols-outlined fs-6 text-success">verified</span>
+                                <span class="small fw-bold text-dark" style="font-size: 0.75rem;">7-Day Guarantee</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1-Tap Social OAuth Grid: Google & Facebook -->
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <a href="{{ route('auth.google') }}" class="btn deen-social-btn-google w-100 shadow-sm" title="Sign in with Google">
+                                <svg width="16" height="16" viewBox="0 0 48 48">
+                                    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                                    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                                    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.28-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24s.92 7.54 2.56 10.78l7.97-6.19z"/>
+                                    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                                </svg>
+                                <span>Google</span>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="{{ route('auth.facebook') }}" class="btn deen-social-btn-fb w-100 shadow-sm" title="Sign in with Facebook">
+                                <i class="fab fa-facebook-f fs-6"></i>
+                                <span>Facebook</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center my-3">
+                        <hr class="flex-grow-1 text-muted opacity-25 m-0">
+                        <span class="px-2 text-muted small fw-semibold text-uppercase" style="font-size: 0.65rem; letter-spacing: 0.08em;">or email</span>
+                        <hr class="flex-grow-1 text-muted opacity-25 m-0">
+                    </div>
+
+                    <!-- Interactive Tab Switcher -->
+                    <div class="bg-light p-1 rounded-pill d-flex mb-3 border">
+                        <button type="button" id="modalTabLoginBtn" onclick="switchModalAuthTab('login')" class="btn btn-sm w-50 rounded-pill fw-bold py-1.5 btn-dark shadow-sm">
+                            Sign In
+                        </button>
+                        <button type="button" id="modalTabRegisterBtn" onclick="switchModalAuthTab('register')" class="btn btn-sm w-50 rounded-pill fw-bold py-1.5 text-muted">
+                            Create Account
+                        </button>
+                    </div>
+
+                    <!-- Sign In Form -->
+                    <div id="modalLoginFormContainer">
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="mb-2.5">
+                                <label class="form-label fw-semibold text-dark small mb-1">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-muted border-end-0"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" name="email" class="form-control bg-light border-start-0" placeholder="name@example.com" required autocomplete="email">
+                                </div>
+                            </div>
+                            <div class="mb-2.5">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <label class="form-label fw-semibold text-dark small mb-0">Password</label>
+                                    @if (Route::has('password.request'))
+                                        <a class="small text-primary text-decoration-none fw-semibold" style="font-size: 0.75rem;" href="{{ route('password.request') }}">Forgot?</a>
+                                    @endif
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-muted border-end-0"><i class="fas fa-lock"></i></span>
+                                    <input type="password" id="modalLoginPassword" name="password" class="form-control bg-light border-start-0 border-end-0" placeholder="••••••••" required autocomplete="current-password">
+                                    <button type="button" class="input-group-text bg-light text-muted border-start-0" onclick="togglePassword('modalLoginPassword', this)" title="Show/Hide Password" aria-label="Toggle Password"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input class="form-check-input" type="checkbox" name="remember" id="modalRemember" checked>
+                                <label class="form-check-label small text-muted" for="modalRemember">Remember me</label>
+                            </div>
+                            <button type="submit" class="btn-deen-primary w-100 justify-content-center py-2 fs-6 shadow-sm">
+                                Sign In <i class="fas fa-arrow-right ms-1"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Create Account Form -->
+                    <div id="modalRegisterFormContainer" class="d-none">
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
+                            <div class="mb-2">
+                                <label class="form-label fw-semibold text-dark small mb-1">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-muted border-end-0"><i class="fas fa-user"></i></span>
+                                    <input type="text" name="name" class="form-control bg-light border-start-0" placeholder="e.g. Tanvir Ahmed" required autocomplete="name">
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label fw-semibold text-dark small mb-1">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-muted border-end-0"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" name="email" class="form-control bg-light border-start-0" placeholder="name@example.com" required autocomplete="email">
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label fw-semibold text-dark small mb-1">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-muted border-end-0"><i class="fas fa-lock"></i></span>
+                                    <input type="password" id="modalRegPassword" name="password" class="form-control bg-light border-start-0 border-end-0" placeholder="Min. 8 chars" required minlength="8" autocomplete="new-password">
+                                    <button type="button" class="input-group-text bg-light text-muted border-start-0" onclick="togglePassword('modalRegPassword', this)" title="Show/Hide Password" aria-label="Toggle Password"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold text-dark small mb-1">Confirm Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light text-muted border-end-0"><i class="fas fa-shield-alt"></i></span>
+                                    <input type="password" id="modalRegConfirm" name="password_confirmation" class="form-control bg-light border-start-0 border-end-0" placeholder="Re-enter password" required minlength="8" autocomplete="new-password">
+                                    <button type="button" class="input-group-text bg-light text-muted border-start-0" onclick="togglePassword('modalRegConfirm', this)" title="Show/Hide Password" aria-label="Toggle Password"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-deen-orange w-100 justify-content-center py-2 fs-6 shadow-sm">
+                                Create VIP Account <i class="fas fa-arrow-right ms-1"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Trust Indicators -->
+                    <div class="text-center mt-3 pt-2 border-top">
+                        <div class="d-inline-flex align-items-center gap-2 text-muted" style="font-size: 0.68rem;">
+                            <span><i class="fas fa-lock me-1"></i> 256-Bit SSL</span>
+                            <span>&bull;</span>
+                            <span><i class="fas fa-shield-halved me-1"></i> 100% Spam Free</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -641,7 +1061,7 @@
         const totalContainer = document.getElementById('globalCartTotal');
 
         if (cart.length === 0) {
-            listContainer.innerHTML = '<div class="text-center py-4 text-muted"><i class="fas fa-shopping-bag fa-3x mb-3 opacity-40"></i><p class="mb-0">Your shopping bag is empty.</p></div>';
+            listContainer.innerHTML = '<div class="text-center py-4 text-muted"><i class="fas fa-shopping-cart fa-3x mb-3 opacity-40"></i><p class="mb-0">Your shopping cart is currently empty.</p></div>';
             totalContainer.innerText = '৳0.00';
             return;
         }
@@ -655,9 +1075,9 @@
             html += `
                 <div class="d-flex align-items-center justify-content-between border-bottom pb-2">
                     <div class="d-flex align-items-center gap-2">
-                        <img src="${img}" style="width: 48px; height: 48px; object-fit: cover;" class="rounded-2 border">
+                        <img src="${img}" class="deen-avatar-2xl deen-avatar-cover rounded-2 border">
                         <div>
-                            <div class="fw-bold small text-dark text-truncate" style="max-width: 160px;">${item.name}</div>
+                            <div class="fw-bold small text-dark text-truncate" class="deen-max-160">${item.name}</div>
                             <div class="small text-muted">৳${item.price.toFixed(2)} x ${item.qty}</div>
                         </div>
                     </div>
@@ -860,6 +1280,15 @@
         const badge = document.getElementById('bottomNavWishlistBadge');
         if (badge) badge.innerText = count;
 
+        const badge2 = document.getElementById('mobileAccountWishlistBadge');
+        if (badge2) badge2.innerText = count;
+
+        const badge3 = document.getElementById('navWishlistCount');
+        if (badge3) badge3.innerText = count;
+
+        const badge4 = document.getElementById('headerMobileWishlistBadge');
+        if (badge4) badge4.innerText = count;
+
         // Highlight heart buttons on page matching wishlist IDs
         document.querySelectorAll('.deen-wishlist-btn').forEach(btn => {
             const btnId = parseInt(btn.getAttribute('data-id'));
@@ -892,15 +1321,15 @@
             html += `
                 <div class="d-flex align-items-center justify-content-between border-bottom pb-2">
                     <div class="d-flex align-items-center gap-2">
-                        <img src="${img}" style="width: 50px; height: 50px; object-fit: cover;" class="rounded-2 border">
+                        <img src="${img}" class="deen-avatar-3xl deen-avatar-cover rounded-2 border">
                         <div>
-                            <div class="fw-bold small text-dark text-truncate" style="max-width: 170px;">${item.name}</div>
+                            <div class="fw-bold small text-dark text-truncate" class="deen-max-170">${item.name}</div>
                             <div class="fw-bold text-primary small">৳${parseFloat(item.price).toFixed(2)}</div>
                         </div>
                     </div>
                     <div class="d-flex align-items-center gap-2">
                         <button class="btn btn-sm btn-dark rounded-pill fw-bold" onclick="addToCart(${item.id}, '${item.name.replace(/'/g, "\\'")}', ${item.price}, '${img}')">
-                            <i class="fas fa-bag-shopping me-1"></i> Add
+                            <i class="fas fa-shopping-cart me-1"></i> Add
                         </button>
                         <button class="btn btn-sm text-danger p-0 ms-1" onclick="toggleWishlist(${item.id}, '', 0, ''); renderWishlistList();"><i class="fas fa-trash-alt"></i></button>
                     </div>
@@ -984,11 +1413,64 @@
         const toast = document.getElementById('globalCartToast');
         const titleEl = document.getElementById('toastItemTitle');
         if (toast && titleEl) {
-            titleEl.innerText = itemTitle + ' added to shopping bag!';
+            titleEl.innerText = itemTitle + ' added to cart!';
             toast.classList.remove('d-none');
             setTimeout(() => {
                 toast.classList.add('d-none');
             }, 4500);
+        }
+    }
+
+    /* MOBILE ACCOUNT DRAWER & AUTH MODAL HANDLERS */
+    function openMobileAccountModal() {
+        const modal = new bootstrap.Modal(document.getElementById('mobileAccountModal'));
+        modal.show();
+    }
+
+    function closeMobileAccountModal() {
+        const modalEl = document.getElementById('mobileAccountModal');
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        if (modal) modal.hide();
+    }
+
+    function openAuthModal(tab = 'login') {
+        switchModalAuthTab(tab);
+        const modal = new bootstrap.Modal(document.getElementById('authModal'));
+        modal.show();
+    }
+
+    function switchModalAuthTab(tab) {
+        const loginContainer = document.getElementById('modalLoginFormContainer');
+        const registerContainer = document.getElementById('modalRegisterFormContainer');
+        const loginBtn = document.getElementById('modalTabLoginBtn');
+        const registerBtn = document.getElementById('modalTabRegisterBtn');
+        const titleEl = document.getElementById('modalAuthTitle');
+
+        if (tab === 'login') {
+            if (loginContainer) loginContainer.classList.remove('d-none');
+            if (registerContainer) registerContainer.classList.add('d-none');
+            if (loginBtn) loginBtn.className = 'btn btn-sm w-50 rounded-pill fw-bold py-1.5 btn-dark shadow-sm';
+            if (registerBtn) registerBtn.className = 'btn btn-sm w-50 rounded-pill fw-bold py-1.5 text-muted';
+            if (titleEl) titleEl.innerText = 'Welcome Back to Deen';
+        } else {
+            if (loginContainer) loginContainer.classList.add('d-none');
+            if (registerContainer) registerContainer.classList.remove('d-none');
+            if (registerBtn) registerBtn.className = 'btn btn-sm w-50 rounded-pill fw-bold py-1.5 btn-dark shadow-sm';
+            if (loginBtn) loginBtn.className = 'btn btn-sm w-50 rounded-pill fw-bold py-1.5 text-muted';
+            if (titleEl) titleEl.innerText = 'Join the Deen VIP Club';
+        }
+    }
+
+    function togglePassword(inputId, btn) {
+        const input = document.getElementById(inputId);
+        if (!input) return;
+        const icon = btn.querySelector('i');
+        if (input.type === 'password') {
+            input.type = 'text';
+            if (icon) icon.className = 'fas fa-eye-slash';
+        } else {
+            input.type = 'password';
+            if (icon) icon.className = 'fas fa-eye';
         }
     }
 

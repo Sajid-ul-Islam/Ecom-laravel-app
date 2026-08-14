@@ -67,7 +67,7 @@
                 <div class="woo-stat-card">
                     <div class="d-flex align-items-center justify-content-between">
                         <span class="woo-stat-label">Synced Orders</span>
-                        <div class="woo-stat-icon success"><i class="fas fa-shopping-bag"></i></div>
+                        <div class="woo-stat-icon success"><i class="fas fa-shopping-cart"></i></div>
                     </div>
                     <div class="woo-stat-value">{{ number_format($totalOrders) }}</div>
                     <div class="small text-muted mt-2">
