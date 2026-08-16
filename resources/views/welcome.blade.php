@@ -28,24 +28,22 @@
  </p>
  <div class="d-flex flex-wrap align-items-center gap-3">
  <a href="{{ route('store.product.detail', $slide['id'] ?? 1) }}" class="btn-deen-vibrant">
- <span>View Collection Piece</span>
+ <span>Shop This Look</span>
  <i class="fas fa-arrow-right ms-1"></i>
- </a>
- <a href="#catalog-section" class="btn-deen-outline">
- Browse Catalog
  </a>
  </div>
  </div>
 
  <div class="col-lg-5">
  <div class="deen-hero-showcase-card text-center position-relative">
- <span class="deen-vibrant-pill indigo position-absolute top-0 end-0 m-3 z-3">Authentic Line</span>
+ @if($discountPercent ?? ($regPrice && $regPrice !== $slidePrice))
+ <span class="deen-vibrant-pill indigo position-absolute top-0 end-0 m-3 z-3">Sale</span>
+ @endif
  <div class="rounded-4 overflow-hidden mb-3" style="height: 270px; background: #f8fafc;">
  <img src="{{ $slideImg }}" class="w-100 h-100 object-fit-cover" alt="{{ $slide['name'] }}">
  </div>
  <div class="pt-2">
  <h4 class="fw-bold text-dark mb-1 text-truncate font-display" style="font-size: 1.2rem;">{{ $slide['name'] }}</h4>
- <div class="text-muted small mb-2"><i class="fas fa-circle-check text-success me-1"></i> Live WooCommerce Synced</div>
  <div class="fs-3 fw-bold text-dark font-display mb-3">
  {{ $slidePrice }}
  @if($regPrice && $regPrice !== $slidePrice)
@@ -53,7 +51,7 @@
  @endif
  </div>
  <a href="{{ route('store.product.detail', $slide['id'] ?? 1) }}" class="btn-deen-primary w-100 py-2.5">
- Explore Details <i class="fas fa-arrow-right ms-1"></i>
+ Shop This Look <i class="fas fa-arrow-right ms-1"></i>
  </a>
  </div>
  </div>
@@ -67,7 +65,7 @@
  @if(!empty($heroSlides) && count($heroSlides) > 1)
  <div class="d-flex align-items-center justify-content-center gap-2 mt-4">
  @foreach($heroSlides as $index => $slide)
- <button type="button" data-bs-target="#deenHeroCarousel" data-bs-slide-to="{{ $index }}" class="btn p-0 rounded-pill {{ $index === 0 ? 'bg-dark' : 'bg-secondary opacity-40' }}" aria-label="Slide {{ $index + 1 }}"></button>
+ <button type="button" data-bs-target="#deenHeroCarousel" data-bs-slide-to="{{ $index }}" class="border-0 rounded-pill {{ $index === 0 ? 'bg-dark' : 'bg-secondary opacity-40' }}" style="width: 10px; height: 10px; padding: 0; cursor: pointer;" aria-label="Slide {{ $index + 1 }}"></button>
  @endforeach
  </div>
  @endif
@@ -197,11 +195,7 @@
  </div>
  @endif
 
- <!-- Subtle Fabric & Motion Video Snippet -->
- <video class="deen-card-video" muted loop playsinline preload="none" poster="{{ $image }}">
- <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-model-in-a-denim-jacket-and-pants-40763-small.mp4" type="video/mp4">
- </video>
- <span class="deen-video-badge"><i class="fas fa-play"></i> Motion</span>
+
 
  <!-- Wishlist Heart Toggle Button -->
  <button type="button" class="deen-wishlist-btn" data-id="{{ $product['id'] }}" onclick="toggleWishlist({{ $product['id'] }}, '{{ addslashes($product['name']) }}', {{ $price }}, '{{ addslashes($image) }}', this)" title="Save to Favorites">
@@ -229,15 +223,7 @@
  {{ $product['name'] }}
  </a>
 
- <div class="d-flex align-items-center justify-content-between mb-2">
- <div class="deen-rating-stars">
- <i class="fas fa-star"></i>
- <i class="fas fa-star"></i>
- <i class="fas fa-star"></i>
- <i class="fas fa-star"></i>
- <i class="fas fa-star-half-alt"></i>
- <span class="text-muted ms-1 small">4.9</span>
- </div>
+ <div class="d-flex align-items-center justify-content-end mb-2">
  <span class="small text-muted d-inline-flex align-items-center gap-1">
  @if($stockStatus === 'instock' || ($stockQty && $stockQty > 0))
  <span class="deen-stock-dot"></span> In Stock

@@ -10,12 +10,16 @@ A high-performance retail denim & urban apparel e-commerce platform built on **L
 
 ### 1. Modern Storefront & Design System
 - **`DEEN.im` Brand Identity** — High-contrast typography lockup with an active glowing amber domain badge (`DEEN.im`).
-- **5-Theme Architectural Engine**:
+- **8-Theme Architectural Engine** (persisted per visitor, hot-swappable from the nav):
   - 👖 **13.5oz Washed Denim** *(Default authentic indigo twill)*
+  - 🧵 **Raw Denim Fabric** *(Deep indigo twill-weave texture with copper rivet accents)*
   - 🌙 **Midnight Studio Dark** *(Luxury obsidian & neon violet)*
   - ✨ **Crystal Glassmorphism** *(Translucent frosted glass, specular borders & cyan glow)*
   - ⚡ **Cyberpunk Urban Neon** *(Charcoal & electric pink)*
+  - 🌿 **Botanical Sage** *(Green-tinted calm canvas)*
+  - 🌊 **Royal Azure** *(Blue-tinted ocean canvas)*
   - ☀️ **Studio Minimal Light** *(Clean slate & ocean navy)*
+- **WCAG AA Accessibility Compliance** — All themes audited for 4.5:1 text contrast, 3:1 focus-ring contrast, accessible placeholders, and dark-mode pill/pastel token overrides.
 - **Icon-Centric Header & Navigation**:
   - Instant live predictive search drawer.
   - Theme selector palette.
@@ -29,6 +33,13 @@ A high-performance retail denim & urban apparel e-commerce platform built on **L
 - **Clean Product Presentation**:
   - Unobstructed high-fashion product photos with fabric wash swatches and motion video previews.
   - Minimalist glowing stock dot indicators (`.deen-stock-dot`) embedded within the card details.
+  - Interactive thumbnail gallery with active-state ring and hover transitions.
+- **Global Flash Sale Timer** — Live countdown badge (`ENDS IN 05h : 42m : 18s`) with auto-pausing hero carousel on hover.
+- **UI Polish & Micro-Interactions**:
+  - Category cards with hover lift + shadow; whole card is a link.
+  - Skeleton loader pulse placeholders while product data streams in.
+  - Badges auto-hide at zero counts; page-level fade-in transition.
+- **PWA (Progressive Web App)** — Installable via `manifest.json` (standalone display, Deen branding) with an offline-first service worker (`sw.js`) that caches the shell, stylesheet, and CDN assets.
 
 ### 2. Client Account & 5-Stage Live Order Tracker (`/my-account`)
 - **Interactive Courier Tracking**: 5-stage real-time progress tracker (`Placed` ➔ `Inspected` ➔ `In Transit` ➔ `Out for Delivery` ➔ `Delivered`) with carrier details (Steadfast Courier / Pathao Express), dispatch hubs, tracking codes, and digital tax receipts.
@@ -45,13 +56,21 @@ A high-performance retail denim & urban apparel e-commerce platform built on **L
 ### 4. WooCommerce Integration Engine (`wc/v3`)
 - **Live Product Sync**: Real-time upserting of products, variations, categories, and tags with automatic cache invalidation.
 - **Order Synchronization**: Pulls processing and completed customer orders along with itemized line items.
-- **Stock & Inventory Tracking**: Synchronizes stock levels, prices, and SKUs with exponential backoff retries.
+- **Memory-Optimized Order Fetching**: Orders are requested with an explicit `_fields` whitelist so full payloads (huge `meta_data`/plugin blobs) never balloon PHP memory — critical for stores with thousands of orders.
+- **Stock & Inventory Tracking**: Synchronizes stock levels, prices, and SKUs with exponential backoff retries (`4` attempts, 1s → 30s).
 - **Historical Price Auditing**: Logs every price change into `woo_price_histories` for analytics.
 - **Dead-Letter Retry Queue**: Captures failed synchronizations into `woo_sync_failures` for scheduled or manual reprocessing.
+- **Observability**: Every request is logged to `woo_api_logs` (latency, status, endpoint); failures dispatch `ProcessWooSyncFailure` onto the `woo-dead-letter` queue.
 
 ### 5. Integration Hub & Admin Analytics (`/woocommerce/*` & `/admin/analytics`)
 - **Integration Hub**: Real-time sync statistics, request latency metrics, error logs, and on-demand synchronization triggers.
 - **Admin Analytics Dashboard**: High-level store metrics, sales revenue summaries, conversion charts, and API health status.
+
+### 6. Mobile UX Enhancement Suite
+- **Wishlist** — Save-to-wishlist buttons with live `#navWishlistCount` badge, persisted per visitor.
+- **Quick View** — Product peek modal from category/card grids without leaving the page.
+- **Product Variants** — Fabric wash swatch & variant selection with price updates.
+- **Order Tracking Components** — Thumb-zone dock with one-tap access to live order tracking from the mobile account drawer.
 
 ---
 
@@ -62,10 +81,14 @@ A high-performance retail denim & urban apparel e-commerce platform built on **L
 | **Framework** | Laravel 10 (`laravel/framework: ^10.0`) |
 | **PHP Version** | PHP 8.1+ / 8.3 (tested on PHP 8.3.6) |
 | **HTTP Client** | `Illuminate\Support\Facades\Http` (Guzzle 7) |
-| **Database** | MySQL / SQLite |
+| **Database** | MySQL 8.0 / SQLite |
+| **Cache / Session / Queue** | Redis 7 (phpredis) |
 | **Frontend Styling** | Vanilla CSS Design System (`public/css/deen-commerce-store.css`) |
 | **UI Components** | Blade Templates + Bootstrap 5 + Material Symbols + FontAwesome 6 |
 | **Social Auth** | Laravel Socialite (Google & Facebook OAuth) |
+| **PWA** | Manifest + service worker (`public/manifest.json`, `public/sw.js`) |
+| **Containerization** | Docker Compose (PHP 8.3-FPM, Nginx, MySQL 8.0, Redis 7, Node 20) |
+| **CI** | GitHub Actions — PHPUnit on push/PR (`tests.yml`) |
 
 ---
 
@@ -112,6 +135,45 @@ FACEBOOK_REDIRECT_URI="${APP_URL}/auth/facebook/callback"
 
 ## 🚀 Installation & Local Development
 
+### Option A — Docker Compose (recommended)
+
+The stack runs PHP 8.3-FPM, Nginx, MySQL 8.0, Redis 7, a Redis queue worker, and a Node watcher. A convenience wrapper `./dc.sh` (plus a thin `Makefile`) handles everything:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/Sajid-ul-Islam/Ecom-laravel-app.git
+cd Ecom-laravel-app
+
+# 2. Configure environment
+cp .env.example .env
+# (set your DB/WooCommerce credentials — defaults work for the stack)
+
+# 3. Build & start the stack (installs deps, runs migrations, starts php-fpm)
+./dc.sh up
+
+# 4. Open the storefront on port 8080
+#    http://localhost:8080
+```
+
+Useful `dc.sh` commands:
+
+```bash
+./dc.sh logs            # follow app logs
+./dc.sh shell           # bash into the app container
+./dc.sh artisan route:list
+./dc.sh composer require foo/bar
+./dc.sh npm run production
+./dc.sh migrate         # run pending migrations
+./dc.sh test            # run PHPUnit in the container
+./dc.sh sync            # trigger a WooCommerce sync
+./dc.sh down            # stop (keeps data)
+./dc.sh destroy         # stop AND delete all volumes (mysql, redis, vendor)
+```
+
+The PHP container ships with a raised `memory_limit = 512M` (`docker/php/zz-memory.ini`) so large WooCommerce order syncs don't OOM.
+
+### Option B — Local (bare-metal)
+
 ### Prerequisites
 - PHP >= 8.1 / 8.3
 - Composer
@@ -122,8 +184,8 @@ FACEBOOK_REDIRECT_URI="${APP_URL}/auth/facebook/callback"
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/saajiidi/B2B-StockLot-E-Commerce-BD.git
-cd B2B-StockLot-E-Commerce-BD
+git clone https://github.com/Sajid-ul-Islam/Ecom-laravel-app.git
+cd Ecom-laravel-app
 
 # 2. Install PHP & Node dependencies
 composer install
@@ -177,6 +239,7 @@ php artisan sync:woocommerce --retry-failed
 | Route Name | Method | Path | Controller Action | Description |
 |---|---|---|---|---|
 | `store.index` | `GET` | `/` | `DeenCommerceStoreController@index` | Retail Storefront Homepage |
+| `store.search.suggestions` | `GET` | `/store/search/suggestions` | `DeenCommerceStoreController@searchSuggestions` | Live Predictive Search |
 | `store.categories` | `GET` | `/categories` | `DeenCommerceStoreController@categories` | Categories Directory Showcase |
 | `store.category` | `GET` | `/category/{id}` | `DeenCommerceStoreController@categoryProducts` | Category Products & Sorting |
 | `store.product.detail` | `GET` | `/product/{id}` | `DeenCommerceStoreController@productDetail` | Full Product Landing Page |
@@ -185,8 +248,7 @@ php artisan sync:woocommerce --retry-failed
 | `store.order.success` | `GET` | `/order-success/{id}` | `DeenCommerceStoreController@orderSuccess` | Order Confirmation Receipt |
 | `account.dashboard` | `GET` | `/my-account` | `CustomerAccountController@dashboard` | Customer Profile & Services Hub |
 | `account.orders` | `GET` | `/my-account/orders` | `CustomerAccountController@orders` | 5-Stage Live Order Tracking |
-| `auth.unified.login` | `GET` | `/auth/login` | `UnifiedAuthController@showLoginForm` | Unified Login Portal |
-| `auth.unified.register`| `GET` | `/auth/register` | `UnifiedAuthController@showRegisterForm`| VIP Club Registration Portal |
+| `account.orders.track` | `GET` | `/my-account/orders/{id}` | `CustomerAccountController@trackOrder` | Single Order Tracking View |
 | `auth.google` | `GET` | `/auth/google` | `UnifiedAuthController@redirectToGoogle` | Google 1-Tap OAuth Redirect |
 | `auth.facebook` | `GET` | `/auth/facebook` | `UnifiedAuthController@redirectToFacebook`| Facebook 1-Tap OAuth Redirect |
 | `woocommerce.dashboard`| `GET` | `/woocommerce/dashboard` | `WooCommerceDashboardController@dashboard` | Integration Hub Live Dashboard |

@@ -34,6 +34,9 @@
  document.documentElement.setAttribute('data-theme', savedTheme);
  })();
  </script>
+
+ <!-- Per-Page SEO Meta -->
+ @stack('meta')
 </head>
 
 
@@ -43,13 +46,11 @@
  <a href="#main-content" class="deen-skip-link">Skip to main content</a>
 
  <div id="app">
-        <!-- Top Announcement Bar with DEEN.im Privileges & Logo -->
+        <!-- Top Announcement Bar -->
         <div class="deen-promo-bar">
             <div class="container d-flex align-items-center justify-content-between flex-wrap gap-2 text-center text-md-start">
                 <div class="d-inline-flex align-items-center gap-2 mx-auto mx-md-0">
-                    <img src="{{ asset('images/deen-logo-dark.png') }}" alt="DEEN" style="height: 18px; width: auto; object-fit: contain; filter: brightness(1.2);" onerror="this.src='https://deencommerce.com/wp-content/uploads/2025/04/cropped-Deen-Logo-scaled-1.png'">
-                    <span class="badge bg-warning text-dark font-monospace fw-bold" style="font-size: 0.68rem; padding: 2px 7px;">DEEN.im VIP</span>
-                    <span class="d-inline-flex align-items-center gap-1.5"><i class="fas fa-truck-fast text-warning"></i> FREE EXPRESS SHIPPING OVER ৳2,000 &bull; 13.5OZ AUTHENTIC RAW DENIM 2026</span>
+                    <span class="d-inline-flex align-items-center gap-1.5"><i class="fas fa-truck-fast text-warning"></i> FREE EXPRESS SHIPPING OVER ৳2,000 &bull; AUTHENTIC RAW DENIM 2026</span>
                     <span class="badge deen-flash-timer font-monospace fw-bold d-none d-sm-inline-flex align-items-center gap-1" style="font-size: 0.65rem; padding: 2px 8px;"><i class="fas fa-fire" aria-hidden="true"></i> <span id="flashSaleTimer" aria-live="off">ENDS IN 05h : 42m : 18s</span></span>
                 </div>
                 <div class="d-none d-md-flex align-items-center gap-3 ms-auto" style="font-size: 0.72rem;">
@@ -82,11 +83,11 @@
                     </button>
                     <button class="deen-header-icon-btn position-relative" onclick="openWishlistModal()" title="Saved Wishlist" aria-label="Saved Wishlist">
                         <span class="material-symbols-outlined fs-5 text-danger">favorite</span>
-                        <span class="deen-header-badge bg-danger" id="headerMobileWishlistBadge">0</span>
+                        <span class="deen-header-badge bg-danger deen-badge-hide-zero" id="headerMobileWishlistBadge" data-count="0">0</span>
                     </button>
                     <button class="deen-header-icon-btn position-relative" onclick="openGlobalCartModal()" title="Shopping Cart" aria-label="Shopping Cart">
                         <span class="material-symbols-outlined fs-5 text-white">shopping_cart</span>
-                        <span class="deen-header-badge bg-primary" id="headerMobileCartBadge">0</span>
+                        <span class="deen-header-badge bg-primary deen-badge-hide-zero" id="headerMobileCartBadge" data-count="0">0</span>
                     </button>
                     <button class="deen-header-icon-btn" onclick="openMobileAccountModal()" title="Client Account" aria-label="Client Account">
                         <span class="material-symbols-outlined fs-5">person</span>
@@ -181,6 +182,15 @@
                                     </button>
                                 </li>
                                 <li>
+                                    <button class="dropdown-item d-flex align-items-center gap-2 py-2" type="button" onclick="changeDeenTheme('rawdenim')">
+                                        <span class="fs-5" style="display:inline-flex;width:20px;height:20px;border-radius:4px;background:repeating-linear-gradient(135deg,#1b3a6b 0px,#1b3a6b 3px,#1e2d52 3px,#1e2d52 6px);flex-shrink:0;"></span>
+                                        <div>
+                                            <div class="fw-bold">Raw Denim Fabric</div>
+                                            <div class="small text-white-50">14oz indigo twill weave texture</div>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li>
                                     <button class="dropdown-item d-flex align-items-center gap-2 py-2" type="button" onclick="changeDeenTheme('dark')">
                                         <span class="material-symbols-outlined text-info fs-5">dark_mode</span>
                                         <div>
@@ -223,7 +233,7 @@
                         <li class="nav-item">
                             <button type="button" class="deen-header-icon-btn position-relative" onclick="openWishlistModal()" title="Saved Wishlist" aria-label="Saved Wishlist">
                                 <span class="material-symbols-outlined fs-5 text-danger">favorite</span>
-                                <span class="deen-header-badge bg-danger" id="navWishlistCount">0</span>
+                                <span class="deen-header-badge bg-danger deen-badge-hide-zero" id="navWishlistCount" data-count="0">0</span>
                             </button>
                         </li>
 
@@ -232,7 +242,7 @@
                             <button type="button" class="deen-cart-pill-btn" onclick="openGlobalCartModal()" title="Shopping Cart" aria-label="Shopping Cart">
                                 <span class="material-symbols-outlined fs-5">shopping_cart</span>
                                 <span class="d-none d-md-inline">Cart</span>
-                                <span class="deen-cart-count-badge" id="cartCount">0</span>
+                                <span class="deen-cart-count-badge deen-badge-hide-zero" id="cartCount" data-count="0">0</span>
                             </button>
                         </li>
 
@@ -1033,9 +1043,12 @@
  function updateThemeLabel(themeName) {
  const names = {
  denim: '13.5oz Denim',
+ rawdenim: 'Raw Denim Fabric',
  dark: 'Midnight Dark',
  glass: 'Crystal Glass',
  neon: 'Cyberpunk Neon',
+ botanical: 'Botanical Sage',
+ azure: 'Royal Azure',
  light: 'Studio Light'
  };
  const el = document.getElementById('currentThemeName');
@@ -1056,13 +1069,13 @@
  const totalCount = cart.reduce((acc, item) => acc + (item.qty || 1), 0);
  
  const b1 = document.getElementById('bottomNavCartBadge');
- if (b1) b1.innerText = totalCount;
+ if (b1) { b1.innerText = totalCount; b1.setAttribute('data-count', totalCount); }
 
  const b2 = document.getElementById('headerMobileCartBadge');
- if (b2) b2.innerText = totalCount;
+ if (b2) { b2.innerText = totalCount; b2.setAttribute('data-count', totalCount); }
 
  const b3 = document.getElementById('cartCount');
- if (b3) b3.innerText = totalCount;
+ if (b3) { b3.innerText = totalCount; b3.setAttribute('data-count', totalCount); }
  }
 
  function openGlobalCartModal() {
@@ -1294,16 +1307,16 @@
  const count = wishlist.length;
 
  const badge = document.getElementById('bottomNavWishlistBadge');
- if (badge) badge.innerText = count;
+ if (badge) { badge.innerText = count; badge.setAttribute('data-count', count); }
 
  const badge2 = document.getElementById('mobileAccountWishlistBadge');
- if (badge2) badge2.innerText = count;
+ if (badge2) { badge2.innerText = count; badge2.setAttribute('data-count', count); }
 
  const badge3 = document.getElementById('navWishlistCount');
- if (badge3) badge3.innerText = count;
+ if (badge3) { badge3.innerText = count; badge3.setAttribute('data-count', count); }
 
  const badge4 = document.getElementById('headerMobileWishlistBadge');
- if (badge4) badge4.innerText = count;
+ if (badge4) { badge4.innerText = count; badge4.setAttribute('data-count', count); }
 
  // Highlight heart buttons on page matching wishlist IDs
  document.querySelectorAll('.deen-wishlist-btn').forEach(btn => {

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('meta')
+<meta name="description" content="{{ Str::limit(strip_tags($category['description'] ?? 'Shop ' . ($category['name'] ?? 'our') . ' collection at Deen Commerce — authentic Bangladesh denim and urban apparel.'), 155) }}">
+@endpush
+
 @section('content')
 <div class="deen-section-py-lg">
  <div class="container">
@@ -7,10 +11,10 @@
  <div class="deen-frame deen-pastel-azure p-4 p-md-5 mb-5 position-relative overflow-hidden">
  <div class="row align-items-center g-4">
  <div class="col-md-8">
- <span class="deen-vibrant-pill indigo mb-3">Collection Index</span>
+ <span class="deen-vibrant-pill indigo mb-3">Collection</span>
  <h1 class="deen-title-lg mb-2"><span class="deen-gradient-text">{{ $category['name'] ?? 'Curated Line' }}</span></h1>
  <p class="text-secondary mb-0">
- {{ !empty($category['description']) ? strip_tags($category['description']) : 'Authentic retail apparel lines crafted with premium heavyweight denim and natural weaves.' }}
+ {{ !empty($category['description']) ? Str::limit(strip_tags($category['description']), 200) : 'Authentic retail apparel lines crafted with premium heavyweight denim and natural weaves.' }}
  </p>
  </div>
  <div class="col-md-4 text-md-end">
@@ -55,12 +59,6 @@
  <span class="material-symbols-outlined fs-1 opacity-40">apparel</span>
  </div>
  @endif
-
- <!-- Subtle Fabric & Movement Video Snippet -->
- <video class="deen-card-video" muted loop playsinline preload="none" poster="{{ $image }}">
- <source src="https://assets.mixkit.co/videos/preview/mixkit-fashion-model-in-a-denim-jacket-and-pants-40763-small.mp4" type="video/mp4">
- </video>
- <span class="deen-video-badge"><i class="fas fa-play"></i> Motion</span>
 
  <!-- Wishlist Heart Toggle Button -->
  <button type="button" class="deen-wishlist-btn" data-id="{{ $product['id'] }}" onclick="toggleWishlist({{ $product['id'] }}, '{{ addslashes($product['name']) }}', {{ $price }}, '{{ addslashes($image) }}', this)" title="Save to Favorites">

@@ -1,18 +1,19 @@
 @extends('layouts.app')
 
+@push('meta')
+<meta name="description" content="Browse all fashion collections at Deen Commerce — premium Bangladesh washed denim, oxford shirts, outerwear and urban apparel.">
+@endpush
+
 @section('content')
 <div class="deen-section-py-lg">
  <div class="container">
  <!-- Header -->
- <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4 mb-5 pb-3">
+ <div class="mb-5 pb-3">
  <div>
- <span class="deen-vibrant-pill indigo mb-2">Curated Taxonomy</span>
- <h1 class="deen-title-lg mb-2"><span class="deen-gradient-text">All Fashion Collections</span></h1>
+ <span class="deen-vibrant-pill indigo mb-2">All Collections</span>
+ <h1 class="deen-title-lg mb-2"><span class="deen-gradient-text">Fashion Collections</span></h1>
  <p class="deen-subtitle mb-0">Explore architectural silhouettes and fabric weights crafted by Deen Commerce.</p>
  </div>
- <a href="{{ route('store.index') }}" class="btn-deen-outline">
- <i class="fas fa-arrow-left me-2"></i> Back to Storefront
- </a>
  </div>
 
  <hr class="deen-divider-hairline mb-5">
@@ -29,13 +30,15 @@
  $tint = $pastelTints[$index % count($pastelTints)];
  @endphp
  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
- <div class="deen-frame deen-pastel-{{ $tint }} h-100 d-flex flex-column text-decoration-none">
+ <a href="{{ route('store.category', $cat['id']) }}" class="text-decoration-none d-block h-100">
+ <div class="deen-frame deen-pastel-{{ $tint }} h-100 d-flex flex-column deen-category-card">
  <div class="position-relative overflow-hidden rounded-top-4" style="height: 200px; background-color: var(--deen-bg-surface);">
  @if($catImage)
  <img src="{{ $catImage }}" class="w-100 h-100 object-fit-cover transition-transform" alt="{{ $cat['name'] }}" loading="lazy">
  @else
- <div class="w-100 h-100 d-flex align-items-center justify-content-center text-secondary">
- <span class="material-symbols-outlined fs-1 opacity-50">apparel</span>
+ <div class="w-100 h-100 d-flex align-items-center justify-content-center"
+ style="background: linear-gradient(135deg, var(--pastel-{{ $tint }}), var(--pastel-{{ $tint }}-border, #e2e8f0));">
+ <span class="fw-black text-muted opacity-40" style="font-size: 3.5rem; letter-spacing: -2px; font-family: 'Outfit', sans-serif;">{{ strtoupper(substr($cat['name'], 0, 2)) }}</span>
  </div>
  @endif
  <span class="position-absolute top-0 end-0 m-3 deen-vibrant-pill indigo shadow-sm">
@@ -45,11 +48,12 @@
  <div class="p-4 d-flex flex-column flex-grow-1">
  <h3 class="deen-title-sm mb-2 font-display">{{ $cat['name'] }}</h3>
  <p class="text-secondary small mb-4 flex-grow-1" style="line-height: 1.6;">{{ $desc }}</p>
- <a href="{{ route('store.category', $cat['id']) }}" class="btn-deen-primary w-100 text-center mt-auto justify-content-center py-2.5">
+ <span class="btn-deen-primary w-100 text-center mt-auto justify-content-center py-2.5">
  View Collection <i class="fas fa-arrow-right ms-2"></i>
+ </span>
+ </div>
+ </div>
  </a>
- </div>
- </div>
  </div>
  @empty
  <div class="col-12 text-center py-5">

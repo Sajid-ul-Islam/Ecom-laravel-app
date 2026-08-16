@@ -51,8 +51,21 @@ class WooCommerceService
     {
         $statuses = $query['status'] ?? implode(',', config('woocommerce.order_statuses', ['processing', 'completed']));
 
+        // Only fetch the fields WooCommerceSyncService::syncOrder() actually
+        // stores. Full order payloads include large meta_data/plugin blobs that
+        // balloon PHP memory per order and OOM the sync on bigger stores.
+        $fields = $query['_fields'] ?? implode(',', [
+            'id', 'number', 'status', 'currency',
+            'total', 'total_tax', 'shipping_total', 'discount_total',
+            'payment_method', 'payment_method_title', 'customer_id', 'customer_note',
+            'billing', 'shipping', 'line_items',
+            'date_created', 'date_created_gmt', 'date_modified', 'date_modified_gmt',
+            'date_completed', 'date_completed_gmt',
+        ]);
+
         return $this->paginate('orders', array_merge($query, [
             'status' => $statuses,
+            '_fields' => $fields,
         ]));
     }
 

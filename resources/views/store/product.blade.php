@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+@push('meta')
+<meta name="description" content="{{ Str::limit(strip_tags($product['short_description'] ?? $product['description'] ?? 'Premium Bangladesh denim and urban apparel at Deen Commerce.'), 155) }}">
+<meta property="og:title" content="{{ $product['name'] }} — Deen Commerce">
+<meta property="og:description" content="{{ Str::limit(strip_tags($product['short_description'] ?? ''), 155) }}">
+@if(!empty($product['images'][0]['src']))
+<meta property="og:image" content="{{ $product['images'][0]['src'] }}">
+@endif
+@endpush
+
 @section('content')
 @php
  $mainImg = $product['images'][0]['src'] ?? null;
@@ -62,8 +71,8 @@
  <!-- Gallery Thumbnails -->
  @if(!empty($product['images']) && count($product['images']) > 1)
  <div class="d-flex gap-2 overflow-auto pb-2">
- @foreach($product['images'] as $img)
- <button type="button" onclick="switchMainImage('{{ $img['src'] }}')" class="rounded-3 border cursor-pointer thumb-img bg-transparent p-0" style="width: 76px; height: 76px;" aria-label="View product image thumbnail"><img src="{{ $img['src'] }}" class="rounded-3" style="width: 76px; height: 76px; object-fit: cover;" alt="Product thumbnail"></button>
+ @foreach($product['images'] as $imgIndex => $img)
+ <button type="button" onclick="switchMainImage('{{ $img['src'] }}', this)" class="rounded-3 border cursor-pointer thumb-img bg-transparent p-0 {{ $imgIndex === 0 ? 'active' : '' }}" style="width: 76px; height: 76px;" aria-label="View product image thumbnail"><img src="{{ $img['src'] }}" class="rounded-3" style="width: 76px; height: 76px; object-fit: cover;" alt="Product thumbnail"></button>
  @endforeach
  </div>
  @endif
@@ -72,18 +81,33 @@
  <!-- Specs & Action Column -->
  <div class="col-lg-6 d-flex flex-column">
  <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
- <span class="deen-vibrant-pill indigo">Catalog ID #{{ $product['id'] }}</span>
- <span class="deen-vibrant-pill emerald">In Stock ({{ $product['stock_quantity'] ?? 'Available' }})</span>
+ @if(!empty($product['sku']))
+ <span class="deen-vibrant-pill indigo">SKU: {{ $product['sku'] }}</span>
+ @endif
+ <span class="deen-vibrant-pill emerald">In Stock
+ @if(!empty($product['stock_quantity'])) ({{ $product['stock_quantity'] }} left) @endif
+ </span>
  </div>
 
  <h1 class="deen-title-lg mb-2"><span class="deen-gradient-text">{{ $product['name'] }}</span></h1>
 
  <div class="d-flex align-items-center gap-2 mb-4">
+ @if(!empty($product['average_rating']) && (float)$product['average_rating'] > 0)
+ @php
+ $rating = (float)$product['average_rating'];
+ $ratingCount = (int)($product['rating_count'] ?? 0);
+ $fullStars = floor($rating);
+ $halfStar = ($rating - $fullStars) >= 0.25;
+ @endphp
  <div class="deen-rating-stars mb-0">
- <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+ @for($s = 0; $s < $fullStars; $s++)<i class="fas fa-star"></i>@endfor
+ @if($halfStar)<i class="fas fa-star-half-alt"></i>@endif
  </div>
- <span class="fw-bold text-dark small">4.9 / 5.0</span>
- <span class="text-secondary small">(248 Verified Shoppers)</span>
+ <span class="fw-bold text-dark small">{{ number_format($rating, 1) }} / 5.0</span>
+ @if($ratingCount > 0)
+ <span class="text-secondary small">({{ number_format($ratingCount) }} reviews)</span>
+ @endif
+ @endif
  </div>
 
  <div class="d-flex align-items-baseline gap-3 mb-3">
@@ -194,11 +218,11 @@
  <div class="mb-5">
  <div class="d-flex align-items-center justify-content-between mb-4">
  <div>
- <span class="deen-pastel-pill linen mb-2">Technical Architecture</span>
- <h2 class="deen-title-md mb-0">Garment Blueprint & Specifications</h2>
+ <span class="deen-pastel-pill linen mb-2">Garment Details</span>
+ <h2 class="deen-title-md mb-0">Fabric & Specifications</h2>
  </div>
  <button type="button" data-bs-toggle="modal" data-bs-target="#reviewModal" class="btn-deen-outline btn-sm">
- <i class="fas fa-edit me-1"></i> Write Review
+ <i class="fas fa-edit me-1"></i> Write a Review
  </button>
  </div>
 
@@ -445,8 +469,13 @@ function updateQty(change) {
  qtyInput.value = val;
 }
 
-function switchMainImage(src) {
+function switchMainImage(src, clickedBtn) {
  document.getElementById('mainProductImg').src = src;
+ // Toggle active state on thumbnails
+ if (clickedBtn) {
+ document.querySelectorAll('.thumb-img').forEach(btn => btn.classList.remove('active'));
+ clickedBtn.classList.add('active');
+ }
 }
 
 function toggleDisclosure(id) {

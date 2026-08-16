@@ -6,10 +6,10 @@
  <!-- Header -->
  <div class="mb-5 text-center">
  <span class="deen-vibrant-pill emerald mb-3 d-inline-block">
- <span class="material-symbols-outlined align-middle fs-6 me-1">verified_user</span> 256-Bit Encrypted Retail Checkout
+ <span class="material-symbols-outlined align-middle fs-6 me-1">verified_user</span> Secure Checkout
  </span>
- <h1 class="deen-title-lg text-dark mb-2"><span class="deen-gradient-text">Complete Your Wardrobe Order</span></h1>
- <p class="text-secondary small">Direct dispatch from Deen Commerce &bull; 7-Day Hassle-Free Returns</p>
+ <h1 class="deen-title-lg text-dark mb-2"><span class="deen-gradient-text">Complete Your Order</span></h1>
+ <p class="text-secondary small">Direct dispatch from Deen Commerce &bull; 7-Day hassle-free returns</p>
  </div>
 
  <!-- 4-STEP CHECKOUT PROGRESS BAR -->
@@ -33,7 +33,7 @@
  <div class="deen-frame p-4 p-md-5 mb-4">
  <div class="d-flex align-items-center gap-2 mb-4 pb-3 border-bottom">
  <span class="material-symbols-outlined text-primary fs-3">local_shipping</span>
- <h2 class="deen-title-sm mb-0">1. Client Shipping & Logistics</h2>
+ <h2 class="deen-title-sm mb-0">Delivery Address</h2>
  </div>
 
  <div class="row g-3">
@@ -76,7 +76,7 @@
  <div class="deen-frame p-4 p-md-5">
  <div class="d-flex align-items-center gap-2 mb-4 pb-3 border-bottom">
  <span class="material-symbols-outlined text-primary fs-3">payments</span>
- <h2 class="deen-title-sm mb-0">2. Select Payment Settlement</h2>
+ <h2 class="deen-title-sm mb-0">How would you like to pay?</h2>
  </div>
 
  <div class="d-flex flex-column gap-3 mb-4" role="radiogroup" aria-label="Select payment method">
@@ -135,7 +135,7 @@
  </div>
 
  <button type="submit" class="btn-deen-vibrant w-100 justify-content-center py-3 fs-6">
- <span class="material-symbols-outlined fs-5 me-2">lock</span> Confirm & Place Wardrobe Order
+ <span class="material-symbols-outlined fs-5 me-2">lock</span> Place Order
  </button>
  </div>
  </div>
@@ -154,11 +154,17 @@
  <!-- Item List Container -->
  <div id="checkoutSummaryList" class="mb-4">
  <!-- Items dynamically rendered by JS -->
+ <noscript>
+ <p class="text-secondary small text-center py-3">
+ <span class="material-symbols-outlined d-block fs-2 mb-2 opacity-40">javascript</span>
+ Please enable JavaScript to view your cart items.
+ </p>
+ </noscript>
  </div>
 
  <!-- Coupon Promo Input -->
  <div class="mb-4 pt-3 border-top">
- <label class="form-label small fw-semibold text-secondary">Promotional Privilege Code</label>
+ <label class="form-label small fw-semibold text-secondary">Promo Code</label>
  <div class="input-group">
  <input type="text" id="couponInput" class="form-control deen-input text-uppercase" placeholder="e.g. DEEN2026">
  <button type="button" onclick="applyCouponCode()" class="btn-deen-outline btn-sm px-3">Apply</button>
@@ -169,11 +175,11 @@
  <!-- Pricing Breakdown Grid -->
  <div class="border-top pt-3">
  <div class="d-flex justify-content-between text-secondary small mb-2">
- <span>Cart Subtotal:</span>
+ <span>Subtotal:</span>
  <span id="summarySubtotal" class="fw-semibold text-dark">৳0.00</span>
  </div>
  <div class="d-flex justify-content-between text-secondary small mb-2">
- <span>Logistics Fee:</span>
+ <span>Delivery fee:</span>
  <span id="summaryShippingFee" class="text-dark fw-semibold">৳60.00</span>
  </div>
  <div id="couponDiscountRow" class="d-flex justify-content-between text-success small mb-2 d-none">

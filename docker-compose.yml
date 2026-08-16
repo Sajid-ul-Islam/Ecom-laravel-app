@@ -35,6 +35,7 @@ services:
       # First start populates it from the image; composer install below
       # reconciles it if composer.lock changed on the host.
       - /var/www/vendor
+      - ./docker/php/zz-memory.ini:/usr/local/etc/php/conf.d/zz-memory.ini
     networks:
       - deen-commerce
     depends_on:
@@ -119,6 +120,7 @@ services:
     volumes:
       - .:/var/www
       - /var/www/vendor
+      - ./docker/php/zz-memory.ini:/usr/local/etc/php/conf.d/zz-memory.ini
     networks:
       - deen-commerce
     depends_on:
