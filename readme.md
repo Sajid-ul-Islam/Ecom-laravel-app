@@ -256,6 +256,7 @@ php artisan sync:woocommerce --retry-failed
 | `woocommerce.orders` | `GET` | `/woocommerce/orders` | `WooCommerceDashboardController@orders` | Synced Orders Management |
 | `woocommerce.logs` | `GET` | `/woocommerce/logs` | `WooCommerceDashboardController@logs` | REST API Audit Logs |
 | `admin.analytics` | `GET` | `/admin/analytics` | `AdminAnalyticsController@index` | Executive Store Analytics |
+| `admin.analytics.export` | `GET` | `/admin/analytics/export` | `AdminAnalyticsController@export` | BI CSV Export |
 
 ---
 

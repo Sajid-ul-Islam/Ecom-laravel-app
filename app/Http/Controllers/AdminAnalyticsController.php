@@ -2,110 +2,92 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\WooOrder;
-use App\Models\WooProduct;
-use App\Models\WooSyncFailure;
-use App\Services\WooCommerceService;
+use App\Services\AnalyticsService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Response;
 use Illuminate\View\View;
-use Throwable;
 
 class AdminAnalyticsController extends Controller
 {
-    public function index(Request $request, WooCommerceService $wooService): View
+    public function __construct(protected AnalyticsService $analytics)
     {
-        $range = $request->input('range', '30days');
-        $metrics = $this->calculateMetrics($range, $wooService);
+    }
+
+    public function index(Request $request): View
+    {
+        $range = $this->validRange($request->input('range'));
+        $metrics = $this->analytics->metrics($range);
 
         return view('admin.analytics', compact('metrics', 'range'));
     }
 
-    public function apiMetrics(Request $request, WooCommerceService $wooService): JsonResponse
+    public function apiMetrics(Request $request): JsonResponse
     {
-        $range = $request->input('range', '30days');
-        $metrics = $this->calculateMetrics($range, $wooService);
+        $range = $this->validRange($request->input('range'));
+        $metrics = $this->analytics->metrics($range);
 
-        return response()->json(['success' => true, 'metrics' => $metrics]);
+        return response()->json(['success' => true, 'range' => $range, 'metrics' => $metrics]);
     }
 
-    private function calculateMetrics(string $range, WooCommerceService $wooService): array
+    /**
+     * Download the revenue/order daily series for the selected range as CSV.
+     */
+    public function export(Request $request)
     {
-        $cacheKey = "admin_bi_metrics_" . $range;
+        $range = $this->validRange($request->input('range'));
+        $metrics = $this->analytics->metrics($range);
 
-        return Cache::remember($cacheKey, 300, function () use ($wooService) {
-            try {
-                $totalProducts = WooProduct::count();
-                $outOfStockCount = WooProduct::where('stock_status', 'outofstock')->orWhere('stock_quantity', '<=', 0)->count();
-                $totalOrders = WooOrder::count();
-                $grossRevenue = (float) WooOrder::sum('total_amount');
-            } catch (Throwable $e) {
-                $totalProducts = 48;
-                $outOfStockCount = 3;
-                $totalOrders = 342;
-                $grossRevenue = 849500.00;
+        $filename = 'deen-bi-' . $range . '-' . now()->format('Ymd-His') . '.csv';
+
+        $callback = function () use ($metrics) {
+            $handle = fopen('php://output', 'w');
+
+            fputcsv($handle, ['Deen Commerce BI Export']);
+            fputcsv($handle, ['Range', $metrics['label'], 'Generated', $metrics['generated_at']]);
+            fputcsv($handle, []);
+
+            fputcsv($handle, ['Metric', 'Value']);
+            fputcsv($handle, ['Gross Revenue (BDT)', number_format($metrics['kpis']['revenue'], 2)]);
+            fputcsv($handle, ['Net Revenue (BDT)', number_format($metrics['kpis']['netRevenue'], 2)]);
+            fputcsv($handle, ['Total Orders', $metrics['kpis']['orders']]);
+            fputcsv($handle, ['Average Order Value (BDT)', number_format($metrics['kpis']['aov'], 2)]);
+            fputcsv($handle, ['Units Sold', $metrics['kpis']['units']]);
+            fputcsv($handle, ['Unique Customers', $metrics['kpis']['customers']]);
+            fputcsv($handle, ['Repeat Rate (%)', $metrics['kpis']['repeatRate']]);
+            fputcsv($handle, ['Discounts Given (BDT)', number_format($metrics['kpis']['discounts'], 2)]);
+            fputcsv($handle, ['Shipping Collected (BDT)', number_format($metrics['kpis']['shipping'], 2)]);
+            fputcsv($handle, []);
+
+            fputcsv($handle, ['Revenue Trend', 'Current', 'Previous']);
+            foreach ($metrics['revenueTrend']['labels'] as $i => $label) {
+                fputcsv($handle, [$label, $metrics['revenueTrend']['current'][$i] ?? 0, $metrics['revenueTrend']['previous'][$i] ?? 0]);
             }
 
-            if ($totalOrders === 0) {
-                $totalOrders = 342;
-                $grossRevenue = 849500.00;
+            fputcsv($handle, []);
+            fputcsv($handle, ['Payment Method', 'Orders', 'Revenue (BDT)']);
+            foreach ($metrics['paymentBreakdown']['labels'] as $i => $label) {
+                fputcsv($handle, [$label, $metrics['paymentBreakdown']['orders'][$i] ?? 0, $metrics['paymentBreakdown']['revenue'][$i] ?? 0]);
             }
 
-            $aov = $totalOrders > 0 ? round($grossRevenue / $totalOrders, 2) : 0;
-            $conversionRate = 3.42;
+            fputcsv($handle, []);
+            fputcsv($handle, ['Top Products', 'SKU', 'Units', 'Revenue (BDT)']);
+            foreach ($metrics['topProducts'] as $product) {
+                fputcsv($handle, [$product['name'], $product['sku'] ?? '', $product['units'], number_format($product['revenue'], 2)]);
+            }
 
-            // Monthly Revenue Trend Data (Jan to Dec)
-            $revenueTrend = [
-                'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                'currentYear' => [42000, 58000, 64000, 78000, 89000, 95000, 102000, 115000, 98000, 124000, 138000, 148000],
-                'previousYear' => [35000, 42000, 48000, 52000, 61000, 70000, 75000, 82000, 80000, 91000, 105000, 118000],
-            ];
+            fclose($handle);
+        };
 
-            // Sales Category Share
-            $categoryShare = [
-                'labels' => ['Denim & Jeans', 'Casual Shirts', 'Polos & T-Shirts', 'Outerwear & Jackets', 'Accessories'],
-                'data' => [42, 24, 18, 11, 5],
-                'revenue' => [356790, 203880, 152910, 93445, 42475],
-            ];
+        return Response::streamDownload($callback, $filename, [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+        ]);
+    }
 
-            // Top Performing Fashion Items
-            $topProducts = [
-                ['name' => 'High-End Raw Washed Jeans - Slim Fit', 'sku' => 'DN-JNS-001', 'sales' => 142, 'revenue' => 353580],
-                ['name' => 'Premium Oxford Cotton Shirt - Navy', 'sku' => 'DN-SHT-012', 'sales' => 98, 'revenue' => 186200],
-                ['name' => 'Urban Biker Leather Jacket - Black', 'sku' => 'DN-JKT-004', 'sales' => 45, 'revenue' => 220500],
-                ['name' => 'Pique Cotton Polo Shirt - Crisp White', 'sku' => 'DN-PLO-008', 'sales' => 84, 'revenue' => 109200],
-                ['name' => 'Stretch Chino Trousers - Khaki', 'sku' => 'DN-PNT-019', 'sales' => 62, 'revenue' => 117800],
-            ];
-
-            // Payment Gateway Breakdown
-            $paymentBreakdown = [
-                'labels' => ['bKash Mobile Banking', 'Nagad Mobile Payment', 'Cash on Delivery (COD)', 'Credit/Debit Card'],
-                'data' => [48, 27, 18, 7],
-                'amounts' => [407760, 229365, 152910, 59465],
-            ];
-
-            // Low Stock Urgency Alert Matrix
-            $lowStockAlerts = [
-                ['name' => 'Raw Washed Jeans (Size 32)', 'sku' => 'DN-JNS-001-32', 'qty' => 2, 'urgency' => 'CRITICAL'],
-                ['name' => 'Oxford Cotton Shirt (Size M)', 'sku' => 'DN-SHT-012-M', 'qty' => 4, 'urgency' => 'WARNING'],
-                ['name' => 'Urban Leather Jacket (Size L)', 'sku' => 'DN-JKT-004-L', 'qty' => 1, 'urgency' => 'CRITICAL'],
-                ['name' => 'Pique Polo Shirt (Size XL)', 'sku' => 'DN-PLO-008-XL', 'qty' => 5, 'urgency' => 'WARNING'],
-            ];
-
-            return [
-                'grossRevenue' => $grossRevenue,
-                'totalOrders' => $totalOrders,
-                'aov' => $aov,
-                'totalProducts' => $totalProducts,
-                'outOfStockCount' => $outOfStockCount,
-                'conversionRate' => $conversionRate,
-                'revenueTrend' => $revenueTrend,
-                'categoryShare' => $categoryShare,
-                'topProducts' => $topProducts,
-                'paymentBreakdown' => $paymentBreakdown,
-                'lowStockAlerts' => $lowStockAlerts,
-            ];
-        });
+    protected function validRange(mixed $range): string
+    {
+        return in_array($range, ['today', '7days', '30days', '90days', 'ytd', 'all'], true)
+            ? $range
+            : '30days';
     }
 }
