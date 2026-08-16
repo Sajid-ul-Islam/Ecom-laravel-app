@@ -1,4 +1,25 @@
-version: '3.8'
+# Shared environment for all PHP services (app + queue).
+# Values here override the .env file inside the containers.
+x-app-environment: &app-environment
+  APP_ENV: local
+  APP_DEBUG: "true"
+  # Overridable with APP_KEY=... in a .env file next to docker-compose.yml
+  APP_KEY: ${APP_KEY:-base64:x7kLnCnIPhZ/iWDjnRrrDqUEuvc7Hv/bcb7JCAd7w70=}
+  DB_CONNECTION: mysql
+  DB_HOST: mysql
+  DB_PORT: "3306"
+  DB_DATABASE: ${DB_DATABASE:-deen_commerce}
+  DB_USERNAME: ${DB_USERNAME:-root}
+  DB_PASSWORD: ${DB_PASSWORD:-secret}
+  # Redis-backed cache/session/queue. REDIS_CLIENT must be phpredis:
+  # the image compiles the phpredis extension and predis is not installed.
+  CACHE_DRIVER: redis
+  SESSION_DRIVER: redis
+  QUEUE_CONNECTION: redis
+  REDIS_CLIENT: phpredis
+  REDIS_HOST: redis
+  REDIS_PORT: "6379"
+  REDIS_PASSWORD: ""
 
 services:
   app:
@@ -10,20 +31,29 @@ services:
     working_dir: /var/www
     volumes:
       - .:/var/www
-      - ./vendor:/var/www/vendor
+      # Keep the image's vendor/ directory (host has no vendor on Windows).
+      # First start populates it from the image; composer install below
+      # reconciles it if composer.lock changed on the host.
+      - /var/www/vendor
     networks:
       - deen-commerce
     depends_on:
-      - mysql
-    environment:
-      - APP_ENV=local
-      - APP_DEBUG=true
-      - DB_CONNECTION=mysql
-      - DB_HOST=mysql
-      - DB_PORT=3306
-      - DB_DATABASE=${DB_DATABASE:-deen_commerce}
-      - DB_USERNAME=${DB_USERNAME:-root}
-      - DB_PASSWORD=${DB_PASSWORD:-secret}
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment: *app-environment
+    command: sh -c "composer install --no-interaction --prefer-dist && php artisan migrate --force && php-fpm"
+    # php-fpm answers FastCGI (not HTTP), so probe the FPM ping.path endpoint
+    healthcheck:
+      test: ["CMD-SHELL", "SCRIPT_NAME=/ping SCRIPT_FILENAME=/ping REQUEST_METHOD=GET cgi-fcgi -bind -connect 127.0.0.1:9000"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    # SIGQUIT makes php-fpm finish in-flight requests before exiting
+    stop_grace_period: 30s
+    stop_signal: SIGQUIT
 
   mysql:
     image: mysql:8.0
@@ -46,6 +76,22 @@ services:
       timeout: 5s
       retries: 5
 
+  redis:
+    image: redis:7-alpine
+    container_name: deen-commerce-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - deen-commerce
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   nginx:
     image: nginx:alpine
     container_name: deen-commerce-nginx
@@ -60,6 +106,30 @@ services:
     depends_on:
       - app
 
+  # Processes the redis queue. Without this, jobs dispatched with
+  # QUEUE_CONNECTION=redis (e.g. ProcessWooSyncFailure on woo-dead-letter)
+  # would never run. SIGTERM lets Laravel finish the current job.
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: deen-commerce-queue
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - .:/var/www
+      - /var/www/vendor
+    networks:
+      - deen-commerce
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment: *app-environment
+    command: sh -c "composer install --no-interaction --prefer-dist && php artisan queue:work redis --queue=woo-dead-letter,default --tries=3 --sleep=3"
+    stop_grace_period: 30s
+
   node:
     image: node:20-alpine
     container_name: deen-commerce-node
@@ -68,7 +138,8 @@ services:
       - .:/var/www
     networks:
       - deen-commerce
-    command: sh -c "npm install && npm run watch"
+    # watch-poll is required for reliable file watching on Docker Desktop bind mounts
+    command: sh -c "[ -d node_modules ] || npm install && npm run watch-poll"
 
 networks:
   deen-commerce:
@@ -76,4 +147,6 @@ networks:
 
 volumes:
   mysql-data:
+    driver: local
+  redis-data:
     driver: local

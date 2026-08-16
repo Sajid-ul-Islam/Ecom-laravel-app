@@ -1,4 +1,4 @@
-FROM php:8.3-cli AS base
+FROM php:8.3-fpm AS base
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -12,10 +12,15 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
     unzip \
+    libfcgi-bin \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip \
     && pecl install redis && docker-php-ext-enable redis \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Expose the FastCGI ping endpoint used by the container healthcheck
+RUN echo "ping.path = /ping" >> /usr/local/etc/php-fpm.d/www.conf \
+    && echo "ping.response = pong" >> /usr/local/etc/php-fpm.d/www.conf
 
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -24,16 +29,13 @@ WORKDIR /var/www
 
 # Install dependencies first (better caching)
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist
+RUN composer install --no-dev --no-scripts --prefer-dist
 
 # Copy application code
 COPY . .
 
-# Generate autoloader and optimize
-RUN composer dump-autoload --optimize \
-    && php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache
+# Generate optimized autoloader
+RUN composer dump-autoload --optimize
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www \
@@ -42,4 +44,4 @@ RUN chown -R www-data:www-data /var/www \
 
 EXPOSE 9000
 
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=9000"]
+CMD ["php-fpm"]
