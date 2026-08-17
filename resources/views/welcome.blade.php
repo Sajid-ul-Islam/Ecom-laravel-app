@@ -160,7 +160,7 @@
  <!-- Section Header (Architectural Typography) -->
  <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-5">
  <div>
- <div class="deen-eyebrow text-primary">Curated Collection</div>
+ <div class="deen-eyebrow">Curated Collection</div>
  <h2 class="fw-bold text-dark mb-1 font-display fs-2">Featured Apparel & Washed Denim</h2>
  <p class="text-secondary small mb-0">Browse modern fashion lines synced live from Deen Commerce inventory</p>
  </div>

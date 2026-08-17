@@ -18,8 +18,10 @@ RUN apt-get update && apt-get install -y \
     && pecl install redis && docker-php-ext-enable redis \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Expose the FastCGI ping endpoint used by the container healthcheck
-RUN echo "ping.path = /ping" >> /usr/local/etc/php-fpm.d/www.conf \
+# Listen on all interfaces so nginx (fastcgi_pass app:9000) can reach FPM,
+# and expose the FastCGI ping endpoint used by the container healthcheck.
+RUN echo "listen = 9000" >> /usr/local/etc/php-fpm.d/www.conf \
+    && echo "ping.path = /ping" >> /usr/local/etc/php-fpm.d/www.conf \
     && echo "ping.response = pong" >> /usr/local/etc/php-fpm.d/www.conf
 
 # Install Composer

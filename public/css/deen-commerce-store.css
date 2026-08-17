@@ -163,9 +163,12 @@ html[data-theme="botanical"] {
     --text-muted: #5e8071;
     --border-color: rgba(19, 42, 31, 0.09);
     --hero-gradient: radial-gradient(circle at 15% 25%, rgba(16, 185, 129, 0.08) 0%, transparent 40%), radial-gradient(circle at 85% 75%, rgba(5, 150, 105, 0.06) 0%, transparent 40%), linear-gradient(180deg, #ffffff 0%, #f4f7f4 100%);
-    --accent-color: #10b981;
-    --accent-color-hover: #059669;
-    --accent-glow: rgba(16, 185, 129, 0.22);
+    /* Deepened to emerald-700 so white text on accent surfaces (buttons,
+       discount ribbon, checkout steps) clears WCAG AA: white on #047857 = 5.5:1.
+       The former #10b981 only reached 2.5:1. */
+    --accent-color: #047857;
+    --accent-color-hover: #065f46;
+    --accent-glow: rgba(4, 120, 87, 0.25);
     --accent-contrast: #ffffff;
     --brand-blue: #047857;
 }
@@ -519,6 +522,298 @@ html[data-theme="light"] .text-secondary {
 
 html[data-theme="light"] .text-muted {
     color: #64748b !important;
+}
+
+/* ==========================================================================
+   LIGHT-THEME NAVBAR & DROPDOWN CONTRAST FIXES
+   The navbar chrome is authored in white (it was designed for a dark navbar),
+   but the denim / botanical / azure / light themes use a light navbar. These
+   rules re-derive dark-on-light text for every light theme so no component
+   becomes invisible (white-on-white) when a light theme is active.
+   ========================================================================== */
+
+/* Brand lockup (scoped to the storefront navbar — the admin topbar stays dark) */
+html[data-theme="denim"] .deen-navbar .deen-brand-text,
+html[data-theme="botanical"] .deen-navbar .deen-brand-text,
+html[data-theme="azure"] .deen-navbar .deen-brand-text {
+    color: #0f172a !important;
+}
+
+html[data-theme="denim"] .deen-navbar .deen-brand-subtitle,
+html[data-theme="botanical"] .deen-navbar .deen-brand-subtitle,
+html[data-theme="azure"] .deen-navbar .deen-brand-subtitle {
+    color: #64748b !important;
+}
+
+/* Botanical/azure page backgrounds are slightly tinted (#f4f7f4 / #f0f6ff),
+   where #64748b drops to ~4.4:1 — darken the subtitle so it clears WCAG AA. */
+html[data-theme="botanical"] .deen-navbar .deen-brand-subtitle,
+html[data-theme="azure"] .deen-navbar .deen-brand-subtitle {
+    color: #475569 !important;
+}
+
+/* Theme picker (overrides Bootstrap .text-white / .border-secondary utilities) */
+html[data-theme="denim"] .deen-navbar .deen-theme-picker,
+html[data-theme="botanical"] .deen-navbar .deen-theme-picker,
+html[data-theme="azure"] .deen-navbar .deen-theme-picker,
+html[data-theme="light"] .deen-navbar .deen-theme-picker {
+    color: #0f172a !important;
+    border-color: rgba(15, 23, 42, 0.18) !important;
+}
+
+html[data-theme="denim"] .deen-navbar .deen-theme-picker:hover,
+html[data-theme="botanical"] .deen-navbar .deen-theme-picker:hover,
+html[data-theme="azure"] .deen-navbar .deen-theme-picker:hover,
+html[data-theme="light"] .deen-navbar .deen-theme-picker:hover {
+    background: rgba(15, 23, 42, 0.06);
+    border-color: rgba(15, 23, 42, 0.35) !important;
+}
+
+/* Header icon buttons (search / wishlist / account) */
+html[data-theme="denim"] .deen-navbar .deen-header-icon-btn,
+html[data-theme="botanical"] .deen-navbar .deen-header-icon-btn,
+html[data-theme="azure"] .deen-navbar .deen-header-icon-btn {
+    background: rgba(15, 23, 42, 0.05);
+    border-color: rgba(15, 23, 42, 0.12);
+    color: #0f172a;
+}
+
+html[data-theme="denim"] .deen-navbar .deen-header-icon-btn:hover,
+html[data-theme="botanical"] .deen-navbar .deen-header-icon-btn:hover,
+html[data-theme="azure"] .deen-navbar .deen-header-icon-btn:hover {
+    background: rgba(15, 23, 42, 0.10);
+    border-color: rgba(15, 23, 42, 0.28);
+    color: #0f172a;
+}
+
+/* Icons explicitly forced white (e.g. mobile cart) must follow the light navbar */
+html[data-theme="denim"] .deen-navbar .deen-header-icon-btn .text-white,
+html[data-theme="botanical"] .deen-navbar .deen-header-icon-btn .text-white,
+html[data-theme="azure"] .deen-navbar .deen-header-icon-btn .text-white,
+html[data-theme="light"] .deen-navbar .deen-header-icon-btn .text-white {
+    color: #0f172a !important;
+}
+
+/* Mobile toggler */
+html[data-theme="denim"] .deen-navbar .navbar-toggler,
+html[data-theme="botanical"] .deen-navbar .navbar-toggler,
+html[data-theme="azure"] .deen-navbar .navbar-toggler {
+    color: #0f172a !important;
+    border-color: rgba(15, 23, 42, 0.2) !important;
+}
+
+/* Nav links: the global `.deen-navbar .nav-link.text-white-50` fix re-forces
+   white copy for every theme, so light-theme navbars must re-derive dark text.
+   (Active links are already dark via .deen-navbar .nav-link.active.) */
+html[data-theme="denim"] .deen-navbar .nav-link.text-white-50,
+html[data-theme="botanical"] .deen-navbar .nav-link.text-white-50,
+html[data-theme="azure"] .deen-navbar .nav-link.text-white-50 {
+    color: #475569 !important;
+}
+
+/* Desktop search capsule: white glass chrome only fits dark navbars */
+html[data-theme="denim"] .deen-search-pill,
+html[data-theme="botanical"] .deen-search-pill,
+html[data-theme="azure"] .deen-search-pill {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+}
+
+html[data-theme="denim"] .deen-search-pill:hover,
+html[data-theme="botanical"] .deen-search-pill:hover,
+html[data-theme="azure"] .deen-search-pill:hover {
+    background: #e2e8f0;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+
+html[data-theme="denim"] .deen-kbd,
+html[data-theme="botanical"] .deen-kbd,
+html[data-theme="azure"] .deen-kbd {
+    background: #e2e8f0;
+    border-color: #cbd5e1;
+    color: #475569;
+}
+
+/* Account pill (signed-in users): white chrome + forced white child text */
+html[data-theme="denim"] .deen-account-pill,
+html[data-theme="botanical"] .deen-account-pill,
+html[data-theme="azure"] .deen-account-pill {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #0f172a;
+}
+
+html[data-theme="denim"] .deen-account-pill:hover,
+html[data-theme="botanical"] .deen-account-pill:hover,
+html[data-theme="azure"] .deen-account-pill:hover {
+    background: #edf2f7;
+    border-color: #cbd5e1;
+}
+
+html[data-theme="denim"] .deen-account-pill .text-white,
+html[data-theme="botanical"] .deen-account-pill .text-white,
+html[data-theme="azure"] .deen-account-pill .text-white,
+html[data-theme="light"] .deen-account-pill .text-white {
+    color: #0f172a !important;
+}
+
+html[data-theme="denim"] .deen-account-pill .text-white-50,
+html[data-theme="botanical"] .deen-account-pill .text-white-50,
+html[data-theme="azure"] .deen-account-pill .text-white-50,
+html[data-theme="light"] .deen-account-pill .text-white-50 {
+    color: #64748b !important;
+}
+
+/* Secondary text clears WCAG AA on light surfaces in every light theme */
+html[data-theme="denim"] .text-secondary,
+html[data-theme="botanical"] .text-secondary,
+html[data-theme="azure"] .text-secondary {
+    color: #334155 !important;
+}
+
+/* ── Light theme: dropdown-menu-dark is flipped to a white surface, so its
+      light-gray copy (authored for a dark menu) must become dark-on-light ── */
+html[data-theme="light"] .dropdown-menu-dark .dropdown-item {
+    color: #334155 !important;
+}
+
+html[data-theme="light"] .dropdown-menu-dark .dropdown-item:hover,
+html[data-theme="light"] .dropdown-menu-dark .dropdown-item.active {
+    background: #f1f5f9 !important;
+    color: #0f172a !important;
+}
+
+html[data-theme="light"] .dropdown-menu-dark .text-white-50,
+html[data-theme="light"] .dropdown-menu-dark .text-white {
+    color: #64748b !important;
+}
+
+/* ── Light themes: white-50 copy sitting directly on the light promo bar
+      must read as muted dark text. The footer is NOT light — it keeps
+      Bootstrap's bg-dark (#212529 !important) in every theme, so its
+      white-50 copy stays light-on-dark and is untouched here. ── */
+html[data-theme="denim"] .deen-promo-bar .text-white-50,
+html[data-theme="botanical"] .deen-promo-bar .text-white-50,
+html[data-theme="azure"] .deen-promo-bar .text-white-50,
+html[data-theme="light"] .deen-promo-bar .text-white-50 {
+    color: #64748b !important;
+}
+
+/* The BDT currency badge uses Bootstrap's text-white on a 40%-opacity
+   secondary pill — that reads as white-on-white on the light promo bar.
+   Give it a solid slate surface with dark text in every light theme. */
+html[data-theme="denim"] .deen-promo-bar .badge.bg-secondary,
+html[data-theme="botanical"] .deen-promo-bar .badge.bg-secondary,
+html[data-theme="azure"] .deen-promo-bar .badge.bg-secondary,
+html[data-theme="light"] .deen-promo-bar .badge.bg-secondary {
+    background-color: #e2e8f0 !important;
+    border-color: #cbd5e1 !important;
+    color: #334155 !important;
+}
+
+
+/* Mobile dock badges: dark text on bright accents in light themes (red badge keeps white) */
+html[data-theme="denim"] .deen-mobile-nav-badge:not(.bg-danger),
+html[data-theme="botanical"] .deen-mobile-nav-badge:not(.bg-danger),
+html[data-theme="azure"] .deen-mobile-nav-badge:not(.bg-danger),
+html[data-theme="light"] .deen-mobile-nav-badge:not(.bg-danger) {
+    color: #0f172a;
+}
+
+/* ==========================================================================
+   REMAINING LOW-CONTRAST FIXES (audit 2026-08-17)
+   ========================================================================== */
+
+/* ── Dark themes flip Bootstrap's .text-dark to light, which turns every
+      bg-warning surface (footer "first denim brand" badge, coupon/claim
+      buttons) into light-on-yellow. Warning surfaces must always carry
+      dark text. ── */
+html[data-theme="dark"] .badge.bg-warning,
+html[data-theme="dark"] .btn.btn-warning,
+html[data-theme="neon"] .badge.bg-warning,
+html[data-theme="neon"] .btn.btn-warning,
+html[data-theme="glass"] .badge.bg-warning,
+html[data-theme="glass"] .btn.btn-warning,
+html[data-theme="rawdenim"] .badge.bg-warning,
+html[data-theme="rawdenim"] .btn.btn-warning {
+    color: #111827 !important;
+}
+
+/* ── Rating stars: amber-400 is 2:1 on the pastel card tints; deepen to
+      amber-700 so the "(5.0)" score reads as text in light themes. ── */
+html[data-theme="denim"] .deen-rating-stars,
+html[data-theme="botanical"] .deen-rating-stars,
+html[data-theme="azure"] .deen-rating-stars,
+html[data-theme="light"] .deen-rating-stars {
+    color: #b45309 !important;
+}
+
+/* ── Navbar amber glyphs (search, palette, admin, mobile icons) are 1.5:1
+      on the light navbar/search pill; deepen to amber-700 in light themes.
+      FontAwesome promo-bar icons stay as-is (decorative, not text). ── */
+html[data-theme="denim"] .deen-navbar .text-warning,
+html[data-theme="botanical"] .deen-navbar .text-warning,
+html[data-theme="azure"] .deen-navbar .text-warning,
+html[data-theme="light"] .deen-navbar .text-warning {
+    color: #b45309 !important;
+}
+
+/* Search capsule placeholder text: #64748b is 4.34:1 on the #f1f5f9 pill;
+   darken a step so it clears AA in light themes. */
+html[data-theme="denim"] .deen-search-pill .placeholder-text,
+html[data-theme="botanical"] .deen-search-pill .placeholder-text,
+html[data-theme="azure"] .deen-search-pill .placeholder-text,
+html[data-theme="light"] .deen-search-pill .placeholder-text {
+    color: #475569 !important;
+}
+
+/* ── Discount ribbon & checkout steps: the base rules now use
+      --accent-contrast (fixes dark/glass bright accents). The remaining
+      failures are white on medium accents, so deepen the surface in the
+      light themes and force dark glyphs on the neon/rawdenim bright
+      accents whose accent-contrast is white. ── */
+html[data-theme="denim"] .deen-discount-ribbon,
+html[data-theme="denim"] .deen-step-item.active,
+html[data-theme="denim"] .deen-step-item.completed {
+    background: #d13f12 !important;
+}
+
+html[data-theme="azure"] .deen-discount-ribbon,
+html[data-theme="azure"] .deen-step-item.active,
+html[data-theme="azure"] .deen-step-item.completed,
+html[data-theme="light"] .deen-discount-ribbon,
+html[data-theme="light"] .deen-step-item.active,
+html[data-theme="light"] .deen-step-item.completed {
+    background: #1d4ed8 !important;
+}
+
+html[data-theme="neon"] .deen-discount-ribbon,
+html[data-theme="neon"] .deen-step-item.active,
+html[data-theme="neon"] .deen-step-item.completed,
+html[data-theme="rawdenim"] .deen-discount-ribbon,
+html[data-theme="rawdenim"] .deen-step-item.active,
+html[data-theme="rawdenim"] .deen-step-item.completed {
+    color: #0f172a !important;
+}
+
+/* ── Footer is bg-dark in every theme: Bootstrap's success green (#198754)
+      only reaches 3.4:1 there. Brighten the WhatsApp/COD copy so small text
+      clears WCAG AA on the dark footer. ── */
+footer.bg-dark .btn-outline-success {
+    color: #2ea44f !important;
+    border-color: #2ea44f !important;
+}
+
+footer.bg-dark .text-success {
+    color: #2ea44f !important;
+}
+
+/* ── Order-success step icon: amber on the pale yellow circle is 1.5:1.
+      Deepen to amber-700 (these circles are light in every theme). ── */
+.deen-frame .rounded-circle .material-symbols-outlined.text-warning {
+    color: #b45309 !important;
 }
 
 /* 7. Crystal Glassmorphism & Aurora Glow (Ultra-Modern Frosted Glass Aesthetic)
@@ -1238,7 +1533,7 @@ p {
     line-height: 1;
 }
 
-html[data-theme="light"] .deen-brand-text {
+html[data-theme="light"] .deen-navbar .deen-brand-text {
     color: #0f172a;
 }
 
@@ -1307,7 +1602,7 @@ html[data-theme="light"] .deen-brand-text {
     position: relative;
 }
 
-html[data-theme="light"] .deen-header-icon-btn {
+html[data-theme="light"] .deen-navbar .deen-header-icon-btn {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
     color: #0f172a;
@@ -1321,7 +1616,7 @@ html[data-theme="light"] .deen-header-icon-btn {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-html[data-theme="light"] .deen-header-icon-btn:hover {
+html[data-theme="light"] .deen-navbar .deen-header-icon-btn:hover {
     background: #edf2f7;
     border-color: #cbd5e1;
     color: #0f172a;
@@ -1404,7 +1699,7 @@ html[data-theme="light"] .deen-account-pill {
     width: 26px;
     height: 26px;
     border-radius: 50%;
-    background: var(--deen-brand-orange, #fa541c);
+    background: #d13f12;
     color: #ffffff;
     font-weight: 800;
     font-size: 0.75rem;
@@ -1482,7 +1777,9 @@ html[data-theme="light"] .deen-kbd {
 
 /* --- High-Converting Header Cart Pill Button --- */
 .deen-cart-pill-btn {
-    background: var(--deen-brand-orange, #fa541c);
+    /* Deepened from #fa541c so the white "Cart" label clears WCAG AA
+       (white on #fa541c was 3.3:1; #d13f12 reaches 4.7:1). */
+    background: #d13f12;
     color: #ffffff !important;
     border: none;
     border-radius: 9999px;
@@ -1499,7 +1796,7 @@ html[data-theme="light"] .deen-kbd {
 }
 
 .deen-cart-pill-btn:hover {
-    background: #ea580c;
+    background: #c03810;
     color: #ffffff !important;
     transform: translateY(-1.5px);
     box-shadow: 0 6px 20px rgba(250, 84, 28, 0.45);
@@ -1507,7 +1804,7 @@ html[data-theme="light"] .deen-kbd {
 
 .deen-cart-count-badge {
     background: #ffffff;
-    color: var(--deen-brand-orange, #fa541c);
+    color: #d13f12;
     font-size: 0.70rem;
     font-weight: 800;
     padding: 1px 7px;
@@ -1525,7 +1822,7 @@ html[data-theme="light"] .deen-kbd {
     margin-top: 1px;
 }
 
-html[data-theme="light"] .deen-brand-subtitle {
+html[data-theme="light"] .deen-navbar .deen-brand-subtitle {
     color: #64748b;
 }
 
@@ -1794,7 +2091,7 @@ html[data-theme="light"] .deen-brand-subtitle {
     top: 12px;
     left: 12px;
     background: linear-gradient(135deg, #fa541c 0%, #ff4d4f 100%);
-    color: #ffffff;
+    color: var(--accent-contrast);
     border: none;
     font-size: 0.72rem;
     font-weight: 700;
@@ -1964,7 +2261,10 @@ html[data-theme="light"] .deen-brand-subtitle {
 
 .btn-deen-primary {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    color: #ffffff !important;
+    /* no !important: the later theme-adaptive rule (background: var(--text-primary);
+       color: var(--bg-main)) must win in dark themes, otherwise the button
+       becomes light-on-light */
+    color: var(--bg-main);
     border: 1px solid #0f172a;
     border-radius: var(--deen-radius-full);
     font-weight: 600;
@@ -3759,16 +4059,22 @@ textarea:focus-visible {
     font-weight: 700;
     font-size: 0.9rem;
     background: #e2e8f0;
-    color: #64748b;
+    /* Upcoming step numbers are small bold text: #64748b is only 3.9:1 on
+       the track surface, darken to #475569 so they clear WCAG AA. */
+    color: #475569;
     transition: all 0.2s ease;
 }
 .deen-step-item.completed {
-    background: #10b981;
-    color: #ffffff;
+    /* Follow the theme accent so completed steps match active ones and never
+       hardcode a light emerald (white on #10b981 was only 2.5:1). The icon
+       color follows --accent-contrast so bright accents (amber, cyan) in the
+       dark themes get dark glyphs instead of white-on-white. */
+    background: var(--accent-color);
+    color: var(--accent-contrast);
 }
 .deen-step-item.active {
     background: var(--accent-color);
-    color: #ffffff;
+    color: var(--accent-contrast);
     box-shadow: 0 0 0 4px var(--accent-glow);
 }
 
@@ -3925,7 +4231,7 @@ textarea:focus-visible {
     top: 12px;
     left: 12px;
     background: var(--accent-color);
-    color: #ffffff;
+    color: var(--accent-contrast);
     font-size: 0.72rem;
     font-weight: 700;
     padding: 4px 10px;
@@ -4220,80 +4526,6 @@ textarea:focus-visible {
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
-}
-
-/* --- Mobile Bottom Navigation --- */
-.deen-mobile-bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--bg-nav);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-top: var(--deen-border-hairline);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding: 0.5rem 0 calc(0.5rem + env(safe-area-inset-bottom));
-    z-index: 1040;
-}
-.deen-mobile-nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-    text-decoration: none;
-    color: var(--text-muted);
-    font-size: 0.62rem;
-    font-weight: 600;
-    transition: color 0.2s ease;
-    position: relative;
-    padding: 0.25rem 0.5rem;
-}
-.deen-mobile-nav-item.active,
-.deen-mobile-nav-item:hover {
-    color: var(--accent-color);
-}
-.deen-mobile-nav-item .nav-icon {
-    font-size: 22px;
-}
-.deen-mobile-nav-fab {
-    margin-top: -18px;
-}
-.deen-mobile-nav-fab .fab-circle {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: var(--text-primary);
-    color: var(--bg-main);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--deen-shadow-card);
-    transition: transform 0.2s ease;
-}
-.deen-mobile-nav-fab:hover .fab-circle {
-    transform: scale(1.08);
-}
-.deen-mobile-nav-fab .nav-icon {
-    color: var(--bg-main);
-    font-size: 24px;
-}
-.deen-mobile-nav-badge {
-    position: absolute;
-    top: -2px;
-    right: -4px;
-    background: var(--accent-color);
-    color: #ffffff;
-    font-size: 0.55rem;
-    font-weight: 700;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 /* --- Micro Cart Pill (Floating) --- */
@@ -5270,7 +5502,7 @@ html[data-theme="rawdenim"] {
 
     --text-primary:     #eef1f8;   /* cool bright white — 13.5:1 on bg ✅ */
     --text-secondary:   #a8b8d4;   /* faded-denim blue-white — 6.2:1 ✅ */
-    --text-muted:       #6d85a8;   /* ghost thread — 4.6:1 ✅ */
+    --text-muted:       #7d95ba;   /* ghost thread — 4.65:1 on cards (was 3.8) */
 
     --border-color:     rgba(100, 140, 200, 0.18);
     --accent-color:     #d97706;   /* copper rivet gold */
@@ -5514,7 +5746,7 @@ html[data-theme="rawdenim"] .form-select:focus {
 /* ── Utility class overrides ───────────────────────────────── */
 html[data-theme="rawdenim"] .text-dark { color: #eef1f8 !important; }
 html[data-theme="rawdenim"] .text-secondary { color: #a8b8d4 !important; }
-html[data-theme="rawdenim"] .text-muted { color: #6d85a8 !important; }
+html[data-theme="rawdenim"] .text-muted { color: #7d95ba !important; }
 
 html[data-theme="rawdenim"] .bg-white,
 html[data-theme="rawdenim"] .bg-light {

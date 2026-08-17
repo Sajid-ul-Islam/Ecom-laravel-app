@@ -295,3 +295,106 @@
     color: #0f172a;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
+
+/* ── Admin pages are always dark (body #0f172a + light text), but the cards
+      are white. Laravel's default Tailwind pagination has no Tailwind build
+      behind it, so its links inherit the light body text and become
+      invisible on the white cards. Re-theme the pagination as dark-on-light. ── */
+.woo-dashboard-wrapper nav[role="navigation"] p {
+    color: #475569 !important;
+}
+
+.woo-dashboard-wrapper nav[role="navigation"] a.relative.inline-flex,
+.woo-dashboard-wrapper nav[role="navigation"] span.relative.inline-flex {
+    color: #334155 !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px;
+    margin: 0 2px;
+    font-weight: 600;
+}
+
+.woo-dashboard-wrapper nav[role="navigation"] a.relative.inline-flex:hover {
+    background: #f1f5f9 !important;
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
+}
+
+.woo-dashboard-wrapper nav[role="navigation"] span[aria-current="page"] {
+    background: var(--woo-primary) !important;
+    border-color: var(--woo-primary) !important;
+    color: #ffffff !important;
+}
+
+/* Muted copy on the dark navy admin shell and sidebar needs a lighter tint.
+   The theme-prefixed selectors outrank the store stylesheet's
+   html[data-theme="..."] .text-muted overrides. */
+html[data-theme="denim"] .woo-dashboard-wrapper .text-muted,
+html[data-theme="botanical"] .woo-dashboard-wrapper .text-muted,
+html[data-theme="azure"] .woo-dashboard-wrapper .text-muted,
+html[data-theme="light"] .woo-dashboard-wrapper .text-muted,
+html[data-theme="dark"] .woo-dashboard-wrapper .text-muted,
+html[data-theme="neon"] .woo-dashboard-wrapper .text-muted,
+html[data-theme="glass"] .woo-dashboard-wrapper .text-muted,
+html[data-theme="rawdenim"] .woo-dashboard-wrapper .text-muted,
+html[data-theme="denim"] .admin-sidebar .text-muted,
+html[data-theme="botanical"] .admin-sidebar .text-muted,
+html[data-theme="azure"] .admin-sidebar .text-muted,
+html[data-theme="light"] .admin-sidebar .text-muted,
+html[data-theme="dark"] .admin-sidebar .text-muted,
+html[data-theme="neon"] .admin-sidebar .text-muted,
+html[data-theme="glass"] .admin-sidebar .text-muted,
+html[data-theme="rawdenim"] .admin-sidebar .text-muted {
+    color: #94a3b8 !important;
+}
+
+/* Muted copy inside the white cards stays dark-on-light */
+html[data-theme="denim"] .woo-dashboard-wrapper .woo-card .text-muted,
+html[data-theme="botanical"] .woo-dashboard-wrapper .woo-card .text-muted,
+html[data-theme="azure"] .woo-dashboard-wrapper .woo-card .text-muted,
+html[data-theme="light"] .woo-dashboard-wrapper .woo-card .text-muted,
+html[data-theme="dark"] .woo-dashboard-wrapper .woo-card .text-muted,
+html[data-theme="neon"] .woo-dashboard-wrapper .woo-card .text-muted,
+html[data-theme="glass"] .woo-dashboard-wrapper .woo-card .text-muted,
+html[data-theme="rawdenim"] .woo-dashboard-wrapper .woo-card .text-muted,
+html[data-theme="denim"] .woo-dashboard-wrapper .woo-stat-card .text-muted,
+html[data-theme="botanical"] .woo-dashboard-wrapper .woo-stat-card .text-muted,
+html[data-theme="azure"] .woo-dashboard-wrapper .woo-stat-card .text-muted,
+html[data-theme="light"] .woo-dashboard-wrapper .woo-stat-card .text-muted,
+html[data-theme="dark"] .woo-dashboard-wrapper .woo-stat-card .text-muted,
+html[data-theme="neon"] .woo-dashboard-wrapper .woo-stat-card .text-muted,
+html[data-theme="glass"] .woo-dashboard-wrapper .woo-stat-card .text-muted,
+html[data-theme="rawdenim"] .woo-dashboard-wrapper .woo-stat-card .text-muted,
+html[data-theme="denim"] .woo-dashboard-wrapper .woo-table .text-muted,
+html[data-theme="botanical"] .woo-dashboard-wrapper .woo-table .text-muted,
+html[data-theme="azure"] .woo-dashboard-wrapper .woo-table .text-muted,
+html[data-theme="light"] .woo-dashboard-wrapper .woo-table .text-muted,
+html[data-theme="dark"] .woo-dashboard-wrapper .woo-table .text-muted,
+html[data-theme="neon"] .woo-dashboard-wrapper .woo-table .text-muted,
+html[data-theme="glass"] .woo-dashboard-wrapper .woo-table .text-muted,
+html[data-theme="rawdenim"] .woo-dashboard-wrapper .woo-table .text-muted,
+html[data-theme="denim"] .woo-dashboard-wrapper .woo-product-card .text-muted,
+html[data-theme="botanical"] .woo-dashboard-wrapper .woo-product-card .text-muted,
+html[data-theme="azure"] .woo-dashboard-wrapper .woo-product-card .text-muted,
+html[data-theme="light"] .woo-dashboard-wrapper .woo-product-card .text-muted,
+html[data-theme="dark"] .woo-dashboard-wrapper .woo-product-card .text-muted,
+html[data-theme="neon"] .woo-dashboard-wrapper .woo-product-card .text-muted,
+html[data-theme="glass"] .woo-dashboard-wrapper .woo-product-card .text-muted,
+html[data-theme="rawdenim"] .woo-dashboard-wrapper .woo-product-card .text-muted {
+    color: #64748b !important;
+}
+
+/* The store stylesheet forces headings to var(--text-primary), which is dark
+   in the light themes. On the always-dark admin shell (and dark modals) that
+   yields dark-on-dark headings, so those headings inherit their surface's
+   light text instead. */
+.admin-topbar h1, .admin-topbar h2, .admin-topbar h3,
+.admin-topbar h4, .admin-topbar h5, .admin-topbar h6,
+.admin-sidebar h1, .admin-sidebar h2, .admin-sidebar h3,
+.admin-sidebar h4, .admin-sidebar h5, .admin-sidebar h6,
+.modal-content.bg-dark h1, .modal-content.bg-dark h2, .modal-content.bg-dark h3,
+.modal-content.bg-dark h4, .modal-content.bg-dark h5, .modal-content.bg-dark h6,
+.woo-header-hero h1, .woo-header-hero h2, .woo-header-hero h3,
+.woo-header-hero h4, .woo-header-hero h5, .woo-header-hero h6 {
+    color: inherit !important;
+}

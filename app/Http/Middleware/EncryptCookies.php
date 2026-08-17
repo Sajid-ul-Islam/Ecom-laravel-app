@@ -12,6 +12,8 @@ class EncryptCookies extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        // Set client-side by the theme picker; the server reads it to render
+        // the device's remembered theme onto the <html> tag.
+        'deen_theme',
     ];
 }

@@ -1,5 +1,15 @@
+@php
+    // Device-remembered theme: the server reads the deen_theme cookie and
+    // renders it directly onto <html data-theme> so the chosen theme applies
+    // even before any JavaScript runs (and survives localStorage clears).
+    $deenTheme = config('themes.default', 'denim');
+    $deenThemeCookie = request()->cookie('deen_theme');
+    if (is_string($deenThemeCookie) && in_array($deenThemeCookie, config('themes.all', ['denim']), true)) {
+        $deenTheme = $deenThemeCookie;
+    }
+@endphp
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="{{ $deenTheme }}">
 
 <head>
  <meta charset="utf-8">
@@ -27,11 +37,22 @@
  <meta name="mobile-web-app-capable" content="yes">
  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
- <!-- Immediate Theme Restoration Script -->
+ <!-- Immediate Theme Restoration Script
+      The server already rendered the device's remembered theme (from the
+      deen_theme cookie) onto <html data-theme>. This script only needs to
+      apply a legacy localStorage preference and migrate it into the cookie
+      so the server keeps remembering it per-device. -->
  <script>
  (function() {
- const savedTheme = localStorage.getItem('deen_theme') || 'denim';
- document.documentElement.setAttribute('data-theme', savedTheme);
+ let theme = '';
+ try { theme = localStorage.getItem('deen_theme') || ''; } catch (e) {}
+ const m = document.cookie.match(/(?:^|;\s*)deen_theme=([^;]*)/);
+ let cookieTheme = m ? decodeURIComponent(m[1]) : '';
+ if (theme && !cookieTheme) {
+ document.cookie = 'deen_theme=' + encodeURIComponent(theme) + '; max-age=' + (60*60*24*365) + '; path=/; SameSite=Lax';
+ cookieTheme = theme;
+ }
+ document.documentElement.setAttribute('data-theme', cookieTheme || theme || document.documentElement.getAttribute('data-theme') || 'denim');
  })();
  </script>
 
@@ -178,6 +199,24 @@
                                         <div>
                                             <div class="fw-bold">13.5oz Washed Denim</div>
                                             <div class="small text-white-50">Authentic indigo twill (Default)</div>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item d-flex align-items-center gap-2 py-2" type="button" onclick="changeDeenTheme('botanical')">
+                                        <span class="material-symbols-outlined text-success fs-5">eco</span>
+                                        <div>
+                                            <div class="fw-bold">Botanical Sage</div>
+                                            <div class="small text-white-50">Organic sage & emerald linen</div>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item d-flex align-items-center gap-2 py-2" type="button" onclick="changeDeenTheme('azure')">
+                                        <span class="material-symbols-outlined text-primary fs-5">water_drop</span>
+                                        <div>
+                                            <div class="fw-bold">Royal Azure</div>
+                                            <div class="small text-white-50">Cool ice mist & midnight marine</div>
                                         </div>
                                     </button>
                                 </li>
@@ -357,7 +396,7 @@
  <!-- Col 1: Brand & Slogan -->
  <div class="col-lg-4 col-md-6">
  <a href="{{ url('/') }}" class="d-inline-flex align-items-center gap-2 mb-3 text-decoration-none">
- <img src="{{ asset('images/deen-logo-dark.png') }}" class="deen-brand-logo" alt="DEEN" onerror="this.src='https://deencommerce.com/wp-content/uploads/2025/04/cropped-Deen-Logo-scaled-1.png'">
+ <!-- Typographic brand only (DEEN.im) — logo image removed -->
  <div class="deen-brand-lockup d-flex align-items-baseline">
  <span class="deen-brand-text text-white">DEEN</span>
  <span class="deen-domain-badge"><span class="deen-domain-dot">.</span>im</span>
@@ -1034,9 +1073,14 @@
  <!-- Bootstrap 5 JS Bundle -->
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
  <script>
+ function setDeenThemeCookie(themeName) {
+ document.cookie = 'deen_theme=' + encodeURIComponent(themeName) + '; max-age=' + (60*60*24*365) + '; path=/; SameSite=Lax';
+ }
+
  function changeDeenTheme(themeName) {
  document.documentElement.setAttribute('data-theme', themeName);
- localStorage.setItem('deen_theme', themeName);
+ try { localStorage.setItem('deen_theme', themeName); } catch (e) {}
+ setDeenThemeCookie(themeName);
  updateThemeLabel(themeName);
  }
 
@@ -1519,7 +1563,8 @@
  }
 
  document.addEventListener('DOMContentLoaded', () => {
- const saved = localStorage.getItem('deen_theme') || 'denim';
+ const m = document.cookie.match(/(?:^|;\s*)deen_theme=([^;]*)/);
+ const saved = (m ? decodeURIComponent(m[1]) : '') || (function(){ try { return localStorage.getItem('deen_theme') || ''; } catch (e) { return ''; } })() || 'denim';
  updateThemeLabel(saved);
  syncCartBadges();
  syncWishlistUI();

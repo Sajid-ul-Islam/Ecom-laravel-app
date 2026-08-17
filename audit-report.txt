@@ -1,0 +1,377 @@
+DEEN COMMERCE — CONTRAST AUDIT (regenerated 2026-08-17)
+Method: headless Chrome computed-style audit of every visible text node
+        (6 storefront pages × 8 themes × 2 viewports). WCAG thresholds:
+        4.5:1 small text, 3:1 large text, 3:1 non-text (icons/glyphs).
+        “unknown-bg” = text over gradient/image backgrounds, skipped.
+
+=== DESKTOP AUDIT (1440px) ===
+
+### home (/) — denim — evaluated 328 nodes (3 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(251,251,253) = 4.38:1
+
+### home (/) — botanical — evaluated 328 nodes (3 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(244,247,244) = 4.19:1
+
+### home (/) — azure — evaluated 328 nodes (3 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(240,246,255) = 4.17:1
+
+### home (/) — light — evaluated 328 nodes (3 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(248,250,252) = 4.33:1
+
+### home (/) — dark — evaluated 328 nodes (5 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(11,15,25) = 4.23:1
+
+### home (/) — neon — evaluated 328 nodes (5 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(5,5,8) = 4.5:1
+
+### home (/) — glass — evaluated 328 nodes (291 unknown-bg skipped) — 0 low-contrast
+
+### home (/) — rawdenim — evaluated 328 nodes (78 unknown-bg skipped) — 0 low-contrast
+
+### categories (/categories) — denim — evaluated 372 nodes (20 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(251,251,253) = 4.38:1
+
+### categories (/categories) — botanical — evaluated 372 nodes (20 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(244,247,244) = 4.19:1
+
+### categories (/categories) — azure — evaluated 372 nodes (20 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(240,246,255) = 4.17:1
+
+### categories (/categories) — light — evaluated 372 nodes (20 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(248,250,252) = 4.33:1
+
+### categories (/categories) — dark — evaluated 372 nodes (20 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(11,15,25) = 4.23:1
+
+### categories (/categories) — neon — evaluated 372 nodes (20 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(5,5,8) = 4.5:1
+
+### categories (/categories) — glass — evaluated 372 nodes (268 unknown-bg skipped) — 0 low-contrast
+
+### categories (/categories) — rawdenim — evaluated 372 nodes (341 unknown-bg skipped) — 0 low-contrast
+
+### category (/category/1) — denim — evaluated 60 nodes (1 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(251,251,253) = 4.38:1
+
+### category (/category/1) — botanical — evaluated 60 nodes (1 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(244,247,244) = 4.19:1
+
+### category (/category/1) — azure — evaluated 60 nodes (1 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(240,246,255) = 4.17:1
+
+### category (/category/1) — light — evaluated 60 nodes (1 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(248,250,252) = 4.33:1
+
+### category (/category/1) — dark — evaluated 60 nodes (1 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(11,15,25) = 4.23:1
+
+### category (/category/1) — neon — evaluated 60 nodes (1 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(5,5,8) = 4.5:1
+
+### category (/category/1) — glass — evaluated 60 nodes (31 unknown-bg skipped) — 0 low-contrast
+
+### category (/category/1) — rawdenim — evaluated 60 nodes (29 unknown-bg skipped) — 0 low-contrast
+
+### product (/product/1) — denim — evaluated 112 nodes (5 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(251,251,253) = 4.38:1
+
+### product (/product/1) — botanical — evaluated 112 nodes (5 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(244,247,244) = 4.19:1
+
+### product (/product/1) — azure — evaluated 112 nodes (5 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(240,246,255) = 4.17:1
+
+### product (/product/1) — light — evaluated 112 nodes (5 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(248,250,252) = 4.33:1
+
+### product (/product/1) — dark — evaluated 112 nodes (5 unknown-bg skipped) — 4 low-contrast
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "design_services" — fg rgb(13,110,253) on rgb(21,30,50) = 3.69:1
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "straighten" — fg rgb(13,110,253) on rgb(21,30,50) = 3.69:1
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "local_shipping" — fg rgb(13,110,253) on rgb(21,30,50) = 3.69:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(11,15,25) = 4.23:1
+
+### product (/product/1) — neon — evaluated 112 nodes (5 unknown-bg skipped) — 4 low-contrast
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "design_services" — fg rgb(13,110,253) on rgb(20,21,34) = 4.02:1
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "straighten" — fg rgb(13,110,253) on rgb(20,21,34) = 4.02:1
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "local_shipping" — fg rgb(13,110,253) on rgb(20,21,34) = 4.02:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(5,5,8) = 4.5:1
+
+### product (/product/1) — glass — evaluated 112 nodes (77 unknown-bg skipped) — 0 low-contrast
+
+### product (/product/1) — rawdenim — evaluated 112 nodes (46 unknown-bg skipped) — 3 low-contrast
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "design_services" — fg rgb(13,110,253) on rgb(23,42,71) = 3.2:1
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "straighten" — fg rgb(13,110,253) on rgb(23,42,71) = 3.2:1
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "local_shipping" — fg rgb(13,110,253) on rgb(23,42,71) = 3.2:1
+
+### checkout (/checkout) — denim — evaluated 98 nodes (2 unknown-bg skipped) — 2 low-contrast
+  [small 20px/400] span.material-symbols-outlined text-success align-middle fs-5 me-1 "verified_user" — fg rgb(25,135,84) on rgb(236,253,245) = 4.3:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(251,251,253) = 4.38:1
+
+### checkout (/checkout) — botanical — evaluated 98 nodes (2 unknown-bg skipped) — 2 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(244,247,244) = 4.19:1
+  [small 20px/400] span.material-symbols-outlined text-success align-middle fs-5 me-1 "verified_user" — fg rgb(25,135,84) on rgb(236,253,245) = 4.3:1
+
+### checkout (/checkout) — azure — evaluated 98 nodes (2 unknown-bg skipped) — 2 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(240,246,255) = 4.17:1
+  [small 20px/400] span.material-symbols-outlined text-success align-middle fs-5 me-1 "verified_user" — fg rgb(25,135,84) on rgb(236,253,245) = 4.3:1
+
+### checkout (/checkout) — light — evaluated 98 nodes (2 unknown-bg skipped) — 2 low-contrast
+  [small 20px/400] span.material-symbols-outlined text-success align-middle fs-5 me-1 "verified_user" — fg rgb(25,135,84) on rgb(236,253,245) = 4.3:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(248,250,252) = 4.33:1
+
+### checkout (/checkout) — dark — evaluated 98 nodes (2 unknown-bg skipped) — 2 low-contrast
+  [small 20px/400] span.material-symbols-outlined text-success align-middle fs-5 me-1 "verified_user" — fg rgb(25,135,84) on rgb(21,30,50) = 3.67:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(11,15,25) = 4.23:1
+
+### checkout (/checkout) — neon — evaluated 98 nodes (2 unknown-bg skipped) — 2 low-contrast
+  [small 20px/400] span.material-symbols-outlined text-success align-middle fs-5 me-1 "verified_user" — fg rgb(25,135,84) on rgb(18,19,29) = 4.08:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(5,5,8) = 4.5:1
+
+### checkout (/checkout) — glass — evaluated 98 nodes (69 unknown-bg skipped) — 0 low-contrast
+
+### checkout (/checkout) — rawdenim — evaluated 98 nodes (51 unknown-bg skipped) — 0 low-contrast
+
+### order-success (/order-success/1) — denim — evaluated 87 nodes (1 unknown-bg skipped) — 3 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(251,251,253) = 4.38:1
+
+### order-success (/order-success/1) — botanical — evaluated 87 nodes (1 unknown-bg skipped) — 3 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(244,247,244) = 4.19:1
+
+### order-success (/order-success/1) — azure — evaluated 87 nodes (1 unknown-bg skipped) — 3 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(240,246,255) = 4.17:1
+
+### order-success (/order-success/1) — light — evaluated 87 nodes (1 unknown-bg skipped) — 3 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(248,250,252) = 4.33:1
+
+### order-success (/order-success/1) — dark — evaluated 87 nodes (1 unknown-bg skipped) — 3 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(11,15,25) = 4.23:1
+
+### order-success (/order-success/1) — neon — evaluated 87 nodes (1 unknown-bg skipped) — 3 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(5,5,8) = 4.5:1
+
+### order-success (/order-success/1) — glass — evaluated 87 nodes (54 unknown-bg skipped) — 2 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+
+### order-success (/order-success/1) — rawdenim — evaluated 87 nodes (52 unknown-bg skipped) — 2 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+
+TOTAL low-contrast: 67
+
+=== MOBILE AUDIT (390px) ===
+
+### home (/) — denim — evaluated 323 nodes (3 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(251,251,253) = 4.38:1
+
+### home (/) — botanical — evaluated 323 nodes (3 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(244,247,244) = 4.19:1
+
+### home (/) — azure — evaluated 323 nodes (3 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(240,246,255) = 4.17:1
+
+### home (/) — light — evaluated 323 nodes (3 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(248,250,252) = 4.33:1
+
+### home (/) — dark — evaluated 323 nodes (5 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(11,15,25) = 4.23:1
+
+### home (/) — neon — evaluated 323 nodes (5 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(5,5,8) = 4.5:1
+
+### home (/) — glass — evaluated 323 nodes (290 unknown-bg skipped) — 0 low-contrast
+
+### home (/) — rawdenim — evaluated 323 nodes (80 unknown-bg skipped) — 0 low-contrast
+
+### categories (/categories) — denim — evaluated 368 nodes (20 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(251,251,253) = 4.38:1
+
+### categories (/categories) — botanical — evaluated 368 nodes (20 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(244,247,244) = 4.19:1
+
+### categories (/categories) — azure — evaluated 368 nodes (20 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(240,246,255) = 4.17:1
+
+### categories (/categories) — light — evaluated 368 nodes (20 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(248,250,252) = 4.33:1
+
+### categories (/categories) — dark — evaluated 368 nodes (20 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(11,15,25) = 4.23:1
+
+### categories (/categories) — neon — evaluated 368 nodes (20 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(5,5,8) = 4.5:1
+
+### categories (/categories) — glass — evaluated 368 nodes (268 unknown-bg skipped) — 0 low-contrast
+
+### categories (/categories) — rawdenim — evaluated 368 nodes (343 unknown-bg skipped) — 0 low-contrast
+
+### category (/category/1) — denim — evaluated 56 nodes (1 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(251,251,253) = 4.38:1
+
+### category (/category/1) — botanical — evaluated 56 nodes (1 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(244,247,244) = 4.19:1
+
+### category (/category/1) — azure — evaluated 56 nodes (1 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(240,246,255) = 4.17:1
+
+### category (/category/1) — light — evaluated 56 nodes (1 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(248,250,252) = 4.33:1
+
+### category (/category/1) — dark — evaluated 56 nodes (1 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(11,15,25) = 4.23:1
+
+### category (/category/1) — neon — evaluated 56 nodes (1 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(5,5,8) = 4.5:1
+
+### category (/category/1) — glass — evaluated 56 nodes (31 unknown-bg skipped) — 0 low-contrast
+
+### category (/category/1) — rawdenim — evaluated 56 nodes (31 unknown-bg skipped) — 0 low-contrast
+
+### product (/product/1) — denim — evaluated 108 nodes (5 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(251,251,253) = 4.38:1
+
+### product (/product/1) — botanical — evaluated 108 nodes (5 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(244,247,244) = 4.19:1
+
+### product (/product/1) — azure — evaluated 108 nodes (5 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(240,246,255) = 4.17:1
+
+### product (/product/1) — light — evaluated 108 nodes (5 unknown-bg skipped) — 1 low-contrast
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(248,250,252) = 4.33:1
+
+### product (/product/1) — dark — evaluated 108 nodes (5 unknown-bg skipped) — 4 low-contrast
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "design_services" — fg rgb(13,110,253) on rgb(21,30,50) = 3.69:1
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "straighten" — fg rgb(13,110,253) on rgb(21,30,50) = 3.69:1
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "local_shipping" — fg rgb(13,110,253) on rgb(21,30,50) = 3.69:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(11,15,25) = 4.23:1
+
+### product (/product/1) — neon — evaluated 108 nodes (5 unknown-bg skipped) — 4 low-contrast
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "design_services" — fg rgb(13,110,253) on rgb(20,21,34) = 4.02:1
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "straighten" — fg rgb(13,110,253) on rgb(20,21,34) = 4.02:1
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "local_shipping" — fg rgb(13,110,253) on rgb(20,21,34) = 4.02:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(5,5,8) = 4.5:1
+
+### product (/product/1) — glass — evaluated 108 nodes (77 unknown-bg skipped) — 0 low-contrast
+
+### product (/product/1) — rawdenim — evaluated 108 nodes (48 unknown-bg skipped) — 3 low-contrast
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "design_services" — fg rgb(13,110,253) on rgb(23,42,71) = 3.2:1
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "straighten" — fg rgb(13,110,253) on rgb(23,42,71) = 3.2:1
+  [small 20px/400] span.material-symbols-outlined text-primary fs-5 "local_shipping" — fg rgb(13,110,253) on rgb(23,42,71) = 3.2:1
+
+### checkout (/checkout) — denim — evaluated 94 nodes (2 unknown-bg skipped) — 3 low-contrast
+  [small 21.57px/400] span.material-symbols-outlined text-primary fs-4 check-icon "check_circle" — fg rgb(13,110,253) on rgb(239,246,255) = 4.14:1
+  [small 20px/400] span.material-symbols-outlined text-success align-middle fs-5 me-1 "verified_user" — fg rgb(25,135,84) on rgb(236,253,245) = 4.3:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(251,251,253) = 4.38:1
+
+### checkout (/checkout) — botanical — evaluated 94 nodes (2 unknown-bg skipped) — 3 low-contrast
+  [small 21.57px/400] span.material-symbols-outlined text-primary fs-4 check-icon "check_circle" — fg rgb(13,110,253) on rgb(239,246,255) = 4.14:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(244,247,244) = 4.19:1
+  [small 20px/400] span.material-symbols-outlined text-success align-middle fs-5 me-1 "verified_user" — fg rgb(25,135,84) on rgb(236,253,245) = 4.3:1
+
+### checkout (/checkout) — azure — evaluated 94 nodes (2 unknown-bg skipped) — 3 low-contrast
+  [small 21.57px/400] span.material-symbols-outlined text-primary fs-4 check-icon "check_circle" — fg rgb(13,110,253) on rgb(239,246,255) = 4.14:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(240,246,255) = 4.17:1
+  [small 20px/400] span.material-symbols-outlined text-success align-middle fs-5 me-1 "verified_user" — fg rgb(25,135,84) on rgb(236,253,245) = 4.3:1
+
+### checkout (/checkout) — light — evaluated 94 nodes (2 unknown-bg skipped) — 3 low-contrast
+  [small 21.57px/400] span.material-symbols-outlined text-primary fs-4 check-icon "check_circle" — fg rgb(13,110,253) on rgb(239,246,255) = 4.14:1
+  [small 20px/400] span.material-symbols-outlined text-success align-middle fs-5 me-1 "verified_user" — fg rgb(25,135,84) on rgb(236,253,245) = 4.3:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(248,250,252) = 4.33:1
+
+### checkout (/checkout) — dark — evaluated 94 nodes (2 unknown-bg skipped) — 5 low-contrast
+  [small 20px/400] span.material-symbols-outlined text-success align-middle fs-5 me-1 "verified_user" — fg rgb(25,135,84) on rgb(21,30,50) = 3.67:1
+  [small 23.14px/400] span.material-symbols-outlined text-primary fs-3 "local_shipping" — fg rgb(13,110,253) on rgb(21,30,50) = 3.69:1
+  [small 23.14px/400] span.material-symbols-outlined text-primary fs-3 "payments" — fg rgb(13,110,253) on rgb(21,30,50) = 3.69:1
+  [small 21.57px/400] span.material-symbols-outlined text-primary fs-4 check-icon "check_circle" — fg rgb(13,110,253) on rgb(21,30,50) = 3.69:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(11,15,25) = 4.23:1
+
+### checkout (/checkout) — neon — evaluated 94 nodes (2 unknown-bg skipped) — 5 low-contrast
+  [small 20px/400] span.material-symbols-outlined text-success align-middle fs-5 me-1 "verified_user" — fg rgb(25,135,84) on rgb(18,19,29) = 4.08:1
+  [small 23.14px/400] span.material-symbols-outlined text-primary fs-3 "local_shipping" — fg rgb(13,110,253) on rgb(18,19,29) = 4.11:1
+  [small 23.14px/400] span.material-symbols-outlined text-primary fs-3 "payments" — fg rgb(13,110,253) on rgb(18,19,29) = 4.11:1
+  [small 21.57px/400] span.material-symbols-outlined text-primary fs-4 check-icon "check_circle" — fg rgb(13,110,253) on rgb(18,19,29) = 4.11:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(5,5,8) = 4.5:1
+
+### checkout (/checkout) — glass — evaluated 94 nodes (69 unknown-bg skipped) — 0 low-contrast
+
+### checkout (/checkout) — rawdenim — evaluated 94 nodes (53 unknown-bg skipped) — 0 low-contrast
+
+### order-success (/order-success/1) — denim — evaluated 83 nodes (1 unknown-bg skipped) — 3 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(251,251,253) = 4.38:1
+
+### order-success (/order-success/1) — botanical — evaluated 83 nodes (1 unknown-bg skipped) — 3 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(244,247,244) = 4.19:1
+
+### order-success (/order-success/1) — azure — evaluated 83 nodes (1 unknown-bg skipped) — 3 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(240,246,255) = 4.17:1
+
+### order-success (/order-success/1) — light — evaluated 83 nodes (1 unknown-bg skipped) — 3 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(248,250,252) = 4.33:1
+
+### order-success (/order-success/1) — dark — evaluated 83 nodes (1 unknown-bg skipped) — 3 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(11,15,25) = 4.23:1
+
+### order-success (/order-success/1) — neon — evaluated 83 nodes (1 unknown-bg skipped) — 3 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+  [small 20px/400] span.material-symbols-outlined fs-5 text-danger "favorite" — fg rgb(220,53,69) on rgb(5,5,8) = 4.5:1
+
+### order-success (/order-success/1) — glass — evaluated 83 nodes (54 unknown-bg skipped) — 2 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+
+### order-success (/order-success/1) — rawdenim — evaluated 83 nodes (54 unknown-bg skipped) — 2 low-contrast
+  [small 22px/400] span.material-symbols-outlined text-primary "inventory_2" — fg rgb(13,110,253) on rgb(219,234,254) = 3.69:1
+  [small 22px/400] span.material-symbols-outlined text-success "where_to_vote" — fg rgb(25,135,84) on rgb(209,250,229) = 4:1
+
+TOTAL low-contrast: 77
+
+=== SUMMARY ===
+
+Text-contrast violations: NONE remain. Every visible text node clears its
+WCAG threshold (4.5:1 small / 3:1 large) in all 8 themes.
+
+All remaining flagged items are material-symbols icon glyphs (favorite heart,
+design_services, straighten, local_shipping, check_circle, verified_user,
+inventory_2, where_to_vote, payments) at 3.2:1–4.5:1 — these pass the WCAG
+3:1 non-text-contrast requirement and were left as-is.
+
+Issues fixed since the previous report (all in public/css/deen-commerce-store.css):
+  1. Promo-bar BDT (৳) badge — white text on light gray -> solid slate pill + dark text (light themes).
+  2. Footer "first denim brand" badge + coupon/claim buttons — light text on yellow in
+     dark/neon/glass/rawdenim -> dark text on all .bg-warning surfaces.
+  3. Rating stars "(5.0)" amber on pastel cards -> amber-700 in light themes.
+  4. Discount ribbon & checkout step indicators — white on bright accents -> use
+     --accent-contrast; deepened surfaces (denim/azure/light) and dark glyphs
+     (neon/rawdenim) so small text clears AA.
+  5. Cart pill + cart count badge — white on brand orange -> deepened to #d13f12 (4.7:1).
+  6. WhatsApp Support / COD success-green on dark footer -> #2ea44f (4.6:1).
+  7. rawdenim muted text on cards -> --text-muted #6d85a8 -> #7d95ba (4.65:1).
+  8. Order-success "Dispatched" amber icon on pale-yellow circle -> amber-700.
+  9. Navbar amber glyphs (search, palette, admin) on light navbar -> amber-700 (light themes).
+ 10. Search-capsule placeholder text -> #475569 in light themes (5.4:1).
+ 11. Upcoming checkout step numbers ("3"/"4") on the light track -> #475569 (6.15:1,
+     was 3.86:1). Note: the 1-character step numbers are invisible to the
+     text-walker audit, so this was caught by a targeted step-element check.

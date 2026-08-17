@@ -11,7 +11,7 @@
  <!-- Brand Header with Crisp Dark Logo -->
  <div class="text-center mb-4">
  <a href="{{ route('store.index') }}" class="d-inline-flex align-items-center gap-2 mb-2 text-decoration-none">
- <img src="{{ asset('images/deen-logo-dark.png') }}" loading="lazy" class="deen-brand-logo" style="height: 42px;" alt="DEEN Commerce" onerror="this.src='https://deencommerce.com/wp-content/uploads/2025/04/cropped-Deen-Logo-scaled-1.png'">
+ <!-- Typographic brand only (DEEN.im) — logo image removed -->
  <div class="deen-brand-lockup d-flex align-items-baseline">
  <span class="deen-brand-text text-dark" style="font-size: 1.75rem;">DEEN</span>
  <span class="deen-domain-badge"><span class="deen-domain-dot">.</span>im</span>
