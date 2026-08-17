@@ -714,12 +714,21 @@ html[data-theme="light"] .deen-promo-bar .badge.bg-secondary {
 }
 
 
-/* Mobile dock badges: dark text on bright accents in light themes (red badge keeps white) */
-html[data-theme="denim"] .deen-mobile-nav-badge:not(.bg-danger),
-html[data-theme="botanical"] .deen-mobile-nav-badge:not(.bg-danger),
-html[data-theme="azure"] .deen-mobile-nav-badge:not(.bg-danger),
-html[data-theme="light"] .deen-mobile-nav-badge:not(.bg-danger) {
-    color: #0f172a;
+/* Product detail size/variant labels use Bootstrap .text-primary (blue); on the
+   dark product frame (#15202a) the default #0d6efd only reaches ~3.7:1. Lift it
+   to a lighter blue for WCAG AA. (The order-success pastel circles override this
+   back to a darker blue just below, since their backgrounds are light.) */
+html[data-theme="dark"] .deen-frame .text-primary,
+html[data-theme="neon"] .deen-frame .text-primary {
+    color: #60a5fa !important;
+}
+
+/* Order-success "What happens next" step icons sit on light pastel circles
+   (#dbeafe / #fef3c7); keep the blue icon dark enough for AA in every theme.
+   Placed after the rule above and equal specificity, so it wins on those circles. */
+html[data-theme="dark"] .rounded-circle .text-primary,
+html[data-theme="neon"] .rounded-circle .text-primary {
+    color: #1d4ed8 !important;
 }
 
 /* ==========================================================================
@@ -1004,7 +1013,7 @@ html[data-theme="glass"] .bg-light {
 }
 
 html[data-theme="glass"] .text-dark {
-    color: #f8fafc !important;
+    color: #f1f5f9 !important;
 }
 
 html[data-theme="glass"] .text-secondary {
@@ -1012,7 +1021,7 @@ html[data-theme="glass"] .text-secondary {
 }
 
 html[data-theme="glass"] .text-muted {
-    color: #94a3b8 !important;
+    color: #9fb2cc !important;
 }
 
 html[data-theme="glass"] .border,
@@ -1549,7 +1558,7 @@ html[data-theme="light"] .deen-navbar .deen-brand-text {
 }
 
 .deen-domain-dot {
-    color: #f59e0b; /* Amber gold dot */
+    color: #b45309; /* Amber-700 gold dot — 4.6:1 on light navbars (WCAG AA) */
     font-weight: 900;
     margin-right: 0.5px;
     animation: deenDotGlow 3s infinite ease-in-out;
@@ -2767,7 +2776,7 @@ html[data-theme="glass"] .deen-social-btn-google:hover {
     height: 17px;
     padding: 0 4px;
     border-radius: 50rem;
-    background: var(--deen-accent, #fa4a00);
+    background: #9a3412; /* orange-900 — 5.3:1 with white text (WCAG AA for small text) */
     color: #ffffff;
     font-size: 0.58rem;
     font-weight: 700;
@@ -5501,8 +5510,8 @@ html[data-theme="rawdenim"] {
     --bg-nav:           rgba(12, 20, 38, 0.95);
 
     --text-primary:     #eef1f8;   /* cool bright white — 13.5:1 on bg ✅ */
-    --text-secondary:   #a8b8d4;   /* faded-denim blue-white — 6.2:1 ✅ */
-    --text-muted:       #7d95ba;   /* ghost thread — 4.65:1 on cards (was 3.8) */
+    --text-secondary:   #c7d4ec;   /* faded-denim blue-white — ~8:1 on panels ✅ */
+    --text-muted:       #b3c4e0;   /* ghost thread — ~7:1 on cards ✅ */
 
     --border-color:     rgba(100, 140, 200, 0.18);
     --accent-color:     #d97706;   /* copper rivet gold */

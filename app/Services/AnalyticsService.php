@@ -381,8 +381,14 @@ class AnalyticsService
             ->groupBy('dow')->orderBy('dow')->get();
 
         $labels = collect($names);
-        $orders = $labels->map(fn ($name, $idx) => (int) ($rows->firstWhere('dow', $idx)->orders ?? 0))->values()->all();
-        $revenue = $labels->map(fn ($name, $idx) => (float) ($rows->firstWhere('dow', $idx)->revenue ?? 0))->values()->all();
+        $orders = $labels->map(function ($name, $idx) use ($rows) {
+            $row = $rows->firstWhere('dow', $idx);
+            return (int) ($row->orders ?? 0);
+        })->values()->all();
+        $revenue = $labels->map(function ($name, $idx) use ($rows) {
+            $row = $rows->firstWhere('dow', $idx);
+            return (float) ($row->revenue ?? 0);
+        })->values()->all();
 
         return ['labels' => $names, 'orders' => $orders, 'revenue' => $revenue];
     }
