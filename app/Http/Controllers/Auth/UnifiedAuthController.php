@@ -50,15 +50,46 @@ class UnifiedAuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
+        // The users table requires a unique `username` (no default), but the
+        // signup form doesn't collect one — derive a stable, unique handle.
+        $username = $this->generateUniqueUsername($validated['name'], $validated['email']);
+
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
+            'username' => $username,
             'password' => Hash::make($validated['password']),
         ]);
 
         Auth::login($user);
 
         return redirect()->route('account.dashboard')->with('success', 'Account created successfully! Welcome to your Deen Commerce Client Profile.');
+    }
+
+    /**
+     * Build a unique username from a display name / email, e.g. "Tanvir Ahmed"
+     * -> "tanvir_ahmed", falling back to the email local-part and a numeric
+     * suffix when collisions occur.
+     */
+    protected function generateUniqueUsername(string $name, string $email): string
+    {
+        $base = preg_replace('/[^a-z0-9]+/i', '_', strtolower(trim($name)));
+        $base = trim($base, '_');
+
+        if ($base === '' || strlen($base) > 20) {
+            $base = preg_replace('/[^a-z0-9]+/i', '_', strtolower(explode('@', $email)[0]));
+            $base = trim($base, '_');
+        }
+
+        $base = substr($base, 0, 20) ?: 'user';
+        $candidate = $base;
+        $i = 1;
+
+        while (User::where('username', $candidate)->exists()) {
+            $candidate = $base . '_' . $i++;
+        }
+
+        return $candidate;
     }
 
     public function redirectToGoogle(): RedirectResponse
